@@ -1,0 +1,57 @@
+# R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+~$*
+
+# Common large/generated bioinformatics outputs
+*.h5ad
+*.h5
+*.loom
+*.rds
+*.RDS
+*.RData
+*.rda
+*.bam
+*.bai
+*.sam
+*.fastq
+*.fq
+*.fastq.gz
+*.fq.gz
+*.vcf.gz
+*.bcf
+*.bed.gz
+*.bw
+*.bigWig
+
+# Local analysis output folders
+outputs/
+output/
+results/
+result/
+figures/
+plots/
+cache/
+tmp/
+temp/

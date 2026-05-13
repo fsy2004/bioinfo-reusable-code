@@ -1,0 +1,8 @@
+{
+  "input": "H:\\常用分析生信\\491.SCTOUR\\EX_development_human_cortex_10X.h5ad",
+  "n_top_genes": 1000,
+  "nepoch": null,
+  "percent": null,
+  "force_cpu": false,
+  "note": "This script intentionally follows 教程.txt and does not apply pseudotime reversal or t_key in plot_vector_field."
+}

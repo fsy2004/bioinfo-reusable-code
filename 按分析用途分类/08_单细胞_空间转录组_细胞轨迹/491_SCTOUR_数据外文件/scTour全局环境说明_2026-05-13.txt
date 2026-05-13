@@ -1,0 +1,24 @@
+scTour 全局环境说明（2026-05-13）
+
+已安装到当前用户的 Python 3.12 环境：
+- Python: 3.12.5
+- scanpy: 1.12.1
+- sctour: 1.0.0
+- torch: 2.11.0+cpu
+- anndata: 0.12.14
+
+安装方式：
+py -3.12 -m pip install --user --no-cache-dir --retries 10 --timeout 120 -i https://pypi.tuna.tsinghua.edu.cn/simple scanpy sctour
+
+验证结果：
+- import scanpy / sctour / torch / anndata 成功
+- py -3.12 -m pip check 显示 No broken requirements found.
+
+运行建议：
+1. 把自己的 .h5ad 数据放到本目录，或运行时用 -InputFile 指定路径。
+2. 推荐使用 06_run_official_tutorial_exact_global.ps1，它调用全局 Python 3.12，不依赖旧 .venv_sctour。
+3. 示例命令：
+   powershell -ExecutionPolicy Bypass -File .\06_run_official_tutorial_exact_global.ps1 -InputFile "C:\path\your_data.h5ad" -OutputDir "C:\path\sctour_results"
+
+注意：
+原始官方脚本 06_run_official_tutorial_exact.ps1 仍然保留，它依赖 .venv_sctour；当前整理目录没有复制旧虚拟环境。
