@@ -31,6 +31,7 @@ Scripts are grouped under `按分析用途分类/`:
 14. Single-cell virtual perturbation databases
 15. Drug perturbation and repurposing
 16. Spatial communication and cell fate
+17. Advanced result figures and closed-loop visualization
 
 ## Reuse Notes
 
@@ -38,4 +39,3 @@ Scripts are grouped under `按分析用途分类/`:
 - Check each script's required input paths, package dependencies, and phenotype labels before running it in a new project.
 - Keep generated results, caches, and large omics files outside this repository unless they are small examples.
 - Prefer adding project-specific wrappers in the target project and referencing this library as the upstream code source.
-

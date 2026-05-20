@@ -1,0 +1,19 @@
+category,tool,main_use,github_or_site,paper_or_docs
+ML,shapviz,SHAP beeswarm waterfall force importance plots in R,https://github.com/ModelOriented/shapviz,https://modeloriented.github.io/shapviz/
+ML,DALEX,model explanations breakdown residual diagnostics,https://github.com/ModelOriented/DALEX,https://modeloriented.github.io/DALEX/
+ML,shap,SHAP explanations in Python,https://github.com/shap/shap,https://shap.readthedocs.io/
+Single-cell,CellRank,fate mapping trajectory probabilities gene trends,https://github.com/theislab/cellrank,https://www.nature.com/articles/s41592-021-01346-6
+Single-cell,scVelo,RNA velocity stream and latent time,https://github.com/theislab/scvelo,https://www.nature.com/articles/s41587-020-0591-3
+Single-cell,miloR,differential abundance neighborhood graph,https://github.com/MarioniLab/miloR,https://www.nature.com/articles/s41587-021-01033-z
+Single-cell,NicheNet,ligand-to-target regulatory links,https://github.com/saeyslab/nichenetr,https://www.nature.com/articles/s41592-019-0667-5
+Single-cell,LIANA,consensus ligand-receptor and LIANA+ CCC,https://github.com/saezlab/liana,https://www.nature.com/articles/s41556-024-01469-w
+Single-cell,pySCENIC,regulon and TF activity,https://github.com/aertslab/pySCENIC,https://pyscenic.readthedocs.io/
+Single-cell,decoupler,TF pathway activity scoring,https://github.com/scverse/decoupler-py,https://decoupler-py.readthedocs.io/
+Spatial,Squidpy,spatial graph neighborhood enrichment image features,https://github.com/scverse/squidpy,https://www.nature.com/articles/s41592-021-01358-2
+Spatial,cell2location,cell type abundance mapping in spatial transcriptomics,https://github.com/BayraktarLab/cell2location,https://www.nature.com/articles/s41587-021-01139-4
+Spatial,Tangram,single-cell to spatial mapping,https://github.com/broadinstitute/Tangram,https://www.nature.com/articles/s41592-021-01264-7
+Spatial,COMMOT,spatial cell-cell communication vector fields,https://github.com/zcang/COMMOT,https://www.nature.com/articles/s41592-022-01728-4
+Circular,circlize,circular tracks chord diagrams and multi-evidence rings,https://jokergoo.github.io/circlize/,https://doi.org/10.1093/bioinformatics/btu393
+Circular,ComplexHeatmap,multi-annotation heatmaps and oncoPrint-style layouts,https://jokergoo.github.io/ComplexHeatmap-reference/book/,https://academic.oup.com/bioinformatics/article/32/18/2847/1743594
+Circular,pyCirclize,Python circos/chord diagrams,https://github.com/moshi4/pyCirclize,https://moshi4.github.io/pyCirclize/
+

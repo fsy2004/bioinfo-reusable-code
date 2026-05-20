@@ -1,0 +1,5 @@
+external_tools/
+*.pdf
+*.png
+*.html
+
