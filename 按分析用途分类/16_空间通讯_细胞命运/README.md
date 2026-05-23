@@ -1,15 +1,29 @@
 # 16_空间通讯_细胞命运
 
-本模块用于补充空间转录组通讯、单细胞到空间映射、RNA velocity/细胞命运和 TF/通路活性评分。
+本模块用于空间通讯、单细胞到空间映射、细胞命运推断、空间生态位和 TF/通路活性评分。
 
-建议输入：
-- AnnData h5ad
-- 空间坐标与组织切片信息
-- ligand-receptor 数据库或细胞类型注释
+## 脚本
 
-建议输出：
-- CellRank fate probabilities 和 driver genes
-- COMMOT 空间细胞通讯网络
-- Tangram 单细胞到空间映射结果
-- decoupler TF/通路活性矩阵
+| 脚本 | 作用 |
+|---|---|
+| `072_CellRank_命运概率与驱动基因.py` | 基于 scVelo velocity graph 运行 CellRank，输出终末状态、命运概率和 driver genes。 |
+| `073_COMMOT_空间细胞通讯.py` | 基于空间坐标和 ligand-receptor 数据库计算空间通讯 sender/receiver score。 |
+| `074_Tangram_单细胞到空间映射.py` | 把 scRNA-seq 细胞映射到空间转录组 spot。 |
+| `076_decoupler_TF通路活性评分.py` | 用 CollecTRI 或 PROGENy 推断 TF/通路活性。 |
+| `077_NicheNet_配体靶基因通信推断.R` | 从 receiver DE genes 和 LR/target prior 推断 ligand activity 与 ligand-target 链条。 |
+| `080_cell2location_Squidpy_空间生态位.py` | 整合 cell abundance 表并运行 Squidpy 空间邻域富集。 |
 
+## 推荐输入
+
+- AnnData h5ad 或 Seurat 转换结果。
+- 空间坐标、组织切片信息。
+- ligand-receptor 数据库、receiver 差异基因、背景表达基因。
+- 细胞类型注释或 cell abundance 矩阵。
+
+## 推荐输出
+
+- CellRank fate probabilities 和 driver genes。
+- COMMOT 空间通讯网络。
+- Tangram 单细胞到空间映射结果。
+- NicheNet ligand activity 和 ligand-target links。
+- Squidpy neighborhood enrichment。
