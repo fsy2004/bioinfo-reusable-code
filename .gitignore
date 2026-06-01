@@ -55,3 +55,6 @@ plots/
 cache/
 tmp/
 temp/
+
+# Module 18 external sources: vendored third-party trees not tracked (manifest README + CSVs only)
+按分析用途分类/18_外部方法源码_待整合/*/

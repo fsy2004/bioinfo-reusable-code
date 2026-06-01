@@ -1,0 +1,10 @@
+﻿"Category","Name","Package","Status","Path","Archive"
+"05_空间去卷积_空间邻域","cell2location","cell2location","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\05_空间去卷积_空间邻域\cell2location","cell2location-0.1.5.tar.gz"
+"05_空间去卷积_空间邻域","squidpy","squidpy","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\05_空间去卷积_空间邻域\squidpy","squidpy-1.8.1-py3-none-any.whl"
+"05_空间去卷积_空间邻域","stLearn","stlearn","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\05_空间去卷积_空间邻域\stLearn","stlearn-1.4.0-py3-none-any.whl"
+"05_空间去卷积_空间邻域","SpaGCN","SpaGCN","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\05_空间去卷积_空间邻域\SpaGCN","SpaGCN-1.2.7-py3-none-any.whl"
+"06_Regulon_TF调控网络","pySCENIC","pyscenic","pip_download_failed","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\06_Regulon_TF调控网络\pySCENIC",
+"07_替代轨迹_分化潜能","Palantir","palantir","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\07_替代轨迹_分化潜能\Palantir","palantir-1.4.4-py3-none-any.whl"
+"10_分子动力学_对接自动化","MDAnalysis","MDAnalysis","pip_download_failed","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\10_分子动力学_对接自动化\MDAnalysis",
+"10_分子动力学_对接自动化","gmx_MMPBSA","gmx_MMPBSA","copied_package_source","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\10_分子动力学_对接自动化\gmx_MMPBSA","gmx_MMPBSA-1.6.4-py3-none-any.whl"
+"10_分子动力学_对接自动化","vina_python","vina","pip_download_failed","C:\Users\fsy\Desktop\原始代码\按分析用途分类\18_外部方法源码_待整合\10_分子动力学_对接自动化\vina_python",

@@ -17,13 +17,12 @@ High-frequency workflows:
 - [workflow_singlecell_mechanism.md](<C:/Users/fsy/Desktop/原始代码/方法指南_2026-05-24/workflows/workflow_singlecell_mechanism.md>)
 - [workflow_mr_coloc_twas.md](<C:/Users/fsy/Desktop/原始代码/方法指南_2026-05-24/workflows/workflow_mr_coloc_twas.md>)
 
-## Original Index Files
+## Index Files
 
-- Full overview: [README_代码库总览_2026-05-13.md](<C:/Users/fsy/Desktop/原始代码/README_代码库总览_2026-05-13.md>)
-- Script index: [全部代码总索引_按用途分类_2026-05-13.md](<C:/Users/fsy/Desktop/原始代码/全部代码总索引_按用途分类_2026-05-13.md>)
-- Machine-readable script index: [全部代码总索引_按用途分类_2026-05-13.csv](<C:/Users/fsy/Desktop/原始代码/全部代码总索引_按用途分类_2026-05-13.csv>)
-- Rename map: [脚本重命名对照表_2026-05-13.csv](<C:/Users/fsy/Desktop/原始代码/脚本重命名对照表_2026-05-13.csv>)
-- GitHub supplement candidates: [GitHub_生信代码补充候选_2026-05-13.md](<C:/Users/fsy/Desktop/原始代码/GitHub_生信代码补充候选_2026-05-13.md>)
+- Script index (human): [全部代码总索引_按用途分类_2026-05-13.md](<C:/Users/fsy/Desktop/原始代码/全部代码总索引_按用途分类_2026-05-13.md>)
+- Script index (machine-readable): [全部代码总索引_按用途分类_2026-05-13.csv](<C:/Users/fsy/Desktop/原始代码/全部代码总索引_按用途分类_2026-05-13.csv>)
+- Method map: [方法指南_2026-05-24/](<C:/Users/fsy/Desktop/原始代码/方法指南_2026-05-24>)
+- External-source manifest (not vendored): [按分析用途分类/18_外部方法源码_待整合/](<C:/Users/fsy/Desktop/原始代码/按分析用途分类/18_外部方法源码_待整合>)
 
 ## Module Layout
 
