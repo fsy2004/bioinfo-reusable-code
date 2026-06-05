@@ -16,4 +16,6 @@ Spatial,COMMOT,spatial cell-cell communication vector fields,https://github.com/
 Circular,circlize,circular tracks chord diagrams and multi-evidence rings,https://jokergoo.github.io/circlize/,https://doi.org/10.1093/bioinformatics/btu393
 Circular,ComplexHeatmap,multi-annotation heatmaps and oncoPrint-style layouts,https://jokergoo.github.io/ComplexHeatmap-reference/book/,https://academic.oup.com/bioinformatics/article/32/18/2847/1743594
 Circular,pyCirclize,Python circos/chord diagrams,https://github.com/moshi4/pyCirclize,https://moshi4.github.io/pyCirclize/
+Flow,ggalluvial,sankey/alluvial multi-axis flow diagrams (drug-target-channel / ligand-receptor),https://github.com/corybrunson/ggalluvial,https://corybrunson.github.io/ggalluvial/
+SEM,semPlot,structural equation and path-model diagrams,https://github.com/SachaEpskamp/semPlot,http://sachaepskamp.com/semPlot/
 
