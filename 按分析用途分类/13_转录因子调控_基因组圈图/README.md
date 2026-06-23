@@ -1,15 +1,15 @@
-# 13_转录因子调控_基因组圈图
+# 13 · 转录因子调控 / 基因组圈图
 
-本模块用于候选基因集的 TF/motif 调控解释、regulon 活性推断和染色体/圈图展示。
+候选基因集的 TF/motif 调控解释、regulon 活性推断与染色体圈图展示。
 
-## 脚本
+| 模块 | 用途 | 语言 | 输出图 | 状态 |
+|------|------|------|--------|:---:|
+| [053 染色体圈图](053_circlize染色体圈图/) | 基因染色体位置 circos | R | 圈图 | ✅ turnkey |
+| 047 RcisTarget motif-TF 网络 | motif/TF 富集 + 调控网络 | R | 网络 · Sankey | ⏭️ 需 cisTarget DB |
+| 081 pySCENIC regulon | GRN+ctx+AUCell,TF 活性 | Python | UMAP · 热图 | ⏭️ 重型环境 |
 
-| 脚本 | 作用 |
-|---|---|
-| `047_RcisTarget_转录因子Motif网络.R` | 对候选基因集做 motif/TF 富集并构建调控网络。 |
-| `053_circlize_基因染色体圈图.R` | 绘制目标基因在染色体上的圈图。 |
-| `081_pySCENIC_Regulon_TF活性.py` | 调用 pySCENIC 的 GRN、ctx、AUCell 三步流程。 |
+> **053** turnkey:坐标表即出顶刊圈图(遵循 [统一框架规范](../_framework/CONVENTIONS.md))。
+> **047**:需 RcisTarget motif 排名数据库(GB 级);**081**:pySCENIC(Python + GRNBoost,重型)。两者保留原脚本作参考。
 
 ## 推荐链条
-
-WGCNA/DEG/marker genes -> RcisTarget motif -> pySCENIC regulon -> AUCell/decoupler 活性 -> 轨迹、空间或扰动结果解释。
+WGCNA/DEG/marker genes → RcisTarget motif → pySCENIC regulon → AUCell/decoupler 活性 → 轨迹/空间/扰动解释。

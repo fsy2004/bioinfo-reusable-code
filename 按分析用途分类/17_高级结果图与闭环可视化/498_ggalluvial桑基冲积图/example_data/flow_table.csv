@@ -1,0 +1,10 @@
+"Drug","Hub","Pathway","Freq"
+"Quercetin","AKT1","JAK-STAT",5
+"Quercetin","TP53","PI3K-Akt",2
+"Quercetin","STAT3","Apoptosis",3
+"Luteolin","AKT1","PI3K-Akt",5
+"Quercetin","EGFR","JAK-STAT",5
+"Luteolin","TP53","Apoptosis",4
+"Curcumin","TP53","Cell cycle",2
+"Curcumin","EGFR","PI3K-Akt",1
+"Luteolin","EGFR","PI3K-Akt",4

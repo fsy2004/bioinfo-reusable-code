@@ -1,5 +1,9 @@
 # 16_空间通讯_细胞命运
 
+> ⏭️ **状态**:本类别为空间通讯/细胞命运方法,多依赖 Python 空间组学栈(CellRank/COMMOT/Tangram/cell2location/Squidpy/decoupler)或 NicheNet 大型先验网络,**本地未渲染示例图**,保留原脚本作参考(各脚本头部含依赖与可复现命令)。配图规范见 [统一框架](../_framework/CONVENTIONS.md)。
+
+---
+
 本模块用于空间通讯、单细胞到空间映射、细胞命运推断、空间生态位和 TF/通路活性评分。
 
 ## 脚本

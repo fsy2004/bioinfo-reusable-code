@@ -1,23 +1,15 @@
-# 19_多组学整合_分型模板
+# 19 · 多组学整合 / 分型模板
 
-本模块用于多组学潜变量整合、监督多组学分类、共浸润 pattern 和无监督分型。
+多组学潜变量整合、监督多组学分类、无监督分子分型。
 
-## 脚本
+| 模块 | 用途 | 语言 | 输出图 | 状态 |
+|------|------|------|--------|:---:|
+| [084 NMF 共识分型](084_NMF共识聚类分型/) | NMF + 共识聚类分子分型 | R | 共识矩阵 · 秩曲线 · 分型热图 | ✅ turnkey |
+| 083 MOFA / DIABLO 多组学整合 | 多组学潜变量整合 | R | 因子图 · 热图 | ⏭️ 需 MOFA2(python) |
 
-| 脚本 | 作用 |
-|---|---|
-| `083_MOFA_DIABLO_多组学潜变量整合.R` | 用 MOFA2 做无监督多组学因子分析，或用 mixOmics/DIABLO 做监督多组学整合。 |
-| `084_NMF_ConsensusClusterPlus_共浸润分型.R` | 对表达、免疫评分或空间生态位矩阵做 NMF 和共识聚类。 |
+> **084** turnkey:特征矩阵即出分型金标准图(遵循 [统一框架规范](../_framework/CONVENTIONS.md))。
+> **083**:MOFA2 依赖 python `mofapy2`(reticulate),DIABLO 依赖 mixOmics,本地未渲染,保留原脚本作参考。
 
 ## 推荐输入
-
-- 多组学矩阵：每个矩阵行为 feature、列为 sample。
-- metadata：样本分组、疾病状态、临床表型。
-- 免疫浸润、空间生态位或通路活性矩阵。
-
-## 推荐输出
-
-- MOFA latent factors、feature weights。
-- DIABLO sample variates。
-- NMF metagene/pattern、样本亚型。
-- consensus clustering 稳定性结果。
+- 矩阵:行=feature、列=sample(表达/免疫评分/通路活性/空间生态位)。
+- metadata:样本分组、疾病状态、临床表型。

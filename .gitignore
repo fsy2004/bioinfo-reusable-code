@@ -58,3 +58,9 @@ temp/
 
 # Module 18 external sources: vendored third-party trees not tracked (manifest README + CSVs only)
 按分析用途分类/18_外部方法源码_待整合/*/
+
+# 497 scSurvival: external package kept manifest-only (README/说明/requirements/LICENSE tracked, bulk vendored tree ignored)
+按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/497_scSurvival_单细胞队列生存/examples/
+按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/497_scSurvival_单细胞队列生存/pics/
+按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/497_scSurvival_单细胞队列生存/scSurvival/
+按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/497_scSurvival_单细胞队列生存/other_scripts/
