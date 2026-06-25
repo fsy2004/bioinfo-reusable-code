@@ -13,7 +13,7 @@ reuse it in a project.
 ## Repository layout
 
 ```
-按分析用途分类/              analysis modules, grouped by purpose
+modules/              analysis modules, grouped by purpose
 ├── _framework/             shared toolkit (themes, palettes, scaffold, linter)
 ├── 01_..21_..              module categories (catalog below)
 └── <NNN_module>/           one folder per module:
@@ -29,13 +29,13 @@ Run-time outputs (`results/`, `figures/`) are git-ignored.
 
 ```bash
 git clone https://github.com/fsy2004/bioinfo-reusable-code.git
-cd bioinfo-reusable-code/按分析用途分类
+cd bioinfo-reusable-code/modules
 
 # run a module on its bundled example data
-Rscript 03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/010_*.R
+Rscript 03_transcriptomics_deg/010_geo_deg_volcano_heatmap_pca/010_*.R
 
 # run on your own data
-Rscript 03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/010_*.R \
+Rscript 03_transcriptomics_deg/010_geo_deg_volcano_heatmap_pca/010_*.R \
         --input your_matrix.csv --outdir results/run1
 ```
 
@@ -47,7 +47,7 @@ Rendered directly from the bundled example data:
 
 | Differential expression | Single-cell clustering | Mendelian randomization |
 |:---:|:---:|:---:|
-| ![volcano](按分析用途分类/03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/assets/DEG_volcano.png) | ![umap](按分析用途分类/08_单细胞_空间转录组_细胞轨迹/046_单细胞发表级图/assets/UMAP_clusters.png) | ![mr](按分析用途分类/09_孟德尔随机化_GWAS处理/032_MR_TwoSampleMR分析/assets/MR_scatter.png) |
+| ![volcano](modules/03_transcriptomics_deg/010_geo_deg_volcano_heatmap_pca/assets/DEG_volcano.png) | ![umap](modules/08_singlecell_spatial_trajectory/046_scrna_publication_figures/assets/UMAP_clusters.png) | ![mr](modules/09_mendelian_randomization/032_mr_twosamplemr/assets/MR_scatter.png) |
 
 ## Module catalog
 
