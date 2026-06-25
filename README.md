@@ -56,24 +56,25 @@ Rendered directly from the bundled example data:
 | 01 | Network pharmacology & target databases | 001–006, 011 | Venn, UpSet, target tables |
 | 02 | GO / KEGG enrichment | 007 | dot/bar plots, pathway graph |
 | 03 | Transcriptomics (GEO) & differential expression | 008–010, 056 | volcano, heatmap, PCA, batch correction |
-| 04 | Machine-learning feature selection | 012–015, 034, 035, 052, 059 | LASSO, RF, SVM-RFE, SHAP, AUC heatmap |
-| 05 | Diagnostic models & validation | 016, 063 | ROC, calibration, DCA, nomogram |
+| 04 | Machine-learning feature selection | 012–015, 034, 035, 052, 059, 502 | LASSO, RF, SVM-RFE, SHAP, AUC heatmap, triple-vote |
+| 05 | Diagnostic models & validation | 016, 063, 503 | ROC, calibration, DCA, nomogram, LODO generalization |
 | 06 | Immune infiltration | 017–021, 492 | composition, boxplot, correlation |
 | 07 | Molecular docking & dynamics | 022, 086 | binding-energy bubble, MD metrics |
-| 08 | Single-cell / spatial / trajectory | 023–027, 044–051, 058, 062, 082 | UMAP, dot plot, marker heatmap |
-| 09 | Mendelian randomization & GWAS | 028–033, 043, 055, 075, 079 | MR scatter, forest, funnel, leave-one-out |
+| 08 | Single-cell / spatial / trajectory | 023–027, 044–051, 058, 062, 082, 506 | UMAP, dot plot, marker heatmap, scVI/scANVI integration |
+| 09 | Mendelian randomization & GWAS | 028–033, 043, 055, 075, 079, 508 | MR scatter, forest, funnel, two-step mediation |
 | 10 | TWAS (single-cell eQTL weights) | 036–042 | weight tables |
-| 11 | WGCNA co-expression | 054 | soft-threshold, module-trait heatmap |
+| 11 | WGCNA co-expression | 054, 504 | soft-threshold, module-trait heatmap, hdWGCNA |
 | 12 | TCGA prognosis (reference only) | 048, 057, 060 | KM, time-dependent ROC, risk plot |
-| 13 | Transcription-factor regulation / circos | 047, 053, 081 | chromosome circos, regulon network |
-| 14 | Single-cell in-silico perturbation | 067–069, 085, 494, 495 | gene-knockout effects |
+| 13 | Transcription-factor regulation / circos | 047, 053, 081, 511 | chromosome circos, regulon network, TF convergence |
+| 14 | Single-cell in-silico perturbation | 067–069, 085, 494, 495, 507 | gene-knockout effects, Geneformer in-silico |
 | 15 | Drug perturbation / repurposing | 070, 071, 078 | pharmacovigilance signals |
-| 16 | Spatial communication / cell fate | 072–074, 076, 077, 080 | CellRank, niche maps |
-| 17 | Advanced result figures | 498 | alluvial / Sankey |
+| 16 | Spatial communication / cell fate | 072–074, 076, 077, 080, 505, 509 | CellRank, niche maps, RCTD, communication loop |
+| 17 | Advanced result figures | 498, 512–516 | raincloud, ridgeline, dumbbell, chord, composite |
 | 18 | External method sources | manifest only | — |
 | 19 | Multi-omics integration & subtyping | 083, 084 | MOFA, consensus clustering |
 | 20 | Mutation / CNV / methylation / proteome / metabolome | 5 templates | oncoprint, volcano, heatmap |
 | 21 | Disease burden (GBD / NHANES / CHARLS) | external / spec | — |
+| 22 | Single-cell metabolism | 510 | metabolic pathway activity (scMetabolism-style) |
 
 Categories 10, 14, 16 and parts of 07/12 require heavy or GPU-bound toolchains
 (FUSION, GROMACS, deep-learning models); their scripts and dependency notes are
@@ -83,15 +84,17 @@ kept for reference rather than local one-command rendering.
 
 Shared by all modules so figures and I/O stay consistent:
 
-- `theme_pub.R` / `pubstyle.py` — journal theme, discrete palettes (NPG/AAAS/Lancet/…),
-  viridis for continuous scales, and `save_fig()` (vector PDF + 300 dpi PNG)
+- `theme_pub.R` / `pubstyle.py` — Nature-aligned journal theme; discrete palettes
+  (NPG/AAAS/Lancet/… plus the colourblind-safe **Okabe-Ito** set), viridis for continuous
+  and RdBu for diverging scales, and `save_fig()` (vector PDF + 300 dpi PNG)
 - `CONVENTIONS.md` — module layout, run conventions, figure rules
 - `ANALYSIS_TEMPLATE/` — scaffold for a new multi-step project: central config
   (seed, relative paths, parameters), setup with checkpointed steps
   (`cache_step`), logged statistics, and an environment snapshot; R and Python versions
 - `QUALITY_CHECKLIST.md` — pre-/in-/post-analysis checklist
 - `qc_lint.py` — static checks for hard-coded paths, missing random seeds,
-  non-vector figure exports, and missing environment snapshots
+  non-vector figure exports, and missing environment snapshots; also run in CI
+  (`.github/workflows/qc.yml`): full-tree report + a blocking gate on changed files
 
 ## Conventions
 

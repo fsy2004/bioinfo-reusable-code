@@ -1,0 +1,55 @@
+name: qc-lint
+
+# 复现质量机检(对应 modules/_framework/qc_lint.py 与 12 条分析铁律)。
+# 策略:① 全库非阻断报告(可见但不因历史遗留 setwd/绝对路径而红);
+#       ② 仅对【本次改动的 .R/.py】阻断 —— 新增/修改的代码必须干净,旧模块豁免。
+# 这样 CI 既给全库可见性,又防止新代码引入硬编码路径/缺种子/非矢量图的回归。
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+
+jobs:
+  qc-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # 需要历史以便 diff 出改动文件
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'   # qc_lint 仅用标准库,无需装依赖
+
+      - name: Full-tree QC report (non-blocking)
+        run: |
+          echo "::group::qc_lint full report"
+          python modules/_framework/qc_lint.py modules || true
+          echo "::endgroup::"
+
+      - name: Gate changed R/Python files (blocking)
+        run: |
+          set -e
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="origin/${{ github.base_ref }}"
+          else
+            BASE="${{ github.event.before }}"
+          fi
+          # 回退:base 不存在(首次推送/强推/浅历史)时退回 HEAD~1,再不行则跳过
+          if ! git cat-file -e "${BASE}^{commit}" 2>/dev/null; then
+            if git cat-file -e "HEAD~1^{commit}" 2>/dev/null; then BASE="HEAD~1"; else
+              echo "No valid diff base; skipping changed-file gate."; exit 0; fi
+          fi
+          CHANGED=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- 'modules/**/*.R' 'modules/**/*.py')
+          if [ -z "$CHANGED" ]; then echo "No changed R/Python module files."; exit 0; fi
+          echo "Linting changed files:"; echo "$CHANGED"
+          rc=0
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            python modules/_framework/qc_lint.py "$f" || rc=1
+          done <<< "$CHANGED"
+          if [ "$rc" -ne 0 ]; then
+            echo "::error::qc_lint found 高危 issues in changed files (hardcoded paths / setwd). Fix before merge."
+          fi
+          exit $rc
