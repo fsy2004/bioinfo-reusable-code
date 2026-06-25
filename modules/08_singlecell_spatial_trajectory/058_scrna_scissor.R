@@ -566,12 +566,10 @@ if (nrow(scissor_celltype_summary) > 0) {
   pdf(file = file.path(output_dirs$scissor_analysis, "10_Scissor_CellType_Barplot.pdf"),
       width = 10, height = 7)
   print(
-    ggplot(scissor_celltype_summary, aes(x = Cell_Type, y = Cell_Count, color = Scissor)) +
-      geom_linerange(aes(ymin = 0, ymax = Cell_Count),                       # lollipop(顶刊优于条形)
-                     position = position_dodge(width = 0.6), linewidth = 0.9) +
-      geom_point(position = position_dodge(width = 0.6), size = 2.6) +
+    ggplot(scissor_celltype_summary, aes(x = Cell_Type, y = Cell_Count, fill = Scissor)) +
+      geom_col(position = "dodge", width = 0.75) +
       coord_flip() +
-      scale_color_manual(values = c("Scissor+" = "#E64B35", "Scissor-" = "#4DBBD5")) +
+      scale_fill_manual(values = c("Scissor+" = "#E64B35", "Scissor-" = "#4DBBD5")) +
       labs(
         title = "Cell Type Distribution of Scissor-Selected Cells",
         x = "Cell Type",

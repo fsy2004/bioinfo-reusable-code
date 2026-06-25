@@ -709,10 +709,8 @@ shap_group_long <- reshape2::melt(shap_group, id.vars = "Gene", variable.name = 
 
 pdf(file.path(result_dir, "shap_group_importance_barplot.pdf"), width = max(8, pdf_width*1.5), height = pdf_height)
 print(
-  ggplot(shap_group_long, aes(x = reorder(Gene, SHAP_Importance), y = SHAP_Importance, color = Group)) +
-    geom_linerange(aes(ymin = 0, ymax = SHAP_Importance),                  # 分组 lollipop(顶刊优于条形)
-                   position = position_dodge(width = 0.6), linewidth = 0.8) +
-    geom_point(position = position_dodge(width = 0.6), size = 2.2) +
+  ggplot(shap_group_long, aes(x = reorder(Gene, SHAP_Importance), y = SHAP_Importance, fill = Group)) +
+    geom_bar(stat='identity', position = "dodge") +
     coord_flip() +
     labs(title="Group-wise SHAP Feature Importance", x="Gene", y="Mean(|SHAP|)") +
     custom_theme
@@ -760,8 +758,7 @@ vi_df <- as.data.frame(vi)
 pdf(file.path(result_dir, "feature_permutation_importance.pdf"), width=pdf_width*1.2, height=pdf_height)
 print(
   ggplot(vi_df[vi_df$variable != "_full_model_", ], aes(x=reorder(variable, -dropout_loss), y=dropout_loss)) +
-    geom_linerange(aes(ymin=0, ymax=dropout_loss), color="tomato", linewidth=0.9) +  # lollipop(顶刊优于条形)
-    geom_point(color="tomato", size=2.6) +
+    geom_bar(stat="identity", fill="tomato") +
     coord_flip() +
     labs(title="Permutation Feature Importance (AUC Drop)", x="Feature", y="AUC Drop") +
     custom_theme
