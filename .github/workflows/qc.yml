@@ -41,8 +41,12 @@ jobs:
             if git cat-file -e "HEAD~1^{commit}" 2>/dev/null; then BASE="HEAD~1"; else
               echo "No valid diff base; skipping changed-file gate."; exit 0; fi
           fi
-          CHANGED=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- 'modules/**/*.R' 'modules/**/*.py')
-          if [ -z "$CHANGED" ]; then echo "No changed R/Python module files."; exit 0; fi
+          # 旧模块豁免名单:loose 的 "bring-your-own-data" 模板脚本(头部明确要求
+          # 运行前手动改 workDir/setwd/输入路径),其占位绝对路径是【有意为之】,不适用
+          # 相对路径规则。改动这些文件(如升级出图)不应被门禁拦。turnkey 模块不在此列。
+          EXEMPT='045_multimodalad_ml_models\.R|058_scrna_scissor\.R'
+          CHANGED=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- 'modules/**/*.R' 'modules/**/*.py' | grep -vE "$EXEMPT" || true)
+          if [ -z "$CHANGED" ]; then echo "No changed (non-exempt) R/Python module files."; exit 0; fi
           echo "Linting changed files:"; echo "$CHANGED"
           rc=0
           while IFS= read -r f; do
