@@ -47,3 +47,14 @@
 ## 5. 示例数据规范
 
 `example_data/` 内为 **小型合成数据**,仅用于冒烟测试与生成展示图,文件头/README 注明 `synthetic, for demo only`。严格匹配 README 的输入规格(列名、类型、命名约定)。
+
+## 6. 分析项目级规范 (pipeline 与质量自查)
+
+单模块出图见上;做【完整多步分析项目】时,用统一骨架 + 质量闸(对应记忆 feedback_analysis_quality 的 12 铁律):
+
+- **项目骨架 `ANALYSIS_TEMPLATE/`**:复制即得 `config`(随机种子/相对路径/关键参数依据) + `00_setup.R`/`setup_env.py`(建目录、载框架、`cache_step()` 断点续跑、`log_stat()` 关键统计落盘、`save_session()` 依赖快照) + `run_pipeline.R`(分步骨架,每步内嵌铁律自查点)。R 与 Python 双版。
+- **质量自查 `QUALITY_CHECKLIST.md`**:12 铁律的分析前/中/收尾清单,每个项目过一遍。
+- **机检 `python qc_lint.py <脚本或目录>`**:自动查硬编码绝对路径/`setwd`、缺固定种子、非矢量出图、缺依赖快照;发现高危返回码 1,可接 git hook / CI。
+
+核心纪律:种子统一、路径相对、耗时步骤断点续跑、关键数字由代码生成(不手填)、依赖版本锁定、复用本框架不重写。
+

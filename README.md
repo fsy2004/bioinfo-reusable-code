@@ -1,129 +1,107 @@
-<div align="center">
+# Reusable Bioinformatics Code Library
 
-# 🧬 生物信息学可复用代码库
-### Reusable Bioinformatics Code Library
+A set of self-contained R and Python modules for common bioinformatics analyses.
+Each module ships with a small example dataset and runs from the command line to
+produce vector, journal-style figures. Replace the example with your own data to
+reuse it in a project.
 
-**放入数据 → 一条命令 → 输出顶刊级图**
-*Drop in your data → one command → publication-grade figures*
+- ~28 runnable modules across 21 analysis categories
+- A shared plotting framework (`_framework/`) for consistent figure style
+- A project scaffold, quality checklist, and static linter for reproducible pipelines
+- Tested with R 4.4 and Python 3.12
 
-涵盖 网络药理学 · 富集分析 · 转录组差异 · 机器学习 · 诊断/预后模型 · 免疫浸润 · 分子对接 · 单细胞/空间 · 孟德尔随机化 · WGCNA · 分子分型 · 药物警戒 等 21 大类
+## Repository layout
 
-![R](https://img.shields.io/badge/R-4.4-276DC3?logo=r&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
-![Modules](https://img.shields.io/badge/turnkey模块-28-success)
-![Figures](https://img.shields.io/badge/顶刊级图-82张-E64B35)
-![Style](https://img.shields.io/badge/配色-Nature%2FCell%20期刊风-3C5488)
+```
+按分析用途分类/              analysis modules, grouped by purpose
+├── _framework/             shared toolkit (themes, palettes, scaffold, linter)
+├── 01_..21_..              module categories (catalog below)
+└── <NNN_module>/           one folder per module:
+    ├── <NNN_module>.R|.py   main script (runs on example_data/ by default)
+    ├── README.md            input spec, method, outputs
+    ├── example_data/        small synthetic input
+    └── assets/              committed preview figures
+```
 
-</div>
+Run-time outputs (`results/`, `figures/`) are git-ignored.
 
----
-
-## ✨ 这个库有什么不一样
-
-| | |
-|---|---|
-| 🎯 **Turnkey 零改动** | 每个模块自带小示例数据,`Rscript 模块.R` 一条命令直接出图,不用改路径 |
-| 🎨 **顶刊级图** | 统一 `theme_pub` 期刊主题(NPG/Lancet 配色 + viridis)· 矢量 PDF + 300dpi PNG · 信息密度高 |
-| 📖 **逐模块文档** | 每个模块 README 讲清 ①输入数据 ②方法原理 ③用途 ④亮点 ⑤输出图(配真图) |
-| 🧩 **统一框架** | `_framework/` 提供主题、配色、存图、零依赖 Venn、命令行参数等可复用工具 |
-| 🔬 **科学严谨** | 只用成熟工具/库,不臆造;只标准化 I/O + 升级美化 + 文档,**不改动原有分析逻辑** |
-
----
-
-## 🖼️ 图廊 Gallery
-
-> 以下均为**真实运行示例数据渲染**的输出图(非示意图)。
-
-| 差异分析 · 火山图 | SHAP 模型解释 · 蜂群图 | 单细胞 · marker 点图 |
-|:---:|:---:|:---:|
-| ![volcano](按分析用途分类/03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/assets/DEG_volcano.png) | ![shap](按分析用途分类/04_机器学习筛选特征基因/052_SHAP机器学习解释分析/assets/SHAP_beeswarm.png) | ![dotplot](按分析用途分类/08_单细胞_空间转录组_细胞轨迹/046_单细胞发表级图/assets/Marker_dotplot.png) |
-| **预后 · KM 生存曲线** | **WGCNA · 模块-性状热图** | **基因组 · 染色体圈图** |
-| ![km](按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/057_TCGA预后风险模型/assets/KM_curve.png) | ![wgcna](按分析用途分类/11_WGCNA共表达网络/054_WGCNA共表达网络/assets/Module_trait_heatmap.png) | ![circos](按分析用途分类/13_转录因子调控_基因组圈图/053_circlize染色体圈图/assets/Chromosome_circos.png) |
-| **孟德尔随机化 · 散点图** | **免疫浸润 · 分组箱线** | **网络药理 · 桑基冲积图** |
-| ![mr](按分析用途分类/09_孟德尔随机化_GWAS处理/032_MR_TwoSampleMR分析/assets/MR_scatter.png) | ![immune](按分析用途分类/06_免疫浸润与免疫可视化/021_免疫浸润可视化/assets/Immune_boxplot.png) | ![alluvial](按分析用途分类/17_高级结果图与闭环可视化/498_ggalluvial桑基冲积图/assets/Alluvial.png) |
-
----
-
-## 🚀 快速开始 Quick Start
+## Quick start
 
 ```bash
-# 1) 克隆
 git clone https://github.com/fsy2004/bioinfo-reusable-code.git
 cd bioinfo-reusable-code/按分析用途分类
 
-# 2) 直接跑示例(每个模块都自带小样例数据,零改动出图)
+# run a module on its bundled example data
 Rscript 03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/010_*.R
-#   → 在该模块 results/ 与 assets/ 下生成火山图 / 热图 / PCA
 
-# 3) 换成你自己的数据
+# run on your own data
 Rscript 03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/010_*.R \
-        --input 你的表达矩阵.csv --outdir 你的结果目录
+        --input your_matrix.csv --outdir results/run1
 ```
 
-> 输入数据规格、必需列、示例,见每个模块文件夹下的 `README.md`。
+Each module folder documents its exact input format, method, and outputs.
 
----
+## Example outputs
 
-## 📂 模块目录 Catalog
+Rendered directly from the bundled example data:
 
-> ✅ = turnkey 旗舰(自带示例 + 真图 + 文档) · 📦 = 上游引擎/数据前处理 · ⏭️ = 需重型/外部环境(深度学习/专用工具链,保留脚本作参考)
+| Differential expression | Single-cell clustering | Mendelian randomization |
+|:---:|:---:|:---:|
+| ![volcano](按分析用途分类/03_GEO转录组整理与差异分析/010_GEO差异分析_火山热图PCA/assets/DEG_volcano.png) | ![umap](按分析用途分类/08_单细胞_空间转录组_细胞轨迹/046_单细胞发表级图/assets/UMAP_clusters.png) | ![mr](按分析用途分类/09_孟德尔随机化_GWAS处理/032_MR_TwoSampleMR分析/assets/MR_scatter.png) |
 
-| # | 类别 | turnkey 模块 | 典型输出图 |
-|:--:|------|------|------|
-| 01 | [网络药理学与靶点](按分析用途分类/01_网络药理学与靶点数据库/) | ✅ 001-006 011 | Venn · UpSet · 靶点表 |
-| 02 | [GO/KEGG 富集](按分析用途分类/02_GO_KEGG富集分析/) | ✅ 007 | 气泡 · 柱状 · 通路网络 |
-| 03 | [GEO 转录组差异](按分析用途分类/03_GEO转录组整理与差异分析/) | ✅ 008 009 010 056 | 火山 · 热图 · PCA · 批次校正 |
-| 04 | [机器学习特征筛选](按分析用途分类/04_机器学习筛选特征基因/) | ✅ 012-015 034 035 052 | LASSO · RF · SVM-RFE · **SHAP** · AUC 热图 |
-| 05 | [诊断模型与验证](按分析用途分类/05_诊断模型与验证/) | ✅ 016 063 | ROC · 校准 · DCA · 列线图 |
-| 06 | [免疫浸润可视化](按分析用途分类/06_免疫浸润与免疫可视化/) | ✅ 021 · 📦 017-020 | 堆叠组成 · 分组箱线 · 相关热图 |
-| 07 | [分子对接](按分析用途分类/07_分子对接与结合能可视化/) | ✅ 022 · ⏭️ 086 | 结合能热图 · 气泡 |
-| 08 | [单细胞/空间/轨迹](按分析用途分类/08_单细胞_空间转录组_细胞轨迹/) | ✅ 046 旗舰 · ⏭️ 多个 | UMAP · 点图 · marker 热图 · 小提琴 |
-| 09 | [孟德尔随机化](按分析用途分类/09_孟德尔随机化_GWAS处理/) | ✅ 032 · 📦 028-031 | MR 散点 · 森林 · 漏斗 · 留一 |
-| 10 | [TWAS / eQTL 权重](按分析用途分类/10_TWAS_单细胞eQTL权重/) | ⏭️ FUSION | — |
-| 11 | [WGCNA 共表达](按分析用途分类/11_WGCNA共表达网络/) | ✅ 054 | 软阈值 · 模块树 · 模块-性状热图 |
-| 12 | [TCGA 预后生存](按分析用途分类/12_TCGA_肿瘤预后生存_仅参考/) | ✅ 048 057 060 | KM · 时间ROC · 风险图 · 蝴蝶图 |
-| 13 | [转录因子/圈图](按分析用途分类/13_转录因子调控_基因组圈图/) | ✅ 053 · ⏭️ 047 081 | 染色体圈图 |
-| 14 | [单细胞虚拟扰动](按分析用途分类/14_单细胞虚拟扰动_扰动数据库/) | ⏭️ GEARS/CellOracle | — |
-| 15 | [药物扰动/重定位](按分析用途分类/15_药物扰动_药物重定位/) | ✅ 078 · ⏭️ 070 071 | 药物警戒 ROR 森林 · 信号热图 |
-| 16 | [空间通讯/细胞命运](按分析用途分类/16_空间通讯_细胞命运/) | ⏭️ CellRank/Tangram | — |
-| 17 | [高级结果图](按分析用途分类/17_高级结果图与闭环可视化/) | ✅ 498 | 桑基/冲积图 |
-| 19 | [多组学整合/分型](按分析用途分类/19_多组学整合_分型模板/) | ✅ 084 · ⏭️ 083 | 共识矩阵 · 分型热图 |
-| 20 | [突变/甲基化/蛋白/代谢](按分析用途分类/20_突变_CNV_甲基化_蛋白组_代谢组模板/) | 📄 5 个模板 | oncoprint · 火山 · 热图 |
-| 21 | [疾病负担 GBD/NHANES/CHARLS](按分析用途分类/21_疾病负担_共病_GBD_NHANES_CHARLS/) | 📄 外部源码/规范 | — |
-| 18 | [AI 科学示意图](按分析用途分类/18_外部方法源码_待整合/) | 📄 外部工具索引 | — |
+## Module catalog
 
----
+| #  | Category | Modules | Typical output |
+|----|----------|---------|----------------|
+| 01 | Network pharmacology & target databases | 001–006, 011 | Venn, UpSet, target tables |
+| 02 | GO / KEGG enrichment | 007 | dot/bar plots, pathway graph |
+| 03 | Transcriptomics (GEO) & differential expression | 008–010, 056 | volcano, heatmap, PCA, batch correction |
+| 04 | Machine-learning feature selection | 012–015, 034, 035, 052, 059 | LASSO, RF, SVM-RFE, SHAP, AUC heatmap |
+| 05 | Diagnostic models & validation | 016, 063 | ROC, calibration, DCA, nomogram |
+| 06 | Immune infiltration | 017–021, 492 | composition, boxplot, correlation |
+| 07 | Molecular docking & dynamics | 022, 086 | binding-energy bubble, MD metrics |
+| 08 | Single-cell / spatial / trajectory | 023–027, 044–051, 058, 062, 082 | UMAP, dot plot, marker heatmap |
+| 09 | Mendelian randomization & GWAS | 028–033, 043, 055, 075, 079 | MR scatter, forest, funnel, leave-one-out |
+| 10 | TWAS (single-cell eQTL weights) | 036–042 | weight tables |
+| 11 | WGCNA co-expression | 054 | soft-threshold, module-trait heatmap |
+| 12 | TCGA prognosis (reference only) | 048, 057, 060 | KM, time-dependent ROC, risk plot |
+| 13 | Transcription-factor regulation / circos | 047, 053, 081 | chromosome circos, regulon network |
+| 14 | Single-cell in-silico perturbation | 067–069, 085, 494, 495 | gene-knockout effects |
+| 15 | Drug perturbation / repurposing | 070, 071, 078 | pharmacovigilance signals |
+| 16 | Spatial communication / cell fate | 072–074, 076, 077, 080 | CellRank, niche maps |
+| 17 | Advanced result figures | 498 | alluvial / Sankey |
+| 18 | External method sources | manifest only | — |
+| 19 | Multi-omics integration & subtyping | 083, 084 | MOFA, consensus clustering |
+| 20 | Mutation / CNV / methylation / proteome / metabolome | 5 templates | oncoprint, volcano, heatmap |
+| 21 | Disease burden (GBD / NHANES / CHARLS) | external / spec | — |
 
-## 🧩 统一框架 `_framework/`
+Categories 10, 14, 16 and parts of 07/12 require heavy or GPU-bound toolchains
+(FUSION, GROMACS, deep-learning models); their scripts and dependency notes are
+kept for reference rather than local one-command rendering.
 
-所有模块共享 [`_framework/theme_pub.R`](按分析用途分类/_framework/theme_pub.R),提供:
+## Framework (`_framework/`)
 
-- **`theme_pub()`** — Nature/Cell 风格 ggplot 主题(干净、黑轴、合适字号)
-- **`pal_pub(n, "npg"/"lancet"/...)`** — 期刊离散配色;连续色用 viridis
-- **`save_fig()`** — 一次导出矢量 **PDF + 300dpi PNG**
-- **`venn_pub()`** — **零依赖** 的期刊级 Venn(2-3 集,免装 eulerr/VennDiagram)
-- **`bio_args()` / `bio_script_dir()` / `read_table_smart()`** — 命令行参数、路径自适应、智能读表
+Shared by all modules so figures and I/O stay consistent:
 
-Python 模块共享 [`_framework/pubstyle.py`](按分析用途分类/_framework/pubstyle.py)(matplotlib 期刊 rcParams + 配色)。
-完整约定见 [`_framework/CONVENTIONS.md`](按分析用途分类/_framework/CONVENTIONS.md)。
+- `theme_pub.R` / `pubstyle.py` — journal theme, discrete palettes (NPG/AAAS/Lancet/…),
+  viridis for continuous scales, and `save_fig()` (vector PDF + 300 dpi PNG)
+- `CONVENTIONS.md` — module layout, run conventions, figure rules
+- `ANALYSIS_TEMPLATE/` — scaffold for a new multi-step project: central config
+  (seed, relative paths, parameters), setup with checkpointed steps
+  (`cache_step`), logged statistics, and an environment snapshot; R and Python versions
+- `QUALITY_CHECKLIST.md` — pre-/in-/post-analysis checklist
+- `qc_lint.py` — static checks for hard-coded paths, missing random seeds,
+  non-vector figure exports, and missing environment snapshots
 
----
+## Conventions
 
-## 📐 设计原则
+- Modules run on bundled example data with no edits; use `--input` / `--outdir` to switch.
+- No absolute paths or `setwd()`; figures are exported as vector PDF + 300 dpi PNG.
+- Reuse the framework instead of re-implementing themes or I/O.
+- Figure text in English; analysis logic left intact when standardizing a module.
 
-1. **不破坏科学价值** — 只标准化输入输出、升级图形美化、补全文档;**原有分析逻辑原样保留**。
-2. **能用现成工具就用** — 优先成熟 R/Python 库,不重复造轮子、不臆造方法。
-3. **示例数据小而快** — 每个模块的 `example_data/` 仅用于"零改动跑通 + 出图",刻意做小(数十基因/数十样本)。
-4. **重型方法诚实标注** — 需 GPU 深度学习、外部工具链(GROMACS/FUSION)或 GB 级数据库的模块标 `⏭️`,保留原脚本与依赖说明,不强行本地渲染。
+## License
 
----
-
-## 📄 许可 License
-
-各模块沿用其所用工具/方法的原始许可;库内整理代码供学习与科研复用。外部第三方源码(18 类、497 等)仅保留 manifest 指针与原 LICENSE,请前往其官方仓库获取完整代码。
-
-<div align="center">
-
-**输入数据 → 一条命令 → 顶刊级图。** 让每一次生信分析都省心、好看、可复现。
-
-</div>
+Each module follows the license of the tools and methods it uses. Vendored
+third-party code (e.g. category 18) keeps its original license — see the relevant
+module README and upstream repository.
