@@ -1,30 +1,30 @@
-# 14_单细胞虚拟扰动_扰动数据库
+# 14 · Single-cell virtual perturbation and perturbation databases
 
-> ⏭️ **状态**:本类别为单细胞虚拟扰动方法,多依赖深度学习/图神经网络(GEARS/CellOracle/Squidiff/GenKI,需 GPU 与训练好的模型)或专用扰动数据库,**本地未渲染示例图**,保留原脚本作参考(各脚本头部含依赖与可复现命令)。067_scPerturb(R)与 495_bulkVGK(scTenifoldKnk)较轻,有合适数据时可运行。配图规范见 [统一框架](../_framework/CONVENTIONS.md)。
+Methods for moving single-cell analysis from describing cell states to predicting how cells respond to perturbation.
 
----
+## Status
 
-本模块用于把单细胞分析从“描述细胞状态”推进到“预测扰动后细胞会如何变化”。
+This category covers single-cell virtual perturbation methods. Most depend on deep learning or graph neural networks (GEARS, CellOracle, Squidiff, GenKI), which require a GPU and trained models, or on dedicated perturbation databases. No example figures are rendered locally; the original scripts are kept for reference, with dependencies and reproducible commands in each script header. `067_scPerturb` (R) and `495_bulkVGK` (scTenifoldKnk) are lighter and can be run when suitable data is available. See [unified framework](../_framework/CONVENTIONS.md) for figure conventions.
 
-## 脚本
+## Scripts
 
-| 脚本 | 作用 |
+| Script | Purpose |
 |---|---|
-| `067_scPerturb_扰动数据Etest.R` | 对 perturbation/control 分组计算扰动距离和 E-test。 |
-| `068_GEARS_单细胞组合扰动预测.py` | 调用 GEARS 预测单基因或多基因组合扰动表达响应。 |
-| `069_CellOracle_GRN虚拟扰动.py` | 基于 CellOracle Oracle 对象做 GRN 虚拟敲低/敲除。 |
-| `085_Squidiff_扩散模型单细胞扰动预测.py` | 调用外部 Squidiff/PerturbDiff 训练或采样脚本，记录可复现命令。 |
+| `067_scPerturb_扰动数据Etest.R` | Compute perturbation distance and E-test between perturbation and control groups. |
+| `068_GEARS_单细胞组合扰动预测.py` | Run GEARS to predict expression response to single-gene or multi-gene combinatorial perturbation. |
+| `069_CellOracle_GRN虚拟扰动.py` | GRN virtual knockdown/knockout using a CellOracle Oracle object. |
+| `085_Squidiff_扩散模型单细胞扰动预测.py` | Run external Squidiff/PerturbDiff training or sampling scripts, recording reproducible commands. |
 
-## 推荐输入
+## Input
 
-- Seurat RDS 或 AnnData h5ad。
-- perturbation/control 分组列。
-- 候选基因列表。
-- 已训练模型或 GRN/Oracle 对象。
+- Seurat RDS or AnnData h5ad.
+- Perturbation/control grouping column.
+- Candidate gene list.
+- Trained model or GRN/Oracle object.
 
-## 推荐输出
+## Outputs
 
-- 扰动距离、E-test 结果。
-- GEARS 预测表达矩阵和运行摘要。
-- CellOracle 扰动后状态转移结果。
-- Squidiff/PerturbDiff 预测结果和运行日志。
+- Perturbation distance and E-test results.
+- GEARS predicted expression matrix and run summary.
+- CellOracle post-perturbation state transition results.
+- Squidiff/PerturbDiff prediction results and run logs.

@@ -1,12 +1,12 @@
-# 15 · 药物扰动 / 药物重定位
+# 15 · Drug Perturbation / Drug Repositioning
 
-把单细胞状态、候选靶点和真实世界药物信号连接到药物响应预测、重定位与药物警戒。
+Links single-cell states, candidate targets, and real-world drug signals to drug response prediction, repositioning, and pharmacovigilance.
 
-| 模块 | 用途 | 语言 | 输出图 | 状态 |
+| Module | Purpose | Language | Output figures | Status |
 |------|------|------|--------|:---:|
-| [078 FAERS 药物警戒](078_FAERS药物警戒信号挖掘/) | ROR/PRR/BCPNN/EBGM 信号 | R | ROR 森林 · 信号热图 | ✅ turnkey |
-| 070 chemCPA 药物扰动表达预测 | 深度学习扰动谱预测 | Python | 散点 · 热图 | ⏭️ 重型(GPU) |
-| 071 scDrug 单细胞药物响应 | cluster 级药敏 | Python | UMAP · 热图 | ⏭️ 重型 |
+| [078 FAERS pharmacovigilance](078_FAERS药物警戒信号挖掘/) | ROR/PRR/BCPNN/EBGM signals | R | ROR forest plot, signal heatmap | Runnable |
+| 070 chemCPA drug perturbation expression prediction | Deep-learning perturbation profile prediction | Python | Scatter, heatmap | Heavy (GPU) |
+| 071 scDrug single-cell drug response | Cluster-level drug sensitivity | Python | UMAP, heatmap | Heavy |
 
-> **078** turnkey:报告表即出药物警戒图(遵循 [统一框架规范](../_framework/CONVENTIONS.md))。
-> **070/071**:深度学习/外部模型(chemCPA、scDrug),需 GPU 与大模型,本地未渲染,保留原脚本作参考(见各脚本头部依赖与可复现命令)。
+**078**: produces pharmacovigilance figures from the report table (follows the [unified framework conventions](../_framework/CONVENTIONS.md)).
+**070/071**: deep-learning / external models (chemCPA, scDrug) requiring GPU and large models; not rendered locally. The original scripts are kept for reference (see per-script header dependencies and reproducible commands).

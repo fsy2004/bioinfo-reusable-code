@@ -1,55 +1,51 @@
-# 014 · 随机森林特征基因筛选
+# 014 · Random forest feature gene selection
 
-> 表达矩阵 + 候选基因 → 一条命令 → 随机森林重要性排序 + 顶刊级 OOB 错误率 / 重要性棒棒糖图。
+Ranks candidate genes by random forest Gini importance and produces an OOB error rate plot and an importance lollipop plot.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `randomForest` `ggplot2` |
-| **一句话用途** | 用 Gini 重要性给候选基因排序、选特征 |
-| **输入** | `example_data/Sample_Type_Matrix.csv` + `candidate_genes.csv` |
-| **输出** | `results/` 重要性表+图 · 展示图见 `assets/` |
+| **Language / main dependencies** | R · `randomForest` `ggplot2` |
+| **Purpose** | Rank and select candidate genes by Gini importance |
+| **Input** | `example_data/Sample_Type_Matrix.csv` + `candidate_genes.csv` |
+| **Output** | Importance table and plots in `results/`; display figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+Same as [012](../012_LASSO特征基因筛选/): `--input` expression matrix (group encoded in the sample name suffix) plus `--genes` candidate genes (optional).
 
-同 [012](../012_LASSO特征基因筛选/):`--input` 表达矩阵(样本名后缀分组)+ `--genes` 候选基因(可选)。
+## Method
 
-## ② 方法 / 原理
+`randomForest` (500 trees by default) is fit with the group as the response, then `importance()` returns `MeanDecreaseGini` for ranking, and features are selected by threshold or topN. The OOB error rate curve helps assess whether the number of trees is sufficient.
 
-`randomForest`(默认 500 树)以分组为响应拟合 → `importance()` 取 `MeanDecreaseGini` 排序 → 阈值/topN 选特征。OOB 错误率曲线辅助判断树数是否足够。
+Method citation: Breiman, *Machine Learning* 2001 (Random Forests).
 
-> 方法引用:Breiman, *Machine Learning* 2001(Random Forests)。
+## Use
 
-## ③ 用途
+Nonlinear, collinearity-robust feature importance assessment, often intersected with LASSO/SVM-RFE (see 015) to obtain a robust feature set.
 
-非线性、抗共线的特征重要性评估,常与 LASSO/SVM-RFE 取交集(→015)得到稳健特征集。
+## Notes
 
-## ④ 特点 / 亮点
+- Runs on the example data without modification; `--ntree/--top/--threshold` are configurable.
+- OOB error rate curves for multiple classes and a viridis importance lollipop (gene names in italics).
 
-- **Turnkey**:零改动跑示例;`--ntree/--top/--threshold` 可调。
-- **顶刊图**:OOB 错误率多类曲线 + viridis 重要性棒棒糖(基因名斜体)。
+## Outputs
 
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Plot type | Description |
 |------|------|------|
-| `assets/RF_importance_lollipop.png` | 棒棒糖图 | top 基因 Gini 重要性 |
-| `assets/RF_OOB_error.png` | 折线 | OOB / 各类错误率 vs 树数 |
-| `results/RF_gene_importance.csv` | 表 | 全基因重要性 |
+| `assets/RF_importance_lollipop.png` | Lollipop plot | Gini importance of top genes |
+| `assets/RF_OOB_error.png` | Line plot | OOB and per-class error rate vs number of trees |
+| `results/RF_gene_importance.csv` | Table | Importance for all genes |
 
 ![importance](assets/RF_importance_lollipop.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 014_RandomForest_feature_selection.R                                  # 示例
 Rscript 014_RandomForest_feature_selection.R --input data/expr.csv --top 20 --ntree 1000
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages(c("randomForest","ggplot2","reshape2","viridisLite"))

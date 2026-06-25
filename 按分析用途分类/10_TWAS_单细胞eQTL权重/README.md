@@ -1,11 +1,10 @@
-# 10 · TWAS / 单细胞 eQTL 权重
+# 10 · TWAS / single-cell eQTL weights
 
-转录组关联分析(TWAS)的权重训练与模型拟合。
+Weight training and model fitting for transcriptome-wide association studies (TWAS).
 
-| 模块 | 用途 | 语言 | 状态 |
+| Module | Purpose | Language | Status |
 |------|------|------|:---:|
-| 036-039 OneK1K TWAS 权重 | sc-eQTL 同/异质成分拟合、权重预处理与生成 | R | ⏭️ 重型 |
-| 040-042 FUSION TWAS | FUSION targetC / S+targetC / S+allC 模型 | R | ⏭️ 重型 |
+| 036-039 OneK1K TWAS weights | sc-eQTL homogeneous/heterogeneous component fitting, weight preprocessing and generation | R | Heavy |
+| 040-042 FUSION TWAS | FUSION targetC / S+targetC / S+allC models | R | Heavy |
 
-> ⏭️ **状态**:TWAS 流程依赖 FUSION、plink、大型 LD 参考面板与 sc-eQTL 权重文件,属计算密集 + 外部工具链,**本地未渲染**,保留原脚本作参考。
-> 上游可接 09 类(GWAS 处理);权重生成后用 FUSION 官方流程做关联检验。配图规范见 [统一框架](../_framework/CONVENTIONS.md)。
+The TWAS workflow depends on FUSION, plink, large LD reference panels, and sc-eQTL weight files. It is computationally intensive and relies on an external toolchain, so it is not rendered locally; the original scripts are kept for reference. Upstream input comes from the 09 category (GWAS processing); after weight generation, association testing uses the official FUSION workflow. For figure conventions, see [unified framework](../_framework/CONVENTIONS.md).

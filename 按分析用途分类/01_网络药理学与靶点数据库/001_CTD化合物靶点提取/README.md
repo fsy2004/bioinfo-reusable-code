@@ -1,30 +1,34 @@
-# 001 · CTD 化合物靶点提取
+# 001 · CTD compound target extraction
 
-> CTD 数据库导出文件 → 一条命令 → 去重靶点基因列表(供下游 Venn/富集)。
+Extracts a deduplicated target gene list from a CTD database export file for downstream Venn or enrichment analysis.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · base |
-| **输入** | `example_data/CTD_export.csv` |
-| **输出** | `results/targets.csv` |
+| **Language / main dependency** | R · base |
+| **Input** | `example_data/CTD_export.csv` |
+| **Output** | `results/targets.csv` |
 
-## ① 输入数据
-CTD 导出 CSV;自动识别 `Gene Symbol` 列(及评分列 `Reference Count`)。
+## Input
 
-## ② 方法 / 原理
-读取导出表 → 提取基因列 → 可选按评分过滤 → 去重 → 靶点列表。
+CTD export CSV. The `Gene Symbol` column (and the `Reference Count` score column) are detected automatically.
 
-## ③ 用途
-网络药理学第一步:把 CTD 化合物-基因关联整理成标准靶点列表。
+## Method
 
-## ④ 特点 / 亮点
-Turnkey;自动识别基因列与评分列;零第三方依赖。
+Read the export table, extract the gene column, optionally filter by score, deduplicate, and produce the target list.
 
-## ⑤ 输出结果
-无图。`results/targets.csv`(去重靶点)。
+## Usage
 
-## 运行
+Network pharmacology first step: organize CTD compound-gene associations into a standard target list.
+
 ```bash
-Rscript 001_extract_targets.R                                  # 示例
+Rscript 001_extract_targets.R                                  # example
 Rscript 001_extract_targets.R --input data/CTD_export.csv
 ```
+
+## Outputs
+
+No figures. `results/targets.csv` (deduplicated targets).
+
+## Dependencies
+
+R base only. The gene column and score column are detected automatically.

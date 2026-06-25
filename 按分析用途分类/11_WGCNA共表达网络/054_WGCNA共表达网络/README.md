@@ -1,59 +1,48 @@
-# 054 · WGCNA 共表达网络分析
+# 054 · WGCNA co-expression network analysis
 
-> 表达矩阵 + 性状 → 一条命令 → 软阈值选择 + 模块识别 + 模块-性状相关热图。
+Takes an expression matrix and a trait table and runs soft-threshold selection, module detection, and module-trait correlation in one command.
 
-| | |
-|---|---|
-| **语言 / 主依赖** | R · `WGCNA` `ComplexHeatmap` `ggplot2` |
-| **一句话用途** | 找共表达模块并关联表型,定位关键模块 |
-| **输入** | `example_data/expr_matrix.csv` + `traits.csv` |
-| **输出** | `results/` 模块表+图 · 展示图见 `assets/` |
+## Input
 
----
-
-## ① 输入数据
-
-| 文件 | 必需 | 说明 |
+| File | Required | Description |
 |------|:---:|------|
-| `--input` 表达矩阵 csv | ✔ | 首列基因,样本列(建议方差较大的基因) |
-| `--traits` 性状表 csv | ✔ | 首列 `Sample`(对应样本),其余数值性状(分组/分级等) |
+| `--input` expression matrix csv | Yes | First column genes, remaining columns samples (high-variance genes recommended) |
+| `--traits` trait table csv | Yes | First column `Sample` (matching the samples), remaining columns numeric traits (groups/grades, etc.) |
 
-## ② 方法 / 原理
+## Method
 
-`pickSoftThreshold` 选无标度软阈值 → `blockwiseModules` 构建 TOM 并动态剪切识别模块 → `moduleEigengenes` 计算模块特征基因(ME)→ ME 与性状求相关(+p),定位性状关联模块。
+`pickSoftThreshold` selects the scale-free soft threshold, `blockwiseModules` builds the TOM and detects modules by dynamic tree cut, `moduleEigengenes` computes the module eigengenes (ME), and the ME values are correlated with the traits (with p-values) to identify trait-associated modules.
 
-> 方法引用:Langfelder & Horvath, *BMC Bioinformatics* 2008(WGCNA)。
+Method citation: Langfelder & Horvath, *BMC Bioinformatics* 2008 (WGCNA).
 
-## ③ 用途
+## Purpose
 
-从表达谱中发现协同表达的基因模块,并找出与疾病/表型显著相关的模块及其 hub 基因,供下游富集(→007)与机制研究。
+Identifies co-expressed gene modules from an expression profile and the modules and hub genes significantly associated with a disease or phenotype, for downstream enrichment (007) and mechanistic study.
 
-## ④ 特点 / 亮点
+## Features
 
-- **Turnkey**:矩阵+性状即跑;软阈值自动选(可 `--power` 指定)。
-- **顶刊图**:无标度拟合图 + 模块树状图(彩色模块条)+ 模块-性状相关热图(相关+p)。
+- Runs from a matrix plus traits; the soft threshold is selected automatically (or set with `--power`).
+- Scale-free fit plot, module dendrogram (with colored module bands), and module-trait correlation heatmap (correlation and p-values).
 
-## ⑤ 输出结果图
+## Outputs
 
-| 文件 | 图型 | 说明 |
+| File | Plot type | Description |
 |------|------|------|
-| `assets/Module_trait_heatmap.png` | 相关热图 | 模块×性状(相关+p),定位关键模块 |
-| `assets/Module_dendrogram.png` | 树状图 | 基因聚类 + 模块颜色 |
-| `assets/SoftThreshold.png` | 散点 | 无标度拓扑 R² vs power |
+| `assets/Module_trait_heatmap.png` | Correlation heatmap | Module × trait (correlation and p), identifies key modules |
+| `assets/Module_dendrogram.png` | Dendrogram | Gene clustering with module colors |
+| `assets/SoftThreshold.png` | Scatter | Scale-free topology R² vs power |
 
 ![module-trait](assets/Module_trait_heatmap.png)
 ![dendro](assets/Module_dendrogram.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 054_WGCNA_coexpression.R                              # 示例
 Rscript 054_WGCNA_coexpression.R --input data/expr.csv --traits data/traits.csv --power 6
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 BiocManager::install(c("WGCNA","ComplexHeatmap","impute","preprocessCore","GO.db"))

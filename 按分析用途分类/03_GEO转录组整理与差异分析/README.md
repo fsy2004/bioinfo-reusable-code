@@ -1,30 +1,30 @@
-# 03 · GEO 转录组整理与差异分析
+# 03 · GEO transcriptome preparation and differential analysis
 
-GEO 微阵列/转录组从**原始下载 → 整理归一化 → 差异分析**的完整 turnkey 链路。每个模块自带示例数据,`Rscript <脚本>` 一条命令即可跑通。
+A pipeline for GEO microarray/transcriptome data covering raw download, tidying and normalization, and differential analysis. Each module ships with example data and runs with a single `Rscript <script>` command.
 
-## 模块链路
+## Module chain
 
 ```
-008 探针→基因矩阵 ──▶ 009 归一化+分组 ──▶ 010 差异分析(火山/热图/PCA)
-056 多队列合并+批次校正(独立模块,可在 010 前用于多队列整合)
+008 probe->gene matrix ──▶ 009 normalization + grouping ──▶ 010 differential analysis (volcano/heatmap/PCA)
+056 multi-cohort merge + batch correction (standalone module, can be used before 010 for multi-cohort integration)
 ```
 
-| 模块 | 用途 | 语言 | 输出图 |
+| Module | Purpose | Language | Output figures |
 |------|------|------|--------|
-| [008 表达矩阵整理](008_GEO表达矩阵整理/) | GSE+GPL 探针→基因级矩阵 | R | —(产矩阵) |
-| [009 样本分组整理](009_GEO样本分组整理/) | 归一化 + 写入分组后缀 | R | —(产矩阵) |
-| [010 差异分析 火山/热图/PCA](010_GEO差异分析_火山热图PCA/) | limma DEG + 三件套可视化 | R | 渐变火山图 · PCA · 聚类热图 |
-| [056 多队列合并+批次校正](056_GEO多队列合并_批次校正/) | 合并多 GEO + 去批次 | R | 校正前后 PCA · 箱线图 |
+| [008 expression matrix tidying](008_GEO表达矩阵整理/) | GSE+GPL probe to gene-level matrix | R | none (produces matrix) |
+| [009 sample grouping](009_GEO样本分组整理/) | normalization + writing group suffix | R | none (produces matrix) |
+| [010 differential analysis volcano/heatmap/PCA](010_GEO差异分析_火山热图PCA/) | limma DEG + three-part visualization | R | gradient volcano plot, PCA, clustering heatmap |
+| [056 multi-cohort merge + batch correction](056_GEO多队列合并_批次校正/) | merge multiple GEO datasets + remove batch effects | R | PCA before/after correction, boxplots |
 
-## 典型用法(完整流程)
+## Usage (full workflow)
 
 ```bash
-# 1) 探针→基因
+# 1) probe->gene
 Rscript 008_GEO表达矩阵整理/008_GEO_expr_matrix_tidy.R --gse GSExxx_series_matrix.txt --gpl GPLxxx.txt --symcol 11
-# 2) 归一化+分组(产出 Sample_Type_Matrix.csv)
+# 2) normalization + grouping (produces Sample_Type_Matrix.csv)
 Rscript 009_GEO样本分组整理/009_GEO_sample_grouping.R --expr results/geneMatrix.csv --group group.csv
-# 3) 差异分析+出图
+# 3) differential analysis + figures
 Rscript 010_GEO差异分析_火山热图PCA/010_GEO_DEG_volcano_heatmap_PCA.R --input results/Sample_Type_Matrix.csv
 ```
 
-> 全部遵循 [统一框架规范](../_framework/CONVENTIONS.md):去硬编码路径、`--input/--outdir`、共享顶刊主题、独立矢量图。
+All modules follow the [shared framework conventions](../_framework/CONVENTIONS.md): no hardcoded paths, `--input/--outdir`, a shared plotting theme, and standalone vector figures.

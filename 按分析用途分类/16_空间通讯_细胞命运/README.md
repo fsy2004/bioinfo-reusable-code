@@ -1,33 +1,33 @@
-# 16_空间通讯_细胞命运
+# 16 · Spatial communication and cell fate
 
-> ⏭️ **状态**:本类别为空间通讯/细胞命运方法,多依赖 Python 空间组学栈(CellRank/COMMOT/Tangram/cell2location/Squidpy/decoupler)或 NicheNet 大型先验网络,**本地未渲染示例图**,保留原脚本作参考(各脚本头部含依赖与可复现命令)。配图规范见 [统一框架](../_framework/CONVENTIONS.md)。
+Methods for spatial cell-cell communication, single-cell to spatial mapping, cell fate inference, spatial niches, and TF/pathway activity scoring.
 
----
+## Status
 
-本模块用于空间通讯、单细胞到空间映射、细胞命运推断、空间生态位和 TF/通路活性评分。
+These methods rely on the Python spatial-omics stack (CellRank/COMMOT/Tangram/cell2location/Squidpy/decoupler) or the large NicheNet prior network. Example figures are not rendered locally; the original scripts are kept for reference, with dependencies and reproducible commands in each script header. For figure conventions see [unified framework](../_framework/CONVENTIONS.md).
 
-## 脚本
+## Scripts
 
-| 脚本 | 作用 |
+| Script | Purpose |
 |---|---|
-| `072_CellRank_命运概率与驱动基因.py` | 基于 scVelo velocity graph 运行 CellRank，输出终末状态、命运概率和 driver genes。 |
-| `073_COMMOT_空间细胞通讯.py` | 基于空间坐标和 ligand-receptor 数据库计算空间通讯 sender/receiver score。 |
-| `074_Tangram_单细胞到空间映射.py` | 把 scRNA-seq 细胞映射到空间转录组 spot。 |
-| `076_decoupler_TF通路活性评分.py` | 用 CollecTRI 或 PROGENy 推断 TF/通路活性。 |
-| `077_NicheNet_配体靶基因通信推断.R` | 从 receiver DE genes 和 LR/target prior 推断 ligand activity 与 ligand-target 链条。 |
-| `080_cell2location_Squidpy_空间生态位.py` | 整合 cell abundance 表并运行 Squidpy 空间邻域富集。 |
+| `072_CellRank_命运概率与驱动基因.py` | Runs CellRank on a scVelo velocity graph, outputting terminal states, fate probabilities, and driver genes. |
+| `073_COMMOT_空间细胞通讯.py` | Computes spatial sender/receiver communication scores from spatial coordinates and a ligand-receptor database. |
+| `074_Tangram_单细胞到空间映射.py` | Maps scRNA-seq cells onto spatial transcriptomics spots. |
+| `076_decoupler_TF通路活性评分.py` | Infers TF/pathway activity using CollecTRI or PROGENy. |
+| `077_NicheNet_配体靶基因通信推断.R` | Infers ligand activity and ligand-target chains from receiver DE genes and an LR/target prior. |
+| `080_cell2location_Squidpy_空间生态位.py` | Integrates a cell abundance table and runs Squidpy spatial neighborhood enrichment. |
 
-## 推荐输入
+## Input
 
-- AnnData h5ad 或 Seurat 转换结果。
-- 空间坐标、组织切片信息。
-- ligand-receptor 数据库、receiver 差异基因、背景表达基因。
-- 细胞类型注释或 cell abundance 矩阵。
+- AnnData h5ad or Seurat conversion output.
+- Spatial coordinates and tissue section information.
+- Ligand-receptor database, receiver differential genes, background expressed genes.
+- Cell type annotations or cell abundance matrix.
 
-## 推荐输出
+## Outputs
 
-- CellRank fate probabilities 和 driver genes。
-- COMMOT 空间通讯网络。
-- Tangram 单细胞到空间映射结果。
-- NicheNet ligand activity 和 ligand-target links。
-- Squidpy neighborhood enrichment。
+- CellRank fate probabilities and driver genes.
+- COMMOT spatial communication network.
+- Tangram single-cell to spatial mapping results.
+- NicheNet ligand activity and ligand-target links.
+- Squidpy neighborhood enrichment.

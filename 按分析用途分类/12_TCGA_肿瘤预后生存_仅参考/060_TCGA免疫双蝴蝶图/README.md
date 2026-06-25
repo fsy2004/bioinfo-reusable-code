@@ -1,55 +1,44 @@
-# 060 · 单基因免疫双蝴蝶相关图
+# 060 · Single-gene immune butterfly correlation plot
 
-> 目标基因 + 免疫数据 → 一条命令 → 基因 vs 免疫细胞 / 检查点基因的两侧发散相关蝴蝶图。
+Correlates a target gene against immune cell fractions and checkpoint genes, and renders a two-sided diverging butterfly plot.
 
-| | |
-|---|---|
-| **语言 / 主依赖** | R · `ggplot2` |
-| **一句话用途** | 一图看尽目标基因的免疫相关全景 |
-| **输入** | `example_data/`(expression + immune_fraction + checkpoint_genes) |
-| **输出** | `results/correlation.csv` + `assets/` |
+## Input
 
----
+| File | Description |
+|------|-------------|
+| `--expr` expression matrix csv | First column is gene (includes the target gene and checkpoint genes) |
+| `--immune` immune fraction csv | First column `Sample`, remaining columns are immune cell fractions |
+| `--checkpoints` txt | Checkpoint gene list (defaults to a built-in set of common checkpoints) |
 
-## ① 输入数据
+Example inputs are in `example_data/` (expression + immune_fraction + checkpoint_genes).
 
-| 文件 | 说明 |
-|------|------|
-| `--expr` 表达矩阵 csv | 首列基因(含目标基因 + 检查点基因) |
-| `--immune` 免疫比例 csv | 首列 `Sample`,其余免疫细胞比例 |
-| `--checkpoints` txt | 检查点基因列表(缺省用内置常见检查点) |
+## Method
 
-## ② 方法 / 原理
+Spearman correlation of target gene expression against each immune cell fraction and against each checkpoint gene expression. Results are drawn as two-sided diverging bars (butterfly plot), with color indicating correlation direction and labels for r and significance.
 
-目标基因表达分别与各免疫细胞比例、各检查点基因表达求 Spearman 相关 → 两侧发散条形(蝴蝶)图,色=相关方向,标注 r + 显著性。
+## Usage
 
-## ③ 用途
+In tumor immunology, this shows the target gene's association with immune infiltration and with immune checkpoints in a single plot, indicating its immune-regulatory role and potential relationship to ICB.
 
-肿瘤免疫:一张图同时展示目标基因与免疫浸润、与免疫检查点的关联,提示其免疫调控角色与 ICB 潜在关系。
+Implemented in plain ggplot (replacing the original linkET), with no heavy dependencies.
 
-## ④ 特点 / 亮点
+## Outputs
 
-- **Turnkey**:三输入即跑;纯 ggplot(替换原 linkET),无重型依赖。
-- **顶刊图**:双面板发散蝴蝶,相关+显著性一目了然。
-
-## ⑤ 输出结果图
-
-| 文件 | 图型 |
-|------|------|
-| `assets/Immune_butterfly.png` | 双蝴蝶相关图 |
+| File | Plot type |
+|------|-----------|
+| `results/correlation.csv` | Correlation table |
+| `assets/Immune_butterfly.png` | Butterfly correlation plot |
 
 ![butterfly](assets/Immune_butterfly.png)
 
----
-
-## 运行
+## Run
 
 ```bash
 Rscript 060_immune_butterfly.R                                       # 示例
 Rscript 060_immune_butterfly.R --expr data/expr.csv --immune data/immune.csv --gene TP53
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages("ggplot2")

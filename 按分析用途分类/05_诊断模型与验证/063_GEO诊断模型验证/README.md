@@ -1,57 +1,53 @@
-# 063 · GEO 诊断模型外部验证
+# 063 · GEO Diagnostic Model External Validation
 
-> 训练队列 + 独立验证队列 → 一条命令 → 训练/验证 ROC 对比 + 验证集校准曲线(看模型泛化)。
+External (independent-cohort) validation of a diagnostic model, comparing training and validation ROC curves and plotting a calibration curve on the validation set to assess generalization.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `rms` `pROC` `ggplot2` |
-| **一句话用途** | 诊断模型的外部(独立队列)验证 |
-| **输入** | `example_data/`(train + validation 矩阵 + 基因列表) |
-| **输出** | `results/` AUC+图 · 展示图见 `assets/` |
+| **Language / Main dependencies** | R · `rms` `pROC` `ggplot2` |
+| **Purpose** | External (independent-cohort) validation of a diagnostic model |
+| **Input** | `example_data/` (train + validation matrices + gene list) |
+| **Output** | `results/` AUC and figures; display figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
-
-| 文件 | 必需 | 说明 |
+| File | Required | Description |
 |------|:---:|------|
-| `--train` 训练矩阵 csv | ✔ | 首列基因,样本名后缀分组(`*_con`/`*_dis`) |
-| `--valid` 验证矩阵 csv | 可选 | 同格式独立队列;省略则训练集自评 |
-| `--genes` 诊断基因 csv | ✔ | 模型基因 |
+| `--train` training matrix csv | Yes | First column is gene; sample-name suffix encodes group (`*_con`/`*_dis`) |
+| `--valid` validation matrix csv | Optional | Same format, independent cohort; if omitted, the training set is self-evaluated |
+| `--genes` diagnostic gene csv | Yes | Model genes |
 
-## ② 方法 / 原理
+## Method
 
-`rms::lrm` 在训练队列拟合 logistic 模型 → 在验证队列上预测 → `pROC` 计算两队列 AUC,叠加 ROC 对比;按分位数分箱绘验证集校准曲线。
+`rms::lrm` fits a logistic model on the training cohort, predicts on the validation cohort, and `pROC` computes AUC for both cohorts and overlays the ROC curves. A validation-set calibration curve is drawn using quantile binning.
 
-## ③ 用途
+## Purpose
 
-与 016(内部评价)互补:用**独立队列**检验诊断模型是否过拟合、能否泛化,是发表的关键证据。
+Complementary to 016 (internal evaluation): uses an independent cohort to test whether the diagnostic model is overfit and whether it generalizes, which is key evidence for publication.
 
-## ④ 特点 / 亮点
+## Features
 
-- **Turnkey**:两份矩阵 + 基因即跑;自动对齐共有基因。
-- **顶刊图**:训练 vs 验证 ROC 叠加(AUC 直观对比)+ 验证集校准曲线。
+- Runs on two matrices plus a gene list; automatically aligns the shared genes.
+- Training vs validation ROC overlay (direct AUC comparison) plus a validation-set calibration curve.
 
-## ⑤ 输出结果图
+## Outputs
 
-| 文件 | 图型 | 说明 |
+| File | Figure type | Description |
 |------|------|------|
-| `assets/ROC_train_vs_valid.png` | ROC | 训练/验证 AUC 对比 |
-| `assets/Calibration_valid.png` | 校准曲线 | 验证集一致性 |
-| `results/AUC.csv` | 表 | 各队列 AUC |
+| `assets/ROC_train_vs_valid.png` | ROC | Training/validation AUC comparison |
+| `assets/Calibration_valid.png` | Calibration curve | Validation-set agreement |
+| `results/AUC.csv` | Table | AUC per cohort |
 
 ![ROC](assets/ROC_train_vs_valid.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 063_diagnostic_validation.R                                              # 示例
 Rscript 063_diagnostic_validation.R --train data/train.csv --valid data/valid.csv --genes data/genes.csv
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages(c("rms","pROC","ggplot2"))

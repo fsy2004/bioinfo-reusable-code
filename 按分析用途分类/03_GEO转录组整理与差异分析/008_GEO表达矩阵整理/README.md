@@ -1,51 +1,40 @@
-# 008 · GEO 表达矩阵整理(探针 → 基因)
+# 008 · GEO expression matrix tidying (probe to gene)
 
-> GSE 序列矩阵 + GPL 平台注释 → 一条命令 → 基因级表达矩阵 `geneMatrix.csv`(供 009/010 下游)。
+Maps a GSE series matrix and GPL platform annotation to a gene-level expression matrix `geneMatrix.csv` for downstream use in modules 009/010.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · base(无第三方包) |
-| **一句话用途** | 把探针级 GEO 数据映射并折叠为基因级矩阵 |
-| **输入** | `example_data/`(GSE 序列矩阵 + GPL 平台 txt) |
-| **输出** | `results/geneMatrix.csv` |
+| **Language / main dependency** | R · base (no third-party packages) |
+| **Purpose** | Map and collapse probe-level GEO data into a gene-level matrix |
+| **Input** | `example_data/` (GSE series matrix + GPL platform txt) |
+| **Output** | `results/geneMatrix.csv` |
 
----
+## Input
 
-## ① 输入数据
+| File | Format | Description |
+|------|--------|-------------|
+| `GSE*_series_matrix.txt` | tab txt | Probe × sample expression table with an `ID_REF` header row (GEO standard download format) |
+| `GPL*.txt` | tab txt | Platform annotation; one column holds the gene Symbol. The column index is set by `--symcol` (1-based, example = 2) |
 
-| 文件 | 格式 | 说明 |
-|------|------|------|
-| `GSE*_series_matrix.txt` | tab txt | 含 `ID_REF` 表头行的探针 × 样本表达表(GEO 标准下载格式) |
-| `GPL*.txt` | tab txt | 平台注释,某列为基因 Symbol;列号由 `--symcol` 指定(1 起始,示例=2) |
+The directory automatically detects `GSE*`/`GPL*` files. The Symbol column differs across platforms, so verify `--symcol`.
 
-**约定**:目录内自动识别 `GSE*`/`GPL*`;不同平台 Symbol 所在列不同,务必核对 `--symcol`。
+## Method
 
-## ② 方法 / 原理
+Locate the `ID_REF` start row and read the expression table, parse the GPL to build a probe-to-Symbol mapping (take the left side of `///`, discard non-words containing spaces), align with `merge`, then collapse multiple probes for the same gene with `aggregate` using the mean. The result is a gene-level matrix.
 
-定位 `ID_REF` 起始行读表达表 → 解析 GPL 建 探针→Symbol 映射(取 `///` 左侧、丢弃含空格的非单词)→ `merge` 对齐 → 同一基因多探针 `aggregate` 取均值 → 基因级矩阵。
+## Usage
 
-## ③ 用途
-
-GEO 微阵列分析的第一步前处理;产出标准基因矩阵,接 009(分组/归一化)→ 010(差异分析)。
-
-## ④ 特点 / 亮点
-
-- **Turnkey**:目录放入 GSE/GPL → 一条命令;零第三方依赖。
-- **稳健**:自动定位 ID_REF;多探针按基因均值合并。
-
-## ⑤ 输出结果
-
-无图。`results/geneMatrix.csv`:首列 `geneSymbol` + 各样本表达。
-
----
-
-## 运行
+This is the first preprocessing step for GEO microarray analysis. It produces a standard gene matrix that feeds module 009 (grouping/normalization) and then module 010 (differential analysis).
 
 ```bash
-Rscript 008_GEO_expr_matrix_tidy.R                                  # 示例
+Rscript 008_GEO_expr_matrix_tidy.R                                  # example
 Rscript 008_GEO_expr_matrix_tidy.R --gse GSExxx_series_matrix.txt --gpl GPLxxx.txt --symcol 11
 ```
 
-## 依赖安装
+## Outputs
 
-无需额外安装(base R)。
+No figures. `results/geneMatrix.csv`: first column `geneSymbol` followed by per-sample expression values.
+
+## Dependencies
+
+No additional installation required (base R).

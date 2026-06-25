@@ -1,30 +1,30 @@
-# 04 · 机器学习筛选特征基因
+# 04 · Machine learning feature gene selection
 
-从候选基因(差异基因 / 网药靶点等)中,用机器学习筛选稳健的特征/标志物基因,供诊断与预后建模。
+Select robust feature/marker genes from candidate genes (differential genes, network pharmacology targets, etc.) using machine learning, for diagnostic and prognostic modeling.
 
-## 模块
+## Modules
 
-| 模块 | 用途 | 语言 | 输出图 | 状态 |
+| Module | Purpose | Language | Output figures | Status |
 |------|------|------|--------|:---:|
-| [012 LASSO](012_LASSO特征基因筛选/) | L1 正则收缩筛选 | R | CV 曲线 · 系数路径 | ✅ |
-| [014 RandomForest](014_RandomForest特征基因筛选/) | Gini 重要性筛选 | R | OOB 错误率 · 重要性棒棒糖 | ✅ |
-| [034 多种 ML 比较](034_12种机器学习特征基因筛选/) | 10 种 ML + 特征交集 | R | ROC 叠加 · AUC 排行榜 · UpSet | ✅ |
-| [013 SVM-RFE](013_SVM_RFE特征基因筛选/) | 递归特征消除 | R | CV 准确率曲线 · 排名 | ✅ |
-| [015 ML 特征交集](015_机器学习特征交集_Venn_UpSet/) | 多法 Venn / UpSet | R | Venn · UpSet | ✅ |
-| [035 多法组合交集](035_5种机器学习组合_交集选择/) | 组合交集选择 | R | 组合排行 · UpSet | ✅ |
-| [052 SHAP 解释](052_SHAP机器学习解释分析/) | SHAP 多图解释 | R | SHAP 蜂群/瀑布/力图 · ROC | ✅ |
-| 045 多 ML 整合签名 | RSF/BART/… 整合 | R | ROC · 热图 | ⏭️ 重型环境 |
-| 059 双疾病 15ML×175 组合 | 大规模组合比较 | R | AUC 热图 · ROC | ⏭️ 重型环境 |
-| 496 Mime 101 组合预后签名 | Mime 框架 | R | AUC 热图 · KM | ⏭️ 重型环境 |
+| [012 LASSO](012_LASSO特征基因筛选/) | L1-regularized shrinkage selection | R | CV curve, coefficient path | Ready |
+| [014 RandomForest](014_RandomForest特征基因筛选/) | Gini importance selection | R | OOB error rate, importance lollipop | Ready |
+| [034 Multiple ML comparison](034_12种机器学习特征基因筛选/) | 10 ML methods + feature intersection | R | ROC overlay, AUC leaderboard, UpSet | Ready |
+| [013 SVM-RFE](013_SVM_RFE特征基因筛选/) | Recursive feature elimination | R | CV accuracy curve, ranking | Ready |
+| [015 ML feature intersection](015_机器学习特征交集_Venn_UpSet/) | Multi-method Venn / UpSet | R | Venn, UpSet | Ready |
+| [035 Multi-method combination intersection](035_5种机器学习组合_交集选择/) | Combination intersection selection | R | Combination ranking, UpSet | Ready |
+| [052 SHAP interpretation](052_SHAP机器学习解释分析/) | SHAP multi-plot interpretation | R | SHAP beeswarm/waterfall/force, ROC | Ready |
+| 045 Multi-ML integrated signature | RSF/BART/... integration | R | ROC, heatmap | Heavy environment |
+| 059 Dual-disease 15ML×175 combinations | Large-scale combination comparison | R | AUC heatmap, ROC | Heavy environment |
+| 496 Mime 101-combination prognostic signature | Mime framework | R | AUC heatmap, KM | Heavy environment |
 
-> ⏭️ **重型环境**:045/059/496 是 Mime 式 100+ 组合预后签名,依赖 `randomForestSRC/BART/mboost/plsRglm/Mime` + 外部 helper,需大型 ML 环境,本地未渲染,保留原脚本作参考。
+> Heavy environment: 045/059/496 are Mime-style 100+ combination prognostic signatures, depending on `randomForestSRC/BART/mboost/plsRglm/Mime` plus external helpers. They require a large ML environment, are not rendered locally, and the original scripts are kept for reference.
 
-> 共享 ML 示例数据:`Sample_Type_Matrix.csv`(表达矩阵,样本名 `*_con`/`*_tre`)+ `candidate_genes.csv`(候选基因)。
-> 全部遵循 [统一框架规范](../_framework/CONVENTIONS.md)。✅ 模块零改动即跑;⏳ 模块待重构(部分需安装额外包)。
+> Shared ML example data: `Sample_Type_Matrix.csv` (expression matrix, sample names `*_con`/`*_tre`) plus `candidate_genes.csv` (candidate genes).
+> All modules follow the [unified framework conventions](../_framework/CONVENTIONS.md). Ready modules run without modification; modules pending refactoring may require additional packages.
 
-## 典型链路
+## Typical workflow
 
 ```
-03 差异基因 ─▶ 012/013/014 各法筛选 ─▶ 015/035 取交集 ─▶ 016/063 诊断模型
-                034 多法比较(ROC/AUC 排行)         052 SHAP 解释
+03 differential genes -> 012/013/014 per-method selection -> 015/035 intersection -> 016/063 diagnostic model
+                034 multi-method comparison (ROC/AUC ranking)         052 SHAP interpretation
 ```

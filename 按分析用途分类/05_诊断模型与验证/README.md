@@ -1,15 +1,15 @@
-# 05 · 诊断模型与验证
+# 05 · Diagnostic models and validation
 
-把筛选出的特征基因(04 类)落地成 logistic 诊断模型,并做内部 + 外部验证。
+Build logistic diagnostic models from the feature genes selected in category 04, with internal and external validation.
 
-| 模块 | 用途 | 语言 | 输出图 |
+| Module | Purpose | Language | Output figures |
 |------|------|------|--------|
-| [016 诊断模型](016_诊断模型_ROC校准DCA/) | 建模 + 内部评价 | R | 列线图 · 校准 · DCA · ROC · OR森林 · 箱线 |
-| [063 外部验证](063_GEO诊断模型验证/) | 独立队列验证 | R | 训练/验证 ROC · 校准 |
+| [016 Diagnostic model](016_诊断模型_ROC校准DCA/) | Modeling + internal evaluation | R | Nomogram, calibration, DCA, ROC, OR forest plot, boxplot |
+| [063 External validation](063_GEO诊断模型验证/) | Independent cohort validation | R | Training/validation ROC, calibration |
 
 ```bash
-Rscript 016_诊断模型_ROC校准DCA/016_diagnostic_model.R                      # 内部:建模+评价
-Rscript 063_GEO诊断模型验证/063_diagnostic_validation.R                     # 外部:独立队列验证
+Rscript 016_诊断模型_ROC校准DCA/016_diagnostic_model.R                      # Internal: modeling + evaluation
+Rscript 063_GEO诊断模型验证/063_diagnostic_validation.R                     # External: independent cohort validation
 ```
 
-> 遵循 [统一框架规范](../_framework/CONVENTIONS.md)。上游接 04 类特征基因。
+Follows the [unified framework conventions](../_framework/CONVENTIONS.md). Takes feature genes from category 04 as upstream input.

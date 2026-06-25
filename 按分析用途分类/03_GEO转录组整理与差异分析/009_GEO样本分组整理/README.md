@@ -1,51 +1,47 @@
-# 009 · GEO 样本分组整理 + 归一化
+# 009 · GEO sample grouping and normalization
 
-> 基因矩阵 + 分组表 → 一条命令 → 归一化并加分组后缀的矩阵 `Sample_Type_Matrix.csv`(直接进 010)。
+Normalizes an expression matrix and appends sample-group labels, producing `Sample_Type_Matrix.csv` for use by module 010.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `limma`(可选 `readxl`) |
-| **一句话用途** | 表达矩阵归一化 + 写入样本分组标签 |
-| **输入** | `example_data/geneMatrix.csv` + `sample_group.csv` |
-| **输出** | `results/Sample_Type_Matrix.csv` |
+| **Language / main dependency** | R · `limma` (optional `readxl`) |
+| **Purpose** | Normalize the expression matrix and write sample-group labels |
+| **Input** | `example_data/geneMatrix.csv` + `sample_group.csv` |
+| **Output** | `results/Sample_Type_Matrix.csv` |
 
----
+## Input
 
-## ① 输入数据
-
-| 文件 | 格式 | 必需列 | 说明 |
+| File | Format | Required columns | Notes |
 |------|------|------|------|
-| `--expr` | csv | 首列基因名 + 样本列 | 008 产出的基因级矩阵 |
-| `--group` | csv/xlsx | 第1列样本名、第2列类型 | 样本名须与 expr 列名对应;类型如 `con`/`tre` |
+| `--expr` | csv | First column gene names + sample columns | Gene-level matrix produced by module 008 |
+| `--group` | csv/xlsx | Column 1 sample name, column 2 type | Sample names must match the expr column names; types such as `con`/`tre` |
 
-## ② 方法 / 原理
+## Method
 
-`limma::avereps`(重复基因平均)→ 分位数判断是否需要 → `log2(x+1)` → `normalizeBetweenArrays`(数组间归一化)→ 按分组表筛选/排序样本 → 样本名追加 `_类型` 后缀。
+`limma::avereps` (average duplicate genes), quantile check to decide whether normalization is needed, `log2(x+1)`, `normalizeBetweenArrays` (between-array normalization), filter/sort samples by the group table, then append a `_type` suffix to each sample name.
 
-## ③ 用途
+## Purpose
 
-衔接 008 与 010:把基因矩阵标准化并打上分组标签,使下游差异分析(010)能自动按后缀识别 Control/Disease。
+Links modules 008 and 010: normalizes the gene matrix and applies group labels so that downstream differential analysis (010) can identify Control/Disease from the suffix.
 
-## ④ 特点 / 亮点
+## Notes
 
-- **Turnkey**:`--expr`/`--group` 即跑;分组表 csv/xlsx 通吃。
-- **自动判断 log2**:依据表达值分布自动决定是否对数化,避免重复 log。
-- **链式衔接**:输出文件名/格式与 010 输入无缝对接。
+- Runs from `--expr`/`--group`; the group table accepts csv or xlsx.
+- Automatic log2 decision: log transformation is applied based on the expression value distribution, avoiding double log.
+- Output file name and format match the input expected by module 010.
 
-## ⑤ 输出结果
+## Outputs
 
-无图。`results/Sample_Type_Matrix.csv`(样本名带 `_类型` 后缀)+ `Sample_Summary.txt`(各组样本数)。
+No figures. `results/Sample_Type_Matrix.csv` (sample names carry a `_type` suffix) and `Sample_Summary.txt` (sample count per group).
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 009_GEO_sample_grouping.R                                       # 示例
 Rscript 009_GEO_sample_grouping.R --expr geneMatrix.csv --group sample_group.csv
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 if (!require("BiocManager")) install.packages("BiocManager"); BiocManager::install("limma")

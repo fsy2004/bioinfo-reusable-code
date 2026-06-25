@@ -1,29 +1,33 @@
-# 004 · GeneCards 疾病靶点提取
+# 004 · GeneCards Disease Target Extraction
 
-> GeneCards 导出 → 一条命令 → 按相关性评分过滤的去重疾病靶点列表。
+Extract a deduplicated list of disease targets from a GeneCards export, optionally filtered by relevance score.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · base |
-| **输入** | `example_data/GeneCards_export.csv` |
-| **输出** | `results/targets.csv` |
+| **Language / Dependencies** | R · base |
+| **Input** | `example_data/GeneCards_export.csv` |
+| **Output** | `results/targets.csv` |
 
-## ① 输入数据
-GeneCards 导出 CSV;自动识别 `Gene Symbol` 列与 `Relevance score` 评分列。
+## Input
 
-## ② 方法 / 原理
-提取基因列 →(可选)按 `Relevance score >= --score-min`(常用 1~10)过滤 → 去重。
+GeneCards export CSV. The `Gene Symbol` column and the `Relevance score` column are detected automatically.
 
-## ③ 用途
-获取疾病相关基因,与 OMIM 等合并(→005)。
+## Method
 
-## ④ 特点 / 亮点
-Turnkey;相关性阈值可调;与 001/002 同引擎。
+Extract the gene column, optionally filter by `Relevance score >= --score-min` (typically 1 to 10), then deduplicate.
 
-## ⑤ 输出结果
-无图。`results/targets.csv`。
+## Usage
 
-## 运行
 ```bash
 Rscript 004_extract_targets.R --score-min 5
 ```
+
+## Outputs
+
+No figures. `results/targets.csv`.
+
+The output can be merged with disease genes from other sources such as OMIM (module 005).
+
+## Notes
+
+The relevance score threshold is adjustable. This module shares the same engine as 001 and 002.

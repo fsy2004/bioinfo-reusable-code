@@ -1,57 +1,48 @@
-# 052 · SHAP 机器学习解释分析
+# 052 · SHAP machine learning interpretation
 
-> 表达矩阵 → 一条命令 → 训练多模型选最优 + kernelshap 解释 + 顶刊级 SHAP 图(重要性/蜂群/依赖/瀑布/力图)。
+Trains multiple models on an expression matrix, selects the best by AUC, and interprets it with Kernel SHAP, producing SHAP figures (importance, beeswarm, dependence, waterfall, force).
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `caret` `kernelshap` `shapviz` `pROC` |
-| **一句话用途** | 用 SHAP 解释模型,定位并解读关键特征基因 |
-| **输入** | `example_data/geneexp.csv` |
-| **输出** | `results/` SHAP 表+图 · 展示图见 `assets/` |
+| **Language / main dependencies** | R · `caret` `kernelshap` `shapviz` `pROC` |
+| **Purpose** | Use SHAP to interpret the model and identify key feature genes |
+| **Input** | `example_data/geneexp.csv` |
+| **Output** | `results/` SHAP tables and figures; display figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+Expression matrix CSV (first column genes, sample column names suffixed by group; default control `*_con`, case `*_tra`, configurable via `--ctrl/--case`).
 
-表达矩阵 CSV(首列基因,样本列名后缀分组,默认对照 `*_con`、实验 `*_tra`,可用 `--ctrl/--case` 改)。
+## Method
 
-## ② 方法 / 原理
+`caret` trains RF/SVM/XGB, selects the best by test AUC, `kernelshap` (model-agnostic Kernel SHAP) computes feature contributions, and `shapviz` generates figures.
 
-`caret` 训练 RF/SVM/XGB → 按测试 AUC 选最优 → `kernelshap`(模型无关 Kernel SHAP)计算特征贡献 → `shapviz` 出图。
+Method citation: Lundberg & Lee, *NeurIPS* 2017 (SHAP).
 
-> 方法引用:Lundberg & Lee, *NeurIPS* 2017(SHAP)。
+## Usage
 
-## ③ 用途
+This not only selects features but also explains how and in which direction each gene affects the prediction (global importance plus per-sample attribution).
 
-不仅筛选特征,还**解释**每个基因如何、向哪个方向影响预测(全局重要性 + 单样本归因),增强模型可信度。
+## Outputs
 
-## ④ 特点 / 亮点
-
-- **Turnkey**:零改动跑示例;自动选最优模型再解释。
-- **顶刊级 SHAP 全家桶**:重要性条形 · 蜂群 · 依赖 · 瀑布 · 力图,均 theme_pub 化(原"可爱配色"已升级期刊风)。
-
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Figure type | Description |
 |------|------|------|
-| `assets/SHAP_beeswarm.png` | 蜂群图 | 全局特征贡献分布(色=特征值) |
-| `assets/SHAP_importance_bar.png` | 条形 | 平均 |SHAP| 重要性 |
-| `assets/SHAP_dependence.png` | 依赖图 | top 基因 SHAP-表达关系 |
-| `assets/SHAP_waterfall.png` · `SHAP_force.png` | 瀑布/力图 | 单样本归因 |
-| `assets/Model_ROC.png` | ROC | 多模型比较 |
+| `assets/SHAP_beeswarm.png` | Beeswarm | Global feature contribution distribution (color = feature value) |
+| `assets/SHAP_importance_bar.png` | Bar | Mean \|SHAP\| importance |
+| `assets/SHAP_dependence.png` | Dependence | SHAP-expression relationship for top genes |
+| `assets/SHAP_waterfall.png` · `SHAP_force.png` | Waterfall/force | Per-sample attribution |
+| `assets/Model_ROC.png` | ROC | Multi-model comparison |
 
 ![beeswarm](assets/SHAP_beeswarm.png)
 
----
-
-## 运行
+## Run
 
 ```bash
 Rscript 052_SHAP_interpretation.R                              # 示例
 Rscript 052_SHAP_interpretation.R --input data/geneexp.csv --case _tre
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages(c("caret","kernelshap","shapviz","pROC","randomForest","kernlab","xgboost"))

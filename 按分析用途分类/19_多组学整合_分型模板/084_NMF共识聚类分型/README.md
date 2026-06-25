@@ -1,55 +1,51 @@
-# 084 · NMF + ConsensusClusterPlus 分子分型
+# 084 · NMF + ConsensusClusterPlus molecular subtyping
 
-> 特征×样本矩阵 → 一条命令 → 无监督分子分型(NMF 秩选择 + 共识矩阵 + 分型热图)。
+Unsupervised molecular subtyping from a feature-by-sample matrix using NMF rank selection, a consensus matrix, and a subtype heatmap.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `NMF` `ConsensusClusterPlus` `ComplexHeatmap` |
-| **一句话用途** | 把样本无监督分成稳健的分子亚型 |
-| **输入** | `example_data/feature_matrix.csv` |
-| **输出** | `results/` 分型表+图 · 展示图见 `assets/` |
+| **Language / main dependencies** | R · `NMF` `ConsensusClusterPlus` `ComplexHeatmap` |
+| **Purpose** | Partition samples into stable molecular subtypes without supervision |
+| **Input** | `example_data/feature_matrix.csv` |
+| **Output** | Subtype table and figures in `results/`; display figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+CSV with feature names (genes / immune scores / pathway scores) in the first column and samples in the remaining columns. Values are non-negative.
 
-CSV,首列特征名(基因/免疫评分/通路评分),其余列=样本;值非负。
+## Method
 
-## ② 方法 / 原理
+`NMF` performs rank selection over k=kmin..kmax (cophenetic correlation) and extracts subtypes at the optimal k. `ConsensusClusterPlus` runs resampling-based consensus clustering and outputs a consensus matrix as robustness evidence, followed by a feature heatmap annotated by subtype.
 
-`NMF` 在 k=kmin..kmax 做秩选择(cophenetic 相关)→ 最优 k 提取亚型;`ConsensusClusterPlus` 重抽样共识聚类输出共识矩阵(稳健性证据)→ 分型注释特征热图。
+Method citations: Brunet *et al.*, *PNAS* 2004 (NMF subtyping); Wilkerson & Hayes, *Bioinformatics* 2010 (ConsensusClusterPlus).
 
-> 方法引用:Brunet *et al.*, *PNAS* 2004(NMF 分型);Wilkerson & Hayes, *Bioinformatics* 2010(CCP)。
+## Use cases
 
-## ③ 用途
+Tumor / disease molecular subtyping, immune co-infiltration subtyping, and pathway-activity subtyping, to identify patient subgroups with distinct molecular features.
 
-肿瘤/疾病分子分型、免疫共浸润分型、通路活性分型——发现具有不同分子特征的患者亚组。
+## Features
 
-## ④ 特点 / 亮点
+- Runs directly on a matrix. `--k` sets the number of subtypes manually (default selects k by cophenetic correlation; manual confirmation against the rank-selection and consensus plots is recommended).
+- Figures: NMF rank-selection curve, consensus matrix heatmap, and subtype-annotated feature heatmap.
 
-- **Turnkey**:矩阵即跑;`--k` 可手动指定亚型数(默认 cophenetic 自动选,建议结合秩选择/共识图人工确认)。
-- **顶刊图**:NMF 秩选择曲线 + 共识矩阵热图(分型金标准图)+ 分型注释特征热图。
+## Outputs
 
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Type | Description |
 |------|------|------|
-| `assets/Consensus_matrix.png` | 共识矩阵 | 分型稳健性(对角块=亚型) |
-| `assets/NMF_rank_survey.png` | 曲线 | cophenetic vs k |
-| `assets/Subtype_heatmap.png` | 热图 | 各亚型特征模式 |
+| `assets/Consensus_matrix.png` | Consensus matrix | Subtyping robustness (diagonal blocks = subtypes) |
+| `assets/NMF_rank_survey.png` | Curve | cophenetic vs k |
+| `assets/Subtype_heatmap.png` | Heatmap | Feature pattern per subtype |
 
 ![consensus](assets/Consensus_matrix.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 084_NMF_consensus_subtyping.R                              # 示例(自动选 k)
 Rscript 084_NMF_consensus_subtyping.R --input data/mat.csv --k 3   # 指定 3 亚型
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages("NMF"); BiocManager::install(c("ConsensusClusterPlus","ComplexHeatmap"))

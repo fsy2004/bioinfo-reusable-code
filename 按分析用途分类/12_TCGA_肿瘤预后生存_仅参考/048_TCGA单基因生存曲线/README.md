@@ -1,51 +1,40 @@
-# 048 · TCGA 单基因多终点生存曲线
+# 048 · TCGA single-gene multi-endpoint survival curves
 
-> 单基因表达 + 生存数据 → 一条命令 → OS/DSS/DFI/PFI 四终点高低表达 KM 曲线。
+Generates high/low expression Kaplan-Meier curves for a single gene across the OS, DSS, DFI, and PFI endpoints from expression and survival data.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `survival` `survminer` |
-| **一句话用途** | 单基因预后价值的多终点 KM 评估 |
-| **输入** | `example_data/gene_survival.csv` |
-| **输出** | `results/` 汇总 + `assets/` 各终点 KM |
+| **Language / main dependencies** | R · `survival` `survminer` |
+| **Purpose** | Multi-endpoint KM evaluation of a single gene's prognostic value |
+| **Input** | `example_data/gene_survival.csv` |
+| **Output** | `results/` summary and `assets/` per-endpoint KM |
 
----
+## Input
 
-## ① 输入数据
+CSV containing the target gene expression column plus paired columns for each endpoint: `<EP>.time` (days) and `<EP>` (0/1), where EP is one of OS/DSS/DFI/PFI. Only the endpoints present are plotted.
 
-CSV,含目标基因表达列 + 各终点成对列 `<EP>.time`(天)与 `<EP>`(0/1),EP ∈ OS/DSS/DFI/PFI(有几个画几个)。
+## Method
 
-## ② 方法 / 原理
+Samples are split into high/low groups by the median gene expression. For each endpoint, `survfit` computes the KM estimate and `coxph` computes HR, 95% CI, and p value.
 
-按基因表达中位数分高/低组 → 各终点 `survfit` KM + `coxph` 求 HR/95%CI/p。
-
-## ③ 用途
-
-快速评估单个基因在多种生存终点上的预后意义(TCGA 泛癌预后分析标配)。
-
-## ④ 特点 / 亮点
-
-- **Turnkey**:一表即出 4 张 KM;自动识别可用终点。
-- **顶刊图**:每终点独立 KM(HR/p + risk table)。
-
-## ⑤ 输出结果图
-
-| 文件 | 图型 |
-|------|------|
-| `assets/KM_OS.png` / `KM_DSS.png` / `KM_DFI.png` / `KM_PFI.png` | 各终点 KM |
-
-![OS](assets/KM_OS.png)
-
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 048_single_gene_survival.R                              # 示例
 Rscript 048_single_gene_survival.R --input data/gene_survival.csv --gene TP53
 ```
 
-## 依赖安装
+## Outputs
+
+Quickly assesses the prognostic relevance of a single gene across multiple survival endpoints, a standard TCGA pan-cancer prognostic analysis. Each endpoint produces an independent KM plot with HR/p and a risk table. Available endpoints are detected automatically.
+
+| File | Plot type |
+|------|------|
+| `assets/KM_OS.png` / `KM_DSS.png` / `KM_DFI.png` / `KM_PFI.png` | Per-endpoint KM |
+
+![OS](assets/KM_OS.png)
+
+## Dependencies
 
 ```r
 install.packages(c("survival","survminer"))

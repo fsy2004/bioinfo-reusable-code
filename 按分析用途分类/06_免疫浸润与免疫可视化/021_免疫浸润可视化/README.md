@@ -1,54 +1,38 @@
-# 021 · 免疫浸润可视化
+# 021 · Immune infiltration visualization
 
-> 免疫细胞比例矩阵(CIBERSORT 等) → 一条命令 → 分组差异箱线图 + 堆叠组成图 + 相关性热图。
+Generates grouped difference boxplots, stacked composition plots, and a correlation heatmap from an immune cell proportion matrix (e.g. CIBERSORT).
 
-| | |
-|---|---|
-| **语言 / 主依赖** | R · `ggpubr` `ComplexHeatmap` `ggplot2` |
-| **一句话用途** | 免疫去卷积结果的三大标配可视化 |
-| **输入** | `example_data/CIBERSORT_results.csv` |
-| **输出** | `results/` 表+图 · 展示图见 `assets/` |
+## Input
 
----
+CSV file (`example_data/CIBERSORT_results.csv`): the first column `Sample` holds sample names (group encoded by suffix `*_con`/`*_tre`); the remaining columns are immune cell proportions (row sums approximately 1). This is the standard output of deconvolution tools such as CIBERSORT or quanTIseq (produced by modules 017-020).
 
-## ① 输入数据
+## Method
 
-CSV:首列 `Sample`(样本名,后缀分组 `*_con`/`*_tre`),其余列 = 各免疫细胞比例(行和≈1)。即 CIBERSORT/quanTIseq 等去卷积的标准输出(由 017-020 产生)。
+Wilcoxon test per group with significance annotation (`ggpubr::stat_compare_means`); stacked composition plot of per-sample cell proportions; Spearman correlation matrix heatmap of immune cell co-infiltration relationships.
 
-## ② 方法 / 原理
+## Outputs
 
-按分组做 Wilcoxon 差异检验(`ggpubr::stat_compare_means`,标显著性)→ 堆叠组成图(各样本细胞比例)→ Spearman 相关矩阵热图(免疫细胞共浸润关系)。
-
-## ③ 用途
-
-展示疾病/处理组与对照组的免疫微环境差异,定位显著改变的免疫细胞类型与共浸润模式。
-
-## ④ 特点 / 亮点
-
-- **Turnkey**:一条命令出三图;自动分组 + 显著性标注。
-- **顶刊图**:期刊配色箱线(带星号)+ 堆叠组成 + ComplexHeatmap 相关热图。
-
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Plot type | Description |
 |------|------|------|
-| `assets/Immune_boxplot.png` | 分组箱线 | 各细胞两组对比 + 显著性 |
-| `assets/Immune_stackbar.png` | 堆叠柱状 | 样本免疫组成 |
-| `assets/Immune_correlation.png` | 相关热图 | 免疫细胞共浸润 |
+| `assets/Immune_boxplot.png` | Grouped boxplot | Two-group comparison per cell type with significance |
+| `assets/Immune_stackbar.png` | Stacked bar | Per-sample immune composition |
+| `assets/Immune_correlation.png` | Correlation heatmap | Immune cell co-infiltration |
+
+Tables and figures are written to `results/`; example figures are in `assets/`.
 
 ![boxplot](assets/Immune_boxplot.png)
 ![stack](assets/Immune_stackbar.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 021_immune_visualization.R                              # 示例
 Rscript 021_immune_visualization.R --input data/CIBERSORT_results.csv
 ```
 
-## 依赖安装
+## Dependencies
+
+R, with `ggpubr`, `ComplexHeatmap`, `ggplot2`.
 
 ```r
 install.packages(c("ggpubr","ggplot2","reshape2","circlize"))

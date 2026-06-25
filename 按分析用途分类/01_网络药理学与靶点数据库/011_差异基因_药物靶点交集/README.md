@@ -1,36 +1,37 @@
-# 011 · 差异基因 × 药物靶点交集 Venn / UpSet
+# 011 · DEG x Drug Target Intersection (Venn / UpSet)
 
-> 差异基因 + 药物靶点 + 疾病靶点 → 一条命令 → 多集交集 + Venn + UpSet。
+Computes multi-set intersections of differentially expressed genes, drug targets, and disease targets, and renders Venn and UpSet plots.
 
-| | |
-|---|---|
-| **语言 / 主依赖** | R · `theme_pub` + `UpSetR` |
-| **输入** | `example_data/`(DEG / drug / disease 三份列表) |
-| **输出** | `results/` 交集表 + `assets/` 图 |
+## Input
 
-## ① 输入数据
-`--input` 目录,含多份基因/靶点列表(csv;自动识别 `Gene`/首列)。≥3 集时额外出 UpSet。
+A directory passed via `--input` containing multiple gene/target lists (CSV; the `Gene` column or first column is detected automatically). When 3 or more sets are present, an UpSet plot is also generated.
 
-## ② 方法 / 原理
-求多集交集(DEG ∩ 药物靶点 ∩ 疾病靶点)→ `venn_pub`(3集)+ UpSet + 集合柱状图。
+## Method
 
-## ③ 用途
-锁定既差异表达、又是药物靶点、又与疾病相关的核心基因,作为机制研究/成药候选。
+Compute the multi-set intersection (DEG ∩ drug targets ∩ disease targets), then draw the result with `venn_pub` (for 3 sets), UpSet, and a set-size bar chart.
 
-## ④ 特点 / 亮点
-Turnkey;3 集 Venn + UpSet 双视图;零依赖 Venn。
+## Usage
 
-## ⑤ 输出结果图
-| 文件 | 图型 |
-|------|------|
-| `assets/Target_Venn.png` | 3 集 Venn |
+Identify core genes that are differentially expressed, are drug targets, and are disease-associated, for use as candidates in mechanistic studies and druggability assessment.
+
+## Features
+
+Provides two views (3-set Venn and UpSet). The Venn plot has no external dependencies.
+
+## Outputs
+
+| File | Plot type |
+|------|-----------|
+| `assets/Target_Venn.png` | 3-set Venn |
 | `assets/Target_UpSet.png` | UpSet |
-| `assets/Set_size_bar.png` | 集合大小 |
+| `assets/Set_size_bar.png` | Set sizes |
 
 ![Venn](assets/Target_Venn.png)
 
-## 运行
+## Run
+
 ```bash
 Rscript 011_DEG_drug_target_venn.R
 ```
-依赖:`install.packages("UpSetR")`
+
+Dependencies: R, `theme_pub`, `UpSetR` (`install.packages("UpSetR")`).

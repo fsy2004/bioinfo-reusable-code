@@ -1,52 +1,45 @@
-# 022 · 分子对接结合能可视化
+# 022 · Docking binding-energy visualization
 
-> 化合物×靶点结合能矩阵 → 一条命令 → 结合能热图(蓝=强结合)+ 最强结合排序气泡图。
+Visualizes a compound-by-target docking binding-energy matrix as a clustered heatmap and a per-target strongest-binding ranking plot.
+
+## Summary
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `ComplexHeatmap` `ggplot2` |
-| **一句话用途** | 对接结合能的矩阵热图与排序可视化 |
-| **输入** | `example_data/binding_energy.csv` |
-| **输出** | `results/` 表+图 · 展示图见 `assets/` |
+| Language / main dependencies | R · `ComplexHeatmap` `ggplot2` |
+| Purpose | Matrix heatmap and ranking visualization of docking binding energies |
+| Input | `example_data/binding_energy.csv` |
+| Output | Tables and figures in `results/`; example figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+CSV with the first column `Target` (target name) and remaining columns holding the docking binding energy of each compound (kcal/mol; more negative means stronger binding). A single compound requires only one such column.
 
-CSV:首列 `Target`(靶点名),其余列 = 各化合物的对接结合能(kcal/mol,越负结合越强)。单化合物时只需一列。
+## Method
 
-## ② 方法 / 原理
+The binding-energy matrix is rendered as a ComplexHeatmap clustered heatmap (blue-to-white gradient, values annotated). For each target, the strongest-binding compound is selected and shown in a ranking bubble plot.
 
-结合能矩阵 → ComplexHeatmap 聚类热图(蓝→白渐变,标注数值)→ 每靶点取最强结合化合物,排序气泡图。
+## Use
 
-## ③ 用途
+Network pharmacology and docking validation: compare the affinity of multiple compounds across multiple targets and identify strong compound-target pairs (binding energy < -7 kcal/mol is generally considered good binding).
 
-网络药理学/对接验证:直观比较多个化合物对多个靶点的亲和力,锁定强结合的化合物-靶点对(通常 < −7 kcal/mol 视为良好结合)。
+## Outputs
 
-## ④ 特点 / 亮点
-
-- **Turnkey**:矩阵即跑;自动聚类、数值标注、强结合配色。
-- **顶刊图**:对接结合能热图 + 最强结合气泡图。
-
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Plot type | Description |
 |------|------|------|
-| `assets/Binding_heatmap.png` | 热图 | 化合物×靶点结合能 |
-| `assets/Binding_bubble.png` | 气泡/棒棒糖 | 每靶点最强结合 |
+| `assets/Binding_heatmap.png` | Heatmap | Compound-by-target binding energy |
+| `assets/Binding_bubble.png` | Bubble / lollipop | Strongest binding per target |
 
 ![heatmap](assets/Binding_heatmap.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 022_docking_binding_energy.R                              # 示例
 Rscript 022_docking_binding_energy.R --input data/binding_energy.csv
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages(c("ggplot2","circlize")); BiocManager::install("ComplexHeatmap")

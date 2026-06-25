@@ -1,52 +1,48 @@
-# 053 · circlize 基因染色体圈图
+# 053 · circlize chromosome circos plot
 
-> 基因坐标表 → 一条命令 → 顶刊级染色体圈图(ideogram + 基因标签)。
+Draws target genes onto chromosomes to show their genomic distribution, using R and `circlize`.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `circlize` |
-| **一句话用途** | 把目标基因画到染色体上展示分布 |
-| **输入** | `example_data/gene_positions.csv` |
-| **输出** | `results/` · 展示图见 `assets/` |
+| **Language / main dependency** | R · `circlize` |
+| **Purpose** | Plot target genes on chromosomes to show their distribution |
+| **Input** | `example_data/gene_positions.csv` |
+| **Output** | `results/` · example figure in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+CSV with columns `Gene`, `Chr` (e.g. `chr17`), `Start`, `End` (genomic coordinates, available from NCBI Gene/UCSC).
 
-CSV,列:`Gene`, `Chr`(如 `chr17`), `Start`, `End`(基因组坐标,可从 NCBI Gene/UCSC 获取)。
+## Method
 
-## ② 方法 / 原理
+`circos.initializeWithIdeogram` initializes the chromosome framework, with an outer colored chromosome track and a middle cytoband ideogram, then `circos.genomicLabels` adds the inner gene-label leader lines.
 
-`circos.initializeWithIdeogram` 初始化染色体框架 → 外圈彩色染色体轨道 + 中圈 cytoband ideogram → `circos.genomicLabels` 内圈基因标签引线。
+## Usage
 
-## ③ 用途
+Plots the chromosome distribution of a candidate gene set (differential, feature, or target genes) as a supplementary figure, showing genomic location and clustering.
 
-把候选基因集(差异/特征/靶点基因)的染色体分布做成一区风格补充图,直观展示基因组定位与聚集。
+## Features
 
-## ④ 特点 / 亮点
+- Runs from a single coordinate table; journal color scheme for chromosomes.
+- Three-layer circos plot (chromosome + cytoband + gene labels).
+- Supports `--genome hg38/hg19/mm10` (cytoband fetched online on first use).
 
-- **Turnkey**:单坐标表即跑;期刊配色染色体。
-- **顶刊图**:三层圈图(染色体 + cytoband + 基因标签)。
-- 支持 `--genome hg38/hg19/mm10` 等(首次联网取 cytoband)。
+## Outputs
 
-## ⑤ 输出结果图
-
-| 文件 | 图型 | 说明 |
+| File | Type | Description |
 |------|------|------|
-| `assets/Chromosome_circos.png` | circos 圈图 | 基因染色体分布 |
+| `assets/Chromosome_circos.png` | circos plot | Gene distribution on chromosomes |
 
 ![circos](assets/Chromosome_circos.png)
 
----
-
-## 运行
+## Run
 
 ```bash
 Rscript 053_chromosome_circos.R                              # 示例(hg38)
 Rscript 053_chromosome_circos.R --input data/gene_positions.csv --genome hg38
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 install.packages("circlize")

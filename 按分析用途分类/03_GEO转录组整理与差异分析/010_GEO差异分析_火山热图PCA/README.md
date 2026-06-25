@@ -1,74 +1,70 @@
-# 010 · GEO 差异表达分析 — 火山图 / 热图 / PCA
+# 010 · GEO differential expression analysis — volcano / heatmap / PCA
 
-> 输入表达矩阵 → 一条命令 → limma 差异分析 + 顶刊级独立图(渐变火山图、PCA、DEG 聚类热图)。
+Two-group transcriptome differential expression with limma, plus volcano plot, PCA, and DEG clustering heatmap.
 
 | | |
 |---|---|
-| **语言 / 主依赖** | R · `limma` `ComplexHeatmap` `ggplot2` `ggrepel` |
-| **一句话用途** | 两组转录组差异表达 + 标准三件套可视化 |
-| **输入** | `example_data/expr_matrix.csv`(基因 × 样本) |
-| **输出** | `results/` 表格+图 · 展示图见 `assets/` |
+| **Language / main dependencies** | R · `limma` `ComplexHeatmap` `ggplot2` `ggrepel` |
+| **Purpose** | Two-group transcriptome differential expression with the standard three-figure visualization set |
+| **Input** | `example_data/expr_matrix.csv` (gene × sample) |
+| **Output** | Tables and figures in `results/`; display figures in `assets/` |
 
----
+## Input
 
-## ① 输入数据
+**File**: `expr_matrix.csv` (CSV; rows = genes, columns = samples)
 
-**文件**:`expr_matrix.csv`(csv;行=基因,列=样本)
-
-| 列 | 类型 | 必需 | 示例 | 说明 |
+| Column | Type | Required | Example | Notes |
 |------|------|:---:|------|------|
-| 第 1 列(基因名) | str | ✔ | `TP53` | 设为行名 |
-| 样本列 ×N | num | ✔ | `8.21` | 建议已 log2 归一化的表达值 |
+| Column 1 (gene name) | str | Yes | `TP53` | Set as row names |
+| Sample columns ×N | num | Yes | `8.21` | Expression values, log2-normalized recommended |
 
-**命名/格式约定**:样本列名后缀区分分组 —— 对照 `*_con`、实验 `*_tre`(可用 `--ctrl/--case` 改后缀)。每组建议 ≥3 重复。
+**Naming / format convention**: sample column-name suffixes distinguish groups — control `*_con`, treatment `*_tre` (suffixes can be changed with `--ctrl/--case`). At least 3 replicates per group recommended.
 
-**样例**:
+**Example**:
 ```
 Gene,S01_con,...,S01_tre,...
 NUMA1,8.10,...,10.32,...
 ```
 
-## ② 方法 / 原理
+## Method
 
-`limma`:`lmFit` 线性模型 → `makeContrasts(Disease−Control)` → `eBayes` 经验贝叶斯 → `topTable`(BH/FDR 校正)。按 `|log2FC|>阈值 & FDR<阈值` 取显著 DEG。PCA 用 `prcomp`(标准化)。热图用 `ComplexHeatmap`(行 z-score 标准化 + 双向聚类)。
+`limma`: `lmFit` linear model, `makeContrasts(Disease−Control)`, `eBayes` empirical Bayes, `topTable` (BH/FDR correction). Significant DEGs selected by `|log2FC| > threshold & FDR < threshold`. PCA uses `prcomp` (standardized). The heatmap uses `ComplexHeatmap` (row z-score standardization and two-way clustering).
 
-> 方法引用:Ritchie *et al.*, *NAR* 2015(limma);Gu *et al.*, *Bioinformatics* 2016(ComplexHeatmap)。
+Method citations: Ritchie *et al.*, *NAR* 2015 (limma); Gu *et al.*, *Bioinformatics* 2016 (ComplexHeatmap).
 
-## ③ 用途
+## Use case
 
-GEO/RNA-seq 两组对比(疾病 vs 对照、处理 vs 未处理)的标准差异表达流程,产出下游富集(→007)、机器学习特征(→04 类)、诊断模型(→05 类)所需的 DEG 列表。
+Standard differential expression workflow for two-group comparisons in GEO/RNA-seq data (disease vs control, treated vs untreated). Produces the DEG lists needed for downstream enrichment (007), machine-learning features (04 modules), and diagnostic models (05 modules).
 
-## ④ 特点 / 亮点
+## Features
 
-- **Turnkey**:零改动跑示例;`--input` 换数据即出图;分组后缀、阈值、标注数全可调。
-- **顶刊级火山图**:logFC 渐变着色 + 显著性映射点大小 + top 基因斜体标注 + 上下调计数。
-- **稳健**:自动检测分隔符;分组后缀缺失/无显著基因均有明确提示。
-- **矢量**:每图 PDF + 300dpi PNG。
+- Runs the example without edits; switch data with `--input`; group suffixes, thresholds, and label counts are configurable.
+- Volcano plot with logFC gradient coloring, point size mapped to significance, italic labels for top genes, and up/down-regulated counts.
+- Automatic delimiter detection; explicit messages when group suffixes are missing or no significant genes are found.
+- Each figure exported as PDF and 300 dpi PNG.
 
-## ⑤ 输出结果图
+## Outputs
 
-每张图独立成文件(PDF + PNG)。
+Each figure is a separate file (PDF and PNG).
 
-| 文件 | 图型 | 说明 |
+| File | Figure type | Notes |
 |------|------|------|
-| `assets/DEG_volcano.png` | 渐变火山图 | top 上/下调基因斜体标注 |
-| `assets/DEG_PCA.png` | PCA 散点 | 95% 置信椭圆,组间分离 |
-| `assets/DEG_heatmap.png` | 聚类热图 | top DEG × 样本,分组注释 |
-| `results/DE_results.csv` · `DE_significant_genes.csv` | 表 | 全部 / 显著 DEG |
+| `assets/DEG_volcano.png` | Gradient volcano plot | Italic labels for top up/down-regulated genes |
+| `assets/DEG_PCA.png` | PCA scatter | 95% confidence ellipses, between-group separation |
+| `assets/DEG_heatmap.png` | Clustering heatmap | Top DEGs × samples, group annotation |
+| `results/DE_results.csv` · `DE_significant_genes.csv` | Table | All / significant DEGs |
 
-![火山图](assets/DEG_volcano.png)
-![热图](assets/DEG_heatmap.png)
+![Volcano plot](assets/DEG_volcano.png)
+![Heatmap](assets/DEG_heatmap.png)
 
----
-
-## 运行
+## Usage
 
 ```bash
 Rscript 010_GEO_DEG_volcano_heatmap_PCA.R                          # 跑示例
 Rscript 010_GEO_DEG_volcano_heatmap_PCA.R --input data/expr.csv --logfc 1 --padj 0.05 --topn 20
 ```
 
-## 依赖安装
+## Dependencies
 
 ```r
 if (!require("BiocManager")) install.packages("BiocManager")

@@ -1,15 +1,18 @@
-# 19 · 多组学整合 / 分型模板
+# 19 · Multi-omics Integration / Subtyping Templates
 
-多组学潜变量整合、监督多组学分类、无监督分子分型。
+Multi-omics latent-variable integration, supervised multi-omics classification, and unsupervised molecular subtyping.
 
-| 模块 | 用途 | 语言 | 输出图 | 状态 |
+| Module | Purpose | Language | Output figures | Status |
 |------|------|------|--------|:---:|
-| [084 NMF 共识分型](084_NMF共识聚类分型/) | NMF + 共识聚类分子分型 | R | 共识矩阵 · 秩曲线 · 分型热图 | ✅ turnkey |
-| 083 MOFA / DIABLO 多组学整合 | 多组学潜变量整合 | R | 因子图 · 热图 | ⏭️ 需 MOFA2(python) |
+| [084 NMF consensus subtyping](084_NMF共识聚类分型/) | NMF + consensus clustering molecular subtyping | R | consensus matrix, rank curve, subtype heatmap | Ready |
+| 083 MOFA / DIABLO multi-omics integration | Multi-omics latent-variable integration | R | factor plot, heatmap | Requires MOFA2 (python) |
 
-> **084** turnkey:特征矩阵即出分型金标准图(遵循 [统一框架规范](../_framework/CONVENTIONS.md))。
-> **083**:MOFA2 依赖 python `mofapy2`(reticulate),DIABLO 依赖 mixOmics,本地未渲染,保留原脚本作参考。
+## Notes
 
-## 推荐输入
-- 矩阵:行=feature、列=sample(表达/免疫评分/通路活性/空间生态位)。
-- metadata:样本分组、疾病状态、临床表型。
+- 084: produces standard subtyping figures directly from a feature matrix (follows the [unified framework conventions](../_framework/CONVENTIONS.md)).
+- 083: MOFA2 depends on the python package `mofapy2` (via reticulate); DIABLO depends on mixOmics. Not rendered locally; the original scripts are kept for reference.
+
+## Input
+
+- Matrix: rows = features, columns = samples (expression / immune scores / pathway activity / spatial niches).
+- metadata: sample groups, disease status, clinical phenotypes.

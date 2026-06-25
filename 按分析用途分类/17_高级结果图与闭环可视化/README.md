@@ -1,48 +1,45 @@
-# 17_高级结果图与闭环可视化
+# 17 · Advanced result figures and closed-loop visualization
 
-## ✅ turnkey 模块
+Reusable tool entry points and template concepts for organizing multi-omics evidence into a closed loop rather than restyling bar charts.
 
-| 模块 | 用途 | 语言 | 输出图 |
+## Modules
+
+| Module | Purpose | Language | Output |
 |------|------|------|--------|
-| [498 桑基/冲积图](498_ggalluvial桑基冲积图/) | 多层流向 alluvial(药物→hub→通路 等) | R | 冲积/桑基图 |
+| [498 ggalluvial Sankey/alluvial](498_ggalluvial桑基冲积图/) | Multi-layer alluvial flow (drug, hub, pathway, etc.) | R | Alluvial/Sankey plot |
 
-> 498 遵循 [统一框架规范](../_framework/CONVENTIONS.md),零改动即跑出顶刊冲积图。以下为本类别的高级图理念与工具索引。
+498 follows the [unified framework conventions](../_framework/CONVENTIONS.md) and runs without modification. The rest of this module documents the design concepts and tool index for advanced figures in this category.
 
----
-
-本模块收集一区/顶刊风格结果图的可复用工具入口和模板思路，重点用于把多组学证据组织成闭环，而不是简单美化柱状图。
-
-推荐闭环：
+## Recommended closed loop
 
 `phenotype -> cell state -> communication / spatial niche -> perturbable target -> validation / prediction`
 
-## 优先图型
+## Priority figure types
 
-1. Patient-level risk landscape  
-   将机器学习预测概率、真实标签、数据集来源、细胞状态比例和 SHAP 贡献放到同一张患者级热图里。
+1. Patient-level risk landscape
+   Places machine learning predicted probability, true labels, dataset source, cell-state proportions, and SHAP contributions in a single patient-level heatmap.
 
-2. Response circuit circos  
-   用 circular tracks 展示 cell-state shift、SHAP、Scissor enrichment，用 chord links 展示通讯重排。
+2. Response circuit circos
+   Uses circular tracks to show cell-state shift, SHAP, and Scissor enrichment, with chord links for communication rewiring.
 
-3. Target evidence wheel  
-   把 virtual perturbation target、cell-state specificity、drug support、external validation 串成治疗证据图。
+3. Target evidence wheel
+   Connects virtual perturbation target, cell-state specificity, drug support, and external validation into a therapeutic evidence figure.
 
-4. Ligand-target-response circuit  
-   把 sender cell、ligand、receiver cell、target gene program 和 response phenotype 连起来。
+4. Ligand-target-response circuit
+   Links sender cell, ligand, receiver cell, target gene program, and response phenotype.
 
-5. Spatial niche response map  
-   将单细胞状态映射到空间切片，并叠加 niche、communication vector 或 pathway activity。
+5. Spatial niche response map
+   Maps single-cell states onto spatial sections and overlays niche, communication vector, or pathway activity.
 
-## 文件
+## Files
 
-- `advanced_figure_tools.csv`: 推荐工具、用途、论文和 GitHub 地址。
-- `download_advanced_figure_tools.ps1`: 一键 clone/update 相关工具到本地 `external_tools`。
-- `literature_download_links_for_fdm.txt`: FDM 批量下载链接。
-- `templates/`: 可移植模板说明。
+- `advanced_figure_tools.csv`: recommended tools, purpose, paper, and GitHub address.
+- `download_advanced_figure_tools.ps1`: clone/update the relevant tools to the local `external_tools` directory.
+- `literature_download_links_for_fdm.txt`: batch download links for FDM.
+- `templates/`: portable template notes.
 
-## 使用建议
+## Usage notes
 
-- 不建议把第三方工具源码直接提交进本仓库；用 `download_advanced_figure_tools.ps1` 拉取即可。
-- 新项目只复制需要的模板脚本，保留本模块作为工具索引。
-- 高级图必须服务于证据闭环；如果只是把条形图换成环形图，通常不值得放主图。
-
+- Do not commit third-party tool source code into this repository; pull it with `download_advanced_figure_tools.ps1`.
+- For a new project, copy only the template scripts you need and keep this module as a tool index.
+- Advanced figures should serve the evidence closed loop; replacing a bar chart with a circular chart is usually not worth a main figure.

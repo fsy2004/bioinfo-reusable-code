@@ -1,21 +1,25 @@
-# 06 · 免疫浸润与免疫可视化
+# 06 · Immune Infiltration and Immune Visualization
 
-从表达矩阵估计免疫细胞浸润 → 可视化分组差异与相关性。
+Estimate immune cell infiltration from an expression matrix, then visualize group differences and correlations.
 
-| 模块 | 用途 | 语言 | 输出图 | 状态 |
+## Modules
+
+| Module | Purpose | Language | Output figures | Status |
 |------|------|------|--------|:---:|
-| [021 免疫可视化](021_免疫浸润可视化/) | 比例矩阵→箱线/堆叠/相关热图 | R | 分组箱线 · 堆叠组成 · 相关热图 | ✅ |
-| 017 / 019 去卷积源函数 | CIBERSORT / 通用去卷积函数 | R | —(引擎) | 📦 引擎 |
-| 018 / 020 免疫评分 | 去卷积 + 评分 + 相关 | R | 相关矩阵 | 📦 引擎 |
-| 492 IOBR 多算法去卷积 | IOBR 多方法联合 | R | 热图 · 相关 | ⏭️ 重型环境 |
+| [021 Immune visualization](021_免疫浸润可视化/) | Proportion matrix to boxplot, stacked composition, correlation heatmap | R | Group boxplot, stacked composition, correlation heatmap | Available |
+| 017 / 019 Deconvolution source functions | CIBERSORT / general deconvolution functions | R | None (engine) | Engine |
+| 018 / 020 Immune scoring | Deconvolution, scoring, correlation | R | Correlation matrix | Engine |
+| 492 IOBR multi-algorithm deconvolution | IOBR multi-method combination | R | Heatmap, correlation | Heavy environment |
 
-## 链路
+## Pipeline
 
 ```
-表达矩阵 ─▶ 017/019 去卷积函数 + 018/020 评分 ─▶ 细胞比例矩阵 ─▶ 021 可视化(三图)
+Expression matrix ── 017/019 deconvolution functions + 018/020 scoring ── cell proportion matrix ── 021 visualization (three figures)
 ```
 
-> **021** 是 turnkey 旗舰:只要有细胞比例矩阵(CIBERSORT 标准输出)即可一条命令出顶刊三图。
-> **017-020**:免疫去卷积引擎(017/019 为 CIBERSORT 源函数,需 LM22 签名矩阵 + 原始表达;018/020 为评分流程),保留原脚本作上游引擎。
-> **492 IOBR**:需 GitHub 安装 IOBR(数十依赖),本地未渲染,保留参考。
-> 全部遵循 [统一框架规范](../_framework/CONVENTIONS.md)。
+## Notes
+
+- 021: Takes a cell proportion matrix (standard CIBERSORT output) and produces the three figures with a single command.
+- 017-020: Immune deconvolution engine. 017/019 are CIBERSORT source functions requiring the LM22 signature matrix plus raw expression; 018/020 are the scoring pipeline. Original scripts are kept as upstream engines.
+- 492 IOBR: Requires installing IOBR from GitHub (dozens of dependencies). Not rendered locally; kept for reference.
+- All modules follow the [unified framework conventions](../_framework/CONVENTIONS.md).
