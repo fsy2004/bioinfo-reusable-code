@@ -67,3 +67,6 @@ modules/12_tcga_prognosis/497_scsurvival_cohort/other_scripts/
 
 # 21 disease-burden: user drafts + vendored GBD sources, kept local (was never tracked)
 modules/21_disease_burden_gbd/
+
+# generated synthetic example data (regenerated on run)
+*.npz
