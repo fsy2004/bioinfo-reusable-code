@@ -91,11 +91,12 @@ save_fig(p_roc, file.path(ASSETS, "ROC_overlay"), 6.5, 6); save_fig(p_roc, file.
 
 ad <- data.frame(Method = names(aucs), AUC = as.numeric(aucs))
 ad <- ad[order(ad$AUC), ]; ad$Method <- factor(ad$Method, levels = ad$Method)
-p_auc <- ggplot(ad, aes(AUC, Method, fill = AUC)) +
-  geom_col(width = 0.7) +
-  geom_text(aes(label = sprintf("%.3f", AUC)), hjust = 1.1, colour = "white", size = 3.2, fontface = "bold") +
-  scale_fill_viridis_c(option = "D", guide = "none") +
-  coord_cartesian(xlim = c(0.5, 1)) +
+p_auc <- ggplot(ad, aes(AUC, Method)) +                       # lollipop(顶刊优于条形)
+  geom_segment(aes(x = 0.5, xend = AUC, yend = Method, colour = AUC), linewidth = 1.1) +
+  geom_point(aes(colour = AUC), size = 4.5) +
+  geom_text(aes(label = sprintf("%.3f", AUC)), hjust = -0.25, size = 3.0, fontface = "bold") +
+  scale_colour_viridis_c(option = "D", guide = "none") +
+  coord_cartesian(xlim = c(0.5, 1.03)) +
   labs(title = "Model AUC leaderboard", x = "Test AUC", y = NULL) +
   theme_pub(base_size = 12, border = TRUE)
 save_fig(p_auc, file.path(ASSETS, "AUC_leaderboard"), 6.5, 5); save_fig(p_auc, file.path(args$outdir, "AUC_leaderboard"), 6.5, 5)

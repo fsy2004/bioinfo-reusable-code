@@ -92,10 +92,14 @@ p1 <- ggplot(vlong, aes(method, gene, fill=factor(value))) +
 save_fig(p1, file.path(DAST,"vote_matrix"), width=5, height=max(4, nrow(vm)*0.22))
 if(length(consensus)){
   dd <- data.frame(gene=consensus, cor=pcor[consensus])
-  p2 <- ggplot(dd, aes(reorder(gene, cor), cor, fill=cor)) + geom_col() + coord_flip() +
-    scale_fill_gradientn(colours=pal_pub(5)) +
-    labs(x=NULL, y="|correlation with phenotype|", title="Consensus biomarkers (>=2 votes)") +
-    theme_pub(base_size=11) + guides(fill="none")
+  dd$gene <- factor(dd$gene, levels=dd$gene[order(dd$cor)])
+  p2 <- ggplot(dd, aes(cor, gene)) +                          # lollipop(顶刊优于条形)
+    geom_segment(aes(x=0, xend=cor, yend=gene, colour=cor), linewidth=1.1) +
+    geom_point(aes(colour=cor), size=4) +
+    scale_colour_gradientn(colours=pal_pub(5), guide="none") +
+    scale_x_continuous(expand=expansion(mult=c(0,0.08))) +
+    labs(x="|correlation with phenotype|", y=NULL, title="Consensus biomarkers (>=2 votes)") +
+    theme_pub(base_size=11)
   save_fig(p2, file.path(DAST,"consensus_bar"), width=6, height=4)
 }
 cat("[fig] assets/vote_matrix.{pdf,png}, consensus_bar.{pdf,png}\n")

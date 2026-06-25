@@ -71,7 +71,7 @@ fp <- data.frame(cohort=c(smd$cohort,"Pooled (REML)"),
 fp$cohort <- factor(fp$cohort, levels=rev(fp$cohort))
 pf <- ggplot(fp, aes(est, cohort, color=pooled)) +
   geom_vline(xintercept=0, linetype=2, color="grey60") +
-  geom_errorbarh(aes(xmin=lo, xmax=hi), height=0.2) + geom_point(aes(size=pooled)) +
+  geom_errorbar(aes(xmin=lo, xmax=hi), orientation="y", width=0.2) + geom_point(aes(size=pooled)) +
   scale_color_manual(values=c("FALSE"=pal_pub(2)[1],"TRUE"=pal_pub(2)[2]), guide="none") +
   scale_size_manual(values=c("FALSE"=2.5,"TRUE"=4), guide="none") +
   labs(x="Standardized mean difference (signature)", y=NULL,
@@ -92,11 +92,15 @@ lodo <- data.frame(held_out=c(names(auc_lodo),"mean"), AUC=c(auc_lodo, mean(auc_
 write.csv(lodo, file.path(DRES,"LODO_AUC.csv"), row.names=FALSE)
 cat(sprintf("[LODO] leave-one-dataset-out AUC: %s | mean=%.3f\n",
             paste(sprintf("%s=%.3f",names(auc_lodo),auc_lodo),collapse=", "), mean(auc_lodo)))
-pl <- ggplot(lodo, aes(reorder(held_out,AUC), AUC, fill=held_out=="mean")) + geom_col(width=0.65) +
-  geom_text(aes(label=sprintf("%.3f",AUC)), hjust=-0.1, size=3.3) +
-  geom_hline(yintercept=0.5, linetype=2, color="grey60") + coord_flip(ylim=c(0,1)) +
-  scale_fill_manual(values=c("FALSE"=pal_pub(2)[1],"TRUE"=pal_pub(2)[2]), guide="none") +
-  labs(x="Held-out cohort", y="Test AUC (LASSO trained on the rest)", title="LODO generalization") + theme_pub(base_size=11)
+lodo$held_out <- factor(lodo$held_out, levels=lodo$held_out[order(lodo$AUC)]); lodo$ismean <- lodo$held_out=="mean"
+pl <- ggplot(lodo, aes(AUC, held_out)) +                       # lollipop(顶刊优于条形)
+  geom_segment(aes(x=0, xend=AUC, yend=held_out, colour=ismean), linewidth=1.1) +
+  geom_point(aes(colour=ismean), size=4) +
+  geom_text(aes(label=sprintf("%.3f",AUC)), hjust=-0.3, size=3.2) +
+  geom_vline(xintercept=0.5, linetype=2, color="grey60") +
+  scale_colour_manual(values=c("FALSE"=pal_pub(2)[1],"TRUE"=pal_pub(2)[2]), guide="none") +
+  scale_x_continuous(expand=expansion(mult=c(0,0.12)), limits=c(0,1.05)) +
+  labs(x="Test AUC (LASSO trained on the rest)", y="Held-out cohort", title="LODO generalization") + theme_pub(base_size=11)
 save_fig(pl, file.path(DAST,"LODO_auc"), width=6, height=3.4)
 
 ## ---- 4. meta-weighted score(跨平台稳健评分) -------------------------------

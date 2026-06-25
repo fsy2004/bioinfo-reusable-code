@@ -54,12 +54,13 @@ write.csv(res[, c("Panel", "Var", "r", "p")], file.path(args$outdir, "correlatio
 
 cat("Step 3/3: 绘制双蝴蝶图...\n")
 res <- res[order(res$Panel, res$r), ]; res$Var <- factor(res$Var, levels = unique(res$Var))
-p <- ggplot(res, aes(signed_r, Var, fill = r)) +
-  geom_col(width = 0.7) +
+p <- ggplot(res, aes(signed_r, Var)) +                         # 发散 lollipop(顶刊优于条形)
+  geom_segment(aes(x = 0, xend = signed_r, yend = Var, colour = r), linewidth = 1.0) +
+  geom_point(aes(colour = r), size = 3.2) +
   geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.6) +
   geom_text(aes(label = paste0(sprintf("%.2f", r), sig),
-                hjust = ifelse(Panel == "Immune cells", 1.1, -0.1)), size = 2.9) +
-  scale_fill_gradient2(low = "#3C5488", mid = "white", high = "#E64B35", midpoint = 0, name = "Spearman r") +
+                hjust = ifelse(Panel == "Immune cells", 1.25, -0.25)), size = 2.9) +
+  scale_colour_gradient2(low = "#3C5488", mid = "grey80", high = "#E64B35", midpoint = 0, name = "Spearman r") +
   scale_x_continuous(labels = function(x) abs(x), limits = c(-1, 1), expand = expansion(mult = .15)) +
   facet_grid(Panel ~ ., scales = "free_y", space = "free_y") +
   labs(title = paste0(args$gene, " — immune correlation (butterfly)"),

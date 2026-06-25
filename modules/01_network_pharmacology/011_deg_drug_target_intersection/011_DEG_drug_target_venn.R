@@ -57,9 +57,11 @@ if (length(sets) <= 3) {
   save_fig(pv, file.path(ASSETS, "Target_Venn"), 6, 6); save_fig(pv, file.path(args$outdir, "Target_Venn"), 6, 6)
 }
 ss <- data.frame(Set = names(sets), n = sapply(sets, length)); ss$Set <- factor(ss$Set, levels = ss$Set[order(ss$n)])
-p_bar <- ggplot(ss, aes(n, Set, fill = Set)) + geom_col(width = .65) +
-  geom_text(aes(label = n), hjust = -0.25, size = 3.4, fontface = "bold") +
-  scale_fill_manual(values = pal_pub(nrow(ss), "npg"), guide = "none") +
+p_bar <- ggplot(ss, aes(n, Set)) +                            # lollipop(顶刊优于条形)
+  geom_segment(aes(x = 0, xend = n, yend = Set, colour = Set), linewidth = 1.1) +
+  geom_point(aes(colour = Set), size = 4.5) +
+  geom_text(aes(label = n), hjust = -0.5, size = 3.4, fontface = "bold") +
+  scale_colour_manual(values = pal_pub(nrow(ss), "npg"), guide = "none") +
   scale_x_continuous(expand = expansion(mult = c(0, .12))) +
   labs(title = "Targets per set", x = "Target count", y = NULL) + theme_pub(base_size = 12, border = TRUE)
 save_fig(p_bar, file.path(ASSETS, "Set_size_bar"), 6, 4); save_fig(p_bar, file.path(args$outdir, "Set_size_bar"), 6, 4)

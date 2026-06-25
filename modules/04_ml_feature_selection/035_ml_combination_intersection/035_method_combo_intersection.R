@@ -56,11 +56,12 @@ cat("  选定组合:", paste(sel, collapse = "+"), "→ 交集", length(inter), 
 # ---- 图 1: top 组合排行榜 ----
 cat("Step 3/3: 绘图...\n")
 topn <- head(tab, min(12, nrow(tab))); topn$combination <- factor(topn$combination, levels = rev(topn$combination))
-p_rank <- ggplot(topn, aes(n_intersect, combination, fill = n_intersect)) +
-  geom_col(width = 0.7) +
-  geom_text(aes(label = n_intersect), hjust = -0.3, size = 3.2, fontface = "bold") +
-  scale_fill_viridis_c(option = "D", guide = "none") +
-  scale_x_continuous(expand = expansion(mult = c(0, 0.12))) +
+p_rank <- ggplot(topn, aes(n_intersect, combination)) +       # lollipop(顶刊优于条形)
+  geom_segment(aes(x = 0, xend = n_intersect, yend = combination, colour = n_intersect), linewidth = 1.1) +
+  geom_point(aes(colour = n_intersect), size = 4) +
+  geom_text(aes(label = n_intersect), hjust = -0.6, size = 3.0, fontface = "bold") +
+  scale_colour_viridis_c(option = "D", guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.14))) +
   labs(title = paste0("Top ", PICK, "-method combinations"), x = "Intersection size", y = NULL) +
   theme_pub(base_size = 11, border = TRUE) + theme(axis.text.y = element_text(size = 8))
 save_fig(p_rank, file.path(ASSETS, "Combo_ranking"), 7.5, 5); save_fig(p_rank, file.path(args$outdir, "Combo_ranking"), 7.5, 5)
