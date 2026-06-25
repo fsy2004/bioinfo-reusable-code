@@ -58,17 +58,17 @@ Rendered directly from the bundled example data:
 | 03 | Transcriptomics (GEO) & differential expression | 008–010, 056 | volcano, heatmap, PCA, batch correction |
 | 04 | Machine-learning feature selection | 012–015, 034, 035, 052, 059, 502 | LASSO, RF, SVM-RFE, SHAP, AUC heatmap, triple-vote |
 | 05 | Diagnostic models & validation | 016, 063, 503 | ROC, calibration, DCA, nomogram, LODO generalization |
-| 06 | Immune infiltration | 017–021, 492 | composition, boxplot, correlation |
+| 06 | Immune infiltration | 017–021, 492, 520 | composition, boxplot, correlation, BayesPrism deconvolution |
 | 07 | Molecular docking & dynamics | 022, 086 | binding-energy bubble, MD metrics |
-| 08 | Single-cell / spatial / trajectory | 023–027, 044–051, 058, 062, 082, 506 | UMAP, dot plot, marker heatmap, scVI/scANVI integration |
-| 09 | Mendelian randomization & GWAS | 028–033, 043, 055, 075, 079, 508 | MR scatter, forest, funnel, two-step mediation |
+| 08 | Single-cell / spatial / trajectory | 023–027, 044–051, 058, 062, 082, 506, 517 | UMAP, dot plot, marker heatmap, scVI/scANVI integration, VECTOR direction |
+| 09 | Mendelian randomization & GWAS | 028–033, 043, 055, 075, 079, 508, 519 | MR scatter, forest, funnel, two-step mediation, local pipeline |
 | 10 | TWAS (single-cell eQTL weights) | 036–042 | weight tables |
 | 11 | WGCNA co-expression | 054, 504 | soft-threshold, module-trait heatmap, hdWGCNA |
 | 12 | TCGA prognosis (reference only) | 048, 057, 060 | KM, time-dependent ROC, risk plot |
 | 13 | Transcription-factor regulation / circos | 047, 053, 081, 511 | chromosome circos, regulon network, TF convergence |
 | 14 | Single-cell in-silico perturbation | 067–069, 085, 494, 495, 507 | gene-knockout effects, Geneformer in-silico |
-| 15 | Drug perturbation / repurposing | 070, 071, 078 | pharmacovigilance signals |
-| 16 | Spatial communication / cell fate | 072–074, 076, 077, 080, 505, 509 | CellRank, niche maps, RCTD, communication loop |
+| 15 | Drug perturbation / repurposing | 070, 071, 078, 518 | pharmacovigilance signals, beyondcell drug response |
+| 16 | Spatial communication / cell fate | 072–074, 076, 077, 080, 505, 509, 521 | CellRank, niche maps, RCTD, communication loop, SpatialGlue multi-omics |
 | 17 | Advanced result figures | 498, 512–516 | raincloud, ridgeline, dumbbell, chord, composite |
 | 18 | External method sources | manifest only | — |
 | 19 | Multi-omics integration & subtyping | 083, 084 | MOFA, consensus clustering |
@@ -78,7 +78,11 @@ Rendered directly from the bundled example data:
 
 Categories 10, 14, 16 and parts of 07/12 require heavy or GPU-bound toolchains
 (FUSION, GROMACS, deep-learning models); their scripts and dependency notes are
-kept for reference rather than local one-command rendering.
+kept for reference rather than local one-command rendering. Some turnkey modules
+run a re-implemented method **core** or an honest **baseline** locally and need the
+full package on the analysis server — see
+[`_framework/SERVER_DEPENDENCIES.md`](modules/_framework/SERVER_DEPENDENCIES.md)
+for the per-module real-package + install inventory.
 
 ## Framework (`_framework/`)
 
