@@ -4,14 +4,25 @@
 # 用途   : 全库统一的 ggplot2 主题、期刊配色、矢量导出与多panel合成工具。
 #          每个模块 source() 本文件即可获得一致的 Nature/Cell 级图风格。
 # 提供   : theme_pub()  统一主题(Helvetica/Arial、去网格、黑轴线、期刊字号)
-#          pal_pub()    期刊离散配色 (NPG/AAAS/Lancet/NEJM/JAMA/Set 等)
-#          scale_*_pub  离散/连续(viridis)填充与着色快捷封装
+#          pal_pub()    期刊离散配色 (NPG/AAAS/Lancet/NEJM/JAMA + 色盲安全 okabe_ito)
+#          pal_diverge() / scale_*_diverge()  RdBu 发散配色(z-score / log2FC)
+#          scale_*_pub / scale_*_cont  离散 / 连续(viridis)填充与着色快捷封装
 #          save_fig()   一次性导出矢量 PDF + 300dpi PNG(README 预览图)
 #          compose_panels()  patchwork 多panel合成并加 A/B/C 角标
 #          read_table_smart()  稳健读表 (自动分隔符/编码/行名)
+#          NATURE_W1 / NATURE_W2  单栏(3.5in≈90mm)/双栏(7.0in≈180mm)宽度常量
 # 依赖   : ggplot2 (必需); ggsci scales patchwork systemfonts ggrepel viridisLite
 #          (可选,缺失时自动降级,不报错)
 # 约定   : 图中文字一律英文(投稿规范),代码注释中文。
+# -----------------------------------------------------------------------------
+# Nature/Cell 出图规范(本库默认即对齐;来源 nature.com 官方 figure guidelines):
+#   · 尺寸:单栏 90mm(NATURE_W1=3.5in),双栏 180mm(NATURE_W2=7.0in),最大高 170mm。
+#   · 字号:最终图正文 5–7pt、panel 角标 8pt 粗体直立 a/b/c;单栏出图 base_size≈7。
+#   · 字体:无衬线 Helvetica/Arial,全文同一字体(PUB_FONT 自动择优)。
+#   · 线宽:最细线 ≥1pt(本库轴线/刻度均高于发丝线;勿用 <0.25 的发丝线)。
+#   · 颜色:RGB;避免色盲不可分的红绿对 → 离散优先 pal_pub("okabe_ito"),
+#           连续用 viridis,发散用 RdBu(scale_*_diverge)。
+#   · 矢量:save_fig() 出可编辑文字的 cairo_pdf(投稿要求不可栅格化线条/文字)。
 # =============================================================================
 
 suppressWarnings(suppressMessages({
@@ -46,8 +57,23 @@ PUB_PALETTES <- list(
              "#FFDC91","#EE4C97"),
   jama   = c("#374E55","#DF8F44","#00A1D5","#B24745","#79AF97","#6A6599","#80796B"),
   vivid  = c("#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B",
-             "#E377C2","#7F7F7F","#BCBD22","#17BECF")
+             "#E377C2","#7F7F7F","#BCBD22","#17BECF"),
+  # 色盲安全板 Okabe-Ito (Wong 2011 Nature Methods "Color blindness");离散变量首选,
+  # 满足 Nature「避免红绿混淆」要求。8 色 + grey;npg/aaas 等含红绿对,严格场景请改用本板。
+  okabe_ito = c("#E69F00","#56B4E9","#009E73","#F0E442","#0072B2","#D55E00",
+                "#CC79A7","#000000","#999999")
 )
+PUB_PALETTES$cb <- PUB_PALETTES$okabe_ito   # 别名:cb = colorblind-safe
+
+# ---- 发散配色板 RdBu(低=蓝 中=白 高=红;与 Python 端 CMAP_DIVERGE 一致)----------
+# ColorBrewer RdBu 反向,适合 z-score / log2FC / 相关系数等以 0 为中心的量。
+PUB_DIVERGE <- c("#053061","#2166AC","#4393C3","#92C5DE","#D1E5F0","#F7F7F7",
+                 "#FDDBC7","#F4A582","#D6604D","#B2182B","#67001F")
+
+# ---- Nature 出图尺寸常量(英寸;1in=25.4mm)----------------------------------
+NATURE_W1 <- 3.5   # 单栏 ≈ 90mm
+NATURE_W2 <- 7.0   # 双栏 ≈ 180mm
+NATURE_HMAX <- 6.7 # 最大高 ≈ 170mm
 
 #' 取 n 个期刊配色
 #' @param n 需要的颜色数 (超出板长自动插值扩展)
@@ -106,6 +132,18 @@ scale_colour_pub <- scale_color_pub
 # 连续量统一 viridis(色盲友好、印刷稳健)
 scale_fill_cont  <- function(option = "D", ...) ggplot2::scale_fill_viridis_c(option = option, ...)
 scale_color_cont <- function(option = "D", ...) ggplot2::scale_colour_viridis_c(option = option, ...)
+
+# ---- 发散配色快捷封装(RdBu;以 midpoint 为白心)-----------------------------
+#' 取 n 个 RdBu 发散色(低蓝→白→高红)
+pal_diverge <- function(n = 11) grDevices::colorRampPalette(PUB_DIVERGE)(n)
+#' 发散填充 scale:适合 log2FC / z-score 热图,midpoint 默认 0
+scale_fill_diverge  <- function(midpoint = 0, ...)
+  ggplot2::scale_fill_gradient2(low = "#2166AC", mid = "#F7F7F7", high = "#B2182B",
+                                midpoint = midpoint, ...)
+scale_color_diverge <- function(midpoint = 0, ...)
+  ggplot2::scale_colour_gradient2(low = "#2166AC", mid = "#F7F7F7", high = "#B2182B",
+                                  midpoint = midpoint, ...)
+scale_colour_diverge <- scale_color_diverge
 
 # ---- 一次导出 矢量PDF + 300dpi PNG ------------------------------------------
 #' @param plot ggplot/grob 对象
