@@ -5,6 +5,10 @@ figure types it produces. For the high-level category overview see the
 [top-level README](../README.md); for the new-project scaffold and shared style see
 [`_framework/`](_framework/).
 
+> **Reuse first, never from scratch.** Pick a module here (or a real tool) and adapt
+> it — do not hand-write analysis code from memory (that invites hallucinated APIs and
+> wrong parameters). See [`_framework/CONVENTIONS.md` §0](_framework/CONVENTIONS.md).
+
 ## Status legend
 
 | Mark | Meaning |
@@ -237,12 +241,18 @@ figure types it produces. For the high-level category overview see the
 | 📄 | 525 | [525_metabolomics_metaboanalystR_pipeline.R](20_mutation_methylation_proteome/525_metabolomics_metaboanalystR_pipeline.R) | Metabolomics differential analysis template | metabolite + meta → volcano + heatmap | R · MetaboAnalystR | R | volcano, heatmap |
 | 📄 | 526 | [526_cnv_gistic_or_cnvkit_pipeline.md](20_mutation_methylation_proteome/526_cnv_gistic_or_cnvkit_pipeline.md) | CNV analysis entry note (GISTIC2/CNVkit/inferCNV) | — | — | md | — |
 
-## 21 · Disease burden (GBD / NHANES / CHARLS) — 🗃️ local-only (git-ignored)
+## 21 · Disease burden (GBD / NHANES / CHARLS / comorbidity)
 
-Planning/resource category kept out of the public repo. Sub-folders `01_GBD`,
-`02_NHANES`, `03_CHARLS`, `04_comorbidity_network` are placeholders (README only,
-no scripts yet); `99_external_sources` holds 8 proxy-cloned upstream repos pending
-license review and re-implementation. Also topic-candidate and literature notes.
+Each sub-folder now ships a turnkey module grounded in the real cloned upstream
+tools under `99_external_sources/` (which, with the topic/literature drafts, stays
+local-only — git-ignored). Synthetic example data regenerates on run (not committed).
+
+| St | # | Module | Purpose | Input → Output | Deps | Lang | Figures |
+|----|---|--------|---------|----------------|------|------|---------|
+| ✅ | 527 | [01_GBD/527_gbd_burden_trend](21_disease_burden_gbd/01_GBD/527_gbd_burden_trend) | GBD ASR trend + EAPC + Das Gupta decomposition + SDI | burden/pop/sdi csv → tables + figures | R · dplyr, ggplot2 | R | line-trend, forest, lollipop, diverging-lollipop, scatter |
+| ✅ | 528 | [02_NHANES/528_nhanes_survey_weighted](21_disease_burden_gbd/02_NHANES/528_nhanes_survey_weighted) | NHANES survey-weighted means / regression / prevalence | nhanes.csv → svyglm + prevalence | R · survey, dplyr | R | dumbbell, forest, lollipop |
+| ✅ | 529 | [03_CHARLS/529_charls_longitudinal_cohort](21_disease_burden_gbd/03_CHARLS/529_charls_longitudinal_cohort) | CHARLS trend + equipercentile equating + LMM + Cox/KM | panel.csv → trend/crosswalk/LMM/Cox | R · lme4, survival | R | line-trend, concordance, violin, forest, KM |
+| ✅ | 530 | [04_comorbidity_network/530_comorbidity_network](21_disease_burden_gbd/04_comorbidity_network/530_comorbidity_network) | Disease-pair association → igraph → Louvain modules | patients.csv → network + metrics | R · igraph, ggraph | R | network, heatmap, lollipop |
 
 ## 22 · Single-cell metabolism
 
@@ -261,7 +271,9 @@ Look up a figure you want; the listed modules can produce it.
 - **ROC** → 016, 034, 045, 052, 059, 063
 - **Calibration / DCA / nomogram** → 016, 063
 - **Forest** → 016, 032, 033, 043, 078, 503, 508
-- **KM / survival** → 048, 057, 497(sc)
+- **KM / survival** → 048, 057, 497(sc), 529
+- **Line trend / time-series ribbon** → 527, 529
+- **Concordance / crosswalk curve** → 529
 - **Time-dependent ROC / risk-plot** → 057
 - **UMAP / tSNE** → 026, 027, 044, 046, 049, 050, 058, 062, 504, 506, 507, 518
 - **Violin (split)** → 026, 027, 044, 046, 049, 050, 509
@@ -272,7 +284,7 @@ Look up a figure you want; the listed modules can produce it.
 - **PCA** → 010, 026, 027, 044, 056
 - **Scatter** → 012, 013, 014, 032, 033, 043, 086, 495, 506, 511, 520, 521
 - **Circos / chord** → 051, 053, 515
-- **Network (igraph / visNetwork / ggraph)** → 007, 047
+- **Network (igraph / visNetwork / ggraph)** → 007, 047, 530
 - **Sankey / alluvial** → 047, 498
 - **Correlation matrix** → 018, 021, 060, 492, 502
 - **MR funnel / leave-one-out / Manhattan / QQ / radial** → 032, 033, 043, 519
@@ -280,7 +292,7 @@ Look up a figure you want; the listed modules can produce it.
 - **Docking energy / MD curves (RMSD/RMSF/Rg/SASA/ΔG)** → 022, 086
 - **Raincloud** → 512
 - **Ridgeline** → 513
-- **Dumbbell / slopegraph** → 514
+- **Dumbbell / slopegraph** → 514, 528
 - **Butterfly (diverging)** → 060
 - **Spatial feature / niche map** → 027, 050, 073, 080, 505, 521
 - **Trajectory / pseudotime** → 044, 049, 050, 062, 082, 087

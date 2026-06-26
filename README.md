@@ -5,8 +5,8 @@ Each module ships with a small example dataset and runs from the command line to
 produce vector, journal-style figures. Replace the example with your own data to
 reuse it in a project.
 
-- ~110 modules across 22 analysis categories (~50 run turnkey on bundled example
-  data; the rest are server/GPU/template — see status marks in the catalog)
+- ~115 modules across 22 analysis categories (~55 run turnkey on bundled/synthetic
+  example data; the rest are server/GPU/template — see status marks in the catalog)
 - A shared plotting framework (`_framework/`) for consistent figure style
 - A project scaffold, quality checklist, and static linter for reproducible pipelines
 - Tested with R 4.4 and Python 3.12
@@ -78,7 +78,7 @@ Per-module one-liners (purpose, input → output, dependencies, figure types) pl
 | 18 | External method sources | manifest only | — |
 | 19 | Multi-omics integration & subtyping | 083, 084 | MOFA, consensus clustering |
 | 20 | Mutation / CNV / methylation / proteome / metabolome | 5 templates | oncoprint, volcano, heatmap |
-| 21 | Disease burden (GBD / NHANES / CHARLS) | external / spec | — |
+| 21 | Disease burden (GBD / NHANES / CHARLS / comorbidity) | 527–530 | ASR/EAPC/decomposition, survey-weighted, longitudinal+equating, comorbidity network |
 | 22 | Single-cell metabolism | 510 | metabolic pathway activity (scMetabolism-style) |
 
 Categories 10, 14, 16 and parts of 07/12 require heavy or GPU-bound toolchains

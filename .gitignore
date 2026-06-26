@@ -66,8 +66,15 @@ modules/12_tcga_prognosis/497_scsurvival_cohort/pics/
 modules/12_tcga_prognosis/497_scsurvival_cohort/scSurvival/
 modules/12_tcga_prognosis/497_scsurvival_cohort/other_scripts/
 
-# 21 disease-burden: user drafts + vendored GBD sources, kept local (was never tracked)
-modules/21_disease_burden_gbd/
+# 21 disease-burden: track the turnkey method modules (527-530) + their READMEs;
+# keep user drafts + vendored upstream sources local-only.
+modules/21_disease_burden_gbd/99_external_sources/
+modules/21_disease_burden_gbd/topic_candidates.md
+modules/21_disease_burden_gbd/literature_summary_comorbidity.md
+modules/21_disease_burden_gbd/sources_index.csv
+modules/21_disease_burden_gbd/comorbidity_paper_template_refs.ris
+# 527-530 regenerate their (GBD-shape, larger) synthetic example_data on run → don't commit
+modules/21_disease_burden_gbd/**/example_data/
 
 # generated synthetic example data (regenerated on run)
 *.npz
