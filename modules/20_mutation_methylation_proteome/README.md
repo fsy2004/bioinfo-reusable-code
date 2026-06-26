@@ -6,16 +6,16 @@ Command-line templates (argparse-style flags such as `--maf` / `--outdir`, no ha
 
 | Template | Purpose | Main dependencies | Typical output figures |
 |------|------|--------|-----------|
-| `mutation_maftools_pipeline.R` | Somatic mutation summary | maftools | oncoplot, summary |
-| `methylation_minfi_champ_pipeline.R` | Methylation differential analysis | minfi, ChAMP, limma | M-value distribution, heatmap |
-| `proteomics_limma_msstats_pipeline.R` | Proteomics differential analysis | limma, MSstats | volcano, heatmap |
-| `metabolomics_metaboanalystR_pipeline.R` | Metabolomics differential analysis | MetaboAnalystR | volcano, heatmap |
-| `cnv_gistic_or_cnvkit_pipeline.md` | CNV analysis workflow notes | GISTIC2 / CNVKit / inferCNV | — |
+| `522_mutation_maftools_pipeline.R` | Somatic mutation summary | maftools | oncoplot, summary |
+| `523_methylation_minfi_champ_pipeline.R` | Methylation differential analysis | minfi, ChAMP, limma | M-value distribution, heatmap |
+| `524_proteomics_limma_msstats_pipeline.R` | Proteomics differential analysis | limma, MSstats | volcano, heatmap |
+| `525_metabolomics_metaboanalystR_pipeline.R` | Metabolomics differential analysis | MetaboAnalystR | volcano, heatmap |
+| `526_cnv_gistic_or_cnvkit_pipeline.md` | CNV analysis workflow notes | GISTIC2 / CNVKit / inferCNV | — |
 
 ## Usage
 
 ```bash
-Rscript mutation_maftools_pipeline.R --maf cohort.maf --outdir results/mutation
+Rscript 522_mutation_maftools_pipeline.R --maf cohort.maf --outdir results/mutation
 ```
 
 ## Suggested workflow

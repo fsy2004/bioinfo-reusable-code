@@ -76,10 +76,7 @@ figure types it produces. For the high-level category overview see the
 |----|---|--------|---------|----------------|------|------|---------|
 | 📄 | 017 | [017_immune_infiltration_source.R](06_immune_infiltration/017_immune_infiltration_source.R) | CIBERSORT deconvolution engine (SVR source) | expr + LM22 → cell fractions | R · e1071 | R | — |
 | 📄 | 018 | [018_immune_infiltration_scoring.R](06_immune_infiltration/018_immune_infiltration_scoring.R) | Immune infiltration scoring + cell/function matrices | expr → score matrix + corr | R · e1071, preprocessCore | R | heatmap (corr) |
-| 🔁 | 019 | 019_immune_infiltration_source_generic.R | **Duplicate of 017** (body identical; header # only) | — | R · e1071 | R | — |
-| 🔁 | 020 | 020_immune_infiltration_scoring_generic.R | **Duplicate of 018** (body identical; header # only) | — | R · e1071 | R | — |
 | ✅ | 021 | [021_immune_infiltration_viz/](06_immune_infiltration/021_immune_infiltration_viz) | Fraction-matrix difference/composition/correlation viz | CIBERSORT csv → 3 figures | R · ggpubr, ComplexHeatmap | R | box, stacked-bar, heatmap |
-| 🔁 | 021 | 021_immune_infiltration_viz.R | **Stale loose copy** of the 021 directory module | — | R · pheatmap, linkET | R | — |
 | 🟡 | 492 | [492_iobr_multimethod_deconvolution.R](06_immune_infiltration/492_iobr_multimethod_deconvolution.R) | IOBR 7-method deconvolution + cross-method consistency | expr + group → merged matrix + plots | R · IOBR, tidyverse | R | stacked-bar, box, heatmap |
 | ✅ | 520 | [520_bayesprism_deconvolution](06_immune_infiltration/520_bayesprism_deconvolution) | BayesPrism Bayesian deconvolution with ground-truth check | scRNA ref + bulk → fractions + accuracy | R · BayesPrism | R | scatter, heatmap |
 
@@ -107,8 +104,8 @@ figure types it produces. For the high-level category overview see the
 | 📄 | 058 | [058_scrna_scissor.R](08_singlecell_spatial_trajectory/058_scrna_scissor.R) | Scissor — link bulk phenotype to disease-relevant cells | bulk pheno + Seurat → Scissor cells | R · Seurat, Scissor | R | UMAP, lollipop |
 | 📄 | 061 | [061_scfocal_gui_input_prep.R](08_singlecell_spatial_trajectory/061_scfocal_gui_input_prep.R) | Prepare scFOCAL GUI input + launch Shiny | RData + map csv → RDS + GUI | R · Seurat, scFOCAL, shiny | R | — (interactive) |
 | 🟡 | 062 | [062_sctour_pseudotime_vectorfield.py](08_singlecell_spatial_trajectory/062_sctour_pseudotime_vectorfield.py) | scTour pseudotime + latent space + vector field | h5ad → pseudotime + vector field | Py · scanpy, sctour | Python | UMAP, pseudotime, vector-field |
-| 📄 | 082 | [082_palantir_branch_probability.py](08_singlecell_spatial_trajectory/082_palantir_branch_probability.py) | Palantir pseudotime + branch probability + entropy | h5ad + root → pseudotime/branch csv | Py · palantir, scanpy | Python | — (tables) |
 | 📄 | 082 | [082_trajectory_multimethod_slingshot_tradeseq_cytotrace2.R](08_singlecell_spatial_trajectory/082_trajectory_multimethod_slingshot_tradeseq_cytotrace2.R) | Slingshot / tradeSeq / CytoTRACE2 trajectory consensus | Seurat RDS → pseudotime table | R · slingshot, tradeSeq, CytoTRACE2 | R | pseudotime |
+| 📄 | 087 | [087_palantir_branch_probability.py](08_singlecell_spatial_trajectory/087_palantir_branch_probability.py) | Palantir pseudotime + branch probability + entropy | h5ad + root → pseudotime/branch csv | Py · palantir, scanpy | Python | — (tables) |
 | 🟡 | 506 | [506_scvi_scanvi_integration](08_singlecell_spatial_trajectory/506_scvi_scanvi_integration) | scVI/scANVI integration + label transfer (vs PCA baseline) | h5ad (batch/label) → integration + labels | Py · scvi-tools, scanpy, sklearn | Python | UMAP, scatter, heatmap (confusion) |
 | ✅ | 517 | [517_vector_trajectory_direction](08_singlecell_spatial_trajectory/517_vector_trajectory_direction) | VECTOR expression-potential differentiation direction | embedding + expr → potential + field | R · ggplot2 | R | vector-field |
 
@@ -128,7 +125,7 @@ figure types it produces. For the high-level category overview see the
 | 📄 | 055 | [055_immunecell_disease_mr_directionality.R](09_mendelian_randomization/055_immunecell_disease_mr_directionality.R) | Immune-cell ↔ disease bidirectional MR + Steiger | exposure + outcome → MR + Steiger | R · TwoSampleMR, RadialMR | R | — |
 | 📄 | 075 | [075_twosamplemr_coloc_drug_target.R](09_mendelian_randomization/075_twosamplemr_coloc_drug_target.R) | MR + colocalization drug-target evidence chain | exposure/outcome/locus → MR + coloc | R · TwoSampleMR, coloc | R | — |
 | 📄 | 079 | [079_pqtl_mvmr_protein_mediation.R](09_mendelian_randomization/079_pqtl_mvmr_protein_mediation.R) | pQTL multivariable MR protein mediation | harmonised mvmr → MVMR mediation | R · (self-implemented MVMR) | R | — |
-| ✅ | 497 | [497_lavaan_sem_mediation_path.R](09_mendelian_randomization/497_lavaan_sem_mediation_path.R) | SEM / path mediation with standardized-β diagram | composite scores → fit + path diagram | R · lavaan, semPlot | R | path-diagram |
+| ✅ | 499 | [499_lavaan_sem_mediation_path.R](09_mendelian_randomization/499_lavaan_sem_mediation_path.R) | SEM / path mediation with standardized-β diagram | composite scores → fit + path diagram | R · lavaan, semPlot | R | path-diagram |
 | ✅ | 508 | [508_twostep_mediation_mr](09_mendelian_randomization/508_twostep_mediation_mr) | Two-step network mediation MR (Sobel/Delta/MC) | x + m instruments → mediation table | R · ggplot2 | R | path-diagram, forest |
 | ✅ | 519 | [519_local_mr_pipeline](09_mendelian_randomization/519_local_mr_pipeline) | Fully local two-sample MR (no OpenGWAS API) | local exposure + outcome → estimates | R · TwoSampleMR, MRPRESSO, plinkbinr | R | scatter, forest, funnel, leave-one-out |
 
@@ -221,7 +218,7 @@ figure types it produces. For the high-level category overview see the
 
 | St | # | Module | Purpose | Input → Output | Deps | Lang | Figures |
 |----|---|--------|---------|----------------|------|------|---------|
-| 📦🗃️ | — | 14_ai_scientific_figures/ | Vendored AutoFigure-Edit (ICLR'26): method text → editable SVG schematics. Local reference only, git-ignored. | — | — | — | — |
+| 📦🗃️ | — | ai_scientific_figures/ | Vendored AutoFigure-Edit (ICLR'26): method text → editable SVG schematics. Local reference only, git-ignored. | — | — | — | — |
 
 ## 19 · Multi-omics integration & subtyping
 
@@ -234,11 +231,11 @@ figure types it produces. For the high-level category overview see the
 
 | St | # | Module | Purpose | Input → Output | Deps | Lang | Figures |
 |----|---|--------|---------|----------------|------|------|---------|
-| 📄 | — | [mutation_maftools_pipeline.R](20_mutation_methylation_proteome/mutation_maftools_pipeline.R) | Somatic mutation summary template | MAF → oncoplot/summary | R · maftools | R | oncoplot |
-| 📄 | — | [methylation_minfi_champ_pipeline.R](20_mutation_methylation_proteome/methylation_minfi_champ_pipeline.R) | Methylation differential analysis template | beta + meta → M-value dist + heatmap | R · limma, minfi, ChAMP | R | heatmap |
-| 📄 | — | [proteomics_limma_msstats_pipeline.R](20_mutation_methylation_proteome/proteomics_limma_msstats_pipeline.R) | Proteomics differential analysis template | protein + meta → volcano + heatmap | R · limma, MSstats | R | volcano, heatmap |
-| 📄 | — | [metabolomics_metaboanalystR_pipeline.R](20_mutation_methylation_proteome/metabolomics_metaboanalystR_pipeline.R) | Metabolomics differential analysis template | metabolite + meta → volcano + heatmap | R · MetaboAnalystR | R | volcano, heatmap |
-| 📄 | — | [cnv_gistic_or_cnvkit_pipeline.md](20_mutation_methylation_proteome/cnv_gistic_or_cnvkit_pipeline.md) | CNV analysis entry note (GISTIC2/CNVkit/inferCNV) | — | — | md | — |
+| 📄 | 522 | [522_mutation_maftools_pipeline.R](20_mutation_methylation_proteome/522_mutation_maftools_pipeline.R) | Somatic mutation summary template | MAF → oncoplot/summary | R · maftools | R | oncoplot |
+| 📄 | 523 | [523_methylation_minfi_champ_pipeline.R](20_mutation_methylation_proteome/523_methylation_minfi_champ_pipeline.R) | Methylation differential analysis template | beta + meta → M-value dist + heatmap | R · limma, minfi, ChAMP | R | heatmap |
+| 📄 | 524 | [524_proteomics_limma_msstats_pipeline.R](20_mutation_methylation_proteome/524_proteomics_limma_msstats_pipeline.R) | Proteomics differential analysis template | protein + meta → volcano + heatmap | R · limma, MSstats | R | volcano, heatmap |
+| 📄 | 525 | [525_metabolomics_metaboanalystR_pipeline.R](20_mutation_methylation_proteome/525_metabolomics_metaboanalystR_pipeline.R) | Metabolomics differential analysis template | metabolite + meta → volcano + heatmap | R · MetaboAnalystR | R | volcano, heatmap |
+| 📄 | 526 | [526_cnv_gistic_or_cnvkit_pipeline.md](20_mutation_methylation_proteome/526_cnv_gistic_or_cnvkit_pipeline.md) | CNV analysis entry note (GISTIC2/CNVkit/inferCNV) | — | — | md | — |
 
 ## 21 · Disease burden (GBD / NHANES / CHARLS) — 🗃️ local-only (git-ignored)
 
@@ -259,7 +256,7 @@ license review and re-implementation. Also topic-candidate and literature notes.
 
 Look up a figure you want; the listed modules can produce it.
 
-- **Volcano** → 010, 516, 20-proteomics, 20-metabolomics
+- **Volcano** → 010, 516, 524, 525
 - **Heatmap / ComplexHeatmap** → 010, 018, 022, 026, 034, 045, 054, 057, 059, 063, 083, 084, 492, 496, 502, 506, 510, 516, 518, 520
 - **ROC** → 016, 034, 045, 052, 059, 063
 - **Calibration / DCA / nomogram** → 016, 063
@@ -279,34 +276,37 @@ Look up a figure you want; the listed modules can produce it.
 - **Sankey / alluvial** → 047, 498
 - **Correlation matrix** → 018, 021, 060, 492, 502
 - **MR funnel / leave-one-out / Manhattan / QQ / radial** → 032, 033, 043, 519
-- **SEM / mediation path diagram** → 497(lavaan), 508
+- **SEM / mediation path diagram** → 499(lavaan), 508
 - **Docking energy / MD curves (RMSD/RMSF/Rg/SASA/ΔG)** → 022, 086
 - **Raincloud** → 512
 - **Ridgeline** → 513
 - **Dumbbell / slopegraph** → 514
 - **Butterfly (diverging)** → 060
 - **Spatial feature / niche map** → 027, 050, 073, 080, 505, 521
-- **Trajectory / pseudotime** → 044, 049, 050, 062, 082(×2)
+- **Trajectory / pseudotime** → 044, 049, 050, 062, 082, 087
 - **Vector field** → 062, 517
 - **SHAP (beeswarm / dependence / waterfall / force)** → 052
-- **Oncoplot** → 20-mutation
+- **Oncoplot** → 522
 - **Composite multi-panel "Figure 1"** → 516
 - **Stacked composition bar** (legitimate, not a ranking bar) → 021, 026, 044, 049, 492
 
 ---
 
-## Duplicates & cleanup candidates (awaiting confirmation — nothing deleted)
+## Cleanup changelog (resolved 2026-06-26)
 
-| Item | Issue | Suggested action |
-|------|-------|------------------|
-| `06/019_immune_infiltration_source_generic.R` | Byte-for-byte copy of **017** (only the header `# 编号` line differs); `_generic` name is misleading | Delete; keep 017 |
-| `06/020_immune_infiltration_scoring_generic.R` | Byte-for-byte copy of **018** (header only) | Delete; keep 018 |
-| `06/021_immune_infiltration_viz.R` (loose) | Stale pre-modularization copy of the `021_immune_infiltration_viz/` directory module | Delete; keep the directory module |
-| `04/045_multimodalad_ml_models.R` | `source("refer.ML.R")` but that helper is absent; no example data → cannot run as-is | Add `refer.ML.R` + example, or mark "template" |
-| `08/082` ×2 | Number 082 shared by two distinct modules (Palantir `.py` and Slingshot/tradeSeq/CytoTRACE2 `.R`) — no refs, rename is safe | Optionally renumber the Palantir script |
-| `09/497` vs `12/497` | Number 497 reused across categories (lavaan SEM vs scSurvival) — both legitimate | Optionally renumber one |
-| `18/14_ai_scientific_figures` | `14_` prefix is a stale category-number leftover; no refs, rename safe | Optionally rename to `ai_scientific_figures` |
-| `20/*` templates | Five pipeline templates use names, not the `NNN_` numbering used everywhere else | Optionally renumber for consistency |
+All previously-flagged duplicates and numbering inconsistencies have been actioned:
+
+| Item | Action taken |
+|------|--------------|
+| `06/019_immune_infiltration_source_generic.R` | **Deleted** — was byte-identical to 017 (only the header `# 编号` line differed) |
+| `06/020_immune_infiltration_scoring_generic.R` | **Deleted** — was byte-identical to 018 |
+| `06/021_immune_infiltration_viz.R` (loose) | **Deleted** — stale pre-modularization copy of the `021_immune_infiltration_viz/` directory module |
+| `08/082_palantir_branch_probability.py` | **Renumbered → 087** (resolves the 082 collision with the Slingshot/tradeSeq/CytoTRACE2 module) |
+| `09/497_lavaan_sem_mediation_path.R` | **Renumbered → 499** (resolves the cross-category 497 collision with 12's scSurvival) |
+| `18/14_ai_scientific_figures/` | **Renamed → `ai_scientific_figures/`** (dropped the stale `14_` category-number prefix) |
+| `20/*` five templates | **Renumbered → 522–526** to match the repo-wide `NNN_` convention |
+| `04/045_multimodalad_ml_models.R` | **Marked TEMPLATE** in its header — it `source()`s a project-specific `refer.ML.R` helper that is not bundled, so it is a reference, not a turnkey run. For a turnkey multi-method run use 034; for prognostic combos use 059/496 |
 
 > 045, 059, 496 are heavy/upstream-derived scripts that sit in category 04 but are
 > really modelling/prognostic work — kept here for provenance; see status marks.
+> New module numbers continue at **527+**.

@@ -1,5 +1,5 @@
 # =============================================================================
-# 497_lavaan_sem_mediation_path.R
+# 499_lavaan_sem_mediation_path.R
 # 用途    : 结构方程 / 路径中介模型——给"X→中介→结局"机制叙事一张带标准化β的通路图
 #           (MR 的转录组中介搭档: MR 给遗传因果, SEM 给转录中介 → 双层证据)
 # 来源    : lavaan (Rosseel 2012) + semPlot::semPaths   (CRAN)

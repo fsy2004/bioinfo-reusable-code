@@ -8,6 +8,13 @@
 # 主要 R 包  : randomForestSRC; glmnet; plsRglm; gbm; caret; mboost; e1071; BART; xgboost; ComplexHeatmap; pROC
 # 整理时间   : 2026-05-10
 # =============================================================================
+#
+# ⚠ TEMPLATE — NOT RUNNABLE AS-IS. This script `source()`s a project-specific
+#   helper `refer.ML.R` (the ML wrapper functions) that is NOT bundled, and reads
+#   `data.train.txt` / `data.test.txt` by hardcoded name with no example data.
+#   Use it as a reference for wiring up multi-ML integrated modelling. For a
+#   turnkey multi-method run see 034; for prognostic combinations see 059/496.
+#
 library(openxlsx)
 library(seqinr)
 library(plyr)

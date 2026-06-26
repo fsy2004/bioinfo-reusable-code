@@ -4,7 +4,7 @@ Generates grouped difference boxplots, stacked composition plots, and a correlat
 
 ## Input
 
-CSV file (`example_data/CIBERSORT_results.csv`): the first column `Sample` holds sample names (group encoded by suffix `*_con`/`*_tre`); the remaining columns are immune cell proportions (row sums approximately 1). This is the standard output of deconvolution tools such as CIBERSORT or quanTIseq (produced by modules 017-020).
+CSV file (`example_data/CIBERSORT_results.csv`): the first column `Sample` holds sample names (group encoded by suffix `*_con`/`*_tre`); the remaining columns are immune cell proportions (row sums approximately 1). This is the standard output of deconvolution tools such as CIBERSORT or quanTIseq (produced by modules 017/018).
 
 ## Method
 

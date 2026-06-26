@@ -22,6 +22,6 @@ GWAS instrument preparation, MR causal inference, and sensitivity, directionalit
 | 043 MR + directionality, 055 immune-cell bidirectional MR | Steiger directionality | TwoSampleMR |
 | 075 MR + coloc causal evidence chain | colocalization | coloc, LocusZoom |
 | 079 pQTL MVMR protein mediation | Multivariable MR | MVMR |
-| 497 lavaan SEM mediation paths | Structural equation modeling | lavaan |
+| 499 lavaan SEM mediation paths | Structural equation modeling | lavaan |
 
 Module 032 follows the [unified framework conventions](../_framework/CONVENTIONS.md); its core IVW/Egger/weighted-median methods are a self-contained implementation and can be applied directly to the data in 033/043/055. The advanced variants (coloc/MVMR/SEM) depend on dedicated packages, and the original scripts are kept for reference.

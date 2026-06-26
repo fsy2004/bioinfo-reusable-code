@@ -3,7 +3,7 @@
 Whole third-party source trees are not committed to this repository, because they bloat git (~19k files) and duplicate code that already lives upstream. This folder records the provenance of external methods collected locally; fetch the actual source from the upstream URL or pip when a method is needed. Any sub-folder here is git-ignored (`modules/18_external_sources/*/`) and kept as a local reference only.
 
 ## Local references (git-ignored, not committed)
-- `14_ai_scientific_figures/` — vendored AutoFigure-Edit (ICLR'26): turns a method description into editable SVG schematics. Kept locally for reference; the upstream repo + paper are bundled but not tracked.
+- `ai_scientific_figures/` — vendored AutoFigure-Edit (ICLR'26): turns a method description into editable SVG schematics. Kept locally for reference; the upstream repo + paper are bundled but not tracked.
 
 ## Key upstream methods
 Virtual perturbation: GEARS, CellOracle, scPerturb, scTenifoldKnk · Drug: chemCPA, scDrug ·

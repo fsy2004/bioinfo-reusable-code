@@ -24,7 +24,7 @@ Largest category in the collection. Module [046](046_scrna_publication_figures/)
 | 058 Scissor disease-associated cells | Phenotype-associated cells | Scissor + cohort |
 | 044 AD single-cell + monocle | Pseudotime | monocle is heavy |
 | 027 / 050 Spatial transcriptomics | Visium spatial analysis | Requires spatial data |
-| 062 scTour · 082 Palantir/Slingshot | Trajectory / vector field | Python deep learning / heavy |
+| 062 scTour · 082 Slingshot/tradeSeq/CytoTRACE2 · 087 Palantir | Trajectory / vector field | Python deep learning / heavy |
 | 061 scFOCAL/CellOracle GUI preparation · 491 scTour environment | Perturbation entry / environment | External GUI / environment |
 
 Module 046 follows the [unified framework conventions](../_framework/CONVENTIONS.md). To run a heavy module, see the dependency notes at the top of each script.
