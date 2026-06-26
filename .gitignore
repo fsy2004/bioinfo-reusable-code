@@ -4,6 +4,7 @@
 .Ruserdata
 .Rproj.user/
 *.Rproj
+Rplots.pdf
 
 # Python
 __pycache__/

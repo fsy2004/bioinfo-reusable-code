@@ -1,13 +1,11 @@
 # 18 — External method sources (manifest only, not vendored)
 
-Whole third-party source trees are not committed to this repository, because they bloat git (~19k files) and duplicate code that already lives upstream. This folder keeps only a provenance manifest of the external methods collected locally. Fetch the actual source from the upstream URL or pip when a method is needed.
+Whole third-party source trees are not committed to this repository, because they bloat git (~19k files) and duplicate code that already lives upstream. This folder records the provenance of external methods collected locally; fetch the actual source from the upstream URL or pip when a method is needed. Any sub-folder here is git-ignored (`modules/18_external_sources/*/`) and kept as a local reference only.
 
-## Manifest files
-- `外部方法源码_pip来源清单_2026-05-21.csv` — pip / install provenance
-- `外部方法源码清单_2026-05-21.partial.json` — source list (names, origins)
-- `DocumentsGitHub移动结果_2026-05-24.csv`, `手动下载源码移动结果_2026-05-22.csv` — local move logs
+## Local references (git-ignored, not committed)
+- `14_ai_scientific_figures/` — vendored AutoFigure-Edit (ICLR'26): turns a method description into editable SVG schematics. Kept locally for reference; the upstream repo + paper are bundled but not tracked.
 
-## Key upstream methods (see manifest CSVs for exact URLs)
+## Key upstream methods
 Virtual perturbation: GEARS, CellOracle, scPerturb, scTenifoldKnk · Drug: chemCPA, scDrug ·
 Trajectory/fate: CellRank, scVelo, Slingshot, tradeSeq, Palantir, CytoTRACE2 ·
 Spatial: cell2location, RCTD/spacexr, BayesSpace, SpaGCN, Squidpy, stLearn, COMMOT, Tangram ·

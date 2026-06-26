@@ -5,7 +5,8 @@ Each module ships with a small example dataset and runs from the command line to
 produce vector, journal-style figures. Replace the example with your own data to
 reuse it in a project.
 
-- ~28 runnable modules across 21 analysis categories
+- ~110 modules across 22 analysis categories (~50 run turnkey on bundled example
+  data; the rest are server/GPU/template — see status marks in the catalog)
 - A shared plotting framework (`_framework/`) for consistent figure style
 - A project scaffold, quality checklist, and static linter for reproducible pipelines
 - Tested with R 4.4 and Python 3.12
@@ -50,6 +51,10 @@ Rendered directly from the bundled example data:
 | ![volcano](modules/03_transcriptomics_deg/010_geo_deg_volcano_heatmap_pca/assets/DEG_volcano.png) | ![umap](modules/08_singlecell_spatial_trajectory/046_scrna_publication_figures/assets/UMAP_clusters.png) | ![mr](modules/09_mendelian_randomization/032_mr_twosamplemr/assets/MR_scatter.png) |
 
 ## Module catalog
+
+Per-module one-liners (purpose, input → output, dependencies, figure types) plus a
+**figure-type → module reverse index** and a status legend live in
+[`modules/CATALOG.md`](modules/CATALOG.md). Category overview:
 
 | #  | Category | Modules | Typical output |
 |----|----------|---------|----------------|

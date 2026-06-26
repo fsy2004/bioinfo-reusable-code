@@ -7,8 +7,13 @@ Reusable tool entry points and template concepts for organizing multi-omics evid
 | Module | Purpose | Language | Output |
 |------|------|------|--------|
 | [498 ggalluvial Sankey/alluvial](498_ggalluvial_sankey/) | Multi-layer alluvial flow (drug, hub, pathway, etc.) | R | Alluvial/Sankey plot |
+| [512 raincloud](512_raincloud_plot/) | Distribution comparison that replaces grouped bar charts | R | Raincloud (half-violin + box + jitter) |
+| [513 ridgeline](513_ridgeline_plot/) | Distribution shift across an ordered factor (time/stage/pseudotime) | R | Ridgeline / joyplot |
+| [514 dumbbell + slope](514_dumbbell_slope_plot/) | Paired change across two conditions | R | Dumbbell, slopegraph |
+| [515 chord](515_chord_diagram/) | Directed relations / flows (e.g. communication strength) | R | Chord diagram |
+| [516 composite multi-panel](516_composite_multipanel/) | "Figure 1" template (UMAP + volcano + heatmap + forest) | R | Composite multi-panel figure |
 
-498 follows the [unified framework conventions](../_framework/CONVENTIONS.md) and runs without modification. The rest of this module documents the design concepts and tool index for advanced figures in this category.
+All six modules follow the [unified framework conventions](../_framework/CONVENTIONS.md) and run on bundled/synthetic data without modification. The sections below document the closed-loop design concepts and the external-tool index for this category. These figure types favour lollipop/dot/violin/raincloud/chord over plain bar charts.
 
 ## Recommended closed loop
 
