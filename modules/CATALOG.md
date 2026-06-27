@@ -40,6 +40,8 @@ figure types it produces. For the high-level category overview see the
 | St | # | Module | Purpose | Input → Output | Deps | Lang | Figures |
 |----|---|--------|---------|----------------|------|------|---------|
 | ✅ | 007 | [007_go_kegg_enrichment](02_enrichment/007_go_kegg_enrichment) | GO/KEGG over-representation for a gene list | gene_list.csv → enrichment table + plots | R · clusterProfiler, org.Hs.eg.db, ggraph | R | dot, lollipop, network |
+| ✅ | 546 | [546_enrichplot_emap_cnet_tree](02_enrichment/546_enrichplot_emap_cnet_tree) | enrichGO + advanced plots replacing the plain bar (cnet/emap/tree) | gene_list.csv → enrichment table + plots | R · enrichplot, ggtangle, clusterProfiler, org.Hs.eg.db | R | dot, network (cnet/emap), tree, bar (baseline) |
+| ✅ | 549 | [549_goplot_chord_enrichment](02_enrichment/549_goplot_chord_enrichment) | GOplot gene×pathway chord / circle / membership heatmap | enrichment + logFC → relation matrix + plots | R · GOplot, ggplot2 | R | chord, circle, heatmap, lollipop, bar (baseline) |
 
 ## 03 · Transcriptomics (GEO) & differential expression
 
@@ -49,6 +51,7 @@ figure types it produces. For the high-level category overview see the
 | ✅ | 009 | [009_geo_sample_grouping](03_transcriptomics_deg/009_geo_sample_grouping) | Normalize matrix + attach group labels | geneMatrix + groups → labelled matrix | R · limma | R | — |
 | ✅ | 010 | [010_geo_deg_volcano_heatmap_pca](03_transcriptomics_deg/010_geo_deg_volcano_heatmap_pca) | limma two-group DE with three figures | expr matrix → DEG table + plots | R · limma, ComplexHeatmap | R | volcano, heatmap, PCA |
 | ✅ | 056 | [056_geo_multicohort_batch_correction](03_transcriptomics_deg/056_geo_multicohort_batch_correction) | Merge multi-cohort data + remove batch effect | cohort dir → corrected matrix + QC | R · limma/sva | R | PCA, box |
+| ✅ | 559 | [559_muscat_pseudobulk_ds](03_transcriptomics_deg/559_muscat_pseudobulk_ds) | muscat multi-sample pseudobulk differential-state vs cell-level baseline | SCE (.rds) → DS table + plots | R · muscat, SingleCellExperiment, edgeR, limma | R | MDS, volcano, heatmap, lollipop, dumbbell, raincloud |
 
 ## 04 · Machine-learning feature selection
 
@@ -65,6 +68,7 @@ figure types it produces. For the high-level category overview see the
 | 📄 | 059 | [059_dual_disease_15ml_175combos.R](04_ml_feature_selection/059_dual_disease_15ml_175combos.R) | Two-disease 15-ML × 175-combo screen + modelling | train/test → models + AUC heatmap | R · randomForestSRC, glmnet, ComplexHeatmap, sva | R | heatmap (AUC), ROC |
 | 📄 | 496 | [496_mime_101combo_prognostic.R](04_ml_feature_selection/496_mime_101combo_prognostic.R) | Mime 10-algorithm × 101-combo prognostic signature (usage snippet) | survival lists + genes → C-index table | R · Mime1 | R | lollipop, heatmap (C-index) |
 | ✅ | 502 | [502_biomarker_triple_vote](04_ml_feature_selection/502_biomarker_triple_vote) | Topology × correlation × Boruta triple-vote shortlist | expr + group + candidates → vote/consensus | R · igraph, Boruta, Hmisc | R | heatmap (vote), lollipop |
+| ✅ | 554 | [554_rra_consensus_features](04_ml_feature_selection/554_rra_consensus_features) | Robust Rank Aggregation consensus across feature-selection methods | method×gene rank table → consensus + stability | R · RobustRankAggreg, ComplexHeatmap | R | lollipop, heatmap, upset, raincloud |
 
 ## 05 · Diagnostic models & validation
 
@@ -73,6 +77,7 @@ figure types it produces. For the high-level category overview see the
 | ✅ | 016 | [016_diagnostic_model_roc_calibration_dca](05_diagnostic_models/016_diagnostic_model_roc_calibration_dca) | Logistic diagnostic model, full clinical evaluation | expr + genes → evaluation figures | R · rms, rmda, pROC | R | nomogram, calibration, DCA, ROC, forest, box |
 | ✅ | 063 | [063_geo_diagnostic_validation](05_diagnostic_models/063_geo_diagnostic_validation) | External-cohort validation of a diagnostic model | train + valid matrices → AUC + plot | R · rms, pROC | R | ROC, calibration |
 | ✅ | 503 | [503_generalization_robustness](05_diagnostic_models/503_generalization_robustness) | Meta-analysis + LODO cross-cohort generalization | cohorts.rds → LODO/weight tables | R · metafor, glmnet, pROC | R | forest, lollipop, box |
+| ✅ | 550 | [550_tabpfn_tabular_classifier](05_diagnostic_models/550_tabpfn_tabular_classifier) | TabPFN foundation model vs LASSO/GBDT honest incremental eval | expr + label → AUROC table + verdict | Py · tabpfn, scikit-learn, scipy | Python | dot (CV AUROC), ROC, PR, calibration, heatmap (confusion), lollipop |
 
 ## 06 · Immune infiltration
 
@@ -90,6 +95,9 @@ figure types it produces. For the high-level category overview see the
 |----|---|--------|---------|----------------|------|------|---------|
 | ✅ | 022 | [022_docking_binding_energy_viz](07_molecular_docking/022_docking_binding_energy_viz) | Binding-energy heatmap + strongest-binding ranking | binding_energy.csv → figures | R · ComplexHeatmap | R | heatmap, lollipop |
 | 🔴 | 086 | [086_vina_gromacs_mmpbsa_mdanalysis_pipeline.py](07_molecular_docking/086_vina_gromacs_mmpbsa_mdanalysis_pipeline.py) | Vina docking + GROMACS MD + MM-PBSA pipeline | receptor/ligand → trajectory + ΔG | Py · Vina, GROMACS, gmx_MMPBSA, MDAnalysis | Python | scatter (RMSD/RMSF/Rg/SASA/energy) |
+| ✅ | 547 | [547_prolif_interaction_fingerprint](07_molecular_docking/547_prolif_interaction_fingerprint) | ProLIF protein-ligand interaction fingerprint + residue occupancy | pose/traj → fingerprint + occupancy | Py · prolif, MDAnalysis, rdkit | Python | barcode, heatmap, lollipop |
+| ✅ | 548 | [548_bio3d_md_dccm_pca](07_molecular_docking/548_bio3d_md_dccm_pca) | bio3d ensemble/MD: PCA + DCCM + RMSF with collectivity null | ensemble/PDB/traj → dynamics tables | R · bio3d, ggplot2 | R | heatmap (DCCM), scatter (PCA), vector-field (porcupine), lollipop, dumbbell |
+| ✅ | 556 | [556_posebusters_validity_panel](07_molecular_docking/556_posebusters_validity_panel) | PoseBusters physical-validity check panel for docking/AI poses | poses.sdf → check table + pass rates | Py · posebusters, rdkit, pandas | Python | heatmap (tick), lollipop, dumbbell |
 
 ## 08 · Single-cell / spatial / trajectory
 
@@ -112,6 +120,12 @@ figure types it produces. For the high-level category overview see the
 | 📄 | 087 | [087_palantir_branch_probability.py](08_singlecell_spatial_trajectory/087_palantir_branch_probability.py) | Palantir pseudotime + branch probability + entropy | h5ad + root → pseudotime/branch csv | Py · palantir, scanpy | Python | — (tables) |
 | 🟡 | 506 | [506_scvi_scanvi_integration](08_singlecell_spatial_trajectory/506_scvi_scanvi_integration) | scVI/scANVI integration + label transfer (vs PCA baseline) | h5ad (batch/label) → integration + labels | Py · scvi-tools, scanpy, sklearn | Python | UMAP, scatter, heatmap (confusion) |
 | ✅ | 517 | [517_vector_trajectory_direction](08_singlecell_spatial_trajectory/517_vector_trajectory_direction) | VECTOR expression-potential differentiation direction | embedding + expr → potential + field | R · ggplot2 | R | vector-field |
+| ✅ | 541 | [541_banksy_spatial_domains](08_singlecell_spatial_trajectory/541_banksy_spatial_domains) | BANKSY neighbor-augmented spatial-domain segmentation vs non-spatial baseline | spatial csv → domains + ARI | R · Banksy, SpatialExperiment, aricode | R | spatial-scatter, lollipop, UMAP |
+| ✅ | 542 | [542_nnsvg_spatial_svg](08_singlecell_spatial_trajectory/542_nnsvg_spatial_svg) | nnSVG spatially-variable genes (NNGP) vs non-spatial HVG baseline | counts + coords → SVG ranking | R · nnSVG, SpatialExperiment, scran | R | spatial-scatter, lollipop, scatter, violin |
+| ✅ | 543 | [543_squidpy_spatial_statistics](08_singlecell_spatial_trajectory/543_squidpy_spatial_statistics) | squidpy spatial stats (Moran / nhood enrichment / co-occurrence / Ripley) | h5ad (spatial) → stats tables + plots | Py · squidpy, anndata, scanpy | Python | heatmap, lollipop, scatter, spatial-scatter |
+| ✅ | 557 | [557_sccomp_composition_da](08_singlecell_spatial_trajectory/557_sccomp_composition_da) | sccomp Bayesian beta-binomial cell-composition DA vs 3 baselines | composition counts → DA table + plots | R · sccomp, voomCLR, limma, ggbeeswarm | R | boxplot, lollipop, raincloud, dot-matrix |
+| 🟡 | 558 | [558_milo_neighborhood_da](08_singlecell_spatial_trajectory/558_milo_neighborhood_da) | Milo KNN-neighborhood differential abundance vs discrete-cluster baseline | SCE (reducedDim + condition) → DA table | R · miloR (or BiocNeighbors baseline), igraph, ggbeeswarm | R | beeswarm, network, volcano, violin |
+| ✅ | 560 | [560_copykat_scrna_cnv](08_singlecell_spatial_trajectory/560_copykat_scrna_cnv) | copyKAT scRNA CNV inference + aneuploid/diploid calling | gene×cell counts → prediction + CNAmat | R · copykat, ggplot2, uwot | R | heatmap (CNV), scatter (embedding), lollipop, heatmap (confusion) |
 
 > `491_sctour_extra_files/` is a support folder (tutorial run scripts + env notes) for module 062, not a standalone module.
 
@@ -132,6 +146,11 @@ figure types it produces. For the high-level category overview see the
 | ✅ | 499 | [499_lavaan_sem_mediation_path.R](09_mendelian_randomization/499_lavaan_sem_mediation_path.R) | SEM / path mediation with standardized-β diagram | composite scores → fit + path diagram | R · lavaan, semPlot | R | path-diagram |
 | ✅ | 508 | [508_twostep_mediation_mr](09_mendelian_randomization/508_twostep_mediation_mr) | Two-step network mediation MR (Sobel/Delta/MC) | x + m instruments → mediation table | R · ggplot2 | R | path-diagram, forest |
 | ✅ | 519 | [519_local_mr_pipeline](09_mendelian_randomization/519_local_mr_pipeline) | Fully local two-sample MR (no OpenGWAS API) | local exposure + outcome → estimates | R · TwoSampleMR, MRPRESSO, plinkbinr | R | scatter, forest, funnel, leave-one-out |
+| 🟡 | 533 | [533_mrcare_winnerscurse_mr](09_mendelian_randomization/533_mrcare_winnerscurse_mr) | Winner's-curse-corrected MR (CARE/RIVW) vs naive baseline | two-sample MR summary → estimates + plots | R · TwoSampleMR (baseline); MRcare | R | lollipop, forest, scatter, dumbbell |
+| ✅ | 534 | [534_mvmr_cml_constrained](09_mendelian_randomization/534_mvmr_cml_constrained) | Constrained-ML multivariable MR (MVMR-cML-DP) vs IVW baseline | multi-exposure GWAS summary → direct effects | R · MendelianRandomization, ggplot2 | R | forest, dumbbell, heatmap |
+| ✅ | 535 | [535_mrbee_cis_mr](09_mendelian_randomization/535_mrbee_cis_mr) | MRBEE bias-corrected estimating-equation MR vs naive IVW | exposure/outcome GWAS summary → estimates | R · MRBEE, ggplot2 | R | lollipop, forest, scatter |
+| 🟡 | 536 | [536_mrlink2_region_cis_mr](09_mendelian_randomization/536_mrlink2_region_cis_mr) | MR-link-2 single-region cis-MR (causal + pleiotropy) vs naive IVW | cis summary + LD → alpha/sigma_y + Type-I | Py · numpy, scipy, statsmodels; mrlink2 | Python | violin, forest, heatmap, scatter |
+| 🟡 | 537 | [537_sharepro_coloc](09_mendelian_randomization/537_sharepro_coloc) | SharePro effect-group colocalization vs classic single-causal coloc | two-region summary + LD → group shares | Py · numpy, scipy, pandas; SharePro (vendored) | Python | scatter (locuscompare), lollipop, heatmap, dumbbell |
 
 ## 10 · TWAS (single-cell eQTL weights)
 
@@ -151,6 +170,9 @@ figure types it produces. For the high-level category overview see the
 |----|---|--------|---------|----------------|------|------|---------|
 | ✅ | 054 | [054_wgcna_coexpression](11_wgcna/054_wgcna_coexpression) | Bulk WGCNA co-expression + module–trait | expr + traits → modules + figures | R · WGCNA, ComplexHeatmap | R | scale-free, dendrogram, module-trait heatmap |
 | 🟡 | 504 | [504_hdwgcna_single_cell](11_wgcna/504_hdwgcna_single_cell) | hdWGCNA single-cell co-expression (metacell) | sc_counts.rds → modules + hubs | R · Seurat, hdWGCNA, igraph | R | soft-power, dendrogram, module feature-plot |
+| ✅ | 538 | [538_netrep_module_preservation](11_wgcna/538_netrep_module_preservation) | NetRep permutation test of WGCNA module preservation across cohorts | discovery+test expr + modules → Zsummary/p | R · NetRep, ggplot2 | R | scatter, lollipop, density |
+| ✅ | 539 | [539_smccnet_multiomics_network](11_wgcna/539_smccnet_multiomics_network) | SmCCNet trait-driven sparse multi-omics network vs unsupervised baseline | mRNA + miRNA + trait → subnetwork + hubs | R · SmCCNet, igraph, ggraph | R | network, heatmap, lollipop, dumbbell |
+| 🟡 | 540 | [540_cwgcna_causal_module](11_wgcna/540_cwgcna_causal_module) | CWGCNA causal-direction (mediation) inference on WGCNA modules vs correlation baseline | expr + traits (driver) → causal directions | R · WGCNA (baseline); CWGCNA, ggraph | R | lollipop, dumbbell, network |
 
 ## 12 · TCGA prognosis (reference only)
 
@@ -160,6 +182,9 @@ figure types it produces. For the high-level category overview see the
 | ✅ | 057 | [057_tcga_prognostic_risk_model](12_tcga_prognosis/057_tcga_prognostic_risk_model) | Prognostic risk model, five-figure panel | risk.csv → 5 figures + table | R · survival, timeROC, ComplexHeatmap | R | risk-plot, status, heatmap, KM, timeROC |
 | ✅ | 060 | [060_tcga_immune_butterfly](12_tcga_prognosis/060_tcga_immune_butterfly) | Single-gene ↔ immune two-sided butterfly | expr + immune → correlation + plot | R · ggplot2 | R | butterfly (diverging) |
 | 📦 | 497 | [497_scsurvival_cohort](12_tcga_prognosis/497_scsurvival_cohort) | scSurvival — single-cell cohort survival (vendored pkg) | sc cohort + survival → risk model | Py · PyTorch, scanpy, lifelines | Python | cohort-survival |
+| ✅ | 551 | [551_aorsf_oblique_survival](12_tcga_prognosis/551_aorsf_oblique_survival) | Oblique random survival forest (aorsf) vs CoxPH / standard RSF baseline | survival table → C-index + risk strata | R · aorsf, survival, randomForestSRC, timeROC | R | time-dependent ROC, lollipop, KM |
+| ✅ | 552 | [552_survex_survshap_explain](12_tcga_prognosis/552_survex_survshap_explain) | survex time-dependent SurvSHAP(t) / SurvLIME explanation vs global baseline | survival table → time-varying importance | R · survex, survival, ranger | R | time-curve, dumbbell, lollipop, heatmap |
+| ✅ | 553 | [553_riskregression_dca_calibration](12_tcga_prognosis/553_riskregression_dca_calibration) | Honest survival-model eval: time-AUC + calibration + DCA + Brier/IBS | survival table → 4-axis eval + plots | R · riskRegression, dcurves, survival, prodlim | R | calibration, DCA, time-dependent ROC, line (Brier), lollipop |
 
 ## 13 · Transcription-factor regulation / circos
 
@@ -204,6 +229,9 @@ figure types it produces. For the high-level category overview see the
 | 🟡 | 505 | [505_spatial_advanced](16_spatial_communication/505_spatial_advanced) | Spatial advanced: RCTD deconv + NMF niche + interface degree | sc ref + spatial rds → fractions/niche | R · spacexr, RcppML, mistyR | R | niche-map (×3) |
 | ✅ | 509 | [509_communication_functional_loop](16_spatial_communication/509_communication_functional_loop) | Communication functional loop: ligand→UCell→enrich→Venn | receptor expr + prior + group → consensus | R · UCell, ggplot2 | R | lollipop, violin, venn |
 | 🟡 | 521 | [521_spatialglue_multiomics](16_spatial_communication/521_spatialglue_multiomics) | SpatialGlue spatial multi-omics domains (GNN; baseline local) | RNA + ADT grid → ARI + domains | Py · sklearn (baseline); SpatialGlue, torch-geometric | Python | spatial-scatter, lollipop |
+| ✅ | 531 | [531_liana_consensus_cci](16_spatial_communication/531_liana_consensus_cci) | LIANA+ rank-aggregate consensus cell-cell communication (6 methods) | scRNA h5ad (celltype) → consensus L-R ranks | Py · liana, scanpy, anndata, plotnine | Python | dotplot, network, heatmap, lollipop, tile |
+| ✅ | 544 | [544_paste2_slice_alignment](16_spatial_communication/544_paste2_slice_alignment) | PASTE optimal-transport spatial slice alignment / 3D stacking | two spatial h5ad → coupling + transform | Py · paste-bio, POT, anndata | Python | spatial-scatter, heatmap, violin, dumbbell |
+| ✅ | 545 | [545_spotlight_deconvolution](16_spatial_communication/545_spotlight_deconvolution) | SPOTlight (NMF+NNLS) spot cell-type deconvolution vs known-mix baseline | scRNA ref + spatial → spot proportions | R · SPOTlight, SingleCellExperiment, scatterpie | R | scatterpie, heatmap, scatter, violin |
 
 ## 17 · Advanced result figures
 
@@ -215,6 +243,7 @@ figure types it produces. For the high-level category overview see the
 | ✅ | 514 | [514_dumbbell_slope_plot](17_advanced_figures/514_dumbbell_slope_plot) | Dumbbell + slope for paired change | data.csv → paired change + plots | R · ggrepel | R | dumbbell, slopegraph |
 | ✅ | 515 | [515_chord_diagram](17_advanced_figures/515_chord_diagram) | Chord diagram for directed relations/flows | matrix.csv → flows + chord | R · circlize | R | chord |
 | ✅ | 516 | [516_composite_multipanel](17_advanced_figures/516_composite_multipanel) | "Figure 1" multi-panel composite template | self-contained → composite figure | R · patchwork, ggrepel | R | composite (volcano+heatmap+forest+UMAP) |
+| ✅ | 532 | [532_scpubr_publication_figures](17_advanced_figures/532_scpubr_publication_figures) | SCpubr publication-grade, colorblind-safe single-cell figure set | Seurat object → standardized figure set | R · SCpubr, Seurat, ggplot2 | R | UMAP, dotplot, feature-map, violin, alluvial |
 
 > Also: `advanced_figure_tools.csv` (tool index), `download_advanced_figure_tools.ps1` (fetch external tools), `templates/` (closed-loop figure concept notes).
 
@@ -260,44 +289,55 @@ local-only — git-ignored). Synthetic example data regenerates on run (not comm
 |----|---|--------|---------|----------------|------|------|---------|
 | ✅ | 510 | [510_scmetabolism_pathway_activity](22_metabolism/510_scmetabolism_pathway_activity) | Single-cell metabolic pathway activity (AUCell/UCell-style) | expr + meta (+gmt) → activity + figures | R · ggplot2 (self-contained scorer) | R | dotplot, row-z heatmap, distribution |
 
+## 23 · Uncertainty quantification & conformal prediction
+
+| St | # | Module | Purpose | Input → Output | Deps | Lang | Figures |
+|----|---|--------|---------|----------------|------|------|---------|
+| ✅ | 555 | [555_conformal_prediction_uq](23_uncertainty_conformal/555_conformal_prediction_uq) | Conformal prediction sets/intervals with finite-sample coverage vs naive baseline | table (target + features) → coverage diagnostics | Py · mapie, scikit-learn | Python | calibration, violin, line (efficiency), dumbbell |
+
 ---
 
 ## Figure type → module reverse index
 
 Look up a figure you want; the listed modules can produce it.
 
-- **Volcano** → 010, 516, 524, 525
-- **Heatmap / ComplexHeatmap** → 010, 018, 022, 026, 034, 045, 054, 057, 059, 063, 083, 084, 492, 496, 502, 506, 510, 516, 518, 520
-- **ROC** → 016, 034, 045, 052, 059, 063
-- **Calibration / DCA / nomogram** → 016, 063
-- **Forest** → 016, 032, 033, 043, 078, 503, 508
-- **KM / survival** → 048, 057, 497(sc), 529
+- **Volcano** → 010, 516, 524, 525, 558, 559
+- **Heatmap / ComplexHeatmap** → 010, 018, 022, 026, 034, 045, 054, 057, 059, 063, 083, 084, 492, 496, 502, 506, 510, 516, 518, 520, 534, 536, 537, 539, 543, 545, 547, 548, 550, 552, 554, 556, 559, 560
+- **ROC** → 016, 034, 045, 052, 059, 063, 550
+- **Calibration / DCA / nomogram** → 016, 063, 550, 553, 555
+- **Forest** → 016, 032, 033, 043, 078, 503, 508, 533, 534, 535, 536
+- **KM / survival** → 048, 057, 497(sc), 529, 551
 - **Line trend / time-series ribbon** → 527, 529
 - **Concordance / crosswalk curve** → 529
-- **Time-dependent ROC / risk-plot** → 057
-- **UMAP / tSNE** → 026, 027, 044, 046, 049, 050, 058, 062, 504, 506, 507, 518
-- **Violin (split)** → 026, 027, 044, 046, 049, 050, 509
-- **Box** → 016, 021, 056, 492, 503
-- **Bubble / dot plot** → 007, 022, 046, 049, 051, 510
-- **Lollipop (bar replacement)** → 003, 005, 006, 011, 013, 014, 034, 035, 058, 496, 503, 509, 511, 518
-- **Venn / UpSet** → 003, 005, 006, 011, 015, 034, 035, 509
-- **PCA** → 010, 026, 027, 044, 056
-- **Scatter** → 012, 013, 014, 032, 033, 043, 086, 495, 506, 511, 520, 521
-- **Circos / chord** → 051, 053, 515
-- **Network (igraph / visNetwork / ggraph)** → 007, 047, 530
-- **Sankey / alluvial** → 047, 498
+- **Time-dependent ROC / risk-plot** → 057, 551, 553
+- **UMAP / tSNE** → 026, 027, 044, 046, 049, 050, 058, 062, 504, 506, 507, 518, 532, 541
+- **Violin (split)** → 026, 027, 044, 046, 049, 050, 509, 532, 536, 542, 544, 545, 555, 558
+- **Box** → 016, 021, 056, 492, 503, 557
+- **Bubble / dot plot** → 007, 022, 046, 049, 051, 510, 531, 532, 546, 550, 557
+- **Lollipop (bar replacement)** → 003, 005, 006, 011, 013, 014, 034, 035, 058, 496, 503, 509, 511, 518, 531, 533, 535, 537, 538, 539, 540, 541, 542, 543, 546, 547, 548, 549, 550, 551, 552, 553, 554, 556, 557, 559, 560
+- **Venn / UpSet** → 003, 005, 006, 011, 015, 034, 035, 509, 554
+- **PCA** → 010, 026, 027, 044, 056, 548
+- **Scatter** → 012, 013, 014, 032, 033, 043, 086, 495, 506, 511, 520, 521, 533, 535, 537, 538, 542, 543, 545, 548, 560
+- **Circos / chord** → 051, 053, 515, 549
+- **Network (igraph / visNetwork / ggraph)** → 007, 047, 530, 531, 539, 540, 546, 558
+- **Sankey / alluvial** → 047, 498, 532
 - **Correlation matrix** → 018, 021, 060, 492, 502
 - **MR funnel / leave-one-out / Manhattan / QQ / radial** → 032, 033, 043, 519
 - **SEM / mediation path diagram** → 499(lavaan), 508
-- **Docking energy / MD curves (RMSD/RMSF/Rg/SASA/ΔG)** → 022, 086
-- **Raincloud** → 512
+- **Docking energy / MD curves (RMSD/RMSF/Rg/SASA/ΔG)** → 022, 086, 547, 548
+- **Raincloud** → 512, 554, 557, 559
 - **Ridgeline** → 513
-- **Dumbbell / slopegraph** → 514, 528
+- **Dumbbell / slopegraph** → 514, 528, 533, 534, 537, 539, 540, 544, 548, 552, 555, 556, 559
 - **Butterfly (diverging)** → 060
-- **Spatial feature / niche map** → 027, 050, 073, 080, 505, 521
+- **Spatial feature / niche map** → 027, 050, 073, 080, 505, 521, 541, 542, 543, 544, 545
 - **Trajectory / pseudotime** → 044, 049, 050, 062, 082, 087
-- **Vector field** → 062, 517
+- **Vector field** → 062, 517, 548
 - **SHAP (beeswarm / dependence / waterfall / force)** → 052
+- **Beeswarm** → 052, 558
+- **Density / distribution curve** → 538
+- **Line / curve (co-occurrence / Ripley / Brier / efficiency)** → 543, 553, 555
+- **MDS** → 559
+- **Barcode (interaction fingerprint)** → 547
 - **Oncoplot** → 522
 - **Composite multi-panel "Figure 1"** → 516
 - **Stacked composition bar** (legitimate, not a ranking bar) → 021, 026, 044, 049, 492
@@ -321,4 +361,4 @@ All previously-flagged duplicates and numbering inconsistencies have been action
 
 > 045, 059, 496 are heavy/upstream-derived scripts that sit in category 04 but are
 > really modelling/prognostic work — kept here for provenance; see status marks.
-> New module numbers continue at **527+**.
+> New module numbers continue at **561+**.

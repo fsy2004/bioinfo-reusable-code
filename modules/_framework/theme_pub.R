@@ -150,19 +150,23 @@ scale_colour_diverge <- scale_color_diverge
 #' @param file 输出路径前缀(不含扩展名)或含扩展名;两种格式都会生成
 #' @param width,height 英寸
 #' @param dpi PNG 分辨率
-save_fig <- function(plot, file, width = 7, height = 6, dpi = 300) {
+save_fig <- function(plot, file, width = 7, height = 6, dpi = 300, bg = "white") {
   stem <- sub("\\.(pdf|png)$", "", file)
   dir.create(dirname(stem), recursive = TRUE, showWarnings = FALSE)
-  # 矢量 PDF(Cairo 优先,支持系统字体)
+  # 矢量 PDF(Cairo 优先,支持系统字体);bg=white 防止网络图(theme_void/ggtangle)
+  # 透明底在 PDF/README 里被渲染成黑底。
   ok_pdf <- tryCatch({
     ggplot2::ggsave(paste0(stem, ".pdf"), plot, width = width, height = height,
-                    device = grDevices::cairo_pdf); TRUE
+                    device = grDevices::cairo_pdf, bg = bg); TRUE
   }, error = function(e) tryCatch({
-    ggplot2::ggsave(paste0(stem, ".pdf"), plot, width = width, height = height); TRUE
+    ggplot2::ggsave(paste0(stem, ".pdf"), plot, width = width, height = height, bg = bg); TRUE
   }, error = function(e2) FALSE))
-  # 300dpi PNG(README 预览;ragg/默认设备即高质量抗锯齿)
+  # 300dpi PNG(README 预览;ragg/默认设备即高质量抗锯齿)。
+  # ★ bg="white":enrichplot/ggtangle 等网络图默认透明底,PNG 透明在多数查看器
+  #   /Markdown 里显示为纯黑 —— 强制白底,保证 README 预览与投稿一致。
   ok_png <- tryCatch({
-    ggplot2::ggsave(paste0(stem, ".png"), plot, width = width, height = height, dpi = dpi); TRUE
+    ggplot2::ggsave(paste0(stem, ".png"), plot, width = width, height = height,
+                    dpi = dpi, bg = bg); TRUE
   }, error = function(e) FALSE)
   invisible(c(pdf = ok_pdf, png = ok_png))
 }

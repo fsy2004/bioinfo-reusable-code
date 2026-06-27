@@ -23,5 +23,6 @@ GWAS instrument preparation, MR causal inference, and sensitivity, directionalit
 | 075 MR + coloc causal evidence chain | colocalization | coloc, LocusZoom |
 | 079 pQTL MVMR protein mediation | Multivariable MR | MVMR |
 | 499 lavaan SEM mediation paths | Structural equation modeling | lavaan |
+| 536 MR-link-2 region cis-MR 🟡 | Single-region cis-MR, summary+LD joint causal & pleiotropy estimation; honest baseline vs naive single-region IVW (Type-I error control) | mrlink2 (optional; degraded to local concept impl) |
 
 Module 032 follows the [unified framework conventions](../_framework/CONVENTIONS.md); its core IVW/Egger/weighted-median methods are a self-contained implementation and can be applied directly to the data in 033/043/055. The advanced variants (coloc/MVMR/SEM) depend on dedicated packages, and the original scripts are kept for reference.

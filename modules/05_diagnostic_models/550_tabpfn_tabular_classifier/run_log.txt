@@ -1,0 +1,38 @@
+[step] 加载数据
+[data] 已生成合成示例 (synthetic, demo only) -> C:\Users\fsy\Desktop\bioinfo-reusable-code\modules\05_diagnostic_models\550_tabpfn_tabular_classifier\example_data\expr_demo.csv
+[load] 合成示例 shape=(180, 32)
+[step] 样本=180  候选基因=30  case比例=0.50  (p>n: False)
+[step] 构建三方模型 (折内预筛+标准化, 防泄漏)
+[tabpfn] real TabPFN v2 weights (公开免授权, GCS 直链)
+[gbdt]   baseline = HistGBDT
+[step] 重复分层 CV (同口径三方对照)
+[cv] TabPFN ... (20 folds)
+     AUROC=0.922±0.045  AUPRC=0.931±0.041
+[cv] LASSO-logistic ... (20 folds)
+     AUROC=0.921±0.047  AUPRC=0.932±0.040
+[cv] HistGBDT ... (20 folds)
+     AUROC=0.885±0.059  AUPRC=0.907±0.049
+[step] 留出测试集 -> 曲线/混淆/重要性
+[step] 绘图
+[fig] 550_cv_auroc_strip.png
+[fig] 550_roc_pr.png
+[fig] 550_calibration.png
+[fig] 550_confusion.png
+[fig] 550_permutation_importance.png
+[step] 写 results/
+=== 550 TabPFN vs baselines · 诚实三方对照裁决 ===
+TabPFN 路径: 真实 v2 公开权重 (无 proxy, 无 token)
+GBDT 基线  : HistGBDT
+数据       : n=180, p=30, case=0.50, CV=5x4 折内预筛 top-12
+
+         model  CV_AUROC_mean  CV_AUROC_std  CV_AUPRC_mean  holdout_AUROC
+        TabPFN       0.922068      0.044927       0.930579       0.953361
+LASSO-logistic       0.921451      0.046752       0.932310       0.939643
+      HistGBDT       0.885031      0.059013       0.906738       0.910837
+
+最强基线   : LASSO-logistic  (CV_AUROC=0.921)
+★诚实结论  : TabPFN 略优但不显著 (ΔAUROC=+0.001, p=0.858) —— 增量证据不足
+
+★防泄漏    : SelectKBest(ANOVA-F)+StandardScaler 封在 Pipeline 内, 仅训练折拟合。
+★配对检验  : 同 split 同折配对 t 检验 (scipy.stats.ttest_rel), 控制折间方差。
+[done] 全部完成 -> assets/ + results/
