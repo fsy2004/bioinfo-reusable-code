@@ -78,3 +78,9 @@ modules/21_disease_burden_gbd/**/example_data/
 
 # generated synthetic example data (regenerated on run)
 *.npz
+
+# stray stderr/stdout capture files
+err.txt
+out.txt
+**/err.txt
+**/out.txt
