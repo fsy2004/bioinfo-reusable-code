@@ -1,0 +1,2 @@
+# synthetic, for demo only -- one trajectory per line, states tab-separated
+S1	S2	S3

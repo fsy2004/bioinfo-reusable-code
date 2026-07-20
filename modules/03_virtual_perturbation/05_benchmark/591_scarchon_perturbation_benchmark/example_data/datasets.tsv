@@ -1,0 +1,2 @@
+file_path	condition	condition_control	condition_stimulated	batch	target	experiment_name	output_dir	Tools
+example_data/synthetic_perturb.h5ad	condition	control	stimulated	batch	donor1	synthetic_demo	results/synthetic_demo/	linear,scgen

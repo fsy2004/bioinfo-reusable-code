@@ -1,0 +1,494 @@
+"""596 · SCORCH2 — consensus ML rescoring of docking poses for virtual screening.
+
+上游方法 (SCORCH2, Chen et al., Advanced Science 2025, PMID 40832726):
+两个异质 XGBoost 模型 SC2-PS / SC2-PB 在不同训练集上学习蛋白-配体相互作用特征
+(ECIF + BINANA + Kier flexibility + RDKit descriptors),再按 --ps_weight 0.7 /
+--pb_weight 0.3 加权共识,对 docking pose 重打分以提升 hit enrichment。
+真实 API 见本文件 run_scorch2() 的守卫封装(需 clone 仓库 + Zenodo 权重 + xgboost)。
+
+本模块【本机可跑的部分】= 富集评测骨架 + 诚实基线:
+  baseline-0  原始 docking score 排序(不做 rescoring 的地板)
+  baseline-1  本地 consensus 代理模型(sklearn 双模型加权共识, GroupKFold 按靶点
+              留出, 避免靶点泄漏) —— 结构上模仿 SCORCH2 的共识思路, 但**不是**
+              SCORCH2 权重, 只用于给"rescoring 到底赢了多少"提供可复现对照。
+评测指标: EF1% / EF5% / BEDROC(α=80.5) / AUROC, 按靶点分层报告。
+
+Repo  https://github.com/LinCompbio/SCORCH2
+Paper https://doi.org/10.1002/advs.202508318 · PMID 40832726
+Weights https://zenodo.org/records/14994007
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sys
+
+import numpy as np
+import pandas as pd
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+RESULTS = os.path.join(HERE, "results")
+ASSETS = os.path.join(HERE, "assets")
+EXAMPLE = os.path.join(HERE, "example_data", "vs_docking_poses.csv")
+
+sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..", "..", "_framework")))
+from pubstyle import (  # noqa: E402
+    NATURE_W1, NATURE_W2, pal, save_fig, set_pub_style,
+)
+
+SEED = 0
+
+# SCORCH2 默认共识权重(来自上游 README: --ps_weight 0.7 / --pb_weight 0.3)
+SC2_PS_WEIGHT_DEFAULT = 0.7
+SC2_PB_WEIGHT_DEFAULT = 0.3
+
+# ⚠️ 下面这个"两组特征"的切分是**本模块 demo 的设计**,不是 SCORCH2 的做法。
+# 上游核实(scorch2_rescoring.py:301-318):SC2-PS 与 SC2-PB 共用同一套抽取出来的特征矩阵
+# X_all,只是各自 reindex 到自己 scaler 的 feature_names_in_ 再用各自的 scaler 标准化;
+# 两者的"异质性"来自**训练数据集不同**(上游 README:trained with distinct datasets;
+# PDBScreen / PDBBind),而**不是**"一个看相互作用、一个看理化描述符"。
+# 本模块拆成两组只是为了在没有权重的情况下造出两个真正异质的本地学习器。
+PS_FEATS = ["ecif_CC", "ecif_CN", "ecif_CO", "ecif_arom", "binana_hbond",
+            "binana_hydrophobic", "binana_saltbridge", "binana_pistack"]
+PB_FEATS = ["kier_flex", "mw", "logp", "tpsa", "rot_bonds", "pose_rmsd_ref"]
+
+
+# ---------------------------------------------------------------- 合成示例数据
+def make_synthetic(path: str, n_targets: int = 6, n_cmpd: int = 260,
+                   n_poses: int = 3, active_rate: float = 0.06,
+                   seed: int = SEED) -> pd.DataFrame:
+    """生成一个小型合成虚拟筛选表(actives + decoys, 每化合物多个 pose)。
+
+    设计意图(让基线有意义, 不是把答案喂给模型):
+      * docking_score 只弱相关于真实活性 —— 这正是 rescoring 存在的理由;
+      * 相互作用特征携带更多信号, 但每个靶点有自己的偏移(target-specific bias),
+        所以必须按靶点分组交叉验证, 否则会高估;
+      * pose 之间加噪声, 用 best-pose 聚合(对应上游 --aggregate)。
+    """
+    rng = np.random.default_rng(seed)
+    rows = []
+    for t in range(n_targets):
+        tname = f"TGT{t+1:02d}"
+        t_bias = rng.normal(0, 0.8, len(PS_FEATS) + len(PB_FEATS))  # 靶点特异偏移
+        t_scale = rng.uniform(0.7, 1.3)
+        for c in range(n_cmpd):
+            latent = rng.normal(0, 1)                       # 潜在结合倾向
+            is_active = int(rng.random() < 1 / (1 + np.exp(-(latent * 1.6 - 2.9))))
+            # 控制活性比例在 active_rate 附近
+            if is_active and rng.random() > active_rate / 0.10:
+                is_active = 0
+            cid = f"{tname}_CMPD{c+1:04d}"
+            for p in range(n_poses):
+                pose_noise = rng.normal(0, 0.45)
+                # docking score: 越负越好, 与 latent 弱相关(相关性刻意压低)
+                dock = -(6.5 + 0.55 * latent * t_scale) + rng.normal(0, 1.35) + abs(pose_noise)
+                # PS 视图: 相互作用计数, 与 latent 强相关但带靶点偏移
+                ps = (latent * rng.uniform(0.8, 1.4, len(PS_FEATS)) + t_bias[:len(PS_FEATS)]
+                      + rng.normal(0, 0.9, len(PS_FEATS)) + pose_noise)
+                ps = np.clip(np.round(ps * 3 + 9), 0, None)      # 计数型
+                # PB 视图: 理化/位姿描述符, 信号更弱
+                pb_lat = latent * rng.uniform(0.2, 0.6, len(PB_FEATS)) + t_bias[len(PS_FEATS):]
+                pb = pb_lat + rng.normal(0, 1.0, len(PB_FEATS))
+                rec = {"target": tname, "compound_id": cid, "pose_id": f"pose{p+1}",
+                       "docking_score": round(float(dock), 3), "label": is_active}
+                for k, v in zip(PS_FEATS, ps):
+                    rec[k] = float(v)
+                rec["kier_flex"] = round(float(3.0 + pb[0] * 0.6), 3)
+                rec["mw"] = round(float(360 + pb[1] * 45), 1)
+                rec["logp"] = round(float(2.8 + pb[2] * 1.1), 3)
+                rec["tpsa"] = round(float(75 + pb[3] * 18), 1)
+                rec["rot_bonds"] = int(np.clip(round(5 + pb[4] * 2), 0, None))
+                rec["pose_rmsd_ref"] = round(float(abs(1.4 + pb[5] * 0.7)), 3)
+                rows.append(rec)
+    df = pd.DataFrame(rows)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="") as fh:
+        fh.write("# synthetic, for demo only - NOT real docking output. "
+                 "Generated by 596_scorch2_virtual_screening.py make_synthetic(seed=0)\n")
+        df.to_csv(fh, index=False)
+    return df
+
+
+def read_input(path: str) -> pd.DataFrame:
+    return pd.read_csv(path, comment="#")
+
+
+# ---------------------------------------------------------------- 富集评测指标
+def enrichment_factor(score: np.ndarray, label: np.ndarray, frac: float = 0.01) -> float:
+    """EF at top `frac`: (top 中活性比例) / (整库活性比例)。score 越大越好。"""
+    n = len(score)
+    k = max(1, int(round(n * frac)))
+    order = np.argsort(-score, kind="stable")
+    hits = label[order[:k]].sum()
+    base = label.sum() / n
+    if base == 0:
+        return float("nan")
+    return float((hits / k) / base)
+
+
+def bedroc(score: np.ndarray, label: np.ndarray, alpha: float = 80.5) -> float:
+    """BEDROC (Truchon & Bayly, J Chem Inf Model 2007). score 越大越好。"""
+    n = len(score)
+    n_act = int(label.sum())
+    if n_act == 0 or n_act == n:
+        return float("nan")
+    order = np.argsort(-score, kind="stable")
+    ranks = np.where(label[order] == 1)[0] + 1          # 1-indexed
+    ra = n_act / n
+    rie_num = np.sum(np.exp(-alpha * ranks / n)) / n_act
+    rie_den = (1 / n) * (1 - np.exp(-alpha)) / (np.exp(alpha / n) - 1)
+    rie = rie_num / rie_den
+    fac = ra * np.sinh(alpha / 2) / (np.cosh(alpha / 2) - np.cosh(alpha / 2 - alpha * ra))
+    return float(rie * fac + 1 / (1 - np.exp(alpha * (1 - ra))))
+
+
+def auroc(score: np.ndarray, label: np.ndarray) -> float:
+    from sklearn.metrics import roc_auc_score
+    if label.sum() in (0, len(label)):
+        return float("nan")
+    return float(roc_auc_score(label, score))
+
+
+def score_metrics(score: np.ndarray, label: np.ndarray) -> dict:
+    return {"EF1": enrichment_factor(score, label, 0.01),
+            "EF5": enrichment_factor(score, label, 0.05),
+            "BEDROC": bedroc(score, label),
+            "AUROC": auroc(score, label)}
+
+
+# ---------------------------------------------------------------- 本地共识代理
+def local_consensus_rescore(df: pd.DataFrame, ps_weight: float, pb_weight: float,
+                            seed: int = SEED) -> pd.DataFrame:
+    """本地 consensus 代理模型(**不是** SCORCH2 权重, 只是可跑的对照)。
+
+    模仿 SCORCH2 的"两个异质模型加权共识":
+      PS-like  梯度提升 · 只看相互作用特征 (ECIF/BINANA 风格)
+      PB-like  L2 逻辑回归 · 只看理化/位姿描述符
+      consensus = ps_weight * PS + pb_weight * PB(概率尺度)
+    交叉验证按 target 分组 (GroupKFold), 训练/评测靶点不重叠, 防止靶点泄漏。
+    """
+    from sklearn.ensemble import HistGradientBoostingClassifier
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import GroupKFold
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    X_ps = df[PS_FEATS].to_numpy(float)
+    X_pb = df[PB_FEATS].to_numpy(float)
+    y = df["label"].to_numpy(int)
+    groups = df["target"].to_numpy()
+
+    oof_ps = np.full(len(df), np.nan)
+    oof_pb = np.full(len(df), np.nan)
+    n_split = min(5, len(np.unique(groups)))
+    gkf = GroupKFold(n_splits=n_split)
+    for tr, te in gkf.split(X_ps, y, groups):
+        m_ps = HistGradientBoostingClassifier(max_iter=200, learning_rate=0.08,
+                                              random_state=seed)
+        m_ps.fit(X_ps[tr], y[tr])
+        oof_ps[te] = m_ps.predict_proba(X_ps[te])[:, 1]
+        m_pb = make_pipeline(StandardScaler(),
+                             LogisticRegression(max_iter=2000, C=1.0, random_state=seed))
+        m_pb.fit(X_pb[tr], y[tr])
+        oof_pb[te] = m_pb.predict_proba(X_pb[te])[:, 1]
+
+    out = df.copy()
+    out["ps_like_score"] = oof_ps
+    out["pb_like_score"] = oof_pb
+    out["consensus_score"] = ps_weight * oof_ps + pb_weight * oof_pb
+    return out
+
+
+def aggregate_best_pose(df: pd.DataFrame) -> pd.DataFrame:
+    """每个化合物取最优 pose(对应上游 --aggregate)。
+
+    与上游语义对齐(scorch2_rescoring.py:449-467 aggregate_poses):上游是
+    `groupby(base_compound)['sc2_score'].idxmax()` —— **挑出共识分最高的那一行 pose**,
+    该 pose 的 ps/pb 分随之带走,而不是每列各取各的 max。这里照此实现。
+    docking 基线另按其自身惯例取最负的 docking_score(各方法都用自己的最优 pose,才公平)。
+    聚合到 compound 层面评测,避免同一化合物多 pose 伪重复计数。
+    """
+    key = ["target", "compound_id"]
+    idx = df.groupby(key, sort=False)["consensus_score"].idxmax()
+    best = df.loc[idx, key + ["ps_like_score", "pb_like_score", "consensus_score"]]
+    best = best.rename(columns={"ps_like_score": "ps_like", "pb_like_score": "pb_like",
+                                "consensus_score": "consensus"})
+    side = df.groupby(key, sort=False).agg(
+        label=("label", "max"), docking_best=("docking_score", "min")).reset_index()
+    agg = side.merge(best, on=key, how="left")
+    # docking score 越负越好 → 取负号统一为"越大越好"
+    agg["docking_rank_score"] = -agg["docking_best"]
+    return agg
+
+
+# ---------------------------------------------------------------- 守卫式上游封装
+def run_scorch2(protein_dir=None, ligand_dir=None, features=None, models_dir=None,
+                outfile=None, ps_weight=SC2_PS_WEIGHT_DEFAULT,
+                pb_weight=SC2_PB_WEIGHT_DEFAULT, gpu=False, aggregate=True) -> dict:
+    """真正的 SCORCH2 路径。守卫式:缺依赖/缺权重就优雅退出并打印真实命令。
+
+    CLI 参数拼写核自上游 README(github.com/LinCompbio/SCORCH2, 2026-07-20 读取):
+      scorch2_rescoring.py --protein-dir --ligand-dir | --features
+                           --sc2_ps_model --sc2_pb_model --ps_scaler --pb_scaler
+                           --output --aggregate --gpu --ps_weight --pb_weight
+                           --num-cores --res-dir --keep-temp
+    权重 sc2_ps.xgb / sc2_pb.xgb / sc2_ps_scaler / sc2_pb_scaler 见
+    https://zenodo.org/records/14994007 。SCORCH2 无 PyPI 包,须 clone 仓库后按
+    environment.yml 建 conda 环境;此处不固定 Python 函数签名(上游只暴露 CLI)。
+    """
+    missing = []
+    try:
+        import xgboost  # noqa: F401
+    except ImportError:
+        missing.append("xgboost")
+    weights = ["sc2_ps.xgb", "sc2_pb.xgb", "sc2_ps_scaler", "sc2_pb_scaler"]
+    have_w = bool(models_dir) and all(
+        os.path.exists(os.path.join(models_dir, w)) for w in weights)
+
+    cmd = (
+        "python scorch2_rescoring.py \\\n"
+        f"    --protein-dir {protein_dir or '<dir>/protein'} \\\n"
+        f"    --ligand-dir {ligand_dir or '<dir>/molecule'} \\\n"
+        f"    --sc2_ps_model {models_dir or '<models>'}/sc2_ps.xgb \\\n"
+        f"    --sc2_pb_model {models_dir or '<models>'}/sc2_pb.xgb \\\n"
+        f"    --ps_scaler {models_dir or '<models>'}/sc2_ps_scaler \\\n"
+        f"    --pb_scaler {models_dir or '<models>'}/sc2_pb_scaler \\\n"
+        f"    --output {outfile or 'sc2_results.csv'} \\\n"
+        f"    --ps_weight {ps_weight} --pb_weight {pb_weight}"
+        + (" \\\n    --aggregate" if aggregate else "")
+        + (" \\\n    --gpu" if gpu else "")
+    )
+    if missing or not have_w:
+        return {"status": "skipped",
+                "missing_python_pkgs": missing,
+                "weights_found": have_w,
+                "install": ("git clone https://github.com/LinCompbio/SCORCH2 && "
+                            "cd SCORCH2 && conda env create -f environment.yml && "
+                            "conda activate scorch2"),
+                "weights": "https://zenodo.org/records/14994007",
+                "note": ("输入须为 pdbqt: protein/{id}_protein.pdbqt 与 "
+                         "molecule/{id}/ 下的 pose pdbqt(上游 example_data/"
+                         "data_structure_example.md 举例 {id}_ligand_out_pose{N}.pdbqt;"
+                         "实际 utils/scorch2_feature_extraction.py 是 glob "
+                         "'{protein_dir}/{pdbid}*.pdbqt' + os.listdir(molecule/{id}), "
+                         "不强制 pose 文件名模式);转换用 utils/receptor_2_pdbqt.py / "
+                         "utils/ligand_2_pdbqt.py,二者 subprocess 调用 ADFRsuite 的 "
+                         "prepare_receptor / prepare_ligand(不在 environment.yml 里,须另装)"),
+                "command": cmd}
+    return {"status": "ready", "command": cmd,
+            "note": "环境与权重齐备;在 SCORCH2 仓库目录下执行上面的命令"}
+
+
+# ---------------------------------------------------------------- 出图(无条形图)
+def _enrichment_curve(score, label):
+    order = np.argsort(-np.asarray(score), kind="stable")
+    y = np.cumsum(np.asarray(label)[order]) / max(1, np.asarray(label).sum())
+    x = np.arange(1, len(y) + 1) / len(y)
+    return x, y
+
+
+def plot_all(agg: pd.DataFrame, per_target: pd.DataFrame, sweep: pd.DataFrame,
+             outdir: str) -> list:
+    import matplotlib.pyplot as plt
+
+    set_pub_style(base_size=10)
+    cols = pal(3, "npg")
+    methods = [("docking_rank_score", "Docking score (no rescoring)", cols[0]),
+               ("ps_like", "PS-like model", cols[1]),
+               ("consensus", "Consensus rescore", cols[2])]
+    made = []
+
+    # Fig 1 · 富集曲线(折线,不用条形图)
+    fig, ax = plt.subplots(figsize=(NATURE_W1 * 1.25, NATURE_W1 * 1.05))
+    for key, lab, c in methods:
+        x, y = _enrichment_curve(agg[key], agg["label"])
+        ax.plot(x * 100, y * 100, lw=1.8, color=c, label=lab)
+    ax.plot([0, 100], [0, 100], ls="--", lw=1.0, color="#999999", label="Random")
+    ax.set_xlabel("Database screened (%)")
+    ax.set_ylabel("Actives retrieved (%)")
+    ax.set_title("Enrichment curve")
+    ax.legend(loc="lower right")
+    save_fig(fig, os.path.join(outdir, "fig1_enrichment_curve"))
+    plt.close(fig)
+    made.append("fig1_enrichment_curve.png")
+
+    # Fig 2 · 每靶点 EF1% slopegraph(docking → consensus)
+    fig, ax = plt.subplots(figsize=(NATURE_W1 * 1.15, NATURE_W1 * 1.25))
+    tp = per_target.sort_values("EF1_consensus")
+    for _, r in tp.iterrows():
+        up = r["EF1_consensus"] >= r["EF1_docking"]
+        ax.plot([0, 1], [r["EF1_docking"], r["EF1_consensus"]],
+                color=cols[2] if up else cols[0], lw=1.4, alpha=0.85, zorder=1)
+        ax.scatter([0, 1], [r["EF1_docking"], r["EF1_consensus"]],
+                   s=26, color=cols[2] if up else cols[0], zorder=2)
+        ax.annotate(r["target"], (1.02, r["EF1_consensus"]), fontsize=7,
+                    va="center", ha="left")
+    ax.axhline(1.0, ls=":", lw=1.0, color="#999999")
+    ax.set_xticks([0, 1])
+    ax.set_xticklabels(["Docking", "Consensus"])
+    ax.set_xlim(-0.25, 1.45)
+    ax.set_ylabel("EF 1% (per target)")
+    ax.set_title("Per-target enrichment shift")
+    save_fig(fig, os.path.join(outdir, "fig2_per_target_ef_slopegraph"))
+    plt.close(fig)
+    made.append("fig2_per_target_ef_slopegraph.png")
+
+    # Fig 3 · actives / decoys 分数分布 violin + 抖动散点(raincloud 风)
+    fig, axes = plt.subplots(1, 3, figsize=(NATURE_W2, NATURE_W1 * 0.95))
+    rng = np.random.default_rng(SEED)
+    for ax, (key, lab, c) in zip(axes, methods):
+        v = agg[key].to_numpy(float)
+        v = (v - np.nanmin(v)) / (np.nanmax(v) - np.nanmin(v) + 1e-12)  # 0-1 便于并排
+        data = [v[agg["label"] == 0], v[agg["label"] == 1]]
+        parts = ax.violinplot(data, positions=[0, 1], widths=0.75, showextrema=False)
+        for pc, fc in zip(parts["bodies"], ["#BBBBBB", c]):
+            pc.set_facecolor(fc); pc.set_alpha(0.55); pc.set_edgecolor("black")
+            pc.set_linewidth(0.6)
+        for i, d in enumerate(data):
+            sub = d if len(d) <= 300 else rng.choice(d, 300, replace=False)
+            ax.scatter(i + rng.normal(0, 0.045, len(sub)), sub, s=3, alpha=0.35,
+                       color="#444444" if i == 0 else c, linewidths=0)
+            ax.plot([i - 0.2, i + 0.2], [np.median(d)] * 2, color="black", lw=1.4)
+        ax.set_xticks([0, 1]); ax.set_xticklabels(["Decoy", "Active"])
+        ax.set_title(lab, fontsize=9)
+        ax.set_ylabel("Scaled score" if ax is axes[0] else "")
+    fig.suptitle("Score separation of actives vs decoys", y=1.02)
+    save_fig(fig, os.path.join(outdir, "fig3_score_separation_violin"))
+    plt.close(fig)
+    made.append("fig3_score_separation_violin.png")
+
+    # Fig 4 · 共识权重扫描(点线) + PS/PB 散点
+    fig, axes = plt.subplots(1, 2, figsize=(NATURE_W2, NATURE_W1 * 0.95))
+    ax = axes[0]
+    ax.plot(sweep["ps_weight"], sweep["EF1"], "-o", ms=4, lw=1.6, color=cols[2])
+    ax.axvline(SC2_PS_WEIGHT_DEFAULT, ls="--", lw=1.0, color=cols[0])
+    ax.set_ylim(top=float(sweep["EF1"].max()) * 1.18)   # 给注释留净空, 避免压线
+    ax.annotate(f"SCORCH2 default\nps_weight={SC2_PS_WEIGHT_DEFAULT}",
+                (SC2_PS_WEIGHT_DEFAULT - 0.04, float(sweep["EF1"].max()) * 0.45),
+                fontsize=7, ha="right", va="center", color=cols[0])
+    ax.set_xlabel("PS weight (PB weight = 1 - PS)")
+    ax.set_ylabel("EF 1%")
+    ax.set_title("Consensus weight sweep", fontsize=9)
+
+    ax = axes[1]
+    dec = agg[agg["label"] == 0]
+    act = agg[agg["label"] == 1]
+    ax.scatter(dec["ps_like"], dec["pb_like"], s=5, alpha=0.3, color="#999999",
+               linewidths=0, label="Decoy")
+    ax.scatter(act["ps_like"], act["pb_like"], s=14, alpha=0.85, color=cols[2],
+               edgecolors="black", linewidths=0.3, label="Active")
+    ax.set_xlabel("PS-like score"); ax.set_ylabel("PB-like score")
+    ax.set_title("Heterogeneity of the two views", fontsize=9)
+    ax.legend(loc="upper left", markerscale=1.5)
+    save_fig(fig, os.path.join(outdir, "fig4_weight_sweep_and_view_scatter"))
+    plt.close(fig)
+    made.append("fig4_weight_sweep_and_view_scatter.png")
+    return made
+
+
+# ---------------------------------------------------------------- main
+def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--input", default=EXAMPLE, help="pose 级特征表 csv")
+    ap.add_argument("--outdir", default=RESULTS)
+    ap.add_argument("--ps_weight", type=float, default=SC2_PS_WEIGHT_DEFAULT)
+    ap.add_argument("--pb_weight", type=float, default=SC2_PB_WEIGHT_DEFAULT)
+    ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--run-scorch2", action="store_true",
+                    help="（保留位）本模块**从不**自动执行上游 CLI;Step 7 无论如何都只做"
+                         "依赖/权重体检并打印待执行命令,请自行到 SCORCH2 仓库目录下运行")
+    ap.add_argument("--models-dir", default=None, help="sc2_*.xgb / sc2_*_scaler 所在目录")
+    ap.add_argument("--protein-dir", default=None)
+    ap.add_argument("--ligand-dir", default=None)
+    a = ap.parse_args()
+
+    np.random.seed(a.seed)
+    os.makedirs(a.outdir, exist_ok=True)
+    os.makedirs(ASSETS, exist_ok=True)
+
+    print("[596] Step 1 · 读取 pose 级特征表")
+    if not os.path.exists(a.input):
+        print(f"       {a.input} 不存在 → 生成合成示例数据")
+        make_synthetic(a.input, seed=a.seed)
+    df = read_input(a.input)
+    need = ["target", "compound_id", "docking_score", "label"] + PS_FEATS + PB_FEATS
+    miss = [c for c in need if c not in df.columns]
+    if miss:
+        sys.exit(f"输入缺列: {miss}")
+    print(f"       {len(df)} poses · {df['compound_id'].nunique()} compounds · "
+          f"{df['target'].nunique()} targets · actives(pose级) {int(df['label'].sum())}")
+
+    print("[596] Step 2 · 本地 consensus 代理模型(GroupKFold 按靶点, 防泄漏)")
+    scored = local_consensus_rescore(df, a.ps_weight, a.pb_weight, seed=a.seed)
+
+    print("[596] Step 3 · best-pose 聚合(对应上游 --aggregate)")
+    agg = aggregate_best_pose(scored)
+    print(f"       {len(agg)} compounds · actives {int(agg['label'].sum())} "
+          f"({100*agg['label'].mean():.1f}%)")
+
+    print("[596] Step 4 · 富集评测 EF1%/EF5%/BEDROC/AUROC")
+    y = agg["label"].to_numpy(int)
+    overall = {}
+    for key, lab in [("docking_rank_score", "docking"), ("ps_like", "ps_like"),
+                     ("pb_like", "pb_like"), ("consensus", "consensus")]:
+        overall[lab] = score_metrics(agg[key].to_numpy(float), y)
+        m = overall[lab]
+        print(f"       {lab:>10s}  EF1%={m['EF1']:5.2f}  EF5%={m['EF5']:5.2f}  "
+              f"BEDROC={m['BEDROC']:.3f}  AUROC={m['AUROC']:.3f}")
+    pd.DataFrame(overall).T.to_csv(os.path.join(a.outdir, "overall_metrics.csv"))
+
+    rows = []
+    for t, sub in agg.groupby("target"):
+        yy = sub["label"].to_numpy(int)
+        rows.append({"target": t, "n_compounds": len(sub), "n_actives": int(yy.sum()),
+                     "EF1_docking": enrichment_factor(sub["docking_rank_score"].to_numpy(float), yy),
+                     "EF1_consensus": enrichment_factor(sub["consensus"].to_numpy(float), yy),
+                     "AUROC_docking": auroc(sub["docking_rank_score"].to_numpy(float), yy),
+                     "AUROC_consensus": auroc(sub["consensus"].to_numpy(float), yy)})
+    per_target = pd.DataFrame(rows)
+    per_target.to_csv(os.path.join(a.outdir, "per_target_metrics.csv"), index=False)
+
+    print("[596] Step 5 · 共识权重扫描")
+    sweep = []
+    for w in np.round(np.arange(0, 1.01, 0.1), 2):
+        s = w * agg["ps_like"] + (1 - w) * agg["pb_like"]
+        sweep.append({"ps_weight": float(w), **score_metrics(s.to_numpy(float), y)})
+    sweep = pd.DataFrame(sweep)
+    sweep.to_csv(os.path.join(a.outdir, "consensus_weight_sweep.csv"), index=False)
+
+    agg.to_csv(os.path.join(a.outdir, "compound_level_scores.csv"), index=False)
+
+    print("[596] Step 6 · 出图")
+    figs = plot_all(agg, per_target, sweep, a.outdir)
+    for f in figs:                                    # 展示图同步进 assets/
+        for ext in (".png",):
+            src = os.path.join(a.outdir, f.replace(".png", ext))
+            if os.path.exists(src):
+                import shutil
+                shutil.copyfile(src, os.path.join(ASSETS, os.path.basename(src)))
+    print("       " + ", ".join(figs))
+
+    print("[596] Step 7 · SCORCH2 上游路径")
+    sc2 = run_scorch2(protein_dir=a.protein_dir, ligand_dir=a.ligand_dir,
+                      models_dir=a.models_dir, ps_weight=a.ps_weight,
+                      pb_weight=a.pb_weight)
+    print(f"       status: {sc2['status']}")
+    if sc2["status"] == "skipped":
+        print(f"       缺: pkgs={sc2['missing_python_pkgs']} weights_found={sc2['weights_found']}")
+        print(f"       安装: {sc2['install']}")
+        print(f"       权重: {sc2['weights']}")
+    print("       上游命令:\n" + "\n".join("         " + l for l in sc2["command"].split("\n")))
+
+    with open(os.path.join(a.outdir, "596_summary.json"), "w", encoding="utf-8") as fh:
+        json.dump({"overall": overall,
+                   "per_target": per_target.to_dict("records"),
+                   "weight_sweep_best": sweep.loc[sweep["EF1"].idxmax()].to_dict(),
+                   "scorch2_upstream": sc2,
+                   "seed": a.seed}, fh, indent=1, ensure_ascii=False, default=str)
+    print(f"[596] done → {a.outdir}")
+
+
+if __name__ == "__main__":
+    main()

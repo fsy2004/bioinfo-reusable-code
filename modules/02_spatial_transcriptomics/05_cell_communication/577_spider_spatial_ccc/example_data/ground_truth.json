@@ -1,0 +1,14 @@
+{
+ "LIG_IF1_REC_IF1": "interface_SVI",
+ "LIG_IF2_REC_IF2": "interface_SVI",
+ "LIG_IF3_REC_IF3": "interface_SVI",
+ "LIG_CO1_REC_CO1": "coexpressed_SVI",
+ "LIG_CO2_REC_CO2": "coexpressed_SVI",
+ "LIG_NS1_REC_NS1": "no_signal",
+ "LIG_NS2_REC_NS2": "no_signal",
+ "LIG_NS3_REC_NS3": "no_signal",
+ "LIG_NS4_REC_NS4": "no_signal",
+ "LIG_NS5_REC_NS5": "no_signal",
+ "LIG_NS6_REC_NS6": "no_signal",
+ "LIG_NS7_REC_NS7": "no_signal"
+}

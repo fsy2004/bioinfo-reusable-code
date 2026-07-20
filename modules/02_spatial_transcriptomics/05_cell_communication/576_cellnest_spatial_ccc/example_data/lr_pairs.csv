@@ -1,0 +1,9 @@
+Ligand,Receptor,Annotation,Reference
+TGFB1,TGFBR1,Secreted Signaling,"synthetic, for demo only"
+TGFB1,TGFBR2,Secreted Signaling,"synthetic, for demo only"
+CCL19,CCR7,Secreted Signaling,"synthetic, for demo only"
+CXCL12,CXCR4,Secreted Signaling,"synthetic, for demo only"
+VEGFA,KDR,Secreted Signaling,"synthetic, for demo only"
+PDGFB,PDGFRB,Secreted Signaling,"synthetic, for demo only"
+IL6,IL6R,Secreted Signaling,"synthetic, for demo only"
+WNT5A,FZD4,Secreted Signaling,"synthetic, for demo only"
