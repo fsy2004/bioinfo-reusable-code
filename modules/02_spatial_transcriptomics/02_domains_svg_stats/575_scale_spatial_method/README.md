@@ -64,13 +64,31 @@ run_scale(adata, cfg,
           layer=None, celltype_key=None,
           spatial_key="spatial", n_levels=2, top_n=0.15)
 ```
-结果落在 `adata.obs['scale_l*']`(各尺度的域标签)、`adata.obsm['scale_clusterings']`、`adata.uns['scale']`。
-也可按 vignette 手动分步:`train` → `select_best_lambdas` → `calc_clusterings` → `calc_stability` → `calc_entropy`。
+注意形参边界:`run_scale` 的具名形参只有 `adata, cfg, use_svgs, use_hvgs, sample_key, integration_method, layer, celltype_key`(`scale/scale.py:18-28`);`spatial_key` / `n_levels` / `top_n` / `n_repeat` / `min_dist` 等一律走 `**kwargs`,由 `run_scale` 转发给 `calc_clusterings` / `calc_stability` / `calc_entropy`(`scale/scale.py:29, 107-134`)——这样调用是有效的,但它们不是签名里的具名参数。
 
-**API 来源(实际抓取的 URL,2026-07-20)**:
-`raw.githubusercontent.com/imsb-uke/scale/HEAD/` 下的 `README.md`、`scale/__init__.py`、`scale/scale.py`、`scale/config.py`、`scale/training.py`、`scale/clustering.py`、`scale/search/_stability.py`、`scale/search/_entropy.py`、`notebooks/vignette.ipynb`。
+结果落在 `adata.obs['scale_l{i}_{setting}']`(各尺度的域标签,`scale/search/_entropy.py:275`)、`adata.obsm['scale_clusterings']`(`scale/clustering.py:70`)、`adata.uns['scale']`(`scale/scale.py:142`)。
+也可按 vignette 手动分步:`train` → `select_best_lambdas` → `calc_clusterings` → `calc_stability` → `calc_entropy`(`notebooks/vignette.ipynb` 第 290-291、427、534-535 行)。
 
-⚠️ **上游自身不一致(已核实)**:`notebooks/vignette.ipynb` 里写的是 `calc_clusterings(adata, flavor=..., n_iterations=...)`,但当前 `scale/clustering.py` 的签名是 `calc_clusterings(adata, cfg, ...)`(`cfg` 为必需位置参数)。**生产运行前请以官方最新教程为准,本模块不固定这一签名。**
+**API 溯源(对本地克隆的上游源码 grep 逐条核实,2026-07-21)**:
+
+| 本模块引用的上游符号 | 源码位置 |
+|---|---|
+| `from scale import run_scale` | `scale/__init__.py:1` |
+| `run_scale(...)` 签名 | `scale/scale.py:18-28` |
+| `load_config()` / `Config` | `scale/config.py:112` / `:64` |
+| `cfg.seed = 200`(本模块 SEED 与之对齐) | `scale/config.py:65` |
+| `cfg.distance_set` / `knn_set` / `resolution_set` / `lambda_set` / `n_repeats` | `scale/config.py:76 / 79 / 101 / 82 / 104` |
+| `calc_clusterings(adata, cfg, ...)` | `scale/clustering.py:20-27` |
+| Leiden 后端 `flavor="igraph", n_iterations=2` | `scale/scale.py:110-112`;`scale/clustering.py:110-119` |
+| `calc_stability(adata, cfg, ...)` 用 `adjusted_rand_score` 衡量重复间一致性 | `scale/search/_stability.py:11-22`;`:3, 102, 125` |
+| `calc_entropy(adata, n_levels, top_n, ...)` | `scale/search/_entropy.py:202-210`(`min_nclusters_start` 等经 `**kwargs` → `filter_tuples`,`:53-61`) |
+| `select_best_lambdas(adata)` | `scale/utils.py:334` |
+| `train(adata, cfg, layer=, spatial_key=)` | `scale/training.py:18` |
+| `torch-geometric` 为上游依赖 | `pyproject.toml` dependencies |
+| 安装方式 `poetry install` / `pip install -e .` | 上游 `README.md:15-23` |
+| 许可证 MIT | 上游 `LICENSE:1` |
+
+⚠️ **上游自身不一致(已核实)**:`notebooks/vignette.ipynb` 里写的是 `calc_clusterings(adata, flavor=..., n_iterations=...)`(第 427 行)与 `calc_stability(adata, verbose=True, n_repeat=4, ...)`(第 534 行),两处都少传了必需的 `cfg` 位置参数,与当前 `scale/clustering.py:20-22`、`scale/search/_stability.py:11-13` 的签名不一致。**生产运行前请以官方最新教程为准,本模块不固定这一签名。**
 
 ## ③ 用途
 

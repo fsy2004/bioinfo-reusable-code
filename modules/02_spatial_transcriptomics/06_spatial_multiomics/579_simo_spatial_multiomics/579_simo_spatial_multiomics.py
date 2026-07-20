@@ -134,8 +134,9 @@ def run_simo(verbose: bool = True) -> dict:
     本地克隆未包含该 notebook,故不声称"读过教程"。
       load_data          simo/helper.py:23
       process_anndata    simo/helper.py:33     (neighbors/umap 默认 True,n_comps 默认 100)
-      find_marker        simo/helper.py:138    (return_anndata=False 时返回 gene list,helper.py:299)
-      alignment_1_batch  simo/simo.py:1014     (内部循环调 alignment_1 -> fgw_ot,simo.py:151/169)
+      find_marker        simo/helper.py:138    (return_anndata=False 时返回 gene list,helper.py:202)
+      alignment_1_batch  simo/simo.py:1014     (内部循环调 alignment_1[def simo.py:13],
+                                                alignment_1 在 simo.py:151 调 fgw_ot[def simo.py:169])
       assign_coord_1     simo/simo.py:357      (layer 默认 'data',top_num 默认 None)
       alignment_2        simo/simo.py:203      (返回 4 元组,simo.py:354;内部 label_transfer 走
                                                 ot.unbalanced.mm_unbalanced,helper.py:321)

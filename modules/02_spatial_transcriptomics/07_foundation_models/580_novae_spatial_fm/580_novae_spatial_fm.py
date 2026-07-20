@@ -11,9 +11,9 @@
 
 评价指标按上游源码复刻(非臆造), 逐行对照 novae/monitor/eval.py(v1.1.1):
     - fide_score               (eval.py:34)  F1-score of intra-domain edges, 越高域越连续
-    - jensen_shannon_divergence(eval.py:65 / _jensen_shannon_divergence eval.py:94)
-    - entropy                  (eval.py:110) EPS 取上游 Nums.EPS = 1e-8 (_constants.py:47)
-    - heuristic                (eval.py:139 / _heuristic eval.py:157) 逐切片算再平均
+    - jensen_shannon_divergence(eval.py:65 / _jensen_shannon_divergence eval.py:95)
+    - entropy                  (eval.py:112) EPS 取上游 Nums.EPS = 1e-8 (_constants.py:47)
+    - heuristic                (eval.py:143 / _heuristic eval.py:162) 逐切片算再平均
 唯一改动: 上游从 adata.obsp["spatial_distances"] 取邻接, 本模块换成显式 kNN 边表。
 另加 ARI(对合成数据的 ground-truth domain), 作为独立 sanity-check。
 
@@ -237,7 +237,7 @@ def run_novae(df: pd.DataFrame, gene_cols: list[str], slide_key: str,
         model.compute_representations(adata, zero_shot=True)   model.py:379
         model.assign_domains(adata, level=..., n_domains=...)  model.py:539
     注: 上游 assign_domains 在 zero-shot 下会 log.warning 建议改用 resolution=(见
-    model.py:585); 本封装保留 level/n_domains 路径, 需要时用 --novae-level 调。
+    model.py:588); 本封装保留 level/n_domains 路径, 需要时用 --novae-level 调。
     """
     try:
         import novae

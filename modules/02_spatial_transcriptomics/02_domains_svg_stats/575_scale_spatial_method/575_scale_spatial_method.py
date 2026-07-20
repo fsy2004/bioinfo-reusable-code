@@ -148,10 +148,16 @@ def run_scale_guarded(csv_path: str):
         run_scale(adata, cfg, use_svgs=True, use_hvgs=False,
                   sample_key=None, integration_method=None, layer=None, celltype_key=None,
                   spatial_key="spatial", n_levels=2, top_n=0.15, ...)
-    结果落在 adata.obs['scale_l*'](各尺度域标签)、adata.obsm['scale_clusterings']、adata.uns['scale']。
+    其中只有 adata/cfg/use_svgs/use_hvgs/sample_key/integration_method/layer/celltype_key 是
+    具名形参(scale/scale.py:18-28);spatial_key / n_levels / top_n / n_repeat / min_dist … 都走
+    **kwargs 转发给下游 calc_clusterings / calc_stability / calc_entropy(scale/scale.py:29,107-134)。
+    结果落在 adata.obs['scale_l{i}_{setting}'](scale/search/_entropy.py:275)、
+    adata.obsm['scale_clusterings'](scale/clustering.py:70)、adata.uns['scale'](scale/scale.py:142)。
     也可按 vignette 手动分步:train → select_best_lambdas → calc_clusterings → calc_stability → calc_entropy。
-    注意:上游 vignette 里 calc_clusterings(adata, flavor=..., n_iterations=...) 少传了必需的 cfg
-    形参,与当前 scale/clustering.py 签名不一致 —— 生产运行前请以官方最新教程为准,此处不固定。
+    注意:上游 vignette 里 calc_clusterings(adata, flavor=..., n_iterations=...) 与
+    calc_stability(adata, verbose=..., n_repeat=...) 都少传了必需的 cfg 形参,与当前
+    scale/clustering.py:20-22、scale/search/_stability.py:11-13 的签名不一致 ——
+    生产运行前请以官方最新教程为准,此处不固定。
     """
     try:
         import scale as scale_pkg  # noqa: F401

@@ -9,7 +9,7 @@
 > 输出顶刊风格矢量图。复制走任意一个,看它的 `README` 就知道:**喂什么数据、做什么分析、出什么图**。
 
 <p>
-<img alt="modules" src="https://img.shields.io/badge/modules-~145-blue">
+<img alt="modules" src="https://img.shields.io/badge/modules-196-blue">
 <img alt="languages" src="https://img.shields.io/badge/R%204.4%20%7C%20Python%203.12-informational">
 <img alt="figures" src="https://img.shields.io/badge/figures-vector%20PDF%20%2B%20300dpi%20PNG-success">
 <img alt="style" src="https://img.shields.io/badge/style-journal--ready-orange">
@@ -24,6 +24,7 @@
 [Quick start](#quick-start--快速开始) ·
 [Status legend](#status-legend--状态图例) ·
 [★ New in 2026](#-new-in-2026--2026-新增前沿工具30-个模块) ·
+[★ Source-grounded batch](#-source-grounded-batch--源码接地的一批36-个模块561596) ·
 [Example figures](#example-figures--示例图) ·
 [All categories](#all-categories--全部分类) ·
 [Framework](#framework--共享框架) ·
@@ -34,15 +35,14 @@
 
 ## What you get · 这个库给你什么
 
-**EN** — A practical toolbox for dry-lab bioinformatics: ~145 modules across 23 analysis
-categories (single-cell, spatial, Mendelian randomization, WGCNA, ML signatures,
+**EN** — A practical toolbox for dry-lab bioinformatics: 196 modules across 10 domains and 53 subcategories (single-cell, spatial, Mendelian randomization, WGCNA, ML signatures,
 docking/MD, enrichment, and more). Most run **turnkey** on bundled or synthetic example
 data with no edits; the rest keep their real script + dependency notes for a server/GPU.
 A shared plotting framework gives every figure the same journal-ready look, and a static
 linter + quality checklist keep pipelines reproducible.
 
-**中文** — 一套实用的干实验生信工具箱:横跨 23 个分析类别(单细胞、空间转录组、孟德尔随机化、
-WGCNA 共表达、机器学习签名、对接/分子动力学、富集等)共约 145 个模块。**大多数开箱即跑**
+**中文** — 一套实用的干实验生信工具箱:横跨 10 个域、53 个子类(单细胞、空间转录组、虚拟扰动、因果推断与遗传、机器学习、
+Bulk 组学、临床转化、结构与药物设计、网络药理、可视化)共 196 个模块。**大多数开箱即跑**
 (自带或合成的示例数据,无需改动);少数需要服务器/GPU 的也保留了真实脚本与依赖说明。
 共享绘图框架让所有图保持统一的顶刊审美,静态检查器 + 质量清单保证管道可复现。
 
@@ -193,6 +193,99 @@ output figures · status.
 > compiled in the companion knowledge base (`bioinfo-DL-library/analysis-tools-2026/`).
 > 这些 2026 工具的背景、发表年月与「打不打得过基线」的提醒,汇编在配套知识库
 > `bioinfo-DL-library/analysis-tools-2026/`。
+
+---
+
+## ★ Source-grounded batch · 源码接地的一批(36 个模块,561–596)
+
+**EN** — 36 modules wrapping 2025-2026 methods from *Cell*, *Nature Methods*, *Nature
+Biotechnology*, *Genome Biology* and *Nature Communications*. What is different about this
+batch is how it was built: each upstream repository was **fetched locally**, and every call
+a module makes is traced to a **file and symbol in that source** — not to the upstream
+README. A second agent then independently re-checked all 674 of those traces.
+
+That pass caught two fabrications a README read would never surface: `582` had the D-SPIN
+hyperparameters as `lam_l1_j` / `lam_l1_interaction` (the real names are `lambda_l1_j`,
+`dspin/dspin.py:251`, and `lambda_l1_interaction`, `:493`), and `586` claimed a return
+annotation on upstream's `Custom.__call__` that the source does not carry — while labelling
+it "read from source". It also fixed non-API defects: a crash on the counts-only path in
+`562`, a summary field in `563` asserting a geometry reference the code never uses, and
+several README claims about upstream (pretraining scale, whether a repo ships tutorials,
+where weights live) that the source contradicts.
+
+All 31 PMIDs were verified against PubMed. Where no peer-reviewed paper could be found, the
+module says so instead of inventing one. Every module ships a baseline that runs on
+already-installed packages, so a result never depends on the heavy upstream install.
+
+**中文** — 36 个模块封装 2025–2026 的新方法。这批的不同之处在**怎么建的**:36 个上游仓库
+**全部拉到本地**,模块里每一个上游调用都要能**指到源码的文件与符号**(不是 README),
+再由另一个 agent 独立复核这 674 条溯源。
+
+复核抓到两处读 README 绝不可能发现的编造:`582` 把 D-SPIN 超参写成 `lam_l1_j` /
+`lam_l1_interaction`(真名是 `lambda_l1_j`,`dspin/dspin.py:251`;`lambda_l1_interaction`,`:493`),
+`586` 给上游 `Custom.__call__` 编了个源码里没有的返回注解、还标注"读自源码"。
+同时改掉了非 API 的真问题:`562` 在 counts-only 路径直接崩溃、`563` 的 summary 里写了一条
+代码从未使用的几何参照断言,以及若干与源码矛盾的 README 陈述(预训练规模、仓库有没有
+tutorials、权重放在哪)。
+
+31 个 PMID 全部对 PubMed 核实过;查不到经同行评审论文的,模块里如实写明,不编。
+每个模块都带一条用本机已有依赖就能跑的基线,出结果不依赖上游重型安装。
+
+### 🔬 Single-cell · 单细胞
+
+- **`562`** `mixhvg` — 混合多种 HVG 打分方法(按秩取max)选高变基因,自带 Seurat vst 基线 + ground-truth recall / ARI / silhouette 评测 · 🟡
+- **`563`** `CONCORD` — 多批次单细胞整合模块:3 个本机可跑基线(PCA/批次中心化/ComBat+PCA)+ 守卫式 CONCORD 接口,用「批次混合熵 / 生物保真(kNN纯度+ARI/NMI) · 🟡
+- **`564`** `scExtract` — 多批次 scRNA 整合评测:以「批次混合熵 × 细胞类型 kNN 保真度 × 稀有类型保真度」双轴对比未校正 PCA / ComBat(/Harmony),并守卫式封装 sc · 🟡
+- **`565`** `scMultiBench` — 把 scMultiBench 的 scIB 评测层封装成模块:给任意整合 embedding 打生物保留/批次校正/综合分,强制与朴素 PCA 基线对比,出热图+权衡散点+lo · 🟡
+- **`566`** `Φ-Space` — PhiSpace 连续表型软注释：把 query 细胞投影到参考类型张成的表型空间，给出每细胞×每类型的连续得分而非硬标签 · 🟡
+- **`567`** `GLIMES` — 多供体单细胞原始 UMI 计数上的 Poisson-GLMM(供体随机截距)差异表达,与朴素细胞级 t 检验、pseudobulk 两条基线同台对比,量化供体伪重复造成的一类错 · 🟡
+- **`568`** `scPRINT` — scPRINT 单细胞基础模型三任务(GRN 推断 / 去噪 / 细胞嵌入与标签预测)的本机可跑朴素基线 + 守卫式官方 API 封装,评估口径逐条对齐上游源码 · 🟡
+- **`569`** `Nicheformer` — Nicheformer(单细胞+空间联合预训练基础模型)守卫式封装 + 本机可跑的线性对照基线:比较 intrinsic 表达 PCA 与 niche-aware(⊕空间 kN · ✅
+- **`570`** `EpiAgent` — scATAC 细胞×cCRE 矩阵 → TF-IDF+SVD(LSI) 基线做嵌入/聚类/细胞类型预测/填补/批次混合评估,并守卫式封装 EpiAgent 基础模型路径(仅环境 · 🟡
+- **`571`** `CAPTAIN` — 配对 CITE-seq「RNA→表面蛋白」填补基准台：matched-gene 与 PCA+Ridge 两条防泄漏基线 + CAPTAIN 本体守卫式探测（含 Drive 占位 · 🟡
+- **`572`** `CellVQ` — 离散「细胞词表」(VQ codebook)单细胞表征模块：PCA+k-means 码本基线量化离散化的信息损失/码本坍缩/重构 R²，并对官方 CellVQ 提供逐符号核实过的 · 🟡
+
+### 🗺️ Spatial · 空间转录组
+
+- **`573`** `proseg` — 成像空间转录组转录本点云的细胞分割:自带「最近核外扩」可跑基线(半径扫描 + recall/precision/ambient-leak/ARI 评分),Proseg 本体为 · 🟡
+- **`574`** `STAIR` — 多切片空间转录组整合模块：本机可跑的三级整合阶梯基线（PCA / ComBat+PCA / 空间平滑+ComBat+PCA，scIB 式双轴评分），外加签名逐行核对自上游源码的 · 🟡
+- **`575`** `SCALE` — 空间组学多尺度空间域识别:空间平滑×Leiden分辨率网格上的跨种子稳定性搜索(朴素基线)+ SCALE 上游守卫式封装,含无空间信息对照 · 🟡
+- **`576`** `CellNEST` — 空间转录组细胞通讯:空间受限 LR 共表达乘积基线(本机 CPU 即跑)+ CellNEST(GATv2 图注意力)守卫式封装,输出与 CellNEST 官方 9 列 sche · 🟡
+- **`577`** `SPIDER` — 在相邻 spot 之间构建 interface(容量约束 Delaunay 图),对配体-受体对做 interface 层面 Moran's I 置换检验找空间可变互作(SVI · 🟡
+- **`578`** `SpatialEx` — 用 H&E 形态学做锚,把一张切片测到的组学 panel 跨切片翻译到另一张切片(SpatialEx/SpatialEx+ 的 panel 对角整合),自带 Ridge+空间平 · 🟡
+- **`579`** `SIMO` — — 把无空间坐标的单细胞多组学(scRNA + 非转录组模态)通过最优传输概率性映射到空间转录组切片 · 🟡
+- **`580`** `Novae` — 多切片空间转录组的空间域/niche 划分与跨切片可迁移性评估 · 🟡
+
+### 🧪 Virtual perturbation · 虚拟扰动
+
+- **`561`** `RegVelo` — GRN 约束的 RNA 速率 + 逐 TF in-silico 调控子敲除,经 CellRank 命运概率重分配打分筛查转录因子 · ✅
+- **`581`** `veloAgent` — 空间信息驱动的 RNA velocity 与 in-silico 敲除:scVelo + 空间 kNN 平滑基线 + veloAgent 守卫式封装,出速度场 quiver / · 🟡
+- **`582`** `D-SPIN` — 从多重扰动 scRNA-seq 反推程序级 Ising 自旋网络(共享耦合矩阵 J + 每扰动场向量 h),自带混池相关 / 朴素平均场两条带真值评分的基线,D-SPIN 正式 · 🟡
+- **`583`** `KEGNI` — 知识图增强 GRN 推断:5 种本机可跑基线(Pearson/Spearman/PCA 嵌入点积/纯知识先验/知识-表达秩融合)按 BEELINE 口径出 EPR/AUPRC/ · 🟡
+- **`584`** `CellPolaris` — 在已有 GRN 上建高斯概率图模型做 TF 虚拟敲除(ΔX),并用 ΔX 与真实相邻状态表达差的余弦相似度沿分化轨迹排主控 TF · 🟡
+- **`585`** `IGNITE` — 用非对称动力学 Ising 模型的反问题（IGNITE，PLoS Comput Biol 2026）从未扰动的伪时序单细胞数据反推有向有符号 GRN 并模拟基因敲除，自带 3 · ✅
+- **`586`** `PSGRN` — 从带干预标签的单细胞扰动矩阵(CRISPRi/Perturb-seq 风格,含 non-targeting 对照)推断有向基因调控网络 · 🟡
+- **`587`** `RegFormer` — RegFormer GRN 重建评测台：把上游「基因嵌入→余弦相似度 TF 有向图→谱聚类模块」下游链路本地复刻，用共表达/PCA 朴素嵌入作必跑基线，可插入任意外部 gene · 🟡
+- **`588`** `scCausalVI` — 案例-对照单细胞扰动响应的因果解耦模块：默认跑可复现线性基线（条件中心化 PCA 背景表示 + 全局/细胞类型特异 Δ 反事实 + kNN 响应细胞打分），scCausalVI · 🟡
+- **`589`** `scDrugLink` — 按 scDrugLink 上游源码复刻的单细胞药物重定位打分:Drug2Cell 靶点臂(促进/抑制)× 扰动签名臂(敏感/耐药)在细胞类型层面 exp(weight) 相乘串 · 🟡
+- **`590`** `scPerturBench` — 把自己的单细胞扰动预测按 scPerturBench (Nat Methods 2026) 的同一套指标打分，并强制与上游口径的朴素基线 (controlBaseline / · 🟡
+- **`591`** `scArchon` — Leave-one-batch-out benchmarking harness for single-cell perturbation response predictio · 🟡
+
+### 🧬 Causal genetics · 因果推断与遗传
+
+- **`592`** `TWiST` — 拟时序(细胞状态)分辨的 TWAS:用 B-spline eQTL 权重矩阵沿拟时序逐点做 FUSION 式 burden 检验,与静态 TWAS 同框对照 · 🟡
+- **`593`** `CASE` — 多细胞类型 eQTL 联合精细定位:区分跨细胞类型共享效应与细胞类型特异效应,内置「完全特异」「完全共享」两条纯 base R 极端基线 + 守卫式 CASE 上游调用 · 🟡
+- **`594`** `ColocBoost` — 同一基因座多性状(GWAS+eQTL/sQTL/pQTL)共定位:真包 coloc::coloc.abf 两两基线 + 守卫式 colocboost 多性状联合封装,出 dot · 🟡
+- **`595`** `MR-EILLS` — 不变性(EILLS)稳健 MR：整合多个异质 GWAS summary 数据集，对含水平多效性的无效工具做筛选并给出单/多暴露因果估计，与 MVMR-IVW / MR-Egge · 🟡
+
+### ⚗️ Virtual screening · 虚拟筛选
+
+- **`596`** `SCORCH2` — SCORCH2 双视图共识 ML 重打分的守卫式封装 + 本机可跑的虚拟筛选富集评测骨架(EF1%/EF5%/BEDROC/AUROC,按靶点分层、GroupKFold 防泄漏 · 🟡
+
+> 逐模块完整索引(用途、输入→输出、依赖、图型、状态)见
+> **[`modules/CATALOG.md`](modules/CATALOG.md)**;方法类的评测与批评(基础模型打不打得过
+> PCA、silhouette 在整合基准中的缺陷、扰动预测泛化性)见
+> **[`modules/_framework/BENCHMARKS_AND_CRITIQUES.md`](modules/_framework/BENCHMARKS_AND_CRITIQUES.md)**。
 
 ---
 

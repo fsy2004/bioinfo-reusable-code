@@ -1,6 +1,6 @@
 # 01 · 单细胞分析 — Single-cell analysis
 
-本域共 32 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
+本域共 33 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
 
 
 ## 上游与质控 — Pipeline & QC
@@ -9,21 +9,21 @@
 - [024_scrna_rds_prep.R](01_pipeline_qc/024_scrna_rds_prep.R) — Build a Seurat/RDS object from raw data
 - [025_scrna_data_prep.R](01_pipeline_qc/025_scrna_data_prep.R) — Read 10x data into a Seurat object
 - [061_scfocal_gui_input_prep.R](01_pipeline_qc/061_scfocal_gui_input_prep.R) — Prepare scFOCAL GUI input + launch Shiny
-- [562_mixhvg_hvg_selection](01_pipeline_qc/562_mixhvg_hvg_selection) — (用途待补)
+- [562_mixhvg_hvg_selection](01_pipeline_qc/562_mixhvg_hvg_selection) — 混合多种 HVG 打分方法(按秩取max)选高变基因,自带 Seurat vst 基线 + ground-truth recall / ARI / silhouette 评测
 
 ## 整合与批次校正 — Integration & batch correction
 
 - [506_scvi_scanvi_integration](02_integration_batch/506_scvi_scanvi_integration) — scVI/scANVI integration + label transfer (vs PCA baseline)
-- [563_concord_contrastive_integration](02_integration_batch/563_concord_contrastive_integration) — (用途待补)
-- [564_scextract_prior_integration](02_integration_batch/564_scextract_prior_integration) — (用途待补)
-- [565_scmultibench_integration_benchmark](02_integration_batch/565_scmultibench_integration_benchmark) — (用途待补)
+- [563_concord_contrastive_integration](02_integration_batch/563_concord_contrastive_integration) — 多批次单细胞整合模块:3 个本机可跑基线(PCA/批次中心化/ComBat+PCA)+ 守卫式 CONCORD 接口,用「批次混合熵 / 生物保真(kNN纯度+ARI/NMI) / 全局几何(trustworthiness+成对距离 Spearman)」三类指标同台对照评估。
+- [564_scextract_prior_integration](02_integration_batch/564_scextract_prior_integration) — 多批次 scRNA 整合评测:以「批次混合熵 × 细胞类型 kNN 保真度 × 稀有类型保真度」双轴对比未校正 PCA / ComBat(/Harmony),并守卫式封装 scExtract 的 scanorama_prior / cellhint_prior 先验整合
+- [565_scmultibench_integration_benchmark](02_integration_batch/565_scmultibench_integration_benchmark) — 把 scMultiBench 的 scIB 评测层封装成模块:给任意整合 embedding 打生物保留/批次校正/综合分,强制与朴素 PCA 基线对比,出热图+权衡散点+lollipop 排名。
 
 ## 注释与细胞分型 — Annotation & cell typing
 
 - [044_multimodalad_scrna.R](03_annotation_typing/044_multimodalad_scrna.R) — AD brain scRNA pipeline + Monocle pseudotime
 - [046_scrna_publication_figures](03_annotation_typing/046_scrna_publication_figures) — Standard Seurat flow → publication figures
 - [049_scrna_manual_annot_cellchat_trajectory.R](03_annotation_typing/049_scrna_manual_annot_cellchat_trajectory.R) — Manual annotation + CellChat + trajectory
-- [566_phispace_soft_annotation](03_annotation_typing/566_phispace_soft_annotation) — (用途待补)
+- [566_phispace_soft_annotation](03_annotation_typing/566_phispace_soft_annotation) — PhiSpace 连续表型软注释：把 query 细胞投影到参考类型张成的表型空间，给出每细胞×每类型的连续得分而非硬标签；自带质心相关 + PCA 回归两条本机可跑基线与已知混合比例真值评估，PhiSpace 本体为守卫式封装。
 
 ## 组成与丰度差异 — Composition / differential abundance
 
@@ -33,7 +33,7 @@
 ## 差异表达(含 pseudobulk) — Differential expression
 
 - [559_muscat_pseudobulk_ds](05_differential_expression/559_muscat_pseudobulk_ds) — muscat multi-sample pseudobulk differential-state vs cell-level baseline
-- [567_glimes_mixed_effect_de](05_differential_expression/567_glimes_mixed_effect_de) — (用途待补)
+- [567_glimes_mixed_effect_de](05_differential_expression/567_glimes_mixed_effect_de) — 多供体单细胞原始 UMI 计数上的 Poisson-GLMM(供体随机截距)差异表达,与朴素细胞级 t 检验、pseudobulk 两条基线同台对比,量化供体伪重复造成的一类错误膨胀。
 
 ## 轨迹与 RNA 速率 — Trajectory & RNA velocity
 
@@ -60,7 +60,8 @@
 
 ## 单细胞基础模型 — Foundation models
 
-- [569_nicheformer_sc_spatial_fm](10_foundation_models/569_nicheformer_sc_spatial_fm) — (用途待补)
-- [570_epiagent_scatac_fm](10_foundation_models/570_epiagent_scatac_fm) — (用途待补)
-- [571_captain_rna_protein_fm](10_foundation_models/571_captain_rna_protein_fm) — (用途待补)
-- [572_cellvq_discrete_cell_fm](10_foundation_models/572_cellvq_discrete_cell_fm) — (用途待补)
+- [568_scprint_foundation_grn](10_foundation_models/568_scprint_foundation_grn) — scPRINT 单细胞基础模型三任务(GRN 推断 / 去噪 / 细胞嵌入与标签预测)的本机可跑朴素基线 + 守卫式官方 API 封装,评估口径逐条对齐上游源码
+- [569_nicheformer_sc_spatial_fm](10_foundation_models/569_nicheformer_sc_spatial_fm) — Nicheformer(单细胞+空间联合预训练基础模型)守卫式封装 + 本机可跑的线性对照基线:比较 intrinsic 表达 PCA 与 niche-aware(⊕空间 kNN 邻域均值 PCA)在 niche / cell-type 标签上的同折 CV macro-F1,并做解离参考→空间 query 的跨模态标签迁移地板值。
+- [570_epiagent_scatac_fm](10_foundation_models/570_epiagent_scatac_fm) — scATAC 细胞×cCRE 矩阵 → TF-IDF+SVD(LSI) 基线做嵌入/聚类/细胞类型预测/填补/批次混合评估,并守卫式封装 EpiAgent 基础模型路径(仅环境探测,不臆造调用)
+- [571_captain_rna_protein_fm](10_foundation_models/571_captain_rna_protein_fm) — 配对 CITE-seq「RNA→表面蛋白」填补基准台：matched-gene 与 PCA+Ridge 两条防泄漏基线 + CAPTAIN 本体守卫式探测（含 Drive 占位符识别）
+- [572_cellvq_discrete_cell_fm](10_foundation_models/572_cellvq_discrete_cell_fm) — 离散「细胞词表」(VQ codebook)单细胞表征模块：PCA+k-means 码本基线量化离散化的信息损失/码本坍缩/重构 R²，并对官方 CellVQ 提供逐符号核实过的守卫式封装。

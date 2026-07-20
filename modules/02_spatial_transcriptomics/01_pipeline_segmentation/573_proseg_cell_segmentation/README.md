@@ -29,8 +29,10 @@
 | `true_cell_id` | int | 仅基线评分 | `95` | ground truth;真实数据没有 |
 | `true_cell_type` | int | 仅基线评分 | `1` | ground truth 细胞类型 |
 
-**命名/格式约定**:proseg 官方 README 明确要求输入「转录本位置表,且必须以某种形式带有
-转录本到核或细胞的初步分配」。本模块沿用该约定:`cell_id >= 0` 视为已归核。
+**命名/格式约定**:上游 README(第 335 行)的原话是「Typically Proseg is run with prior
+segmentation in the form of a transcript table with prior cell assignments」——即**通常**以
+带先验细胞分配的转录本表运行,但**并非唯一入口**:同段也说明可以直接用 Cellpose 等分割
+掩膜初始化。本模块沿用常规约定:`cell_id >= 0` 视为已归核。
 `true_cell_*` 两列只服务于基线打分,真实数据缺失时请只走 `--run-proseg` 路径。
 
 **样例(前 3 行)**:
@@ -84,7 +86,7 @@ transcript_id,x_location,y_location,z_location,feature_name,overlaps_nucleus,cel
    |---|---|
    | 位置参数 `transcript_csv` | `src/main.rs:54` |
    | `--xenium` / `--cosmx` / `--cosmx-micron` / `--merscope` / `--visiumhd` | `src/main.rs:58 / 63 / 67 / 71 / 103` |
-   | `--nthreads` (`-t`) | `src/main.rs:264` |
+   | `--nthreads` (`-t`, `Option<usize>`,默认用满所有核) | `src/main.rs:265`(`#[arg]` 在 264) |
    | `--output-counts` | `src/main.rs:371` → `write_sparse_mtx` `src/output.rs:140` |
    | `--output-cell-metadata` | `src/main.rs:389` |
    | `--output-transcript-metadata` | `src/main.rs:396` |
@@ -97,7 +99,12 @@ transcript_id,x_location,y_location,z_location,feature_name,overlaps_nucleus,cel
    计数矩阵走的是 `write_sparse_mtx`,恒定 gzip matrix-market、不看扩展名,`.mtx.gz` 合法。
    ② proseg 3.x **默认必写 spatialdata zarr**(默认值 `proseg-output.zarr`),不显式指定就落在
    当前工作目录而非 `--outdir`,故本模块显式指到 outdir 下;该 zarr 已存在时 proseg 拒绝覆盖,
-   需 `--overwrite`(`src/main.rs:366`),本模块不代加以免删掉别人的结果。
+   需 `--overwrite`(`src/main.rs:367`,`#[arg]` 在 366),本模块不代加以免删掉别人的结果。
+
+   补充一条边界说明:上游 `extra/` 下确实有几个 Python 脚本(`proseg-to-anndata.py`、
+   `cellpose-xenium.py`、`illumina-to-spatialdata.py`)和一个 R 脚本(`proseg-to-seurat.R`),
+   但它们是**结果转换/前处理的独立脚本**,不是可 import 的 Python 包 —— 分割本体仍只能通过
+   Rust 二进制的命令行调用,所以本模块的封装方式(拼命令行)是唯一正确的做法。
 
 ## ③ 用途
 

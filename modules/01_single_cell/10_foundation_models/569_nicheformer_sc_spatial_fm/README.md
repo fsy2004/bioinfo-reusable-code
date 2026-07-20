@@ -92,7 +92,7 @@ python 569_nicheformer_sc_spatial_fm.py \
 
 | 真实 API | 源码位置 | 说明 |
 |---|---|---|
-| `nicheformer.models.Nicheformer` | `models/__init__.py:1` → `models/_nicheformer.py:15` | `pl.LightningModule`;签名见 `_nicheformer.py:16-35`:`__init__(dim_model, nheads, dim_feedforward, nlayers, dropout, batch_first, masking_p, n_tokens, context_length, lr, warmup, batch_size, max_epochs, cls_classes=164, supervised_task=None, learnable_pe=True, specie=False, assay=False, modality=False, contrastive=False)` |
+| `nicheformer.models.Nicheformer` | `models/__init__.py:1` → `models/_nicheformer.py:15` | `pl.LightningModule`;签名见 `_nicheformer.py:16-36`:`__init__(dim_model, nheads, dim_feedforward, nlayers, dropout, batch_first, masking_p, n_tokens, context_length, lr, warmup, batch_size, max_epochs, cls_classes=164, supervised_task=None, learnable_pe=True, specie=False, assay=False, modality=False, contrastive=False)` |
 | `Nicheformer.get_embeddings(batch, layer=-1, with_context=False)` | `_nicheformer.py:272` | 取指定 transformer 层的细胞嵌入。`layer<0` = 倒数第 layer 层;`with_context=False` 丢掉前 3 个上下文 token(`embeddings[:, 3:, :]`)后对 token 维求均值;返回 `(batch, dim_model)` 张量 |
 | `nicheformer.models.NicheformerFineTune` | `models/__init__.py:2` → `models/_nicheformer_fine_tune.py:18` | 微调用的完整 `pl.LightningModule`(不只是一个头),自带 `get_embeddings(batch, layer=-1)`(`:322`) |
 

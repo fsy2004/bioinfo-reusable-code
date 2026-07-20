@@ -91,7 +91,7 @@ map2 = assign_coord_2(adata1=st, adata2=mod2, out_data=out2, top_num=3)
 |---|---|---|
 | `load_data` | `simo/helper.py:23` | 存在 |
 | `process_anndata(..., neighbors, umap, n_comps)` | `simo/helper.py:33` | 三个参数均真实,默认 `True/True/100` |
-| `find_marker(..., gene_selection_method, deg_num, marker1_by, marker2_by)` | `simo/helper.py:138` | 参数真实;`return_anndata=False`(默认)时返回 **gene list**(`helper.py:299`),故 `gene_list1 = find_marker(...)` 写法正确(上游 docstring 写"返回 tuple",与代码不符,以代码为准) |
+| `find_marker(..., gene_selection_method, deg_num, marker1_by, marker2_by)` | `simo/helper.py:138` | 参数真实;`return_anndata=False`(默认)时返回 **gene list**(`helper.py:202`),故 `gene_list1 = find_marker(...)` 写法正确(上游 docstring 写"返回 tuple",与代码不符,以代码为准) |
 | `alignment_1_batch(..., alpha, aware_st_label, aware_sc_label)` | `simo/simo.py:1014` | 参数真实;内部循环调 `alignment_1`(`simo.py:13`)→ `fgw_ot`(`simo.py:169`),确为 fused-GW |
 | `assign_coord_1(..., out_data, no_repeated_cells, top_num, layer)` | `simo/simo.py:357` | 参数真实,`layer` 默认 `'data'`,`top_num` 默认 `None` |
 | `alignment_2(..., coor_df, reg, adata1_avg_by, adata2_avg_by, modality2_type)` | `simo/simo.py:203` | 参数真实;返回 **4 元组** `out_data, transfer_df, obs_df1, obs_df2`(`simo.py:354`);`modality2_type='neg'` 是受支持取值(`helper.py:313` 有分支,虽 docstring 只写了 `'pos'`) |

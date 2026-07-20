@@ -80,7 +80,7 @@ Q0002,Pure_A,1,0,0
 
 关于 `ncomp`:上游 `pkg/R/PhiSpaceR_1ref.R:213` 是 `if(is.null(ncomp)) ncomp <- ncol(YY)`,即**默认等于表型总数**。本模块的 `--ncomp`(默认 10)是给 PCA 基线调的,语义不同,因此只在 `--ncomp <= 表型数` 时才透传给 PhiSpace,否则传 `NULL` 让上游用自己的默认。
 
-**关于返回分数矩阵的列名**(可从源码推定):`codeY.R:29` 把 dummy 矩阵 `YY` 的列名设为参考集该 phenotype 列的取值(`colnames(YY_temp) <- labs`);`phenotype.R` 返回 `XX_cent %*% Bhat`,`Bhat` 的列名来自 `YY`;`normPhiScores.R` 在 `method="col"` 分支显式 `dimnames(Xout) <- dimnames(X)` 保留列名。因此 `reducedDim(res,"PhiSpace")` 的列名**应当**就是参考类型名。但这条是**读源码推的,本机未实跑验证**(见「依赖安装」的 R 版本限制),所以脚本仍保留守卫:只在列名能与参考类型对上时才并入并列比较,否则单独落盘并提示,避免张冠李戴。
+**关于返回分数矩阵的列名**(可从源码推定):`codeY.R:27` 把 dummy 矩阵 `YY` 的列名设为参考集该 phenotype 列的取值(`colnames(YY_temp) <- labs`);`phenotype.R:53` 返回 `XX_cent %*% Bhat`,`Bhat` 的列名来自 `YY`;`normPhiScores.R:22` 在 `method="col"` 分支显式 `dimnames(Xout) <- dimnames(X)` 保留列名。因此 `reducedDim(res,"PhiSpace")` 的列名**应当**就是参考类型名。但这条是**读源码推的,本机未实跑验证**(见「依赖安装」的 R 版本限制),所以脚本仍保留守卫:只在列名能与参考类型对上时才并入并列比较,否则单独落盘并提示,避免张冠李戴。
 
 ⚠️ **PhiSpace 分数不是组成比例**:`PhiSpaceR_1ref.R` 返回的 `PhiSpaceNorm` 经过 `normPhiScores()`(默认 `method="col"`,即按列减中位数再除以最大绝对值),**结果可为负、每行不和为 1**。本模块为了和两个基线并列比较,对它套了和基线同一个 `to_comp()`(截断非负 + 按行归一)——这是**本模块施加的后处理**,不是 PhiSpace 的原生输出。原始分数始终原样落盘在 `results/phispace_scores.csv`,需要 PhiSpace 本身的数值时请用该文件,不要用比较图。
 

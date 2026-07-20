@@ -66,9 +66,18 @@ def lognorm(counts: pd.DataFrame, target: float = 1e4) -> pd.DataFrame:
 def clr(counts: pd.DataFrame) -> pd.DataFrame:
     """ADT 的标准 CLR(centered log-ratio)归一,按细胞跨蛋白做几何均值中心化。
 
-    对应 Seurat `NormalizeData(normalization.method="CLR", margin=1)`
-    (Seurat 文档:margin "normalize across features (1) or cells (2)";此处按细胞
-    跨蛋白中心化 = across features = margin 1)。
+    ★方向对应 Seurat 的 **margin = 2**(不是 1)。Seurat 文档把 margin 写成
+    "normalize across features (1) or cells (2)",措辞有歧义;以实现为准:
+    `Seurat:::CustomNormalize` 做 `apply(data, MARGIN=margin, FUN=...)`,而 Seurat
+    的矩阵是 **features × cells**,故 MARGIN=1 = 逐**基因/蛋白**跨细胞,
+    MARGIN=2 = 逐**细胞**跨蛋白。本函数是后者。
+    (实测:本实现与 Seurat margin=2 的逐元素 Pearson r = 0.94,与 margin=1 只有 0.64。)
+
+    ★公式也不与 Seurat 逐位相同。Seurat 的 CLR 是
+    `log1p(x / exp(sum(log1p(x[x>0])) / length(x)))`(几何均值只用正值求和、却除以
+    全长,外层是 log1p 比值);本函数用的是教科书 CLR:log1p 后按细胞减去均值,
+    即 log((1+x_i) / geomean_j(1+x_j)),中心化后每个细胞行均值严格为 0。
+    两者单调相关但不等价,不要在论文里写成"用 Seurat CLR"。
     """
     x = np.log1p(counts.astype(float))
     return x.sub(x.mean(axis=1), axis=0)

@@ -211,7 +211,7 @@ def build_proseg_cmd(exe: str, transcripts: str, outdir: str, preset: str = "xen
 
     最后一条是个坑:proseg 3.x 默认必写 spatialdata zarr。不显式指定的话它会落在当前工作
     目录而不是 outdir,所以这里显式指到 outdir 下。该 zarr 已存在时 proseg 会拒绝覆盖,
-    需要 --overwrite(L366);本模块不代加,以免默默删掉别人的结果。
+    需要 --overwrite(L367,#[arg] 在 L366);本模块不代加,以免默默删掉别人的结果。
 
     模型参数(--ncomponents L232 默认 10 / --voxel-size L296 / --diffusion-probability L312 /
     --cell-compactness L269 默认 0.04 / --samples L252)确实存在,但本模块不代为固定,

@@ -292,11 +292,13 @@ def baseline_perturbation_effect(expr: pd.DataFrame) -> pd.DataFrame:
 def run_psgrn_upstream(expression_matrix=None, interventions=None, gene_names=None):
     """调用上游 PSGRN 官方实现。缺依赖时优雅退出并打印真实命令。
 
-    上游真实接口(读自 https://github.com/GuanLab/PSGRN/blob/main/src/main.py):
-        class Custom(AbstractInferenceModel):
-            __call__(self, expression_matrix: np.array, interventions: List[str],
-                     gene_names: List[str], training_regime: TrainingRegime,
-                     seed: int = 0) -> List[Tuple[str, str]]
+    上游真实接口(逐字读自 src/main.py:93-105,源码本身【无返回注解】):
+        class Custom(AbstractInferenceModel):            # main.py:93
+            def __call__(self, expression_matrix: np.array, interventions: List[str],
+                         gene_names: List[str], training_regime: TrainingRegime,
+                         seed: int = 0):                 # main.py:98-105
+        返回值:源码 main.py:151 `return [tuple(pair.split("_")) for pair in network]`,
+        docstring(main.py:117)写 "List of string tuples: output graph as list of edges."
     官方推荐入口是 CausalBench 的 app,而不是直接 import(README 原文命令):
         export PYTHONPATH="./"
         python causalscbench/apps/main_app.py --dataset_name "weissmann_rpe1" \\
@@ -323,7 +325,8 @@ def run_psgrn_upstream(expression_matrix=None, interventions=None, gene_names=No
         }
     return {"status": "deps_present",
             "next": ("依赖齐全,但官方入口是 causalscbench/apps/main_app.py,需要 CausalBench "
-                     "数据目录;请按上游 README/run.sh 运行,不要绕过 benchmark 评测层。")}
+                     "数据目录;请按上游 README 的命令运行(其 README 另称示例命令在 run.sh,"
+                     "但本机克隆到的 70 个源码文件中未见该文件),不要绕过 benchmark 评测层。")}
 
 
 # =============================================================================

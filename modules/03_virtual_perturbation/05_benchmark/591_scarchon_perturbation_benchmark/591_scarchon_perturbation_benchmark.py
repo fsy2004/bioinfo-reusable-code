@@ -14,11 +14,16 @@ scVIDR / scPRAM / scPreGAN / scDisInFACT / trVAE / SCREEN 以及一个 **linear*
      打印真实的调用方式与 config/datasets.tsv 列名。scArchon 只有 Snakemake 工作流入口,
      没有可 import 的 Python API,因此这里不伪造任何函数签名。
 
-真实接口核对来源(逐行读过 hdsu-bioquant/scArchon @ main 的本地克隆):
+真实接口核对来源(逐行读过 hdsu-bioquant/scArchon @ main 的本地源码副本):
   README.md                           安装/运行命令、batch 不得含空格、60 GB 镜像表
   config/datasets.tsv                 9 个列名(见 check_scarchon)
-  Snakefile:93-343                    rule run_{scgen,scdisinfact,scpregan,scpram,screen,
-                                      scvidr,cpa,trvae,cellot,linear} → 被封装的 10 个工具
+  Snakefile:93-351                    rule run_scgen / run_disinfact / run_scpregan /
+                                      run_scpram / run_screen / run_scvidr / run_cpa /
+                                      run_trvae / encode+run_cellot+decode / run_linear
+                                      → 被封装的 10 个工具。注意 scDisInFact 的 **rule 名**是
+                                      run_disinfact(Snakefile:123),但它读的 config 与产出的
+                                      flag 用的仍是 `scdisinfact`(Snakefile:125,127),
+                                      故 datasets.tsv 的 Tools 列要写 scdisinfact。
   scripts/linear/snkmk_linear.py:104-118   linear 加性 delta 基线
   scripts/metrics/metrics_control.py:56-83 control 地板(留出 batch 的 ctrl vs stim)
   scripts/metrics/metrics.py:41-190        Metrics 类:pertpy.tl.Distance / common_degs / r2_scores

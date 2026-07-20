@@ -59,10 +59,10 @@ s1_c0001,slide1,1.012,-0.183,D0,CT3,1,4,2,...
 | 本模块函数 | 上游定义位置 | 含义 |
 |---|---|---|
 | `fide_score` | `novae/monitor/eval.py:34` | 空间邻接图上把边两端标签当 `y_true`/`y_pred` 求逐类 F1 再平均。**越高 = 域越空间连续** |
-| `mean_fide` | `novae/monitor/eval.py:11` (`mean_fide_score`) | 逐切片 FIDE 再平均 |
-| `jensen_shannon_divergence` | `novae/monitor/eval.py:65` + `:94` (`_jensen_shannon_divergence`) | 跨切片域占比分布的 JSD。**越低 = 域在切片间越共享(可迁移)** |
-| `_entropy` | `novae/monitor/eval.py:110` (`entropy`) | Shannon 熵;EPS 取上游 `Nums.EPS = 1e-8`(`novae/_constants.py:47`) |
-| `heuristic` | `novae/monitor/eval.py:139` + `:157` (`_heuristic`) | **逐切片**算 `FIDE_s × entropy(该片域占比) / log2(n_classes)` 后跨片平均 |
+| `mean_fide` | `novae/monitor/eval.py:12` (`mean_fide_score`) | 逐切片 FIDE 再平均 |
+| `jensen_shannon_divergence` | `novae/monitor/eval.py:65` + `:95` (`_jensen_shannon_divergence`) | 跨切片域占比分布的 JSD。**越低 = 域在切片间越共享(可迁移)** |
+| `_entropy` | `novae/monitor/eval.py:112` (`entropy`) | Shannon 熵;EPS 取上游 `Nums.EPS = 1e-8`(`novae/_constants.py:47`) |
+| `heuristic` | `novae/monitor/eval.py:143` + `:162` (`_heuristic`) | **逐切片**算 `FIDE_s × entropy(该片域占比) / log2(n_classes)` 后跨片平均 |
 
 唯一与上游的差异:上游从 `adata.obsp["spatial_distances"]`(`Keys.ADJ`,`_constants.py:14`)取邻接,
 本模块换成显式 kNN 边表,以便不装 `novae`/`squidpy` 也能打分。
@@ -86,14 +86,26 @@ key = model.assign_domains(adata, level=7, n_domains=n_domains)
 | `Novae.from_pretrained` | `novae/model.py:309` | `from_pretrained(model_name_or_path: str \| Path, **kwargs) -> Novae` |
 | `model.compute_representations` | `novae/model.py:379` | `compute_representations(adata=None, *, zero_shot=False, reference="all", accelerator="cpu", num_workers=None) -> None` |
 | `model.assign_domains` | `novae/model.py:539` | `assign_domains(adata=None, level=7, n_domains=None, resolution=None, key_added=None) -> str`(返回 `adata.obs` 新增的 key) |
-| 模型名 `prism-oncology/novae-human-0` | 名称合法性由 `novae/utils/_validate.py:302` `check_model_name` 校验(`ORGANIZATION = "prism-oncology/"` 于 `:299`;`MICS-Lab/` 作为 `OLD_ORGANIZATION` 仍被接受;v0 模型要求名字以 `-0` 结尾) | — |
+| 模型名 `prism-oncology/novae-human-0` | 名称合法性由 `novae/utils/_validate.py:302` `check_model_name` 校验(`ORGANIZATION = "prism-oncology/"` 于 `:299`,`OLD_ORGANIZATION = "MICS-Lab/"` 于 `:298` 仍被接受;`:314` 处 `if model_name[-2:] != "-0"` 强制 v0 模型名以 `-0` 结尾) | — |
+
+**权重在哪**:不随 pip 包分发,由 `from_pretrained` 经 `huggingface-hub` 在线拉取。上游
+`model.py:313` 的 docstring 直接给出集合地址
+`https://huggingface.co/collections/prism-oncology/novae-669cdf1754729d168a69f6bd`,
+`_validate.py:307` 的报错信息也指向 `https://huggingface.co/collections/prism-oncology/novae`。
+因此**离线环境下 `--run-novae` 必然失败**,脚本会如实返回 `failed`。
+
+**有没有 tutorials**:有。`mkdocs.yml:19-25` 列了 7 篇 ——
+`main_usage.ipynb`、`input_modes.md`、`novae_scConcept.ipynb`、`labeling.ipynb`、
+`proteins.ipynb`(蛋白模态)、`he_usage.ipynb`(H&E)、`resolutions.ipynb`(spot/bin 技术)。
+本地克隆的 `docs/tutorials/` 只落盘了 `input_modes.md`(.ipynb 未随本次抓取下载),
+其余 6 篇的存在依据是 `mkdocs.yml` 的 nav 条目,**未逐篇核对内容**。
 
 两点必须知道的上游行为(均见源码,不是推测):
 
-1. `compute_representations` 内有 `assert self.mode.trained`;`from_pretrained` 会调用
-   `model.mode.as_pretrained()`(`model.py:325`),所以预训练模型可直接 zero-shot,无需 `fit()`。
+1. `compute_representations` 内有 `assert self.mode.trained`(`model.py:400`);`from_pretrained`
+   会调用 `model.mode.as_pretrained()`(`model.py:326`),所以预训练模型可直接 zero-shot,无需 `fit()`。
 2. zero-shot 下 `assign_domains` 若走 `level`,上游会 `log.warning` 建议改用 `resolution=`
-   (`model.py:585`)。本模块保留 `level`/`n_domains` 路径,可用 `--novae-level` 调。
+   (`model.py:588`)。本模块保留 `level`/`n_domains` 路径,可用 `--novae-level` 调。
 
 `fine_tune(...)`(`novae/model.py:620`)、`batch_effect_correction(...)`、`novae.label.label_domains`、
 `novae.plot.*` 也确实存在(见 `novae/__init__.py` 导出),但**本模块未封装,签名未逐一核对**。
@@ -102,7 +114,10 @@ key = model.assign_domains(adata, level=7, n_domains=n_domains)
 
 ## ③ 用途
 
-- 多张切片(甚至跨技术平台:Xenium / MERFISH / CosMx / Visium)上划分**同一套**空间域,
+- 多张切片(甚至跨技术平台)上划分**同一套**空间域,
+  上游 `spatial_neighbors(technology=...)` 接受的字面量是
+  `"cosmx" | "merscope" | "xenium" | "visium" | "visium_hd"`(`novae/utils/build.py:27`),
+  `technology=None` 时直接用 `adata.obsm["spatial"]`(本模块走的就是这条),
   使得"slide1 的 domain 3"和"slide2 的 domain 3"指同一种组织生态位,可直接做跨样本比较。
 - 回答的科学问题:肿瘤/纤维化组织里有哪些**可复现的细胞生态位**?某个 niche 的比例是否
   在疾病组与对照组间变化?哪些 niche 跨病人稳定、哪些是切片伪影?
@@ -140,13 +155,15 @@ key = model.assign_domains(adata, level=7, n_domains=n_domains)
 
 | method | FIDE ↑ | JSD ↓ | heuristic ↑ | ARI(域)↑ | ARI_celltype |
 |---|---|---|---|---|---|
-| Expression-only (PCA+KMeans) | 0.3555 | 0.0027 | 0.3553 | 0.1689 | **1.0000** |
-| Niche smoothing (kNN) | 0.3244 | **1.5850** | 0.3110 | 0.0557 | 0.0157 |
-| Niche smoothing + per-slide z | **0.8885** | 0.0056 | **0.8870** | **0.7797** | 0.1360 |
+| Expression-only (PCA+KMeans) | 0.3555 | 0.0027 | 0.3549 | 0.1689 | **1.0000** |
+| Niche smoothing (kNN) | 0.3244 | **1.5850** | 0.0786 | 0.0557 | 0.0157 |
+| Niche smoothing + per-slide z | **0.8885** | 0.0056 | **0.8845** | **0.7797** | 0.1360 |
 
 读法:第 1 行 `ARI_celltype=1.00` 而域 ARI 只有 0.17 —— expression-only 完美还原了细胞类型,
 但基本没抓到 niche,符合合成数据的设计。第 2 行 JSD = 1.585 = `log2(3)`,即三张切片各自成域,
-邻域平均把细胞类型噪声抹平后批次成了主方差方向。第 3 行加一步逐切片 z-score 就把域找回来了。
+邻域平均把细胞类型噪声抹平后批次成了主方差方向;它的 `heuristic` 只有 0.0786(远低于 FIDE
+0.3244),正是因为上游 `heuristic` 是**逐切片**算的 —— 每张切片内部几乎只剩一个域,片内熵塌到
+接近 0,惩罚立刻显现,而全局 FIDE 看不出这一点。第 3 行加一步逐切片 z-score 就把域找回来了。
 这条阶梯就是 Novae 需要越过的门槛。
 
 ---

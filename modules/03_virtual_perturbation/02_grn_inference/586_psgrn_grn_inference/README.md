@@ -44,14 +44,20 @@ PSGRN 的核心是**用相关性造一个"合成金标准",再让 GBDT 在这批
 把只含关联信息的排序,用**干预后的响应特征**重排成有向调控边。逐步对照上游
 [`src/main.py`](https://github.com/GuanLab/PSGRN/blob/main/src/main.py):
 
-1. **合成金标准** `get_topK_pairs(expression_matrix, T)`:对每个有序对 (g1→g2) 算细胞级
-   `|Pearson|`;若 g1 被敲除过,先把对照细胞下采样到与干预细胞等量再拼接,让相关性带上干预方差。
-   `|r| > T` 的对记为正样本(上游实际调用 `T = 0.1`)。
-2. **成对特征** `create_dataset()`:按 `intervention` 分组求均值,每个有序对给 4 个标量特征 ——
-   `f0` 对照下 g1 均值、`f1` 对照下 g2 均值、`f2` 敲除 g1 后 g1 自身均值(缺失记 0)、
-   `f3` 敲除 g1 后 g2 均值(g1 未被敲除则 NaN)。造特征前对表达做整体 z-score。
-3. **自训练** `train_lgb()`:LightGBM 二分类拟合上述噪声标签,再对**全部**基因对打分,
-   取 top-N 作为网络(上游 `N = 1000` 即 PSGRN 1K,`N = 5000` 即 5K)。
+1. **合成金标准** `get_topK_pairs(expression_matrix, T)`(定义 `main.py:14`,签名默认 `T=0.5`):
+   对每个有序对 (g1→g2) 算细胞级 `|Pearson|`(`main.py:40`);若 g1 被敲除过,先把对照细胞
+   下采样到与干预细胞等量再拼接(`main.py:35-36`,`random_state=0`),让相关性带上干预方差。
+   `|r| > T` 的对记为正样本(`main.py:44`;上游实际调用值 `T = 0.1`,见 `main.py:132`)。
+2. **成对特征** `create_dataset()`(定义 `main.py:47`):按 `intervention` 分组求均值
+   (`main.py:50`),每个有序对给 4 个标量特征(`main.py:67-70`)—— `f0` 对照下 g1 均值、
+   `f1` 对照下 g2 均值、`f2` 敲除 g1 后 g1 自身均值(缺失记 `0`,`main.py:69`)、
+   `f3` 敲除 g1 后 g2 均值(g1 未被敲除则 `np.nan`,`main.py:70`)。
+   造特征前对表达做整体 z-score(`main.py:139-141`)。
+3. **自训练** `train_lgb()`(定义 `main.py:84`):`lgb.Dataset(X, y)`(`main.py:87`)→
+   `lgb.train(params=..., train_set=..., keep_training_booster=True)`(`main.py:89`),
+   二分类拟合上述噪声标签;训练前 `dataset.sample(frac=1, random_state=0)`(`main.py:144`),
+   再对**全部**基因对打分并取 top-N 作为网络(`main.py:147-148`;上游写死 `N = 1000`,
+   见 `main.py:133`,即 PSGRN 1K,`N = 5000` 即 5K,出处为上游 README「Usage」节)。
 
 **基线(库规矩:任何"更好"都必须有可跑对照)**
 - **A 共表达 `|Pearson|`**:只用对照细胞,经典 GRN 起点,无方向、受共享潜因子混淆。
@@ -60,17 +66,22 @@ PSGRN 的核心是**用相关性造一个"合成金标准",再让 GBDT 在这批
 
 **忠实度与边界(诚实标注)**
 - `get_topK_pairs` / `create_dataset` / `train_lgb` 三个函数按上游原文同名同结构重写;
-  `LGB_PARAMS` 是上游 `Custom.__call__` 里写死的超参**逐字照抄**(仅把 `verbose: 0` 改为 `-1` 压日志)。
+  `LGB_PARAMS` 是上游 `Custom.__call__` 里写死的超参**逐字照抄**(`main.py:119-131`:`gbdt` /
+  `binary` / `binary_logloss` / `num_leaves 5` / `max_depth 2` / `min_data_in_leaf 5` /
+  `learning_rate 0.05` / `min_gain_to_split 0.01` / `num_iterations 1000` / `num_threads 8`;
+  仅把 `verbose: 0` 改为 `-1` 压日志)。
 - 上游**官方入口**是 CausalBench 的 `causalscbench/apps/main_app.py --model_name custom
   --inference_function_file_path ./src/main.py`,而非直接 `import`;本机未装 `causalscbench`,
   故 `run_psgrn_upstream()` 只做**守卫式封装**:缺包时打印真实安装/运行命令并退出,**不伪造返回值**。
-  上游真实签名(读自源码,非臆造):
+  上游真实签名(逐字读自 `src/main.py:93-105`,**源码本身没有返回注解**,勿臆造):
   ```python
-  class Custom(AbstractInferenceModel):
+  class Custom(AbstractInferenceModel):                       # main.py:93
       def __call__(self, expression_matrix: np.array, interventions: List[str],
                    gene_names: List[str], training_regime: TrainingRegime,
-                   seed: int = 0) -> List[Tuple[str, str]]
+                   seed: int = 0):                            # main.py:98-105
   ```
+  返回值只能从实现读:`main.py:151` 是 `return [tuple(pair.split("_")) for pair in network]`,
+  其 docstring(`main.py:117`)写 "List of string tuples: output graph as list of edges."
 - ⚠ 本模块复现的是**算法**,不是上游在 CausalBench(weissmann_rpe1 / k562)上的评测数字;
   别拿本模块在合成数据上的结果替代原文报告值。
 

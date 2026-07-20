@@ -52,7 +52,18 @@ CELL0001,4676,758,60,14,74,892,215,69,310,222,4,233,17,7
 ## ② 方法 / 原理
 
 **归一化**:RNA 走文库大小归一 + `log1p`(scanpy 标准做法);ADT 走 **CLR**(centered log-ratio,
-按细胞跨蛋白中心化,对应 Seurat `NormalizeData(normalization.method="CLR", margin=1)`)。
+**按细胞跨蛋白**中心化:`log1p(x)` 后减去该细胞的跨蛋白均值,等价于 `log((1+x_i)/geomean_j(1+x_j))`)。
+
+> ⚠️ **与 Seurat 的关系(勿写成"用了 Seurat CLR")**:
+> ① **方向对应 Seurat 的 `margin = 2`,不是 `margin = 1`**。Seurat 文档写
+> "normalize across features (1) or cells (2)" 措辞有歧义,以实现为准 ——
+> `Seurat:::CustomNormalize` 是 `apply(data, MARGIN=margin, ...)`,而 Seurat 矩阵是
+> **features × cells**,所以 `MARGIN=1` 是逐**蛋白跨细胞**、`MARGIN=2` 才是逐**细胞跨蛋白**。
+> (本地 Seurat 4.4 库 lazyLoad 出函数体核实,2026-07-21。)
+> ② **公式也不逐位相同**。Seurat 的 CLR 为
+> `log1p(x / exp(sum(log1p(x[x>0])) / length(x)))`;本模块用教科书 CLR(log1p 后中心化,
+> 每个细胞行均值严格为 0)。在示例 ADT 上实测:本实现 vs Seurat `margin=2` 逐元素
+> Pearson r = **0.94**,vs `margin=1` 仅 **0.64**。
 
 **评测设计(本模块的核心)**:按**细胞**随机切 train/test(默认 30% 留出,种子 `20260720`),
 `StandardScaler` / `PCA` / `Ridge` **一律只在训练集拟合**再 transform 测试集,避免把测试细胞的
@@ -173,7 +184,9 @@ pip install -r requirements.txt && pip install scgpt
 #    anndata==0.11.3 / scikit-learn==1.6.1 / omicverse==1.6.10 / muon==0.1.7 等,
 #    与本机环境(torch 2.6.0+cu124 / numpy 2.4.6 / scanpy 1.12.1)不兼容 —— 必须建独立 conda 环境,
 #    不要往本机环境里装。上游 README 另注:flash-attn 可选,不装也能跑。
-# 权重 CAPTAIN_Base / CAPTAIN_PBMC 按上游 README 的 Google Drive 链接下载
+# 权重按上游 README 的 Google Drive 链接下载:下载表(L73-76)实际只有两行 ——
+#   CAPTAIN_Base 与 CAPTAIN_PBMC。上游 L71 的正文另提到 ./pretrained_models/CAPTAIN_Human,
+#   但表里没有对应下载行(2026-07-21 核对上游 README),即 CAPTAIN_Human 目前拿不到。
 #   上游 README 建议放到 ./pretrained_models/CAPTAIN_Base;
 #   但脚本的实际默认 --load_model_dir = 脚本自身所在目录,
 #   即最省事的做法是用真权重直接覆盖 downstream_tasks/<任务>/CAPTAIN_Base.pt 那个 88 B 占位符。

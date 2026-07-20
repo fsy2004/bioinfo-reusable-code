@@ -1,6 +1,6 @@
 # 04 · 因果推断与遗传流行病 — Causal inference & genetics
 
-本域共 25 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
+本域共 29 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
 
 
 ## 工具变量准备 — Instrument preparation
@@ -34,6 +34,7 @@
 ## 共定位 — Colocalization
 
 - [537_sharepro_coloc](05_colocalization/537_sharepro_coloc) — SharePro effect-group colocalization vs classic single-causal coloc
+- [594_colocboost_colocalization](05_colocalization/594_colocboost_colocalization) — 同一基因座多性状(GWAS+eQTL/sQTL/pQTL)共定位:真包 coloc::coloc.abf 两两基线 + 守卫式 colocboost 多性状联合封装,出 dot/heatmap/dumbbell/lollipop 四图
 
 ## TWAS 与单细胞 eQTL — TWAS & sc-eQTL
 
@@ -44,7 +45,10 @@
 - [040_FUSION_TWAS_targetC.R](06_twas_sceqtl/040_FUSION_TWAS_targetC.R) — FUSION TWAS association (targetC weights)
 - [041_FUSION_TWAS_S_targetC.R](06_twas_sceqtl/041_FUSION_TWAS_S_targetC.R) — FUSION TWAS association (S_targetC weights)
 - [042_FUSION_TWAS_S_allC.R](06_twas_sceqtl/042_FUSION_TWAS_S_allC.R) — FUSION TWAS association (S_allC shared weights)
+- [592_twist_transcriptome_wide_test](06_twas_sceqtl/592_twist_transcriptome_wide_test) — 拟时序(细胞状态)分辨的 TWAS:用 B-spline eQTL 权重矩阵沿拟时序逐点做 FUSION 式 burden 检验,与静态 TWAS 同框对照;正式 TWiST 三联检验为守卫式封装。
+- [593_case_celltype_eqtl_finemap](06_twas_sceqtl/593_case_celltype_eqtl_finemap) — 多细胞类型 eQTL 联合精细定位:区分跨细胞类型共享效应与细胞类型特异效应,内置「完全特异」「完全共享」两条纯 base R 极端基线 + 守卫式 CASE 上游调用
 
 ## 稳健 MR 估计量 — Robust MR estimators
 
 - [533_mrcare_winnerscurse_mr](07_robust_mr_methods/533_mrcare_winnerscurse_mr) — Winner's-curse-corrected MR (CARE/RIVW) vs naive baseline
+- [595_mreills_robust_mr](07_robust_mr_methods/595_mreills_robust_mr) — 不变性(EILLS)稳健 MR：整合多个异质 GWAS summary 数据集，对含水平多效性的无效工具做筛选并给出单/多暴露因果估计，与 MVMR-IVW / MR-Egger 同数据对照

@@ -256,7 +256,7 @@ def run_nicheformer(checkpoint: str | None):
 
     公共 API(经 nicheformer.models 导出,可直接 import):
       nicheformer.models.Nicheformer            models/__init__.py:1 → models/_nicheformer.py:15
-        pl.LightningModule;__init__ 见 _nicheformer.py:16-35
+        pl.LightningModule;__init__ 见 _nicheformer.py:16-36
       nicheformer.models.NicheformerFineTune    models/__init__.py:2 → models/_nicheformer_fine_tune.py:18
       Nicheformer.get_embeddings(batch, layer=-1, with_context=False)
         _nicheformer.py:272;layer<0 表示倒数第 layer 层;with_context=False 时丢掉前 3 个
