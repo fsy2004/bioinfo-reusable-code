@@ -58,23 +58,23 @@ tmp/
 temp/
 
 # Module 18 external sources: vendored third-party trees not tracked (manifest README + CSVs only)
-modules/18_external_sources/*/
+modules/10_visualization/02_templates_resources/ai_scientific_figures/
 
 # 497 scSurvival: external package kept manifest-only (README/说明/requirements/LICENSE tracked, bulk vendored tree ignored)
-modules/12_tcga_prognosis/497_scsurvival_cohort/examples/
-modules/12_tcga_prognosis/497_scsurvival_cohort/pics/
-modules/12_tcga_prognosis/497_scsurvival_cohort/scSurvival/
-modules/12_tcga_prognosis/497_scsurvival_cohort/other_scripts/
+modules/01_single_cell/09_bulk_phenotype_link/497_scsurvival_cohort/examples/
+modules/01_single_cell/09_bulk_phenotype_link/497_scsurvival_cohort/pics/
+modules/01_single_cell/09_bulk_phenotype_link/497_scsurvival_cohort/scSurvival/
+modules/01_single_cell/09_bulk_phenotype_link/497_scsurvival_cohort/other_scripts/
 
 # 21 disease-burden: track the turnkey method modules (527-530) + their READMEs;
 # keep user drafts + vendored upstream sources local-only.
-modules/21_disease_burden_gbd/99_external_sources/
-modules/21_disease_burden_gbd/topic_candidates.md
-modules/21_disease_burden_gbd/literature_summary_comorbidity.md
-modules/21_disease_burden_gbd/sources_index.csv
-modules/21_disease_burden_gbd/comorbidity_paper_template_refs.ris
+modules/07_clinical_translational/05_epidemiology_burden/99_external_sources/
+modules/07_clinical_translational/05_epidemiology_burden/topic_candidates.md
+modules/07_clinical_translational/05_epidemiology_burden/literature_summary_comorbidity.md
+modules/07_clinical_translational/05_epidemiology_burden/sources_index.csv
+modules/07_clinical_translational/05_epidemiology_burden/comorbidity_paper_template_refs.ris
 # 527-530 regenerate their (GBD-shape, larger) synthetic example_data on run → don't commit
-modules/21_disease_burden_gbd/**/example_data/
+modules/07_clinical_translational/05_epidemiology_burden/**/example_data/
 
 # generated synthetic example data (regenerated on run)
 *.npz
