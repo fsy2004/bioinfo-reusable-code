@@ -310,11 +310,11 @@ Rendered directly from bundled/synthetic example data · 直接由自带/合成�
 ## All categories · 全部分类
 
 **EN** — Organised as **domain → subcategory**, so "which analysis am I doing" maps to one
-folder. Ten domains, forty-nine subcategories. Full per-module index (purpose, input→output,
+folder. Ten domains, fifty-three subcategories. Full per-module index (purpose, input→output,
 deps, figure types) in [`modules/CATALOG.md`](modules/CATALOG.md).
 
 **中文** — 按 **域 → 子类** 两级组织,让「我要做哪类分析」直接对应到一个文件夹。
-共 10 个域、49 个子类。逐模块完整索引见 [`modules/CATALOG.md`](modules/CATALOG.md)。
+共 10 个域、53 个子类。逐模块完整索引见 [`modules/CATALOG.md`](modules/CATALOG.md)。
 
 | 域 | Domain · 域 | 子类 · Subcategories |
 |---|---|---|

@@ -84,3 +84,10 @@ err.txt
 out.txt
 **/err.txt
 **/out.txt
+
+# Upstream method sources: the 36 third-party repos the 561-596 modules were
+# written against. Kept locally so every API claim can be re-grepped at the
+# source, but not committed (~0.8 GB, and each has its own upstream home).
+# The tracked manifest is modules/_upstream_sources/README.md.
+modules/_upstream_sources/*/
+modules/_upstream_sources/_tarballs/
