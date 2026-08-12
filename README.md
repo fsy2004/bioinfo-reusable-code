@@ -49,7 +49,7 @@
 
 ## 系统综述与 Meta 分析 Skill · End-to-end evidence synthesis
 
-[`systematic-review-meta-analysis`](https://github.com/fsy2004/systematic-review-meta-analysis)
+[`MetaWingman`](https://github.com/fsy2004/MetaWingman)
 是面向 Codex 的系统综述与 Meta 分析全流程 skill。它不是只封装统计命令的“Meta 软件”，
 而是把方法学决策、可审计项目状态、文献检索与合法获取、统计代码、写作规范和 AI 审稿闭环组织在一起。
 Gitee 镜像当前承载于原 Meta Wingman 项目地址：
@@ -82,7 +82,7 @@ Gitee 镜像当前承载于原 Meta Wingman 项目地址：
 这些验证证明接口能够运行，不代替具体课题的数据核查、方法选择和科学解释。
 
 ```text
-$systematic-review-meta-analysis
+$metawingman
 
 研究问题：……
 当前阶段：选题 / 协议 / 检索 / 纳排 / 提取 / 评价 / 分析 / 写作 / 审稿 / 更新
