@@ -69,27 +69,21 @@ review loop into one workflow. A Gitee mirror lives at
 | Quantitative / narrative synthesis | pairwise meta, network meta, diagnostic, prognostic, prevalence/proportions, dose-response, Bayesian, multilevel/RVE, IPD, sequential analysis, sensitivity & influence; SWiM when pooling is inappropriate | model and effect-measure choice, clinical-heterogeneity interpretation, the pooling decision |
 | Certainty, writing & review | GRADE, absolute effects, PRISMA reporting, unified numbers / terminology / figure style, AI multi-perspective review–revision–recheck loop, living-review updates | strength of conclusions, author responsibility, pre-submission item-by-item verification |
 
-### Integrity & automation boundaries
+### Safeguards
 
-- Time-sensitive facts, guidelines, registrations, retractions, and
-  references are verified online in real time; DOI, title, authors,
-  year, and journal identity must pass checks before anything is
+- Live verification of time-sensitive facts, guidelines,
+  registrations, retractions, and references before anything is
   finalized.
-- Nothing is fabricated: no invented database access, hit counts, PDFs,
-  screening decisions, extracted values, analysis outputs, confidence
-  intervals, GRADE ratings, or completion status. Missing data stays
-  missing and enters the follow-up queue.
-- Full texts are obtained only through public APIs, open-access links,
-  user-provided files, or institutional routes the user is authorized
-  to use; paywalls, CAPTCHAs, robots.txt, and publisher terms are never
-  bypassed.
-- API keys and credentials are read only from environment variables or
-  user-approved secret stores — never from project files, logs, or git
-  history. Databases requiring manual login use an "auto-prepare →
-  human takeover → continue after export" pattern.
-- Raw responses, queries, timestamps, file hashes, versions, and
-  decision logs are kept at every step, so screening, extraction,
-  analysis, and revisions stay traceable, checkable, and updatable.
+- No fabricated database access, hit counts, PDFs, screening
+  decisions, extracted values, analysis outputs, confidence intervals,
+  GRADE ratings, or completion status; missing data stays missing and
+  is queued for follow-up.
+- Full texts come only from public APIs, open-access links,
+  user-provided files, or authorized institutional routes.
+- API keys are read from environment variables or user-approved secret
+  stores, never written to project files or git history.
+- Raw responses, queries, timestamps, file hashes, and decision logs
+  are kept at every step.
 
 ### What it ships & how to invoke
 
@@ -278,13 +272,14 @@ Meta 分析全流程 skill。skill 天然跨 LLM 通用，MetaWingman 同样如�
 | 定量/叙述综合 | 双臂 Meta、网络 Meta、诊断、预后、患病率/比例、剂量反应、Bayesian、多层/RVE、IPD、序贯分析、敏感性与影响分析；不宜合并时转 SWiM | 模型与效应量选择、临床异质性解释、是否合并的决定 |
 | 确定性、写作与审稿 | GRADE、绝对效应、PRISMA 报告、统一数字/术语/图表样式、AI 多视角审稿—修订—复核循环、living review 更新 | 结论强度、作者责任、投稿前逐项核验 |
 
-### 科研真实性与自动化边界
+### 行为边界
 
-- 对时效性事实、指南、注册、撤稿和参考文献执行实时联网核验；DOI、题名、作者、年份和期刊身份不通过核验就不进入定稿。
-- 不虚构数据库访问、检索条数、PDF、筛选决定、提取值、分析输出、置信区间、GRADE 等级或完成状态；缺失数据保留为缺失并进入追索队列。
-- 文献下载只走公开 API、开放获取链接、用户提供文件或用户已获授权的机构路径；不绕过付费墙、验证码、robots 或出版商条款。
-- API 密钥和账号凭据只从环境变量或经用户批准的密钥存储读取，不写入项目文件、日志或 Git 历史；需要人工登录的数据库采用「自动准备 + 人工接管 + 导出后继续」的方式。
-- 每一步保留原始响应、查询式、时间戳、文件哈希、版本与决策日志，使筛选、提取、分析和改稿都可追踪、可复核、可更新。
+- 时效性事实、指南、注册、撤稿和参考文献在定稿前联网核验。
+- 不虚构数据库访问、检索条数、PDF、筛选决定、提取值、分析输出、置信区间、
+  GRADE 等级或完成状态；缺失数据保留为缺失并进入追索队列。
+- 文献下载只走公开 API、开放获取链接、用户提供文件或用户已获授权的机构路径。
+- API 密钥从环境变量或经用户批准的密钥存储读取，不写入项目文件或 Git 历史。
+- 每一步保留原始响应、查询式、时间戳、文件哈希与决策日志。
 
 ### 内置方法与调用
 
