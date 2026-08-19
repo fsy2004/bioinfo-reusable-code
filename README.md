@@ -10,15 +10,15 @@ Module READMEs are written in Chinese unless noted otherwise; the
 overview.
 
 <p>
-<img alt="modules" src="https://img.shields.io/badge/modules-196-blue">
-<img alt="domains" src="https://img.shields.io/badge/domains-10-informational">
+<img alt="modules" src="https://img.shields.io/badge/modules-197-blue">
+<img alt="domains" src="https://img.shields.io/badge/domains-11-informational">
 <img alt="languages" src="https://img.shields.io/badge/R%204.4%20%7C%20Python%203.12-informational">
 <img alt="figures" src="https://img.shields.io/badge/figures-vector%20PDF%20%2B%20300dpi%20PNG-success">
 </p>
 
 ## What's inside
 
-196 modules organized into 10 domains and 53 subcategories. Each row
+197 modules organized into 11 domains and 54 subcategories. Each row
 below links to the domain directory; the complete per-module index is
 [`modules/CATALOG.md`](modules/CATALOG.md).
 
@@ -34,6 +34,7 @@ below links to the domain directory; the complete per-module index is
 | 08 Structure & drug design | molecular docking, molecular dynamics, virtual screening & scoring | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 Network pharmacology | target database extraction, target intersection & set relations, druggability scoring | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
 | 10 Visualization | advanced scientific plot types, publication-grade figure templates, external plotting resources | [`modules/10_visualization`](modules/10_visualization) |
+| 11 Evidence synthesis | pairwise meta-analysis (2×2 / continuous / correlation effect sizes, REML + Knapp–Hartung random-effects pooling, heterogeneity & subgroup / meta-regression, publication-bias & influence diagnostics, forest & funnel plots), powered by the bundled `meta-analysis-toolkit` function library | [`modules/11_evidence_synthesis`](modules/11_evidence_synthesis) |
 
 ### Start from your research question
 
@@ -217,15 +218,15 @@ module README and upstream repository.
 全量逐模块总览。
 
 <p>
-<img alt="modules" src="https://img.shields.io/badge/modules-196-blue">
-<img alt="domains" src="https://img.shields.io/badge/domains-10-informational">
+<img alt="modules" src="https://img.shields.io/badge/modules-197-blue">
+<img alt="domains" src="https://img.shields.io/badge/domains-11-informational">
 <img alt="languages" src="https://img.shields.io/badge/R%204.4%20%7C%20Python%203.12-informational">
 <img alt="figures" src="https://img.shields.io/badge/figures-vector%20PDF%20%2B%20300dpi%20PNG-success">
 </p>
 
 ## 这套库能做什么
 
-仓库包含 **196 个模块**，按 **10 个分析域、53 个子类**组织。下面每个域
+仓库包含 **197 个模块**，按 **11 个分析域、54 个子类**组织。下面每个域
 链接进入该域目录；完整的逐模块索引见 [`modules/CATALOG.md`](modules/CATALOG.md)。
 
 | 域 | 主要分析内容 | 进入目录 |
@@ -240,6 +241,7 @@ module README and upstream repository.
 | 08 结构与药物设计 | 分子对接、分子动力学、虚拟筛选与打分 | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 网络药理学 | 靶点数据库提取、靶点交集与集合关系、成药性评分 | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
 | 10 可视化 | 高级科研图型、出版级图形模板、外部绘图资源 | [`modules/10_visualization`](modules/10_visualization) |
+| 11 证据合成与系统评价 | 二分类/连续/相关结局的 meta 分析（REML + Knapp–Hartung 随机效应合并、异质性、亚组/meta 回归、发表偏倚、影响诊断、森林图/漏斗图），由随模块捆绑的 meta-analysis-toolkit 函数库驱动 | [`modules/11_evidence_synthesis`](modules/11_evidence_synthesis) |
 
 ### 按研究问题找入口
 

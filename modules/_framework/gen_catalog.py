@@ -90,6 +90,9 @@ DOMAINS = {
         "01_advanced_plots": ("高级图型", "Advanced plot types"),
         "02_templates_resources": ("模板与外部资源", "Templates & external resources"),
     }),
+    "11_evidence_synthesis": ("证据合成与系统评价", "Evidence synthesis", {
+        "01_pairwise_meta": ("二分类 / 连续 / 相关结局合并", "Pairwise meta-analysis"),
+    }),
 }
 
 # 没有编号、因而不在历史 CATALOG 里的条目:元信息按实际内容手工登记一次。
