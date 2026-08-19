@@ -547,7 +547,7 @@
   "deps": "R 4.4.3 · metafor(核心), meta / metadat / mada / bayesmeta / robvis / metasens / estmeansd(函数库进阶模块)",
   "lang": "R",
   "figures": "597_forest(森林图,含预测区间)、597_funnel(等高线漏斗图 90/95/99%)、597_metareg_bcg_ablat(bubble plot)、597_influence_{loo,baujat,cumulative,gosh}(影响诊断)",
-  "citation": "本模块捆绑的函数库来自用户自有仓库 fsy2004/meta-analysis-toolkit @ 3af629d(MIT 许可),函数库文档 toolkit/docs/REFERENCES.md。核心方法学引用:Viechtbauer 2010(metafor,JSS 36(3));Knapp & Hartung 2003(Stat Med 22);Sterne et al. 2011(漏斗图不对称,BMJ 343);Page et al. 2021(PRISMA 2020,BMJ 372:n71);Balshem et al. 2011 / Guyatt et al. 2011(GRADE,J Clin Epidemiol 64);Röver 2020(bayesmeta,JSS 93(6));Reitsma et al. 2005(DTA,J Clin Epidemiol 58)",
+  "citation": "本模块捆绑的函数库来自原独立仓库 meta-analysis-toolkit @ 3af629d(MIT 许可,2026-08 已并入本库),函数库文档 toolkit/docs/REFERENCES.md。核心方法学引用:Viechtbauer 2010(metafor,JSS 36(3));Knapp & Hartung 2003(Stat Med 22);Sterne et al. 2011(漏斗图不对称,BMJ 343);Page et al. 2021(PRISMA 2020,BMJ 372:n71);Balshem et al. 2011 / Guyatt et al. 2011(GRADE,J Clin Epidemiol 64);Röver 2020(bayesmeta,JSS 93(6));Reitsma et al. 2005(DTA,J Clin Epidemiol 58)",
   "audited": true,
   "source_checked": true,
   "invented_api": false,

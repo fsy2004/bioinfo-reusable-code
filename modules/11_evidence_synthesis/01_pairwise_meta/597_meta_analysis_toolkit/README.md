@@ -54,7 +54,7 @@
 
 ## ④ 特点 / 亮点
 
-- **函数库随模块捆绑**(`toolkit/`,来自 `fsy2004/meta-analysis-toolkit` @ `3af629d`,MIT 许可):R 模块 00–30 共 25 个文件、约 60 个函数,`source()` 即用,不重实现任何统计(全部 wrap 同行评审估计量)。
+- **函数库随模块捆绑**(`toolkit/`,来自原独立仓库 meta-analysis-toolkit,commit `3af629d`,MIT 许可;**2026-08 已并入本库**,原仓库不再单独维护):R 模块 00–30 共 25 个文件、约 60 个函数,`source()` 即用,不重实现任何统计(全部 wrap 同行评审估计量)。
 - **turnkey**:`Rscript 597_meta_analysis_toolkit.R` 零改动跑通;换数据用 `--input/--outdir`。
 - **顶刊默认值**:REML + Knapp-Hartung、预测区间、轮廓似然 I² 区间、trim-and-fill、PET-PEESE——Cochrane / PRISMA 2020 / GRADE 评审预期齐备;不设 I² 阈值自动决定合并(按 SKILL 规范人工判断)。
 - **可复现**:固定随机种子、每次运行自动写 `results/597_sessionInfo.txt` 依赖快照。
