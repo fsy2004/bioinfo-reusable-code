@@ -17,6 +17,21 @@ through the proxy), `git push` via `http://127.0.0.1:7892`.
 
 ---
 
+## 2026-08-20 output-audit modules (598-603)
+
+| # | Upstream tool | Local status | Local behavior | Full environment |
+|---|---|:---:|---|---|
+| 598 | ClairS | 🟡 | VCF audit + verified command only | Official ClairS Docker/Conda, tumor/normal long-read BAM, reference |
+| 599 | EviAnn | 🟡 | GFF3 audit + verified command only | Bioconda/Linux EviAnn plus genome and transcript/protein evidence |
+| 600 | OrthoFinder v3 | 🟡 | Orthogroups.tsv audit + verified command only | Conda/Linux OrthoFinder and per-species proteomes |
+| 601 | CoverM | 🟡 | abundance-table audit + verified command only | Bioconda/Linux CoverM, BAM/read inputs and genome definitions |
+| 602 | damidBind | 🟡 | exported differential-table audit | R/Bioconductor damidBind; use its official load/differential functions |
+| 603 | DiaReport | 🟡 | exported differential-protein audit | R, QFeatures, MSqRob2 and Quarto >1.8.25 per official README |
+
+These modules deliberately do not auto-install or silently substitute the upstream statistical/modeling method. Their default synthetic runs validate the repository interface only.
+
+---
+
 ## This-session modules (506-521)
 
 | # | Module | Real package | Status | Turnkey behavior | Server install |

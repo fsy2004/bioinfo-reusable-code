@@ -93,6 +93,22 @@ DOMAINS = {
     "11_evidence_synthesis": ("证据合成与系统评价", "Evidence synthesis", {
         "01_pairwise_meta": ("二分类 / 连续 / 相关结局合并", "Pairwise meta-analysis"),
     }),
+    "12_genome_annotation_variants": ("基因组注释与变异", "Genome annotation & variants", {
+        "01_somatic_variants": ("体细胞变异", "Somatic variants"),
+        "02_genome_annotation": ("基因组注释", "Genome annotation"),
+    }),
+    "13_comparative_genomics_phylogenetics": ("比较基因组与系统发育", "Comparative genomics & phylogenetics", {
+        "01_orthology": ("直系同源与基因家族", "Orthology & gene families"),
+    }),
+    "14_microbiome_metagenomics": ("微生物组与宏基因组", "Microbiome & metagenomics", {
+        "01_abundance": ("基因组丰度与覆盖", "Genome abundance & coverage"),
+    }),
+    "15_epigenomics_chromatin": ("表观基因组与染色质", "Epigenomics & chromatin", {
+        "01_damid": ("DamID 与差异结合", "DamID & differential binding"),
+    }),
+    "16_proteomics_metabolomics": ("蛋白质组与代谢组", "Proteomics & metabolomics", {
+        "01_dia_proteomics": ("DIA 蛋白质组", "DIA proteomics"),
+    }),
 }
 
 # 没有编号、因而不在历史 CATALOG 里的条目:元信息按实际内容手工登记一次。

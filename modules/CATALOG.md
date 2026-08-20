@@ -511,6 +511,52 @@
 |----|---|------|------|------------|------|------|------|
 | ✅ | 597 | [597_meta_analysis_toolkit](11_evidence_synthesis/01_pairwise_meta/597_meta_analysis_toolkit) | 证据合成 / 系统评价 meta 分析(函数库演示):2×2 计数 → REML+Knapp-Hartung 随机效应合并、异质性、亚组/meta 回归、发表偏倚(Egger/Begg/trim&fill/PET-PEESE)、影响诊断 → 森林图/漏斗图。统计全部由随模块捆绑的 meta-analysis-toolkit 函数库(toolkit/R,wrap metafor 等)完成,本脚本只做 I/O 与展示 | 输入 example_data/bcg_trials.csv(13 个 BCG 疫苗随机对照试验 2×2 计数 + ablat/alloc 调节变量,真实数据来源 metadat::dat.bcg);输出 results/597_pooled_summary.csv、597_subgroup_summary.csv、597_metareg_summary.csv、597_pubbias_summary.csv、597_sessionInfo.txt + 7 张矢量 PDF(森林/漏斗/meta 回归/影响诊断)+ assets/597_forest.png、597_funnel.png(300dpi) | R 4.4.3 · metafor(核心), meta / metadat / mada / bayesmeta / robvis / metasens / estmeansd(函数库进阶模块) | R | 597_forest(森林图,含预测区间)、597_funnel(等高线漏斗图 90/95/99%)、597_metareg_bcg_ablat(bubble plot)、597_influence_{loo,baujat,cumulative,gosh}(影响诊断) |
 
+## 12 · 基因组注释与变异 — Genome annotation & variants  (2)
+
+### 12.01 · 体细胞变异 — Somatic variants
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 598 | [598_clairs_longread_somatic_audit](12_genome_annotation_variants/01_somatic_variants/598_clairs_longread_somatic_audit) | ClairS 长读长肿瘤-正常体细胞变异结果审计：解析标准 VCF，透明汇总 PASS/过滤及 SNV/indel/other，并生成经官方 README 核实的上游命令；不在本机运行模型 | 输入 VCF（默认合成示例）；输出 598_summary.csv/json + 598_audit.png/pdf | Python 3 + matplotlib；完整 ClairS 需官方 Docker/Conda、长读长 BAM 与参考基因组 | Python | 变异过滤状态与类型计数图（PNG+PDF） |
+
+### 12.02 · 基因组注释 — Genome annotation
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 599 | [599_eviann_annotation_audit](12_genome_annotation_variants/02_genome_annotation/599_eviann_annotation_audit) | EviAnn 真核基因组注释结果审计：解析 GFF3 feature/attributes，汇总基因、转录本、外显子、CDS、完整证据与伪基因标记，并生成经官方 README 核实的上游命令 | 输入 EviAnn GFF3（默认合成示例）；输出 599_summary.csv/json + 599_audit.png/pdf | Python 3 + matplotlib；完整 EviAnn 建议 Bioconda/Linux 环境 | Python | 注释元素与完整转录本计数图（PNG+PDF） |
+
+## 13 · 比较基因组与系统发育 — Comparative genomics & phylogenetics  (1)
+
+### 13.01 · 直系同源与基因家族 — Orthology & gene families
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 600 | [600_orthofinder_v3_audit](13_comparative_genomics_phylogenetics/01_orthology/600_orthofinder_v3_audit) | OrthoFinder v3 Orthogroups.tsv 结果审计：计算物种数、基因分配、完整直系同源组与完整单拷贝组，并生成经官方文档核实的上游命令 | 输入 Orthogroups.tsv（默认合成示例）；输出 600_summary.csv/json + 600_audit.png/pdf | Python 3 + matplotlib；完整 OrthoFinder v3 建议 Conda/Linux 环境 | Python | 全部/完整/单拷贝直系同源组计数图（PNG+PDF） |
+
+## 14 · 微生物组与宏基因组 — Microbiome & metagenomics  (1)
+
+### 14.01 · 基因组丰度与覆盖 — Genome abundance & coverage
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 601 | [601_coverm_abundance_audit](14_microbiome_metagenomics/01_abundance/601_coverm_abundance_audit) | CoverM 宏基因组/MAG 相对丰度输出审计：检查必需列、非负值、样本/基因组规模与每样本丰度和，并生成经官方 README 核实的 coverm genome 命令 | 输入 sample/genome/relative_abundance 长表 CSV；输出 601_summary.csv/json + 601_audit.png/pdf | Python 3 + pandas + matplotlib；完整 CoverM 建议 Bioconda/Linux 环境 | Python | 每样本相对丰度和审计图（PNG+PDF） |
+
+## 15 · 表观基因组与染色质 — Epigenomics & chromatin  (1)
+
+### 15.01 · DamID 与差异结合 — DamID & differential binding
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 602 | [602_damidbind_result_audit](15_epigenomics_chromatin/01_damid/602_damidbind_result_audit) | damidBind 导出差异结合结果审计：校验 locus/log2FoldChange/pvalue/padj，按 FDR 与效应方向汇总 gain/loss 并绘制火山图；统计模型仍由官方 R 包完成 | 输入 damidBind 导出 CSV（默认合成示例）；输出 602_summary.csv/json + 602_audit.png/pdf | Python 3 + pandas + numpy + matplotlib；完整分析需 damidBind R/Bioconductor | Python | 差异结合火山图（PNG+PDF） |
+
+## 16 · 蛋白质组与代谢组 — Proteomics & metabolomics  (1)
+
+### 16.01 · DIA 蛋白质组 — DIA proteomics
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 🟡 | 603 | [603_diareport_result_audit](16_proteomics_metabolomics/01_dia_proteomics/603_diareport_result_audit) | DiaReport/MSqRob 导出差异蛋白结果审计：校验 protein/log2FC/pvalue/padj，按 FDR 与效应方向汇总上调/下调并绘制火山图；不重写 QFeatures/MSqRob2/Quarto 流程 | 输入 DiaReport/MSqRob 导出 CSV（默认合成示例）；输出 603_summary.csv/json + 603_audit.png/pdf | Python 3 + pandas + numpy + matplotlib；完整分析需 R、QFeatures、MSqRob2、Quarto | Python | 差异蛋白火山图（PNG+PDF） |
+
 ---
 
 ## 图类型 → 模块 反查表

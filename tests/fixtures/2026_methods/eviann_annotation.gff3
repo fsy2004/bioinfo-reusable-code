@@ -1,0 +1,11 @@
+##gff-version 3
+chr1	EviAnn	gene	1	900	.	+	.	ID=gene1;type=protein_coding
+chr1	EviAnn	mRNA	1	900	.	+	.	ID=tx1;Parent=gene1;Evidence=complete;EvidenceProteinID=P1;EvidenceTranscriptID=T1
+chr1	EviAnn	exon	1	200	.	+	.	Parent=tx1
+chr1	EviAnn	CDS	20	180	.	+	0	Parent=tx1
+chr1	EviAnn	mRNA	300	800	.	+	.	ID=tx2;Parent=gene1;Evidence=partial;EvidenceTranscriptID=T2;pseudo=true
+chr1	EviAnn	exon	300	800	.	+	.	Parent=tx2
+chr2	EviAnn	gene	100	500	.	-	.	ID=gene2;type=protein_coding
+chr2	EviAnn	mRNA	100	500	.	-	.	ID=tx3;Parent=gene2
+chr2	EviAnn	exon	100	500	.	-	.	Parent=tx3
+chr2	EviAnn	CDS	150	450	.	-	0	Parent=tx3
