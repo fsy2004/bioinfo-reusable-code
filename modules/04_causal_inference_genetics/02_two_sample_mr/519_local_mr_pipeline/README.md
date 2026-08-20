@@ -71,6 +71,19 @@ tar -xzf 1kg.v3.tgz        # → EUR.bed/.bim/.fam (+ AFR / EAS / SAS / AMR)
 Point `--bfile` at the prefix (e.g. `.../EUR`, no extension). Set env var
 `MR_LD_BFILE` to make it the default.
 
+## Verify the local clumping runtime
+
+Before a real MR run, verify the installed PLINK binary and reference panel with
+real panel variants:
+
+```bash
+Rscript verify_local_clumping.R --bfile C:/path/to/1000G/EUR --n 1000
+```
+
+The check samples chromosome-1 variants from the supplied panel (1,000 by default) and
+runs `ieugwasr::ld_clump()` locally. A PASS confirms the local runtime path; it
+is an implementation check, not a scientific MR result or dataset validation.
+
 ## Outputs
 
 | File | Description |
