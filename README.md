@@ -3,10 +3,10 @@
 按研究问题组织的 R/Python 生物信息学代码库：先选领域，再进入可独立运行的模块，用自己的数据替换合成示例。
 
 <!-- readme-metrics:start -->
-![modules](https://img.shields.io/badge/modules-189-2563EB)
-![catalog entries](https://img.shields.io/badge/catalog_entries-203-334155)
-![domains](https://img.shields.io/badge/domains-16-0F766E)
-![subcategories](https://img.shields.io/badge/subcategories-60-7C3AED)
+![modules](https://img.shields.io/badge/modules-188-2563EB)
+![catalog entries](https://img.shields.io/badge/catalog_entries-202-334155)
+![domains](https://img.shields.io/badge/domains-15-0F766E)
+![subcategories](https://img.shields.io/badge/subcategories-59-7C3AED)
 ![outputs](https://img.shields.io/badge/figures-PDF%20%2B%20300dpi%20PNG-15803D)
 <!-- readme-metrics:end -->
 
@@ -51,7 +51,6 @@ python modules\12_genome_annotation_variants\01_somatic_variants\598_clairs_long
 | 08 · 结构与药物设计 — Structure & drug design | 6 | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 · 网络药理学 — Network pharmacology | 8 | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
 | 10 · 可视化 — Visualization | 13 | [`modules/10_visualization`](modules/10_visualization) |
-| 11 · 证据合成与系统评价 — Evidence synthesis | 1 | [`modules/11_evidence_synthesis`](modules/11_evidence_synthesis) |
 | 12 · 基因组注释与变异 — Genome annotation & variants | 2 | [`modules/12_genome_annotation_variants`](modules/12_genome_annotation_variants) |
 | 13 · 比较基因组与系统发育 — Comparative genomics & phylogenetics | 1 | [`modules/13_comparative_genomics_phylogenetics`](modules/13_comparative_genomics_phylogenetics) |
 | 14 · 微生物组与宏基因组 — Microbiome & metagenomics | 1 | [`modules/14_microbiome_metagenomics`](modules/14_microbiome_metagenomics) |
@@ -103,9 +102,6 @@ git diff --check
 
 README 的动态指标和领域表由 `scripts/update_readme.py` 维护；GitHub Actions 在 push、pull request 和每周计划任务中检查漂移。写作范式、触发条件和人工维护边界见 [`docs/README_MAINTENANCE.md`](docs/README_MAINTENANCE.md)。
 
-## MetaWingman
-
-系统综述与 Meta 分析的完整 Agent 工作流独立维护在 [MetaWingman](https://github.com/fsy2004/MetaWingman)。本库的 597 模块保存确定性统计工具示例；MetaWingman 负责研究问题、方案、检索、筛选、提取、偏倚风险、GRADE、写作和持续更新的审计流程。
 
 ## 贡献
 
