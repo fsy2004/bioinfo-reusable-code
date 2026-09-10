@@ -10,15 +10,15 @@ Module READMEs are written in Chinese unless noted otherwise; the
 overview.
 
 <p>
-<img alt="modules" src="https://img.shields.io/badge/modules-197-blue">
-<img alt="domains" src="https://img.shields.io/badge/domains-11-informational">
+<img alt="modules" src="https://img.shields.io/badge/modules-196-blue">
+<img alt="domains" src="https://img.shields.io/badge/domains-10-informational">
 <img alt="languages" src="https://img.shields.io/badge/R%204.4%20%7C%20Python%203.12-informational">
 <img alt="figures" src="https://img.shields.io/badge/figures-vector%20PDF%20%2B%20300dpi%20PNG-success">
 </p>
 
 ## What's inside
 
-197 modules organized into 11 domains and 54 subcategories. Each row
+196 modules organized into 10 domains and 53 subcategories. Each row
 below links to the domain directory; the complete per-module index is
 [`modules/CATALOG.md`](modules/CATALOG.md).
 
@@ -34,7 +34,6 @@ below links to the domain directory; the complete per-module index is
 | 08 Structure & drug design | molecular docking, molecular dynamics, virtual screening & scoring | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 Network pharmacology | target database extraction, target intersection & set relations, druggability scoring | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
 | 10 Visualization | advanced scientific plot types, publication-grade figure templates, external plotting resources | [`modules/10_visualization`](modules/10_visualization) |
-| 11 Evidence synthesis | pairwise meta-analysis (2×2 / continuous / correlation effect sizes, REML + Knapp–Hartung random-effects pooling, heterogeneity & subgroup / meta-regression, publication-bias & influence diagnostics, forest & funnel plots), powered by the bundled `meta-analysis-toolkit` function library | [`modules/11_evidence_synthesis`](modules/11_evidence_synthesis) |
 
 ### Start from your research question
 
@@ -45,73 +44,6 @@ below links to the domain directory; the complete per-module index is
 - "Build a diagnostic, prognostic, or risk model" → **05 Machine learning** and **07 Clinical & translational**.
 - "How does a candidate small molecule bind, and is it stable?" → **08 Structure & drug design**.
 - "Turn results into paper figures" → **10 Visualization**, or reuse each module's `assets/` and the shared plotting framework.
-
-## MetaWingman skill (systematic review & meta-analysis)
-
-[`MetaWingman`](https://github.com/fsy2004/MetaWingman) is an
-end-to-end skill for systematic review and meta-analysis. Skills are
-portable across LLM hosts, and MetaWingman is no exception: it runs on
-your existing host model and requires no extra model API. It is not a
-"meta-analysis app" that only wraps statistical commands — it organizes
-methodological decisions, an auditable project state, literature search
-and lawful retrieval, statistical code, writing conventions, and an AI
-review loop into one workflow. A Gitee mirror lives at
-[`fsy2004/meta-wingman`](https://gitee.com/fsy2004/meta-wingman).
-
-### Stage coverage
-
-| Stage | What the skill does | Human / audit checkpoints that remain |
-|---|---|---|
-| Topic & feasibility | frames the question, estimand, novelty and combinability; live-checks existing reviews, registrations, key studies | research question, scope, go / no-go decision |
-| Protocol & registration | protocol structure, eligibility criteria, search plan, pre-specified analysis and bias control | protocol freeze, justification and approval of major deviations |
-| Search & retrieval | auditable PubMed / Europe PMC / ClinicalTrials.gov search; Crossref / DOI checks; Unpaywall and open full text; imports authorized database exports | commercial database logins, CAPTCHAs, institutional licenses, final search confirmation |
-| Dedup & screening | deterministic dedup, dual title/abstract and full-text screening, conflict arbitration, per-record exclusion reasons, PRISMA counts | independent judgment, conflict arbitration, full-text conclusions that cannot be inferred automatically |
-| Extraction & appraisal | `record_id -> report_id -> study/trial_id -> result_id` lineage, multi-report / multi-timepoint / multi-arm relations, design-matched tools (RoB 2, ROBINS-I, QUADAS-2, ...) | source-locating checks, double-checking key numbers, final domain judgment |
-| Quantitative / narrative synthesis | pairwise meta, network meta, diagnostic, prognostic, prevalence/proportions, dose-response, Bayesian, multilevel/RVE, IPD, sequential analysis, sensitivity & influence; SWiM when pooling is inappropriate | model and effect-measure choice, clinical-heterogeneity interpretation, the pooling decision |
-| Certainty, writing & review | GRADE, absolute effects, PRISMA reporting, unified numbers / terminology / figure style, AI multi-perspective review–revision–recheck loop, living-review updates | strength of conclusions, author responsibility, pre-submission item-by-item verification |
-
-### Safeguards
-
-- Live verification of time-sensitive facts, guidelines,
-  registrations, retractions, and references before anything is
-  finalized.
-- No fabricated database access, hit counts, PDFs, screening
-  decisions, extracted values, analysis outputs, confidence intervals,
-  GRADE ratings, or completion status; missing data stays missing and
-  is queued for follow-up.
-- Full texts come only from public APIs, open-access links,
-  user-provided files, or authorized institutional routes.
-- API keys are read from environment variables or user-approved secret
-  stores, never written to project files or git history.
-- Raw responses, queries, timestamps, file hashes, and decision logs
-  are kept at every step.
-
-### What it ships & how to invoke
-
-The MetaWingman repository includes 12 methodological references, 8
-Python workflow scripts, 61 R analysis manifests, 15 task-oriented R
-adapters (plus one shared adapter), and 26 lower-level R tool modules.
-All 61 manifests pass migration checks with their declared example
-inputs; these checks prove the interfaces run, not that any specific
-project's data, methods, or interpretation are correct.
-
-```text
-$metawingman
-
-Research question: ...
-Current stage: topic / protocol / search / screening / extraction /
-appraisal / analysis / writing / review / update
-Existing materials: protocol, search string, RIS/CSV, PDFs, extraction
-tables, or analysis data (if any)
-Expected output: decision records, reproducible project, figures,
-GRADE tables, manuscript, or review report
-```
-
-The skill first identifies the review type and current stage, then
-loads only the relevant methodology notes and tools. Statistical
-analyses follow the protocol, estimand, study design, effect measure,
-dependency structure, and information available — having every tool is
-never a reason to run every analysis.
 
 ## How a module works
 
@@ -218,15 +150,15 @@ module README and upstream repository.
 全量逐模块总览。
 
 <p>
-<img alt="modules" src="https://img.shields.io/badge/modules-197-blue">
-<img alt="domains" src="https://img.shields.io/badge/domains-11-informational">
+<img alt="modules" src="https://img.shields.io/badge/modules-196-blue">
+<img alt="domains" src="https://img.shields.io/badge/domains-10-informational">
 <img alt="languages" src="https://img.shields.io/badge/R%204.4%20%7C%20Python%203.12-informational">
 <img alt="figures" src="https://img.shields.io/badge/figures-vector%20PDF%20%2B%20300dpi%20PNG-success">
 </p>
 
 ## 这套库能做什么
 
-仓库包含 **197 个模块**，按 **11 个分析域、54 个子类**组织。下面每个域
+仓库包含 **196 个模块**，按 **11 个分析域、53 个子类**组织。下面每个域
 链接进入该域目录；完整的逐模块索引见 [`modules/CATALOG.md`](modules/CATALOG.md)。
 
 | 域 | 主要分析内容 | 进入目录 |
@@ -241,7 +173,6 @@ module README and upstream repository.
 | 08 结构与药物设计 | 分子对接、分子动力学、虚拟筛选与打分 | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 网络药理学 | 靶点数据库提取、靶点交集与集合关系、成药性评分 | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
 | 10 可视化 | 高级科研图型、出版级图形模板、外部绘图资源 | [`modules/10_visualization`](modules/10_visualization) |
-| 11 证据合成与系统评价 | 二分类/连续/相关结局的 meta 分析（REML + Knapp–Hartung 随机效应合并、异质性、亚组/meta 回归、发表偏倚、影响诊断、森林图/漏斗图），由随模块捆绑的 meta-analysis-toolkit 函数库驱动 | [`modules/11_evidence_synthesis`](modules/11_evidence_synthesis) |
 
 ### 按研究问题找入口
 
@@ -252,51 +183,6 @@ module README and upstream repository.
 - 想建立「诊断、预后或风险预测模型」：查看 **05 机器学习** 与 **07 临床与转化**。
 - 想回答「候选小分子如何结合、是否稳定、如何筛选」：查看 **08 结构与药物设计**。
 - 想把结果整理成论文图：查看 **10 可视化**，或直接复用各分析模块的 `assets/` 与统一绘图框架。
-
-## 系统综述与 Meta 分析 Skill（MetaWingman）
-
-[`MetaWingman`](https://github.com/fsy2004/MetaWingman) 是系统综述与
-Meta 分析全流程 skill。skill 天然跨 LLM 通用，MetaWingman 同样如此：跑在
-你现有的宿主模型上，不需要额外模型 API。它不是只封装统计命令的「Meta
-软件」，而是把方法学决策、可审计项目状态、文献检索与合法获取、统计代码、
-写作规范和 AI 审稿闭环组织在一起。Gitee 镜像见
-[`fsy2004/meta-wingman`](https://gitee.com/fsy2004/meta-wingman)。
-
-### 能覆盖什么
-
-| 阶段 | Skill 提供的辅助 | 必须保留的人工/审计关口 |
-|---|---|---|
-| 选题与可行性 | 明确问题框架、估计目标、创新性与可合并性，联网核查既有综述、注册与关键研究 | 研究问题、范围和继续/停止决定 |
-| 方案与注册 | 协议结构、资格标准、检索计划、分析和偏倚控制预设 | 协议冻结、重要偏离的说明与批准 |
-| 检索与文献获取 | PubMed、Europe PMC、ClinicalTrials.gov 的可审计检索；Crossref/DOI 核验；Unpaywall 与开放全文获取；导入授权数据库导出 | 商业数据库登录、验证码、机构许可和最终检索确认 |
-| 去重与纳排 | 确定性去重、双人题录/摘要与全文筛选、冲突仲裁、逐篇排除理由、PRISMA 计数 | 独立判断、冲突仲裁和不可自动推断的全文结论 |
-| 提取与质量评价 | `record_id -> report_id -> study/trial_id -> result_id` 谱系，多报告/多时间点/多臂关系，RoB 2、ROBINS-I、QUADAS-2 等设计匹配工具 | 原文定位复核、关键数值双查与最终领域判断 |
-| 定量/叙述综合 | 双臂 Meta、网络 Meta、诊断、预后、患病率/比例、剂量反应、Bayesian、多层/RVE、IPD、序贯分析、敏感性与影响分析；不宜合并时转 SWiM | 模型与效应量选择、临床异质性解释、是否合并的决定 |
-| 确定性、写作与审稿 | GRADE、绝对效应、PRISMA 报告、统一数字/术语/图表样式、AI 多视角审稿—修订—复核循环、living review 更新 | 结论强度、作者责任、投稿前逐项核验 |
-
-### 行为边界
-
-- 时效性事实、指南、注册、撤稿和参考文献在定稿前联网核验。
-- 不虚构数据库访问、检索条数、PDF、筛选决定、提取值、分析输出、置信区间、
-  GRADE 等级或完成状态；缺失数据保留为缺失并进入追索队列。
-- 文献下载只走公开 API、开放获取链接、用户提供文件或用户已获授权的机构路径。
-- API 密钥从环境变量或经用户批准的密钥存储读取，不写入项目文件或 Git 历史。
-- 每一步保留原始响应、查询式、时间戳、文件哈希与决策日志。
-
-### 内置方法与调用
-
-MetaWingman 仓库包括 **12 份方法学参考、8 个 Python 工作流脚本、61 个 R 分析清单、15 个面向任务的 R 适配器（另有 1 个公共适配器）和 26 个底层 R 工具模块**。61 个清单均已用声明的示例输入完成迁移验证；这些验证证明接口能够运行，不代替具体课题的数据核查、方法选择和科学解释。
-
-```text
-$metawingman
-
-研究问题：……
-当前阶段：选题 / 协议 / 检索 / 纳排 / 提取 / 评价 / 分析 / 写作 / 审稿 / 更新
-已有材料：协议、检索式、RIS/CSV、PDF、提取表或分析数据（如有）
-期望输出：决策记录、可复现项目、图表、GRADE 表、稿件或审稿报告
-```
-
-Skill 会先识别综述类型和当前阶段，再只加载相关方法说明与工具；统计分析服从协议、估计目标、研究设计、效应量、依赖结构和信息量，不以「工具齐全」为理由堆叠不必要分析。
 
 ## 模块怎么用
 
