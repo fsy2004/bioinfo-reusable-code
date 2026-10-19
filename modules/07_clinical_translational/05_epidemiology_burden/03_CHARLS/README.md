@@ -1,12 +1,3 @@
-# 03_CHARLS
+# Migrated module entry
 
-CHARLS-style longitudinal cohort analysis (wave description, cross-wave equating,
-longitudinal trend, mixed model, incident-event survival).
-
-| Module | Purpose | Language |
-|--------|---------|----------|
-| [529 CHARLS longitudinal cohort](529_charls_longitudinal_cohort/) | Table 1 + equipercentile equating + LMM + Cox/KM | R |
-
-Turnkey on a synthetic multi-wave panel; grounded in
-`../99_external_sources/charls_memory_equating/`. The `equate` package is
-reimplemented from weighted-ECDF inversion (not installed); see the module README.
+活动模块已迁入独立领域：[17_population_epidemiology](../../../17_population_epidemiology/03_longitudinal_cohorts/529_charls_longitudinal_cohort)。模块 ID 保持不变。旧目录中的本地参考资料保留原位。

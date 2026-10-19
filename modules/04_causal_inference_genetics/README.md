@@ -1,6 +1,6 @@
 # 04 · 因果推断与遗传流行病 — Causal inference & genetics
 
-本域共 29 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
+本域共 32 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
 
 
 ## 工具变量准备 — Instrument preparation
@@ -9,6 +9,7 @@
 - [029_mr_gwas_exposure_ld_clump.R](01_instrument_prep/029_mr_gwas_exposure_ld_clump.R) — LD-clump to independent instruments
 - [030_mr_gwas_exposure_add_eaf.R](01_instrument_prep/030_mr_gwas_exposure_add_eaf.R) — Add effect-allele frequency to exposure SNPs
 - [031_mr_gwas_exposure_weak_iv_filter.R](01_instrument_prep/031_mr_gwas_exposure_weak_iv_filter.R) — F-statistic weak-instrument filter
+- [610_mr_exposure_contract](01_instrument_prep/610_mr_exposure_contract) — MR暴露语义与工具元数据审计：用药倾向、内源皮质醇、分子工具、样本重叠及工具强度
 
 ## 两样本孟德尔随机化 — Two-sample MR
 
@@ -52,3 +53,8 @@
 
 - [533_mrcare_winnerscurse_mr](07_robust_mr_methods/533_mrcare_winnerscurse_mr) — Winner's-curse-corrected MR (CARE/RIVW) vs naive baseline
 - [595_mreills_robust_mr](07_robust_mr_methods/595_mreills_robust_mr) — 不变性(EILLS)稳健 MR：整合多个异质 GWAS summary 数据集，对含水平多效性的无效工具做筛选并给出单/多暴露因果估计，与 MVMR-IVW / MR-Egger 同数据对照
+
+## GWAS 质控与精细定位 — GWAS QC & fine-mapping
+
+- [608_gwas_summary_qc](08_gwas_finemapping/608_gwas_summary_qc) — GWAS全区域汇总统计与signed LD审计：build、祖源、效应、频率、顺序与方向守卫
+- [609_susie_coloc](08_gwas_finemapping/609_susie_coloc) — 单祖源SuSiE RSS精细定位与多信号共定位：PIP、H0-H4、prior敏感性及ABF基线

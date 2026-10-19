@@ -1,0 +1,1393 @@
+{
+  "retrieved_at": "2026-10-19",
+  "policy": "Metadata and links only; upstream full READMEs and code are not vendored. Pins describe inspected sources, not installed runtime versions.",
+  "sources": [
+    {
+      "repository": "Causal-LDA/TrialEmulation",
+      "url": "https://github.com/Causal-LDA/TrialEmulation",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/Causal-LDA/TrialEmulation/735eea6a0cf227820f1c2af8cea4120635cb268a/DESCRIPTION",
+      "package": "TrialEmulation",
+      "version": "0.0.5",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "target_trial_emulation",
+        "MSM",
+        "time_varying_confounding"
+      ],
+      "head_sha": "735eea6a0cf227820f1c2af8cea4120635cb268a",
+      "license": "Apache License (>= 2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "jtextor/dagitty",
+      "url": "https://github.com/jtextor/dagitty",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/jtextor/dagitty/92dcf5f348f82934196457a151b4a88f8110b257/r/DESCRIPTION",
+      "package": "dagitty",
+      "version": "0.3-4",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "DAG",
+        "adjustment_sets"
+      ],
+      "head_sha": "92dcf5f348f82934196457a151b4a88f8110b257",
+      "license": "GPL-2",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "r-causal/ggdag",
+      "url": "https://github.com/r-causal/ggdag",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/r-causal/ggdag/b107665fd9167179654f7772315c2744d2d0445a/DESCRIPTION",
+      "package": "ggdag",
+      "version": "0.2.13.9000",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "DAG_visualization"
+      ],
+      "head_sha": "b107665fd9167179654f7772315c2744d2d0445a",
+      "license": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "mayamathur/evalue_package",
+      "url": "https://github.com/mayamathur/evalue_package",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/mayamathur/evalue_package/333d022041951903744e097e052430700eabbbca/EValue/DESCRIPTION",
+      "package": "EValue",
+      "version": "4.1.3",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "unmeasured_confounding",
+        "E_value"
+      ],
+      "head_sha": "333d022041951903744e097e052430700eabbbca",
+      "license": "GPL-2",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "tagteam/riskRegression",
+      "url": "https://github.com/tagteam/riskRegression",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/tagteam/riskRegression/ce0a4e8c2cb8db3688a88070b278f6060aa5edb3/DESCRIPTION",
+      "package": "riskRegression",
+      "version": "2026.10.06",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "competing_risks",
+        "prediction",
+        "AIPW"
+      ],
+      "head_sha": "ce0a4e8c2cb8db3688a88070b278f6060aa5edb3",
+      "license": "GPL (>= 2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "cran/cmprsk",
+      "url": "https://github.com/cran/cmprsk",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/cran/cmprsk/f81411e1e3f57822796bae2a6870657e455362e9/DESCRIPTION",
+      "package": "cmprsk",
+      "version": "2.2-12",
+      "kind": "CRAN mirror",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "Fine_Gray",
+        "CIF"
+      ],
+      "head_sha": "f81411e1e3f57822796bae2a6870657e455362e9",
+      "license": "GPL (>= 2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "YuLab-SMU/clusterProfiler",
+      "url": "https://github.com/YuLab-SMU/clusterProfiler",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/YuLab-SMU/clusterProfiler/master/DESCRIPTION",
+      "package": "clusterProfiler",
+      "version": "4.21.3",
+      "read_level": "DESCRIPTION inspected; moving branch, commit not pinned",
+      "head_sha": null,
+      "license": "Artistic-2.0",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "cran/lavaan",
+      "url": "https://github.com/cran/lavaan",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/cran/lavaan/master/DESCRIPTION",
+      "package": "lavaan",
+      "version": "0.7-3",
+      "read_level": "DESCRIPTION inspected; moving branch, commit not pinned",
+      "head_sha": null,
+      "license": "GPL (>= 2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "wch/r-source",
+      "url": "https://github.com/wch/r-source",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/wch/r-source/trunk/src/library/stats/DESCRIPTION.in",
+      "read_level": "DESCRIPTION.in inspected; GitHub mirror of R sources",
+      "head_sha": null,
+      "retrieval_note": "Initial DESCRIPTION URL was 404; corrected to DESCRIPTION.in",
+      "version_freeze": "moving_reference_not_pinned",
+      "package": "stats",
+      "license_declared": "Part of R; consult repository COPYING"
+    },
+    {
+      "repository": "abess-team/abess",
+      "url": "https://github.com/abess-team/abess",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/abess-team/abess/HEAD/R-package/DESCRIPTION",
+      "package": "abess",
+      "version": "0.4.11",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "abess_feature_selection"
+      ],
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL (>= 3) | file LICENSE",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "mbq/Boruta",
+      "url": "https://github.com/mbq/Boruta",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://github.com/mbq/Boruta",
+      "version": null,
+      "kind": "migration_stub",
+      "read_level": "GitHub landing page inspected: repository contains migration README only",
+      "methods": [
+        "boruta_feature_selection"
+      ],
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s",
+        "Boruta/DESCRIPTION: HTTPError: HTTP Error 404: Not Found",
+        "DESCRIPTION: HTTPError: HTTP Error 404: Not Found"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "cran/nricens",
+      "url": "https://github.com/cran/nricens",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/cran/nricens/HEAD/DESCRIPTION",
+      "package": "nricens",
+      "version": "1.6",
+      "kind": "CRAN_read_only_mirror",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "nri"
+      ],
+      "paper_ids": [
+        "OBS2026_06"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL-2",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "cran/PredictABEL",
+      "url": "https://github.com/cran/PredictABEL",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/cran/PredictABEL/HEAD/DESCRIPTION",
+      "package": "PredictABEL",
+      "version": "1.2-4",
+      "kind": "CRAN_read_only_mirror",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "idi",
+        "nri",
+        "risk_prediction_evaluation"
+      ],
+      "paper_ids": [
+        "OBS2026_06"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL (>= 2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "ddsjoberg/dcurves",
+      "url": "https://github.com/ddsjoberg/dcurves",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/ddsjoberg/dcurves/2362730fc50edd553fcb7b65950e166cfa17e8de/DESCRIPTION",
+      "package": "dcurves",
+      "version": "0.5.1.9000",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "decision_curve_analysis"
+      ],
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "errors": [],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": "2362730fc50edd553fcb7b65950e166cfa17e8de",
+      "license": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "ngreifer/MatchIt",
+      "url": "https://github.com/ngreifer/MatchIt",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/ngreifer/MatchIt/HEAD/DESCRIPTION",
+      "package": "MatchIt",
+      "version": "4.8.1",
+      "kind": "maintainer_development_fork",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "propensity_score_matching"
+      ],
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL (>=2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "harrelfe/rms",
+      "url": "https://github.com/harrelfe/rms",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/harrelfe/rms/HEAD/DESCRIPTION",
+      "package": "rms",
+      "version": "8.2-0",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "restricted_cubic_spline",
+        "regression_modeling"
+      ],
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_07",
+        "OBS2026_08",
+        "DIRECT2024_01"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL (>= 2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "xrobin/pROC",
+      "url": "https://github.com/xrobin/pROC",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/xrobin/pROC/29ffd11e480e58e650e2a4ee75ebb2723dcf7123/DESCRIPTION",
+      "package": "pROC",
+      "version": "1.19.1",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "roc_auc"
+      ],
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "errors": [],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": "29ffd11e480e58e650e2a4ee75ebb2723dcf7123",
+      "license": "GPL (>= 3)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "tunsmart/interactionR",
+      "url": "https://github.com/tunsmart/interactionR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/tunsmart/interactionR/881b30b2048f8f97286840e1d26d471ea32c0300/DESCRIPTION",
+      "package": "interactionR",
+      "version": "0.1.7",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "additive_interaction_reri_ap_si",
+        "multiplicative_interaction"
+      ],
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "errors": [],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": "881b30b2048f8f97286840e1d26d471ea32c0300",
+      "license": "GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "tidymodels/tidymodels",
+      "url": "https://github.com/tidymodels/tidymodels",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/tidymodels/tidymodels/HEAD/DESCRIPTION",
+      "package": "tidymodels",
+      "version": "1.5.0.9000",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "ml_workflow",
+        "resampling",
+        "classification_algorithm_interfaces"
+      ],
+      "paper_ids": [
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "MIT + file LICENSE",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "ModelOriented/DALEX",
+      "url": "https://github.com/ModelOriented/DALEX",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/ModelOriented/DALEX/HEAD/DESCRIPTION",
+      "package": "DALEX",
+      "version": "2.5.4",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "shap",
+        "model_explanation"
+      ],
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "errors": [
+        "git ls-remote timed out after 12 s"
+      ],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": null,
+      "license": "GPL",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "georgheinze/logistf",
+      "url": "https://github.com/georgheinze/logistf",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/georgheinze/logistf/f9f36414c3124a3bc65b0b690d29ca581e080438/DESCRIPTION",
+      "package": "logistf",
+      "version": "1.26.1",
+      "kind": "author_repository",
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested",
+      "methods": [
+        "firth_logistic_regression"
+      ],
+      "paper_ids": [],
+      "errors": [],
+      "verification_method": "Raw DESCRIPTION plus git ls-remote HEAD when connection succeeded; no API credentials",
+      "head_sha": "f9f36414c3124a3bc65b0b690d29ca581e080438",
+      "license": "GPL",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "cran/Boruta",
+      "url": "https://github.com/cran/Boruta",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "metadata_url": "https://raw.githubusercontent.com/cran/Boruta/HEAD/DESCRIPTION",
+      "package": "Boruta",
+      "version": "10.0.0",
+      "kind": "CRAN_read_only_mirror",
+      "read_level": "DESCRIPTION and original GitHub migration metadata inspected; runtime not tested",
+      "methods": [
+        "boruta_feature_selection"
+      ],
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "errors": [
+        "git ls-remote timed out after 8 s"
+      ],
+      "head_sha": null,
+      "license": "GPL (>= 2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "python/cpython",
+      "url": "https://github.com/python/cpython",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "main",
+      "provenance": "official",
+      "api_targets": [
+        "csv.DictReader",
+        "json.dump"
+      ],
+      "verified_paths": [
+        {
+          "path": "Lib/csv.py",
+          "sha256": "14464c7ca104d8efb685733083b23502d6f9cd727fec1974088abeeb9c350544",
+          "url": "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/Lib/csv.py",
+          "exists": true
+        },
+        {
+          "path": "Lib/json/__init__.py",
+          "sha256": "4cc35eb04b789ce4890cffa944829c946e4c5dd032aaa6dc01f53449b250985a",
+          "url": "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/Lib/json/__init__.py",
+          "exists": true
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "b0e25a78cffb43f4d92de8b61ccfa1f1f98ecbc22330b54b5251e7b6ba010231",
+          "url": "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/LICENSE",
+          "exists": true
+        }
+      ],
+      "head_sha": "036d309cf542986a39eeba5ca805b2ec7619731d",
+      "license_from_pinned_source": "Python Software Foundation License Version 2; see full pinned LICENSE for history and bundled notices",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "cran/survey",
+      "url": "https://github.com/cran/survey",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "master",
+      "provenance": "CRAN package mirror; upstream project is R-Forge",
+      "api_targets": [
+        "svydesign",
+        "subset.survey.design",
+        "svymean",
+        "svyglm",
+        "regTermTest",
+        "svycoxph"
+      ],
+      "verified_paths": [
+        {
+          "path": "DESCRIPTION",
+          "sha256": "de083b5b65c180983e9260c8390a74875f0fad30d66a0669984f4f6d1889cc33",
+          "url": "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/DESCRIPTION",
+          "exists": true
+        },
+        {
+          "path": "man/svydesign.Rd",
+          "sha256": "a757abb0179218ab0353cf4678502dd5de744e0b4915867a6a76116bc4c6156d",
+          "url": "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svydesign.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/svyglm.Rd",
+          "sha256": "d5dd368f813d4a654b05d18efa1267471c5b1365cb07ee83a603dc36d808a225",
+          "url": "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svyglm.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/svycoxph.Rd",
+          "sha256": "3f531bd4636984041f7bbe1502fcdf2eecdfe35b5007cee964c62b041064cadd",
+          "url": "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svycoxph.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/regTermTest.Rd",
+          "sha256": "d3cfe01b427a418b8d3648c62668201ed9a0665667027f06df74b8d5ef2885fe",
+          "url": "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/regTermTest.Rd",
+          "exists": true
+        }
+      ],
+      "head_sha": "4834b8bc91f6414ad4514552daaed8990a86d9c1",
+      "license_from_pinned_source": "GPL-2 | GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "therneau/survival",
+      "url": "https://github.com/therneau/survival",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "master",
+      "provenance": "official",
+      "api_targets": [
+        "Surv",
+        "coxph",
+        "survreg",
+        "cox.zph"
+      ],
+      "verified_paths": [
+        {
+          "path": "DESCRIPTION",
+          "sha256": "70d443f5c447ff1b505a9e39c8e3af2d5bb7be22cc344adbc447010daf3f41ce",
+          "url": "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/DESCRIPTION",
+          "exists": true
+        },
+        {
+          "path": "man/Surv.Rd",
+          "sha256": "0ceb09f8e06f6c5ad3bf95eaa2e1f5d032752831558ecf9c0ad47b769ecabbb9",
+          "url": "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/Surv.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/coxph.Rd",
+          "sha256": "0a3819c297f86d82ec3153dc4251ca47e4a17590eff4cf0e19f981b14706ab61",
+          "url": "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/coxph.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/survreg.Rd",
+          "sha256": "2166f7223d62ae415f07d02053039923ba2575637e2db4dc0aa4bb5fe412af32",
+          "url": "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/survreg.Rd",
+          "exists": true
+        },
+        {
+          "path": "man/cox.zph.Rd",
+          "sha256": "37021d456bfce4f7825cae10f9ceacfd51a47adc4e2275106df3de42a9009f85",
+          "url": "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/cox.zph.Rd",
+          "exists": true
+        }
+      ],
+      "head_sha": "b76de62301f2ed4efcdbd8c062acc6759a54e511",
+      "license_from_pinned_source": "LGPL (>=2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "amices/mice",
+      "url": "https://github.com/amices/mice",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "master",
+      "provenance": "official",
+      "api_targets": [
+        "mice",
+        "complete.mids",
+        "as.mira",
+        "pool"
+      ],
+      "verified_paths": [
+        {
+          "path": "DESCRIPTION",
+          "sha256": "d4d58b31757d857f716a38f053205140a7956457f323206099e490dcb965553a",
+          "url": "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/DESCRIPTION",
+          "exists": true
+        },
+        {
+          "path": "R/mice.R",
+          "sha256": "bd786905293fb619f62267f61b1e3376955f617d33ab2d3dd88b035112310e7f",
+          "url": "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/mice.R",
+          "exists": true
+        },
+        {
+          "path": "R/pool.R",
+          "sha256": "8cadffb00e87e8d941d3883f1af18b5149cc99e522f3538d5207b74b54bce298",
+          "url": "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/pool.R",
+          "exists": true
+        },
+        {
+          "path": "R/as.R",
+          "sha256": "d3b6b2816086c4236f45575295d71ddb6a54cb91ce097c409daa2904f5f520b7",
+          "url": "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/as.R",
+          "exists": true
+        },
+        {
+          "path": "R/complete.R",
+          "sha256": "d85271a502d7d2d2fd55098c2e87387445f47efc54675ec71a6c0c6356548d92",
+          "url": "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/complete.R",
+          "exists": true
+        }
+      ],
+      "head_sha": "02d83eaa65bff2c3d1003bc53b5fb764fbd80c23",
+      "license_from_pinned_source": "GPL (>= 2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "ngreifer/WeightIt",
+      "url": "https://github.com/ngreifer/WeightIt",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "master",
+      "provenance": "official",
+      "api_targets": [
+        "weightit",
+        "glm_weightit"
+      ],
+      "verified_paths": [
+        {
+          "path": "DESCRIPTION",
+          "sha256": "453ce1f4fef5f8b06fc2b2b3808105fd0c5e03b9e8d13581de9433486a22f183",
+          "url": "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/DESCRIPTION",
+          "exists": true
+        },
+        {
+          "path": "R/weightit.R",
+          "sha256": "8aedab778f5a279cb13f55167fb8f1d3cfbdf77c2f88b3790bfb7dddba9fc333",
+          "url": "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/R/weightit.R",
+          "exists": true
+        },
+        {
+          "path": "R/glm_weightit.R",
+          "sha256": "038fc49745bc54d45232e97c1b6d3ae6b5c54f01347900ada845e30c5b5e51df",
+          "url": "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/R/glm_weightit.R",
+          "exists": true
+        }
+      ],
+      "head_sha": "41e06c62b3880d6a119764b37cbc39e582a0e547",
+      "license_from_pinned_source": "GPL (>=2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "ngreifer/cobalt",
+      "url": "https://github.com/ngreifer/cobalt",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "master",
+      "provenance": "official",
+      "api_targets": [
+        "bal.tab",
+        "bal.tab.weightit"
+      ],
+      "verified_paths": [
+        {
+          "path": "DESCRIPTION",
+          "sha256": "dba1ffa690c45405874226ddd03ed4513240786216049c324e9cd834932ffb48",
+          "url": "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/DESCRIPTION",
+          "exists": true
+        },
+        {
+          "path": "R/bal.tab.R",
+          "sha256": "d6e781cdb633539d50447243b011b6e2b20dc99ac3b9bfb220041834a05e3492",
+          "url": "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/R/bal.tab.R",
+          "exists": true
+        },
+        {
+          "path": "R/bal.tab.weightit.R",
+          "sha256": "8edc1ce855311a25bc78e8a72ca1e5610c9de2fc3ab19b975d55a05cfe087af8",
+          "url": "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/R/bal.tab.weightit.R",
+          "exists": true
+        }
+      ],
+      "head_sha": "78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a",
+      "license_from_pinned_source": "GPL (>=2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "MRCIEU/TwoSampleMR",
+      "url": "https://github.com/MRCIEU/TwoSampleMR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "R package for performing 2-sample MR using IEU OpenGWAS database",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "two_sample_mr",
+        "wald_ratio",
+        "ivw",
+        "mr_egger",
+        "weighted_median",
+        "heterogeneity",
+        "leave_one_out",
+        "steiger",
+        "summary_harmonization"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Reuse existing 032/519; upstream existence does not revalidate historical analyses",
+      "license_evidence_urls": [
+        "https://github.com/MRCIEU/TwoSampleMR/blob/fe1024224d1917e26dc255d17924eb47d4f7f826/DESCRIPTION",
+        "https://github.com/MRCIEU/TwoSampleMR/blob/fe1024224d1917e26dc255d17924eb47d4f7f826/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/MRCIEU/TwoSampleMR/blob/fe1024224d1917e26dc255d17924eb47d4f7f826/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2019",
+      "license_file": "LICENSE",
+      "head_sha": "fe1024224d1917e26dc255d17924eb47d4f7f826",
+      "license": "NOASSERTION",
+      "license_name": "Other",
+      "license_declared": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "MRCIEU/ieugwasr",
+      "url": "https://github.com/MRCIEU/ieugwasr",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "R interface to the IEU GWAS database API",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "gwas_metadata",
+        "opengwas_query",
+        "ld_clumping"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Metadata/query dependency; no dataset queries performed",
+      "license_evidence_urls": [
+        "https://github.com/MRCIEU/ieugwasr/blob/90cafe1ebac37233dec1331d412079b46e6952de/DESCRIPTION",
+        "https://github.com/MRCIEU/ieugwasr/blob/90cafe1ebac37233dec1331d412079b46e6952de/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/MRCIEU/ieugwasr/blob/90cafe1ebac37233dec1331d412079b46e6952de/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2019",
+      "license_file": "LICENSE",
+      "head_sha": "90cafe1ebac37233dec1331d412079b46e6952de",
+      "license": "NOASSERTION",
+      "license_name": "Other",
+      "license_declared": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "WSpiller/MVMR",
+      "url": "https://github.com/WSpiller/MVMR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "MVMR R Package",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "multivariable_mr",
+        "conditional_instrument_strength"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Use actual covariance-aware conditional F; never substitute marginal F",
+      "license_evidence_urls": [
+        "https://github.com/WSpiller/MVMR/blob/f31bdf861eab2d582c19014111d4d1a05a37b185/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/WSpiller/MVMR/blob/f31bdf861eab2d582c19014111d4d1a05a37b185/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "f31bdf861eab2d582c19014111d4d1a05a37b185",
+      "license_declared": "GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "rondolab/MR-PRESSO",
+      "url": "https://github.com/rondolab/MR-PRESSO",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "Performs the Mendelian Randomization Pleiotropy RESidual Sum and Outlier (MR-PRESSO) method.",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "mr_presso",
+        "pleiotropy_global",
+        "outlier_test",
+        "distortion_test"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Sensitivity method for sufficient instruments; does not prove IV assumptions",
+      "license_evidence_urls": [
+        "https://github.com/rondolab/MR-PRESSO/blob/3e3c92d7eda6dce0d1d66077373ec0f7ff4f7e87/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/rondolab/MR-PRESSO/blob/3e3c92d7eda6dce0d1d66077373ec0f7ff4f7e87/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "3e3c92d7eda6dce0d1d66077373ec0f7ff4f7e87",
+      "license_declared": "GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "cran/MendelianRandomization",
+      "url": "https://github.com/cran/MendelianRandomization",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": ":exclamation: This is a read-only mirror of the CRAN R package repository.  MendelianRandomization — Mendelian Randomization Package  ",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "ivw",
+        "mr_egger",
+        "robust_mr",
+        "correlated_instrument_mr"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "CRAN mirror explicitly linked by author website mendelianrandomization.com/code",
+      "license_evidence_urls": [
+        "https://github.com/cran/MendelianRandomization/blob/2e6f8aa6db24adc8a990448da898aba0f7819ca6/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/cran/MendelianRandomization/blob/2e6f8aa6db24adc8a990448da898aba0f7819ca6/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "2e6f8aa6db24adc8a990448da898aba0f7819ca6",
+      "license_declared": "GPL-2 | GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "chr1swallace/coloc",
+      "url": "https://github.com/chr1swallace/coloc",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "Repo for the R package coloc",
+      "default_branch": "main",
+      "archived": false,
+      "methods": [
+        "colocalization",
+        "prior_sensitivity",
+        "single_causal_abf",
+        "multisignal_colocalization",
+        "bayesian_fdr"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "New 609 uses real public package APIs; Bayesian FDR implementation in Reales GitLab, not a dedicated coloc function",
+      "license_evidence_urls": [
+        "https://github.com/chr1swallace/coloc/blob/27776b1bb14e19d1542798ac7477fa378fc2fc0d/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "installed package used in 609 synthetic behavior test; upstream HEAD is a separate version",
+      "readme_url": "https://github.com/chr1swallace/coloc/blob/27776b1bb14e19d1542798ac7477fa378fc2fc0d/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "27776b1bb14e19d1542798ac7477fa378fc2fc0d",
+      "license_declared": "GPL",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "stephenslab/susieR",
+      "url": "https://github.com/stephenslab/susieR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "R package for \"sum of single effects\" regression.",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "susie_rss",
+        "gwas_finemapping",
+        "credible_sets",
+        "pip"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "New 609 uses true susie_rss with ordered signed LD",
+      "license_evidence_urls": [
+        "https://github.com/stephenslab/susieR/blob/69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e/DESCRIPTION",
+        "https://github.com/stephenslab/susieR/blob/69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "installed package used in 609 synthetic behavior test; upstream HEAD is a separate version",
+      "readme_url": "https://github.com/stephenslab/susieR/blob/69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2017-2022",
+      "license_file": "LICENSE",
+      "head_sha": "69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e",
+      "license": "NOASSERTION",
+      "license_name": "Other",
+      "license_declared": "BSD_3_clause + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "chrchang/plink-ng",
+      "url": "https://github.com/chrchang/plink-ng",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "PLINK is a free, open-source whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.  This is a comprehensive update to it.",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "ld_clumping",
+        "ld_pruning",
+        "signed_ld",
+        "gwas",
+        "polygenic_score"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Official scoring reference https://www.cog-genomics.org/plink/2.0/score ; no GWAS/PGS executed",
+      "license_evidence_urls": [
+        "https://github.com/chrchang/plink-ng/blob/f4d6df208c10592d4bdfc3a6e15cb0119b36bd6e/2.0/COPYING"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/chrchang/plink-ng/blob/f4d6df208c10592d4bdfc3a6e15cb0119b36bd6e/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "GNU GENERAL PUBLIC LICENSE",
+      "license_file": "2.0/COPYING",
+      "head_sha": "f4d6df208c10592d4bdfc3a6e15cb0119b36bd6e",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "MRCIEU/gwasglue",
+      "url": "https://github.com/MRCIEU/gwasglue",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "Linking GWAS data to analytical tools in R",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "gwas_data_bridge"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Experimental optional bridge; README includes unimplemented TODO methods; not a universal finished pipeline",
+      "license_evidence_urls": [
+        "https://github.com/MRCIEU/gwasglue/blob/c2d5660eed389e1a9b3e04406b88731d642243f1/DESCRIPTION",
+        "https://github.com/MRCIEU/gwasglue/blob/c2d5660eed389e1a9b3e04406b88731d642243f1/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/MRCIEU/gwasglue/blob/c2d5660eed389e1a9b3e04406b88731d642243f1/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2019",
+      "license_file": "LICENSE",
+      "head_sha": "c2d5660eed389e1a9b3e04406b88731d642243f1",
+      "license": "NOASSERTION",
+      "license_name": "Other",
+      "license_declared": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "Cloufield/gwaslab",
+      "url": "https://github.com/Cloufield/gwaslab",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "A Python package for handling and visualizing GWAS summary statistics. https://cloufield.github.io/gwaslab/ ",
+      "default_branch": "main",
+      "archived": false,
+      "methods": [
+        "gwas_summary_qc",
+        "summary_harmonization",
+        "gwas_visualization"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Full external tool; new 608 is only an independent lightweight input auditor",
+      "license_evidence_urls": [
+        "https://github.com/Cloufield/gwaslab/blob/8657d6880508023ad7906cbd0888daa0ea76f234/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/Cloufield/gwaslab/blob/8657d6880508023ad7906cbd0888daa0ea76f234/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "GNU GENERAL PUBLIC LICENSE",
+      "license_file": "LICENSE",
+      "head_sha": "8657d6880508023ad7906cbd0888daa0ea76f234",
+      "license": "GPL-3.0",
+      "license_name": "GNU General Public License v3.0",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "cthyshn/MACA",
+      "url": "https://github.com/cthyshn/MACA",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "description": "MULTI-ANCESTRY COLOCALIZATION APPROACHES",
+      "default_branch": "master",
+      "archived": false,
+      "methods": [
+        "multi_ancestry_colocalization",
+        "coloc_susiex",
+        "ecaviar_susiex",
+        "coloc_mscaviar",
+        "emscaviar"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Author code for 2026 paper; unresolved DESCRIPTION license placeholder; reference only",
+      "license_evidence_urls": [
+        "https://github.com/cthyshn/MACA/blob/da5a9848f9e520af94ec273fd68de7caa8571bb8/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/cthyshn/MACA/blob/da5a9848f9e520af94ec273fd68de7caa8571bb8/README.md",
+      "license_status": "unresolved_placeholder_not_a_license",
+      "head_sha": "da5a9848f9e520af94ec273fd68de7caa8571bb8",
+      "license_declared": "`use_mit_license()`, `use_gpl3_license()` or friends to pick a",
+      "version_freeze": "pinned_commit",
+      "reuse_policy": "Reference only: inspected DESCRIPTION has a license placeholder, so permission to reuse code is unresolved; no code copied."
+    },
+    {
+      "repository": "stephenslab/mvsusieR",
+      "url": "https://github.com/stephenslab/mvsusieR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "multi_trait_finemapping",
+        "mvsusie",
+        "credible_sets",
+        "pip"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Advanced multi-trait extension; not multi-ancestry and not MR",
+      "license_evidence_urls": [
+        "https://github.com/stephenslab/mvsusieR/blob/1275f67dd63b0d6c70b637750adfe3fb4de8df7a/DESCRIPTION",
+        "https://github.com/stephenslab/mvsusieR/blob/1275f67dd63b0d6c70b637750adfe3fb4de8df7a/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/stephenslab/mvsusieR/blob/1275f67dd63b0d6c70b637750adfe3fb4de8df7a/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2018-2025",
+      "license_file": "LICENSE",
+      "head_sha": "1275f67dd63b0d6c70b637750adfe3fb4de8df7a",
+      "license_declared": "BSD_3_clause + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "zhilizheng/SBayesRC",
+      "url": "https://github.com/zhilizheng/SBayesRC",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "sbayesrc",
+        "functional_annotation",
+        "polygenic_score"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "R SBayesRC implementation; 2026 GWFM specifically points to GCTB for local/global credible sets",
+      "license_evidence_urls": [
+        "https://github.com/zhilizheng/SBayesRC/blob/2881f9a6f57374b80b4d19a09dbf9387939a2f46/DESCRIPTION",
+        "https://github.com/zhilizheng/SBayesRC/blob/2881f9a6f57374b80b4d19a09dbf9387939a2f46/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/zhilizheng/SBayesRC/blob/2881f9a6f57374b80b4d19a09dbf9387939a2f46/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "GNU GENERAL PUBLIC LICENSE",
+      "license_file": "LICENSE",
+      "head_sha": "2881f9a6f57374b80b4d19a09dbf9387939a2f46",
+      "license_declared": "GPL (>= 3) | file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "qingyuanzhao/mr.raps",
+      "url": "https://github.com/qingyuanzhao/mr.raps",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "mr_raps",
+        "weak_instrument_robust_mr"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Canonical author repository verified by README/DESCRIPTION and HEAD",
+      "license_evidence_urls": [
+        "https://github.com/qingyuanzhao/mr.raps/blob/dd79b5bd74d10b699503cdd226d70c726f11c796/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/qingyuanzhao/mr.raps/blob/dd79b5bd74d10b699503cdd226d70c726f11c796/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "dd79b5bd74d10b699503cdd226d70c726f11c796",
+      "license_declared": "GPL-3",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "GRealesM/GWAS_tools",
+      "url": "https://github.com/GRealesM/GWAS_tools",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "summary_harmonization",
+        "variant_coverage_qc"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "2026 Reales paper code link; no effective license established; reference only",
+      "license_evidence_urls": [],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/GRealesM/GWAS_tools/blob/c6c1584b42f743990a7b43435ef8acc671483974/README.md",
+      "license_status": "not_established_reference_only",
+      "head_sha": "c6c1584b42f743990a7b43435ef8acc671483974",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "amandaforde/mr.simss",
+      "url": "https://github.com/amandaforde/mr.simss",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "main",
+      "methods": [
+        "mr_simss",
+        "winner_curse_correction",
+        "sample_overlap_correction"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "Author package; registered future adapter, not implemented or executed here",
+      "license_evidence_urls": [
+        "https://github.com/amandaforde/mr.simss/blob/22439bb9783dbace228ae74113b2c7b3f573ea93/DESCRIPTION",
+        "https://github.com/amandaforde/mr.simss/blob/22439bb9783dbace228ae74113b2c7b3f573ea93/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/amandaforde/mr.simss/blob/22439bb9783dbace228ae74113b2c7b3f573ea93/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "license_file_heading": "YEAR: 2023",
+      "license_file": "LICENSE",
+      "head_sha": "22439bb9783dbace228ae74113b2c7b3f573ea93",
+      "license_declared": "MIT + file LICENSE",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "jianzeng/GCTB",
+      "url": "https://github.com/jianzeng/GCTB",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "default_branch": "main",
+      "methods": [
+        "genome_wide_finemapping",
+        "sbayesrc",
+        "local_global_credible_sets",
+        "power_planning"
+      ],
+      "verification_method": "GitHub public API where available; pinned raw files; git ls-remote fallback on API rate limit",
+      "evidence_summary": "2026 GWFM author implementation; Linux/macOS documented; no binary downloaded",
+      "license_evidence_urls": [
+        "https://github.com/jianzeng/GCTB/blob/cc7fa7d765c83a89c6375946cf77fe50ba1a317e/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/jianzeng/GCTB/blob/cc7fa7d765c83a89c6375946cf77fe50ba1a317e/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "MIT License",
+      "license_file": "LICENSE",
+      "head_sha": "cc7fa7d765c83a89c6375946cf77fe50ba1a317e",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "bulik/ldsc",
+      "url": "https://github.com/bulik/ldsc",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "genetic_correlation_ldsc",
+        "snp_heritability"
+      ],
+      "verification_method": "git ls-remote HEAD and commit-pinned raw source files; API unavailable from rate limit",
+      "evidence_summary": "Historical LDSC; README 2026-01-16 points to CBIIT Python3 implementation",
+      "license_evidence_urls": [
+        "https://github.com/bulik/ldsc/blob/2fdeeb3b44379408794154993dbd6101b8946b7e/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/bulik/ldsc/blob/2fdeeb3b44379408794154993dbd6101b8946b7e/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "GNU GENERAL PUBLIC LICENSE",
+      "license_file": "LICENSE",
+      "head_sha": "2fdeeb3b44379408794154993dbd6101b8946b7e",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "CBIIT/ldsc",
+      "url": "https://github.com/CBIIT/ldsc",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "genetic_correlation_ldsc",
+        "snp_heritability"
+      ],
+      "verification_method": "git ls-remote HEAD and commit-pinned raw source files; API unavailable from rate limit",
+      "evidence_summary": "Python3.9+ ldsc39 branch per README; verify release before future installation",
+      "license_evidence_urls": [
+        "https://github.com/CBIIT/ldsc/blob/1f09cf0c5e61a38a281016fefcc1e0583cc78402/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/CBIIT/ldsc/blob/1f09cf0c5e61a38a281016fefcc1e0583cc78402/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "GNU GENERAL PUBLIC LICENSE",
+      "license_file": "LICENSE",
+      "head_sha": "1f09cf0c5e61a38a281016fefcc1e0583cc78402",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "guido-s/meta",
+      "url": "https://github.com/guido-s/meta",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "replication_meta_analysis",
+        "cross_ancestry_meta_analysis"
+      ],
+      "verification_method": "git ls-remote HEAD and commit-pinned raw source files; API unavailable from rate limit",
+      "evidence_summary": "Official R meta package; commit verification failed from network; README and DESCRIPTION verified",
+      "license_evidence_urls": [
+        "https://github.com/guido-s/meta/blob/develop/DESCRIPTION"
+      ],
+      "verification_status": "source_docs_verified_commit_not_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/guido-s/meta/blob/develop/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": null,
+      "license_declared": "GPL (>= 2)",
+      "version_freeze": "moving_reference_not_pinned"
+    },
+    {
+      "repository": "wviechtb/metafor",
+      "url": "https://github.com/wviechtb/metafor",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "replication_meta_analysis",
+        "cross_ancestry_meta_analysis",
+        "meta_regression"
+      ],
+      "verification_method": "git ls-remote HEAD and commit-pinned raw source files; API unavailable from rate limit",
+      "evidence_summary": "Official R metafor source; sample independence and effect scale remain analyst obligations",
+      "license_evidence_urls": [
+        "https://github.com/wviechtb/metafor/blob/bc2016e103c22f6c5266dc1ddd9912490bb845dd/DESCRIPTION"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/wviechtb/metafor/blob/bc2016e103c22f6c5266dc1ddd9912490bb845dd/README.md",
+      "license_status": "declared_in_DESCRIPTION",
+      "head_sha": "bc2016e103c22f6c5266dc1ddd9912490bb845dd",
+      "license_declared": "GPL (>=2)",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "getian107/SuSiEx",
+      "url": "https://github.com/getian107/SuSiEx",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "susiex",
+        "multi_ancestry_finemapping"
+      ],
+      "verification_method": "Author repository links in 2026 paper/MACA README and GitHub page; git ls-remote; pinned raw license where available",
+      "evidence_summary": "Author cross-population fine-mapping; ancestry-specific GWAS and matching LD required",
+      "license_evidence_urls": [
+        "https://github.com/getian107/SuSiEx/blob/1db2f5838a55f9af8595626a0a01f88940bb502f/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/getian107/SuSiEx/blob/1db2f5838a55f9af8595626a0a01f88940bb502f/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "MIT License",
+      "license_file": "LICENSE",
+      "head_sha": "1db2f5838a55f9af8595626a0a01f88940bb502f",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "nlapier2/MsCAVIAR",
+      "url": "https://github.com/nlapier2/MsCAVIAR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "mscaviar",
+        "multi_ancestry_finemapping"
+      ],
+      "verification_method": "Author repository links in 2026 paper/MACA README and GitHub page; git ls-remote; pinned raw license where available",
+      "evidence_summary": "2026 MACA/mvSuSiE paper-linked author fork; AGPL-3 license",
+      "license_evidence_urls": [
+        "https://github.com/nlapier2/MsCAVIAR/blob/ee73afe9414fcd5e9791a58acab76601fbe3acc6/LICENSE"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/nlapier2/MsCAVIAR/blob/ee73afe9414fcd5e9791a58acab76601fbe3acc6/README.md",
+      "license_status": "license_file_read",
+      "license_file_heading": "GNU AFFERO GENERAL PUBLIC LICENSE",
+      "license_file": "LICENSE",
+      "head_sha": "ee73afe9414fcd5e9791a58acab76601fbe3acc6",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "fhormoz/caviar",
+      "url": "https://github.com/fhormoz/caviar",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "ecaviar",
+        "caviar",
+        "colocalization",
+        "gwas_finemapping"
+      ],
+      "verification_method": "Author repository links in 2026 paper/MACA README and GitHub page; git ls-remote; pinned raw license where available",
+      "evidence_summary": "ZarLab official README documents both CAVIAR and eCAVIAR; README declares GNU Affero GPL without a version in the read statement",
+      "license_evidence_urls": [
+        "https://github.com/fhormoz/caviar/blob/135b58baffac92b5e9b45f8db78315a9b4d713bc/README.md"
+      ],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/fhormoz/caviar/blob/135b58baffac92b5e9b45f8db78315a9b4d713bc/README.md",
+      "license_status": "README_declaration_only",
+      "license_readme_declaration": "GNU Affero GPL; version not established from the read declaration",
+      "head_sha": "135b58baffac92b5e9b45f8db78315a9b4d713bc",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "amandaforde/mrsimss-paper",
+      "url": "https://github.com/amandaforde/mrsimss-paper",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "simulation_benchmark",
+        "mr_simss"
+      ],
+      "verification_method": "Author repository links in 2026 paper/MACA README and GitHub page; git ls-remote; pinned raw license where available",
+      "evidence_summary": "Author simulation and empirical paper code; license not established; reference only",
+      "license_evidence_urls": [],
+      "verification_status": "head_and_source_docs_verified",
+      "runtime_status": "not_executed_this_round",
+      "readme_url": "https://github.com/amandaforde/mrsimss-paper/blob/6028c951cdac4e00aeca859d89d286930d922d81/README.md",
+      "license_status": "not_established_reference_only",
+      "head_sha": "6028c951cdac4e00aeca859d89d286930d922d81",
+      "version_freeze": "pinned_commit"
+    },
+    {
+      "repository": "JianYang-Lab/SMR",
+      "url": "https://github.com/JianYang-Lab/SMR",
+      "retrieved_at": "2026-10-19",
+      "integration": "reference_only",
+      "methods": [
+        "smr_heidi",
+        "smr_multi",
+        "molecular_qtl_meta_analysis"
+      ],
+      "evidence_summary": "Official website links this current author repository; sources and binary licenses differ. HEIDI non-significance is not proof of mediation or IV validity.",
+      "license_evidence_urls": [
+        "https://yanglab.westlake.edu.cn/software/smr"
+      ],
+      "verification_status": "author_link_and_HEAD_verified",
+      "runtime_status": "not_executed_this_round",
+      "license_status": "official_website_declaration",
+      "head_sha": "eedb1a62ba4c66ab0b09acd0205876955a803f18",
+      "license_declared": "GPL v2 source; MIT binaries per official Yang Lab website",
+      "version_freeze": "pinned_commit"
+    }
+  ]
+}

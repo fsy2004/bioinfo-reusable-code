@@ -2,7 +2,7 @@
 """按「域 / 子类」两级结构重新生成 modules/CATALOG.md 与各域 README.md。
 
 条目元信息(用途、输入输出、依赖、语言、图型、状态)来自:
-  ① 上一版 CATALOG.md(git 历史里的 BASE_REV,老条目沿用,不手工重打)
+  ① module_metadata.json(冻结的旧目录元数据；无需 Git 历史)
   ② new_modules.json(本次新增模块,由建模块的工作流产出)
 两者都没有的条目,标 "—" 并在末尾列成待补清单 —— 不编造。
 
@@ -10,11 +10,13 @@
 """
 from __future__ import annotations
 import argparse, json, os, re, subprocess, sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODULES = os.path.dirname(HERE)
 REPO = os.path.dirname(MODULES)
-BASE_REV = "325310ea"          # 重组前最后一次提交,老条目元信息从这里取
+BASE_REV = "325310ea"          # 仅供显式 --base 迁移时使用
 
 DOMAINS = {
     "01_single_cell": ("单细胞分析", "Single-cell analysis", {
@@ -53,6 +55,7 @@ DOMAINS = {
         "05_colocalization": ("共定位", "Colocalization"),
         "06_twas_sceqtl": ("TWAS 与单细胞 eQTL", "TWAS & sc-eQTL"),
         "07_robust_mr_methods": ("稳健 MR 估计量", "Robust MR estimators"),
+        "08_gwas_finemapping": ("GWAS 质控与精细定位", "GWAS QC & fine-mapping"),
     }),
     "05_machine_learning": ("机器学习", "Machine learning", {
         "01_feature_selection": ("特征筛选", "Feature selection"),
@@ -106,6 +109,14 @@ DOMAINS = {
     "16_proteomics_metabolomics": ("蛋白质组与代谢组", "Proteomics & metabolomics", {
         "01_dia_proteomics": ("DIA 蛋白质组", "DIA proteomics"),
     }),
+    "17_population_epidemiology": ("人群流行病与药物流行病", "Population & pharmacoepidemiology", {
+        "01_disease_burden": ("疾病负担", "Disease burden"),
+        "02_complex_surveys": ("复杂抽样调查", "Complex surveys"),
+        "03_longitudinal_cohorts": ("纵向队列与癌症结局", "Longitudinal cohorts & cancer outcomes"),
+        "04_comorbidity_networks": ("共病网络", "Comorbidity networks"),
+        "05_medication_exposure": ("药物暴露定义与审计", "Medication exposure"),
+        "06_confounding_missingness": ("混杂与缺失数据", "Confounding & missingness"),
+    }),
 }
 
 # 没有编号、因而不在历史 CATALOG 里的条目:元信息按实际内容手工登记一次。
@@ -154,7 +165,7 @@ HEAD = """# Module catalog
 | ✅ | 开箱即跑 —— 用自带合成示例数据本机跑通,零改动 |
 | 🟡 | 核心复现或诚实基线本机可跑;完整方法需在分析服务器装包(见 [`_framework/SERVER_DEPENDENCIES.md`](_framework/SERVER_DEPENDENCIES.md)) |
 | 🔴 | 重型 / GPU / 外部工具链 —— 守卫式引用封装,不在本机渲染 |
-| 📄 | 模板或上游脚本 —— 自带数据 + 自行安装,无捆绑示例 |
+| 📄 | 参数化分析入口或模板 —— 按 README 提供输入、配置与依赖 |
 | 📦 | Vendored 第三方包 —— 仅保留清单 / 本地 |
 | 🗃️ | 仅本地,git 忽略 —— 不在公开仓库中 |
 
@@ -176,6 +187,12 @@ def parse_old(rev: str) -> dict:
 
 def scan() -> dict:
     """{domain: {sub: [(id, entry_name, relpath), ...]}}"""
+    result = subprocess.run(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'],
+                            cwd=REPO, capture_output=True)
+    visible = set(result.stdout.decode('utf-8').split('\0'))
+    def public_entry(path):
+        rel = os.path.relpath(path, REPO).replace('\\', '/')
+        return rel in visible or any(p.startswith(rel + '/') for p in visible)
     tree = {}
     for dom in sorted(os.listdir(MODULES)):
         dp = os.path.join(MODULES, dom)
@@ -183,6 +200,8 @@ def scan() -> dict:
             continue
         tree[dom] = {}
         for sub in sorted(os.listdir(dp)):
+            if dom == '07_clinical_translational' and sub == '05_epidemiology_burden':
+                continue  # 本地历史草稿与旧路径导引；活动模块已迁入 17
             sp = os.path.join(dp, sub)
             if not os.path.isdir(sp):
                 continue
@@ -192,10 +211,13 @@ def scan() -> dict:
                     continue
                 m = re.match(r"^(\d{3})", e)
                 ep = os.path.join(sp, e)
+                if not public_entry(ep):
+                    continue
                 # 无编号的分组目录(如 01_GBD)里若还嵌着编号模块,展开到它们本身,
                 # 否则模块会被一个不透明的文件夹名挡住。
                 if not m and os.path.isdir(ep):
-                    nested = [c for c in sorted(os.listdir(ep)) if re.match(r"^\d{3}", c)]
+                    nested = [c for c in sorted(os.listdir(ep)) if re.match(r"^\d{3}", c)
+                              and public_entry(os.path.join(ep,c))]
                     if nested:
                         for c in nested:
                             items.append((c[:3], f"{e}/{c}", f"{dom}/{sub}/{e}/{c}"))
@@ -217,10 +239,13 @@ def row(i, name, rel, meta, new):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--base", default=BASE_REV)
+    ap.add_argument("--base", default=None, help="optional one-time legacy Git metadata import")
     a = ap.parse_args()
 
-    meta = parse_old(a.base)
+    frozen = os.path.join(HERE, 'module_metadata.json')
+    meta = {m['id']: m for m in json.load(open(frozen, encoding='utf-8'))}
+    if a.base:
+        meta.update(parse_old(a.base))
     njson = os.path.join(HERE, "new_modules.json")
     new = {}
     if os.path.exists(njson):
@@ -229,6 +254,21 @@ def main():
                                 io=m.get("io", "—"), deps=m.get("deps", "—"),
                                 lang=m.get("lang", "—"), figs=m.get("figures", "—"))
     tree = scan()
+    # New module contracts are authoritative; do not duplicate them in new_modules.json.
+    visible = set(subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'], cwd=REPO).decode('utf-8').split('\0'))
+    for subs in tree.values():
+        for items in subs.values():
+            for identifier, _name, rel in items:
+                manifest = 'modules/' + rel + '/module.json'
+                if manifest not in visible:
+                    continue
+                with open(os.path.join(REPO,manifest),encoding='utf-8-sig') as handle:
+                    contract = json.load(handle)
+                deps = contract.get('dependencies',{})
+                deps = '; '.join(k+': '+', '.join(v) for k,v in deps.items()) if isinstance(deps,dict) else str(deps)
+                new[identifier] = dict(status='📄',purpose=contract.get('summary') or contract.get('title'),
+                                       io='; '.join(contract.get('inputs',[]))+' → '+'; '.join(contract.get('outputs',[])),
+                                       deps=deps,lang=contract.get('language'),figs='结构化结果与审计输出；无默认展示图')
 
     cat = [HEAD]
     missing, total = [], 0

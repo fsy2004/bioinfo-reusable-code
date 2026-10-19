@@ -1,0 +1,6 @@
+{
+  "modules/07_clinical_translational/05_epidemiology_burden/01_GBD/527_gbd_burden_trend": "modules/17_population_epidemiology/01_disease_burden/527_gbd_burden_trend",
+  "modules/07_clinical_translational/05_epidemiology_burden/02_NHANES/528_nhanes_survey_weighted": "modules/17_population_epidemiology/02_complex_surveys/528_nhanes_survey_weighted",
+  "modules/07_clinical_translational/05_epidemiology_burden/03_CHARLS/529_charls_longitudinal_cohort": "modules/17_population_epidemiology/03_longitudinal_cohorts/529_charls_longitudinal_cohort",
+  "modules/07_clinical_translational/05_epidemiology_burden/04_comorbidity_network/530_comorbidity_network": "modules/17_population_epidemiology/04_comorbidity_networks/530_comorbidity_network"
+}

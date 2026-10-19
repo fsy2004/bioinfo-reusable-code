@@ -1,0 +1,57 @@
+{
+  "id": "610",
+  "name": "mr_exposure_contract",
+  "title": "MR exposure construct, sample overlap and instrument metadata audit",
+  "entrypoint": "mr_exposure_contract.py",
+  "language": "Python",
+  "task": [
+    "mr_design",
+    "exposure_semantics",
+    "instrument_metadata",
+    "weak_instrument_audit"
+  ],
+  "inputs": [
+    "contract.json",
+    "instruments.tsv"
+  ],
+  "outputs": [
+    "contract_audit.json"
+  ],
+  "dependencies": {
+    "required": [
+      "Python >=3.9 standard library"
+    ]
+  },
+  "source_policy": "Original metadata audit; no upstream code vendored",
+  "sources": [
+    {
+      "doi": "10.1038/s41698-026-01421-1",
+      "role": "GRG expression versus drug use construct"
+    },
+    {
+      "doi": "10.1038/s41416-021-01505-8",
+      "role": "Endogenous cortisol exposure"
+    },
+    {
+      "url": "https://github.com/WSpiller/MVMR",
+      "head_sha": "f31bdf861eab2d582c19014111d4d1a05a37b185",
+      "license_api": null,
+      "role": "Conditional instrument strength implementation",
+      "license_declared": "GPL-3",
+      "license_evidence_urls": [
+        "https://github.com/WSpiller/MVMR/blob/f31bdf861eab2d582c19014111d4d1a05a37b185/DESCRIPTION"
+      ]
+    },
+    {
+      "doi": "10.1038/s41588-026-02546-6",
+      "role": "2026 MR assumption assessment"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "limitations": "User declarations are not independent validation; no MR estimate or conditional F is computed"
+  },
+  "summary": "MR暴露语义与工具元数据审计：用药倾向、内源皮质醇、分子工具、样本重叠及工具强度"
+}

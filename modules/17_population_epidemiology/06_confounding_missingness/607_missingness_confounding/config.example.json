@@ -1,0 +1,7 @@
+{
+  "input": "path/to/researcher_prepared_participant_table.csv",
+  "output_dir": "results_new",
+  "mode": "audit",
+  "id": "person_id",
+  "factor_variables": []
+}

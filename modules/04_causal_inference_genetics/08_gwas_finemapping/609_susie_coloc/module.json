@@ -1,0 +1,74 @@
+{
+  "id": "609",
+  "name": "susie_coloc",
+  "title": "Single-ancestry dense regional SuSiE RSS and signal-pair colocalization",
+  "entrypoint": "run_susie_coloc.R",
+  "language": "R",
+  "task": [
+    "gwas_finemapping",
+    "cis_mr_support",
+    "multisignal_colocalization",
+    "prior_sensitivity"
+  ],
+  "inputs": [
+    "trusted config.R",
+    "two dense regional summary TSVs",
+    "two signed LD matrices and ordered allele manifests"
+  ],
+  "outputs": [
+    "SuSiE fits and PIP",
+    "signal-pair H0-H4 prior sensitivity",
+    "single-causal ABF baseline",
+    "provenance"
+  ],
+  "dependencies": {
+    "required": [
+      "R",
+      "susieR",
+      "coloc"
+    ]
+  },
+  "source_policy": "Original wrapper around public package APIs; no upstream code vendored",
+  "sources": [
+    {
+      "url": "https://github.com/stephenslab/susieR",
+      "head_sha": "69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e",
+      "license_api": "NOASSERTION",
+      "role": "susie_rss",
+      "license_declared": "BSD_3_clause + file LICENSE",
+      "license_evidence_urls": [
+        "https://github.com/stephenslab/susieR/blob/69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e/DESCRIPTION",
+        "https://github.com/stephenslab/susieR/blob/69db7e7a3f917ea02a4abc4b53694b2cd1c26b7e/LICENSE"
+      ]
+    },
+    {
+      "url": "https://github.com/chr1swallace/coloc",
+      "head_sha": "27776b1bb14e19d1542798ac7477fa378fc2fc0d",
+      "license_api": null,
+      "role": "annotate_susie, coloc.susie and coloc.abf",
+      "license_declared": "GPL",
+      "license_evidence_urls": [
+        "https://github.com/chr1swallace/coloc/blob/27776b1bb14e19d1542798ac7477fa378fc2fc0d/DESCRIPTION"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pgen.1012141",
+      "role": "2026 interpretation and study-design boundaries"
+    },
+    {
+      "doi": "10.1371/journal.pgen.1012221",
+      "role": "Multi-ancestry extension reference; not implemented here"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_package_behavior_verified",
+    "runtime": {
+      "susieR": "0.14.2",
+      "coloc": "5.2.3"
+    },
+    "scientific_analysis": "not_run",
+    "limitations": "Dense matched region only; constant N; binary RSS approximation requires explicit acknowledgment; no cross-ancestry coloc or drug effect interpretation"
+  },
+  "summary": "单祖源SuSiE RSS精细定位与多信号共定位：PIP、H0-H4、prior敏感性及ABF基线"
+}

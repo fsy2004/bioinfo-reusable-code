@@ -1,0 +1,11 @@
+{
+  "input": "path/to/researcher_prepared_first_event_cohort.csv",
+  "output_dir": "results_new",
+  "mode": "cause_specific_cox",
+  "id": "person_id",
+  "exposure": "exposure",
+  "covariates": ["age", "sex", "smoking"],
+  "baseline_cancer": "baseline_cancer",
+  "time_origin": "REPLACE: baseline cancer-free assessment date",
+  "time_unit": "years"
+}

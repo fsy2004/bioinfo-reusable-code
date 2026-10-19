@@ -15,7 +15,7 @@
 | ✅ | 开箱即跑 —— 用自带合成示例数据本机跑通,零改动 |
 | 🟡 | 核心复现或诚实基线本机可跑;完整方法需在分析服务器装包(见 [`_framework/SERVER_DEPENDENCIES.md`](_framework/SERVER_DEPENDENCIES.md)) |
 | 🔴 | 重型 / GPU / 外部工具链 —— 守卫式引用封装,不在本机渲染 |
-| 📄 | 模板或上游脚本 —— 自带数据 + 自行安装,无捆绑示例 |
+| 📄 | 参数化分析入口或模板 —— 按 README 提供输入、配置与依赖 |
 | 📦 | Vendored 第三方包 —— 仅保留清单 / 本地 |
 | 🗃️ | 仅本地,git 忽略 —— 不在公开仓库中 |
 
@@ -221,7 +221,7 @@
 | 🟡 | 590 | [590_scperturbench_generalization](03_virtual_perturbation/05_benchmark/590_scperturbench_generalization) | 把自己的单细胞扰动预测按 scPerturBench (Nat Methods 2026) 的同一套指标打分，并强制与上游口径的朴素基线 (controlBaseline / trainMean) 对照，判断深度模型是否真的赢过"什么都不预测"。 | 输入 example_data/observed.csv (cell_id, group∈{control,stimulated}, 基因列) + predicted.csv (cell_id, method, 基因列，可含多方法)；输出 results/performance.tsv (长表) + performance_wide.csv + rank_matrix.csv + summary.json (含 mean_rank / verdict_vs_naive_floor / caveats / 依赖版本快照) + 3 张 PNG+PDF 图 | numpy, pandas, scipy, matplotlib（全部本机已装，零额外安装）；可选 pertpy + anndata 走 --use-pertpy 守卫路径拿上游同名 Sinkhorn wasserstein | Python 3.12 | 3 张，均非条形图：fig1_rank_heatmap（方法×指标排名热图）、fig2_vs_baseline_dotplot（相对 controlBaseline 比值的点图，log 轴 + 基线虚线）、fig3_delta_scatter（每基因 delta 预测 vs 真实散点，每方法一 panel，标注 PCC-delta） |
 | 🟡 | 591 | [591_scarchon_perturbation_benchmark](03_virtual_perturbation/05_benchmark/591_scarchon_perturbation_benchmark) | 留一批次(leave-one-batch-out)的单细胞扰动响应预测基准骨架:按 scArchon 口径评估预测的扰动后表达,强制与 control/mean 朴素基线同台对比 | In: .h5ad (AnnData) with obs columns `condition` (control/stimulated) and `batch`; defaults to bundled example_data/synthetic_perturb.h5ad (1800 cells x 300 genes, 4 donors). Out: results/591_scores_per_batch.csv, 591_scores_mean.csv, 591_per_gene_delta.csv, 591_summary.json, 4 PDF+PNG figures; display copies in assets/. | anndata, numpy, scipy, pandas, scikit-learn, matplotlib (all locally installed); no scArchon import — upstream is Snakemake-only. Optional server path: snakemake + singularity/apptainer. | Python | 4 figures, no bar charts: dumbbell (delta-R2 per held-out batch vs control floor), heatmap (method x metric, raw value in cell + direction-normalised colour), scatter (per-gene true vs predicted delta, 3 panels), raincloud (violin + jitter + box of per-gene absolute error). |
 
-## 04 · 因果推断与遗传流行病 — Causal inference & genetics  (29)
+## 04 · 因果推断与遗传流行病 — Causal inference & genetics  (32)
 
 ### 04.01 · 工具变量准备 — Instrument preparation
 
@@ -231,6 +231,7 @@
 | 📄 | 029 | [029_mr_gwas_exposure_ld_clump.R](04_causal_inference_genetics/01_instrument_prep/029_mr_gwas_exposure_ld_clump.R) | LD-clump to independent instruments | candidate SNPs → independent IVs | R · gwasglue, TwoSampleMR | R | — |
 | 📄 | 030 | [030_mr_gwas_exposure_add_eaf.R](04_causal_inference_genetics/01_instrument_prep/030_mr_gwas_exposure_add_eaf.R) | Add effect-allele frequency to exposure SNPs | SNPs → SNPs + EAF | R · ieugwasr | R | — |
 | 📄 | 031 | [031_mr_gwas_exposure_weak_iv_filter.R](04_causal_inference_genetics/01_instrument_prep/031_mr_gwas_exposure_weak_iv_filter.R) | F-statistic weak-instrument filter | SNPs → strong IVs (F≥10) | R · ieugwasr | R | — |
+| 📄 | 610 | [610_mr_exposure_contract](04_causal_inference_genetics/01_instrument_prep/610_mr_exposure_contract) | MR暴露语义与工具元数据审计：用药倾向、内源皮质醇、分子工具、样本重叠及工具强度 | contract.json; instruments.tsv → contract_audit.json | required: Python >=3.9 standard library | Python | 结构化结果与审计输出；无默认展示图 |
 
 ### 04.02 · 两样本孟德尔随机化 — Two-sample MR
 
@@ -286,6 +287,13 @@
 |----|---|------|------|------------|------|------|------|
 | 🟡 | 533 | [533_mrcare_winnerscurse_mr](04_causal_inference_genetics/07_robust_mr_methods/533_mrcare_winnerscurse_mr) | Winner's-curse-corrected MR (CARE/RIVW) vs naive baseline | two-sample MR summary → estimates + plots | R · TwoSampleMR (baseline); MRcare | R | lollipop, forest, scatter, dumbbell |
 | 🟡 | 595 | [595_mreills_robust_mr](04_causal_inference_genetics/07_robust_mr_methods/595_mreills_robust_mr) | 不变性(EILLS)稳健 MR：整合多个异质 GWAS summary 数据集，对含水平多效性的无效工具做筛选并给出单/多暴露因果估计，与 MVMR-IVW / MR-Egger 同数据对照 | 输入 example_data/mreills_multi_gwas_summary.csv（synthetic 长表：dataset, SNP, beta_X*/se_X*, beta_Y/se_Y, true_invalid_IV；3 数据集 × 150 SNP × 2 暴露）；输出 results/MR_estimates_eills_vs_baseline.csv、IV_selection_QSj.csv、lambda_path.csv、sessionInfo.txt + assets/ 4 图（PDF+PNG） | R 4.4.3；ggplot2 + 模块框架 _framework/theme_pub.R（bio_args/pal_pub/theme_pub/save_fig/scale_fill_diverge 均已在框架 line 81/94/140/153/204 确认存在）；基线与本地转写实现仅用 base R，无需装包；可选官方包 MREILLS（devtools::install_github("hhoulei/MREILLS")，本机未装） | R | fig1_estimates_dotwhisker（dot-and-whisker，四方法估计+95%CI，按暴露分面）；fig2_iv_screening_violin（violin+jitter，QSj 按真实工具有效性分层+lambda 阈值线）；fig3_lambda_sensitivity（折线+点，点大小=入选工具数）；fig4_bias_heatmap（RdBu 发散热图，有符号偏倚）。无条形图 |
+
+### 04.08 · GWAS 质控与精细定位 — GWAS QC & fine-mapping
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 📄 | 608 | [608_gwas_summary_qc](04_causal_inference_genetics/08_gwas_finemapping/608_gwas_summary_qc) | GWAS全区域汇总统计与signed LD审计：build、祖源、效应、频率、顺序与方向守卫 | summary.tsv; metadata.json; optional ld.txt + ld_variants.tsv → audit.json | required: Python >=3.9 standard library; optional: numpy for LD PSD check | Python | 结构化结果与审计输出；无默认展示图 |
+| 📄 | 609 | [609_susie_coloc](04_causal_inference_genetics/08_gwas_finemapping/609_susie_coloc) | 单祖源SuSiE RSS精细定位与多信号共定位：PIP、H0-H4、prior敏感性及ABF基线 | trusted config.R; two dense regional summary TSVs; two signed LD matrices and ordered allele manifests → SuSiE fits and PIP; signal-pair H0-H4 prior sensitivity; single-causal ABF baseline; provenance | required: R, susieR, coloc | R | 结构化结果与审计输出；无默认展示图 |
 
 ## 05 · 机器学习 — Machine learning  (18)
 
@@ -383,7 +391,7 @@
 | 📄 | 525 | [525_metabolomics_metaboanalystR_pipeline.R](06_bulk_omics/05_mutation_methylation_proteome/525_metabolomics_metaboanalystR_pipeline.R) | Metabolomics differential analysis template | metabolite + meta → volcano + heatmap | R · MetaboAnalystR | R | volcano, heatmap |
 | 📄 | 526 | [526_cnv_gistic_or_cnvkit_pipeline.md](06_bulk_omics/05_mutation_methylation_proteome/526_cnv_gistic_or_cnvkit_pipeline.md) | CNV analysis entry note (GISTIC2/CNVkit/inferCNV) | — | — | md | — |
 
-## 07 · 临床与转化 — Clinical & translational  (20)
+## 07 · 临床与转化 — Clinical & translational  (11)
 
 ### 07.01 · 诊断模型 — Diagnostic models
 
@@ -415,20 +423,6 @@
 | St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
 |----|---|------|------|------------|------|------|------|
 | ✅ | 078 | [078_faers_pharmacovigilance](07_clinical_translational/04_pharmacovigilance/078_faers_pharmacovigilance) | FAERS disproportionality (ROR/PRR/BCPNN/EBGM) | reports/2×2 counts → signals.csv | R · ggplot2 | R | forest, heatmap |
-
-### 07.05 · 疾病负担与人群队列 — Disease burden & population cohorts
-
-| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
-|----|---|------|------|------------|------|------|------|
-| ✅ | 527 | [01_GBD/527_gbd_burden_trend](07_clinical_translational/05_epidemiology_burden/01_GBD/527_gbd_burden_trend) | GBD ASR trend + EAPC + Das Gupta decomposition + SDI | burden/pop/sdi csv → tables + figures | R · dplyr, ggplot2 | R | line-trend, forest, lollipop, diverging-lollipop, scatter |
-| ✅ | 528 | [02_NHANES/528_nhanes_survey_weighted](07_clinical_translational/05_epidemiology_burden/02_NHANES/528_nhanes_survey_weighted) | NHANES survey-weighted means / regression / prevalence | nhanes.csv → svyglm + prevalence | R · survey, dplyr | R | dumbbell, forest, lollipop |
-| ✅ | 529 | [03_CHARLS/529_charls_longitudinal_cohort](07_clinical_translational/05_epidemiology_burden/03_CHARLS/529_charls_longitudinal_cohort) | CHARLS trend + equipercentile equating + LMM + Cox/KM | panel.csv → trend/crosswalk/LMM/Cox | R · lme4, survival | R | line-trend, concordance, violin, forest, KM |
-| ✅ | 530 | [04_comorbidity_network/530_comorbidity_network](07_clinical_translational/05_epidemiology_burden/04_comorbidity_network/530_comorbidity_network) | Disease-pair association → igraph → Louvain modules | patients.csv → network + metrics | R · igraph, ggraph | R | network, heatmap, lollipop |
-| 🗃️ | — | [99_external_sources](07_clinical_translational/05_epidemiology_burden/99_external_sources) | GBD/NHANES/CHARLS 上游第三方源码树(git 忽略,仅本地参考) | — | — | R | — |
-| 🗃️ | — | [comorbidity_paper_template_refs.ris](07_clinical_translational/05_epidemiology_burden/comorbidity_paper_template_refs.ris) | 共病选题的参考文献(仅本地) | — | — | — | — |
-| 🗃️ | — | [literature_summary_comorbidity.md](07_clinical_translational/05_epidemiology_burden/literature_summary_comorbidity.md) | 共病文献综述草稿(仅本地) | — | — | — | — |
-| 🗃️ | — | [sources_index.csv](07_clinical_translational/05_epidemiology_burden/sources_index.csv) | 疾病负担数据源索引(仅本地) | — | — | — | — |
-| 🗃️ | — | [topic_candidates.md](07_clinical_translational/05_epidemiology_burden/topic_candidates.md) | 疾病负担选题候选(仅本地) | — | — | — | — |
 
 ## 08 · 结构与药物设计 — Structure & drug design  (6)
 
@@ -478,7 +472,7 @@
 |----|---|------|------|------------|------|------|------|
 | 📄 | 493 | [493_opentargets_dgidb_chembl_druggability.py](09_network_pharmacology/03_druggability/493_opentargets_dgidb_chembl_druggability.py) | Composite druggability score for a target set (live APIs) | HGNC genes → score DataFrame | Py · requests, pandas, mygene | Python | — |
 
-## 10 · 可视化 — Visualization  (13)
+## 10 · 可视化 — Visualization  (12)
 
 ### 10.01 · 高级图型 — Advanced plot types
 
@@ -498,7 +492,6 @@
 | St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
 |----|---|------|------|------------|------|------|------|
 | 📄 | — | [advanced_figure_tools.csv](10_visualization/02_templates_resources/advanced_figure_tools.csv) | 高级图型工具清单 | — | — | — | — |
-| 🗃️ | — | [ai_scientific_figures](10_visualization/02_templates_resources/ai_scientific_figures) | AutoFigure-Edit(ICLR'26)本地参考:方法描述 → 可编辑 SVG 示意图 | — | — | Python | schematic |
 | 📄 | — | [download_advanced_figure_tools.ps1](10_visualization/02_templates_resources/download_advanced_figure_tools.ps1) | 按清单批量拉取高级图型工具 | 清单 csv → 本地仓库 | PowerShell | PS | — |
 | 📄 | — | [literature_download_links_for_fdm.txt](10_visualization/02_templates_resources/literature_download_links_for_fdm.txt) | 高级图型的文献下载链接 | — | — | — | — |
 | 📄 | — | [templates](10_visualization/02_templates_resources/templates) | 出图模板 | — | R · ggplot2 | R | — |
@@ -548,6 +541,46 @@
 | St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
 |----|---|------|------|------------|------|------|------|
 | 🟡 | 603 | [603_diareport_result_audit](16_proteomics_metabolomics/01_dia_proteomics/603_diareport_result_audit) | DiaReport/MSqRob 导出差异蛋白结果审计：校验 protein/log2FC/pvalue/padj，按 FDR 与效应方向汇总上调/下调并绘制火山图；不重写 QFeatures/MSqRob2/Quarto 流程 | 输入 DiaReport/MSqRob 导出 CSV（默认合成示例）；输出 603_summary.csv/json + 603_audit.png/pdf | Python 3 + pandas + numpy + matplotlib；完整分析需 R、QFeatures、MSqRob2、Quarto | Python | 差异蛋白火山图（PNG+PDF） |
+
+## 17 · 人群流行病与药物流行病 — Population & pharmacoepidemiology  (8)
+
+### 17.01 · 疾病负担 — Disease burden
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| ✅ | 527 | [527_gbd_burden_trend](17_population_epidemiology/01_disease_burden/527_gbd_burden_trend) | GBD ASR trend + EAPC + Das Gupta decomposition + SDI | burden/pop/sdi csv → tables + figures | R · dplyr, ggplot2 | R | line-trend, forest, lollipop, diverging-lollipop, scatter |
+
+### 17.02 · 复杂抽样调查 — Complex surveys
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| ✅ | 528 | [528_nhanes_survey_weighted](17_population_epidemiology/02_complex_surveys/528_nhanes_survey_weighted) | NHANES survey-weighted means / regression / prevalence | nhanes.csv → svyglm + prevalence | R · survey, dplyr | R | dumbbell, forest, lollipop |
+| 📄 | 605 | [605_survey_cancer_models](17_population_epidemiology/02_complex_surveys/605_survey_cancer_models) | 复杂抽样癌症史与死亡分析：完整design后选域、加权描述、Logistic、交互、自然样条及死亡Cox | one-row-per-person CSV with explicit survey design and model variables; JSON config including weight_provenance and lonely_psu policy → model_coefficients.csv; weighted_prevalence_by_group.csv (optional); survey_models.rds; config_used.R; sessionInfo.txt; receipt.txt | required: R, survey, survival; optional: jsonlite for JSON CLI | R | 结构化结果与审计输出；无默认展示图 |
+
+### 17.03 · 纵向队列与癌症结局 — Longitudinal cohorts & cancer outcomes
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| ✅ | 529 | [529_charls_longitudinal_cohort](17_population_epidemiology/03_longitudinal_cohorts/529_charls_longitudinal_cohort) | CHARLS trend + equipercentile equating + LMM + Cox/KM | panel.csv → trend/crosswalk/LMM/Cox | R · lme4, survival | R | line-trend, concordance, violin, forest, KM |
+| 📄 | 606 | [606_longitudinal_incident_cancer](17_population_epidemiology/03_longitudinal_cohorts/606_longitudinal_incident_cancer) | 纵向新发癌症：基线排癌、原因别Cox、区间删失AFT与规则人期离散模型 | researcher-defined first-event cohort or person-period CSV; JSON config with time origin/unit and one selected model mode → cohort_flow.csv; coefficients.csv; model.rds; proportional_hazards_test.txt (Cox); config_used.R; sessionInfo.txt; receipt.txt | required: R, survival; optional: jsonlite for JSON CLI | R | 结构化结果与审计输出；无默认展示图 |
+
+### 17.04 · 共病网络 — Comorbidity networks
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| ✅ | 530 | [530_comorbidity_network](17_population_epidemiology/04_comorbidity_networks/530_comorbidity_network) | Disease-pair association → igraph → Louvain modules | patients.csv → network + metrics | R · igraph, ggraph | R | network, heatmap, lollipop |
+
+### 17.05 · 药物暴露定义与审计 — Medication exposure
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 📄 | 604 | [604_prescription_exposure_audit](17_population_epidemiology/05_medication_exposure/604_prescription_exposure_audit) | 药物暴露记录审计：药名、给药途径、时长、缺失与重复；保留原值，不构造滥用标签 | prescriptions.csv: person_id,drug_name,route,duration_days; extra raw columns retained; drug_map.csv; route_map.csv → medication_audit.csv; person_record_summary.csv; audit.json with input SHA256 | required: Python >=3.9 standard library; optional:  | Python | 结构化结果与审计输出；无默认展示图 |
+
+### 17.06 · 混杂与缺失数据 — Confounding & missingness
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 📄 | 607 | [607_missingness_confounding](17_population_epidemiology/06_confounding_missingness/607_missingness_confounding) | 缺失与混杂：缺失审计、MICE与Rubin合并、PS权重和平衡/重叠/ESS诊断 | one-row-per-person CSV; JSON config selecting audit/mi_glm/ps_diagnostics; optional explicit MICE predictor matrix CSV → missingness.csv; mi_pooled_coefficients.csv (MI); covariate_balance.csv (PS); positivity_ess.csv (PS); record_weights.csv (PS); results.rds; config_used.R; sessionInfo.txt | required: R; optional: mice and broom for mi_glm, jsonlite for JSON CLI | R | 结构化结果与审计输出；无默认展示图 |
 
 ---
 

@@ -1,0 +1,89 @@
+{
+  "id": "605",
+  "name": "survey_cancer_models",
+  "title": "Complex-survey cancer prevalence and mortality associations",
+  "language": "R",
+  "entrypoint": "605_survey_cancer_models.R",
+  "task": [
+    "survey_weighted_descriptives",
+    "prevalence_logistic",
+    "interaction",
+    "natural_cubic_spline",
+    "survey_mortality_cox"
+  ],
+  "inputs": [
+    "one-row-per-person CSV with explicit survey design and model variables",
+    "JSON config including weight_provenance and lonely_psu policy"
+  ],
+  "outputs": [
+    "model_coefficients.csv",
+    "weighted_prevalence_by_group.csv (optional)",
+    "survey_models.rds",
+    "config_used.R",
+    "sessionInfo.txt",
+    "receipt.txt"
+  ],
+  "dependencies": {
+    "required": [
+      "R",
+      "survey",
+      "survival"
+    ],
+    "optional": [
+      "jsonlite for JSON CLI"
+    ]
+  },
+  "sources": [
+    {
+      "repository": "cran/survey",
+      "url": "https://github.com/cran/survey",
+      "head_sha": "4834b8bc91f6414ad4514552daaed8990a86d9c1",
+      "license_declared": "GPL-2 | GPL-3",
+      "provenance": "CRAN package mirror; upstream project is R-Forge",
+      "integration": "implemented",
+      "verified_files": [
+        "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/DESCRIPTION",
+        "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svydesign.Rd",
+        "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svyglm.Rd",
+        "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/svycoxph.Rd",
+        "https://github.com/cran/survey/blob/4834b8bc91f6414ad4514552daaed8990a86d9c1/man/regTermTest.Rd"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    },
+    {
+      "repository": "therneau/survival",
+      "url": "https://github.com/therneau/survival",
+      "head_sha": "b76de62301f2ed4efcdbd8c062acc6759a54e511",
+      "license_declared": "LGPL (>=2)",
+      "provenance": "official",
+      "integration": "implemented",
+      "verified_files": [
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/DESCRIPTION",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/Surv.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/coxph.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/survreg.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/cox.zph.Rd"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "runtime_packages": {
+      "survey": "4.5",
+      "survival": "3.8.6",
+      "jsonlite": "2.0.0"
+    },
+    "checks": [
+      "full-design then domain subset",
+      "weighted descriptives",
+      "logistic/interaction/spline/mortality Cox",
+      "missing weight provenance refusal"
+    ],
+    "limitations": "No cycle-weight calculation, no causal effect identification. Cancer prevalence and mortality cannot be reported as incident cancer. Source pins describe inspected upstream code, not an environment lock."
+  },
+  "source_policy": "Original adapter; upstream code is not vendored. Source metadata pinned independently of installed runtime versions.",
+  "summary": "复杂抽样癌症史与死亡分析：完整design后选域、加权描述、Logistic、交互、自然样条及死亡Cox"
+}

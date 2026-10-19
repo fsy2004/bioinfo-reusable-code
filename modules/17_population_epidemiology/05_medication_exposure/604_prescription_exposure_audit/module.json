@@ -1,0 +1,62 @@
+{
+  "id": "604",
+  "name": "prescription_exposure_audit",
+  "title": "Prescription record mapping, route and duration audit",
+  "language": "Python",
+  "entrypoint": "604_prescription_exposure_audit.py",
+  "task": [
+    "medication_exposure_audit",
+    "glucocorticoid_mapping",
+    "route_validation",
+    "missingness_audit"
+  ],
+  "inputs": [
+    "prescriptions.csv: person_id,drug_name,route,duration_days; extra raw columns retained",
+    "drug_map.csv",
+    "route_map.csv"
+  ],
+  "outputs": [
+    "medication_audit.csv",
+    "person_record_summary.csv",
+    "audit.json with input SHA256"
+  ],
+  "dependencies": {
+    "required": [
+      "Python >=3.9 standard library"
+    ],
+    "optional": []
+  },
+  "sources": [
+    {
+      "repository": "python/cpython",
+      "url": "https://github.com/python/cpython",
+      "head_sha": "036d309cf542986a39eeba5ca805b2ec7619731d",
+      "license_declared": "Python Software Foundation License Version 2; see full pinned LICENSE for history and bundled notices",
+      "provenance": "official",
+      "integration": "implemented",
+      "verified_files": [
+        "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/Lib/csv.py",
+        "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/Lib/json/__init__.py",
+        "https://github.com/python/cpython/blob/036d309cf542986a39eeba5ca805b2ec7619731d/LICENSE"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "checks": [
+      "raw preservation",
+      "exact alias mapping",
+      "unknown drug/route flags",
+      "invalid duration",
+      "duplicate retention",
+      "overwrite refusal",
+      "dictionary conflict rejection"
+    ],
+    "limitations": "No abuse definition, unexposed classification, cumulative dose or continuous exposure inference; drug dictionaries require researcher validation."
+  },
+  "source_policy": "Original adapter; upstream code is not vendored. Source metadata pinned independently of installed runtime versions.",
+  "summary": "药物暴露记录审计：药名、给药途径、时长、缺失与重复；保留原值，不构造滥用标签"
+}

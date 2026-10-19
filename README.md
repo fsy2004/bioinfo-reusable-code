@@ -3,22 +3,24 @@
 按研究问题组织的 R/Python 生物信息学代码库：先选领域，再进入可独立运行的模块，用自己的数据替换合成示例。
 
 <!-- readme-metrics:start -->
-![modules](https://img.shields.io/badge/modules-188-2563EB)
-![catalog entries](https://img.shields.io/badge/catalog_entries-202-334155)
-![domains](https://img.shields.io/badge/domains-15-0F766E)
-![subcategories](https://img.shields.io/badge/subcategories-59-7C3AED)
+![modules](https://img.shields.io/badge/modules-199-2563EB)
+![catalog entries](https://img.shields.io/badge/catalog_entries-203-334155)
+![domains](https://img.shields.io/badge/domains-16-0F766E)
+![subcategories](https://img.shields.io/badge/subcategories-64-7C3AED)
 ![outputs](https://img.shields.io/badge/figures-PDF%20%2B%20300dpi%20PNG-15803D)
 <!-- readme-metrics:end -->
 
 ## 这是什么
 
-本库保存可复用的分析入口、输入样例、来源说明和投稿级展示图。189 个三位编号模块构成主要分析单元；完整目录另含 14 个模板、索引与本地资源入口，因此总目录为 203 条。数字由文件树自动生成，不手工维护。
+本库保存可复用的分析入口、输入样例、来源说明和展示图。三位编号模块构成主要分析单元；数量由机器索引与公开目录自动生成，不手工维护。历史模块的运行标记保留原记录，本次可用性以具体验证记录为准。
 
-每个新模块必须满足三条底线：从真实工具或已发表方法起步；默认示例可以零改动运行；示例成功只证明接口和审计路径可工作，不代替真实数据分析或科学验证。
+模块从真实工具或已发表方法起步。带示例的模块提供示例运行；方法准备与输入审计入口要求显式输入/配置，并在 `module.json` 记录验证状态。合成检查只证明接口和审计路径可工作，不代替真实数据分析或科学验证。
 
 ## Quick start
 
 先在 [`modules/CATALOG.md`](modules/CATALOG.md) 按领域、用途或图型定位模块，再阅读该模块的 README。
+
+AI 检索从 [`catalog/modules.jsonl`](catalog/modules.jsonl) 或 `python scripts/query_modules.py NHANES` 开始；字段与维护规则见 [`docs/AI_INDEX.md`](docs/AI_INDEX.md)。本次课题的方法、2026 文献及 GitHub 来源见 [`研究准备入口`](docs/research/2026_glucocorticoids_cancer/README.md)。
 
 ```powershell
 git clone https://github.com/fsy2004/bioinfo-reusable-code.git
@@ -30,6 +32,8 @@ python modules\12_genome_annotation_variants\01_somatic_variants\598_clairs_long
 
 默认结果写入模块自己的 `results/`；展示用 PNG 保存在 `assets/`。R 模块通常以 `Rscript <module>.R` 运行，Python 模块以 `python <module>.py` 运行。完整参数、依赖和真实输入规格以模块 README 为准。
 
+604–610 是显式配置的准备入口，运行命令见各模块 README；没有输入时不会伪造研究数据或生成科学结果。
+
 ## 按问题选领域
 
 - 细胞状态、亚群、轨迹或空间生态位：01–03。
@@ -37,25 +41,27 @@ python modules\12_genome_annotation_variants\01_somatic_variants\598_clairs_long
 - 临床转化、药物、结构与网络：07–09。
 - 投稿图与证据合成：10–11。
 - 基因组变异/注释、比较基因组、微生物组、表观组和蛋白质组：12–16。
+- 人群数据库、复杂抽样、纵向队列和药物暴露：17；遗传因果与 GWAS 定位联用 04。
 
 <!-- readme-domains:start -->
-| Domain | Entries | Entry |
+| Domain | Numbered entries | Entry |
 |---|---:|---|
 | 01 · 单细胞分析 — Single-cell analysis | 33 | [`modules/01_single_cell`](modules/01_single_cell) |
 | 02 · 空间转录组 — Spatial transcriptomics | 24 | [`modules/02_spatial_transcriptomics`](modules/02_spatial_transcriptomics) |
 | 03 · 虚拟扰动技术 — Virtual perturbation | 26 | [`modules/03_virtual_perturbation`](modules/03_virtual_perturbation) |
-| 04 · 因果推断与遗传流行病 — Causal inference & genetics | 29 | [`modules/04_causal_inference_genetics`](modules/04_causal_inference_genetics) |
+| 04 · 因果推断与遗传流行病 — Causal inference & genetics | 32 | [`modules/04_causal_inference_genetics`](modules/04_causal_inference_genetics) |
 | 05 · 机器学习 — Machine learning | 18 | [`modules/05_machine_learning`](modules/05_machine_learning) |
 | 06 · Bulk 组学 — Bulk omics | 19 | [`modules/06_bulk_omics`](modules/06_bulk_omics) |
-| 07 · 临床与转化 — Clinical & translational | 20 | [`modules/07_clinical_translational`](modules/07_clinical_translational) |
+| 07 · 临床与转化 — Clinical & translational | 11 | [`modules/07_clinical_translational`](modules/07_clinical_translational) |
 | 08 · 结构与药物设计 — Structure & drug design | 6 | [`modules/08_structure_drug_design`](modules/08_structure_drug_design) |
 | 09 · 网络药理学 — Network pharmacology | 8 | [`modules/09_network_pharmacology`](modules/09_network_pharmacology) |
-| 10 · 可视化 — Visualization | 13 | [`modules/10_visualization`](modules/10_visualization) |
+| 10 · 可视化 — Visualization | 8 | [`modules/10_visualization`](modules/10_visualization) |
 | 12 · 基因组注释与变异 — Genome annotation & variants | 2 | [`modules/12_genome_annotation_variants`](modules/12_genome_annotation_variants) |
 | 13 · 比较基因组与系统发育 — Comparative genomics & phylogenetics | 1 | [`modules/13_comparative_genomics_phylogenetics`](modules/13_comparative_genomics_phylogenetics) |
 | 14 · 微生物组与宏基因组 — Microbiome & metagenomics | 1 | [`modules/14_microbiome_metagenomics`](modules/14_microbiome_metagenomics) |
 | 15 · 表观基因组与染色质 — Epigenomics & chromatin | 1 | [`modules/15_epigenomics_chromatin`](modules/15_epigenomics_chromatin) |
 | 16 · 蛋白质组与代谢组 — Proteomics & metabolomics | 1 | [`modules/16_proteomics_metabolomics`](modules/16_proteomics_metabolomics) |
+| 17 · 人群流行病与药物流行病 — Population & pharmacoepidemiology | 8 | [`modules/17_population_epidemiology`](modules/17_population_epidemiology) |
 <!-- readme-domains:end -->
 
 ## 模块契约
@@ -93,8 +99,10 @@ python modules\12_genome_annotation_variants\01_somatic_variants\598_clairs_long
 
 ```powershell
 python modules\_framework\gen_catalog.py
+python scripts\build_ai_index.py
 python scripts\update_readme.py
 python scripts\update_readme.py --check
+python scripts\build_ai_index.py --check
 python -m unittest tests.test_readme_update tests.test_2026_method_modules -v
 python modules\_framework\qc_lint.py modules\12_genome_annotation_variants
 git diff --check

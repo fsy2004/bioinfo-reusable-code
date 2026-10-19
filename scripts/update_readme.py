@@ -6,6 +6,7 @@ import argparse
 import re
 import sys
 from pathlib import Path
+import json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,15 @@ def local_link_errors(root: Path, text: str) -> list[str]:
 
 
 def compute_metrics(root: Path) -> dict[str, int]:
+    index = root / 'catalog' / 'modules.json'
+    if index.exists():
+        records = json.loads(index.read_text(encoding='utf-8'))['modules']
+        catalog = root / 'modules' / 'CATALOG.md'
+        entries = sum(1 for line in catalog.read_text(encoding='utf-8').splitlines()
+                      if re.match(r'^\| [^|]+ \| (?:\d{3}|—) \| \[', line))
+        return {'domains': len({r['domain'] for r in records}),
+                'subcategories': len({(r['domain'],r['subcategory']) for r in records}),
+                'modules': len(records), 'catalog_entries': entries}
     modules = root / "modules"
     domains = [path for path in modules.iterdir() if path.is_dir() and re.match(r"^\d{2}_", path.name)]
     subcategories = [path for domain in domains for path in domain.iterdir() if path.is_dir() and re.match(r"^\d{2}_", path.name)]
@@ -53,11 +63,13 @@ def render_metrics(metrics: dict[str, int]) -> str:
 
 
 def render_domains(root: Path) -> str:
-    rows = ["| Domain | Entries | Entry |", "|---|---:|---|"]
+    rows = ["| Domain | Numbered entries | Entry |", "|---|---:|---|"]
     for domain in sorted(path for path in (root / "modules").iterdir() if path.is_dir() and re.match(r"^\d{2}_", path.name)):
         first = (domain / "README.md").read_text(encoding="utf-8").splitlines()[0]
         label = first.removeprefix("# ").strip()
-        count = sum(1 for path in domain.glob("*/*") if path.name not in {"README.md", ".gitignore"})
+        catalog = (root/'catalog/modules.json')
+        count = (sum(1 for row in json.loads(catalog.read_text(encoding='utf-8'))['modules'] if row['domain']==domain.name)
+                 if catalog.exists() else sum(1 for path in domain.glob("*/*") if path.name not in {"README.md", ".gitignore"}))
         rows.append(f"| {label} | {count} | [`modules/{domain.name}`](modules/{domain.name}) |")
     return "\n".join(rows)
 

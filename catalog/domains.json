@@ -1,0 +1,226 @@
+[
+  {
+    "id": "01_single_cell",
+    "labels": [
+      "单细胞分析",
+      "Single-cell analysis"
+    ],
+    "modules": 33,
+    "subcategories": [
+      "01_pipeline_qc",
+      "02_integration_batch",
+      "03_annotation_typing",
+      "04_composition_da",
+      "05_differential_expression",
+      "06_trajectory_velocity",
+      "07_cnv_clonality",
+      "08_activity_scoring",
+      "09_bulk_phenotype_link",
+      "10_foundation_models"
+    ]
+  },
+  {
+    "id": "02_spatial_transcriptomics",
+    "labels": [
+      "空间转录组",
+      "Spatial transcriptomics"
+    ],
+    "modules": 24,
+    "subcategories": [
+      "01_pipeline_segmentation",
+      "02_domains_svg_stats",
+      "03_deconvolution_mapping",
+      "04_alignment_3d",
+      "05_cell_communication",
+      "06_spatial_multiomics",
+      "07_foundation_models"
+    ]
+  },
+  {
+    "id": "03_virtual_perturbation",
+    "labels": [
+      "虚拟扰动技术",
+      "Virtual perturbation"
+    ],
+    "modules": 26,
+    "subcategories": [
+      "01_insilico_knockout",
+      "02_grn_inference",
+      "03_causal_perturbation",
+      "04_drug_perturbation",
+      "05_benchmark"
+    ]
+  },
+  {
+    "id": "04_causal_inference_genetics",
+    "labels": [
+      "因果推断与遗传流行病",
+      "Causal inference & genetics"
+    ],
+    "modules": 32,
+    "subcategories": [
+      "01_instrument_prep",
+      "02_two_sample_mr",
+      "03_cis_mr_drug_target",
+      "04_mediation_mvmr",
+      "05_colocalization",
+      "06_twas_sceqtl",
+      "07_robust_mr_methods",
+      "08_gwas_finemapping"
+    ]
+  },
+  {
+    "id": "05_machine_learning",
+    "labels": [
+      "机器学习",
+      "Machine learning"
+    ],
+    "modules": 18,
+    "subcategories": [
+      "01_feature_selection",
+      "02_classification_models",
+      "03_survival_ml",
+      "04_interpretability",
+      "05_uncertainty",
+      "06_generalization_validation"
+    ]
+  },
+  {
+    "id": "06_bulk_omics",
+    "labels": [
+      "Bulk 组学",
+      "Bulk omics"
+    ],
+    "modules": 19,
+    "subcategories": [
+      "01_differential_expression",
+      "02_enrichment",
+      "03_coexpression_networks",
+      "04_multiomics_integration",
+      "05_mutation_methylation_proteome"
+    ]
+  },
+  {
+    "id": "07_clinical_translational",
+    "labels": [
+      "临床与转化",
+      "Clinical & translational"
+    ],
+    "modules": 11,
+    "subcategories": [
+      "01_diagnostic_models",
+      "02_prognosis_survival",
+      "03_immune_infiltration",
+      "04_pharmacovigilance"
+    ]
+  },
+  {
+    "id": "08_structure_drug_design",
+    "labels": [
+      "结构与药物设计",
+      "Structure & drug design"
+    ],
+    "modules": 6,
+    "subcategories": [
+      "01_docking",
+      "02_md_simulation",
+      "03_virtual_screening"
+    ]
+  },
+  {
+    "id": "09_network_pharmacology",
+    "labels": [
+      "网络药理学",
+      "Network pharmacology"
+    ],
+    "modules": 8,
+    "subcategories": [
+      "01_target_databases",
+      "02_target_intersection",
+      "03_druggability"
+    ]
+  },
+  {
+    "id": "10_visualization",
+    "labels": [
+      "可视化",
+      "Visualization"
+    ],
+    "modules": 8,
+    "subcategories": [
+      "01_advanced_plots"
+    ]
+  },
+  {
+    "id": "12_genome_annotation_variants",
+    "labels": [
+      "基因组注释与变异",
+      "Genome annotation & variants"
+    ],
+    "modules": 2,
+    "subcategories": [
+      "01_somatic_variants",
+      "02_genome_annotation"
+    ]
+  },
+  {
+    "id": "13_comparative_genomics_phylogenetics",
+    "labels": [
+      "比较基因组与系统发育",
+      "Comparative genomics & phylogenetics"
+    ],
+    "modules": 1,
+    "subcategories": [
+      "01_orthology"
+    ]
+  },
+  {
+    "id": "14_microbiome_metagenomics",
+    "labels": [
+      "微生物组与宏基因组",
+      "Microbiome & metagenomics"
+    ],
+    "modules": 1,
+    "subcategories": [
+      "01_abundance"
+    ]
+  },
+  {
+    "id": "15_epigenomics_chromatin",
+    "labels": [
+      "表观基因组与染色质",
+      "Epigenomics & chromatin"
+    ],
+    "modules": 1,
+    "subcategories": [
+      "01_damid"
+    ]
+  },
+  {
+    "id": "16_proteomics_metabolomics",
+    "labels": [
+      "蛋白质组与代谢组",
+      "Proteomics & metabolomics"
+    ],
+    "modules": 1,
+    "subcategories": [
+      "01_dia_proteomics"
+    ]
+  },
+  {
+    "id": "17_population_epidemiology",
+    "labels": [
+      "人群流行病与药物流行病",
+      "Population & pharmacoepidemiology"
+    ],
+    "modules": 8,
+    "subcategories": [
+      "01_disease_burden",
+      "02_complex_surveys",
+      "03_longitudinal_cohorts",
+      "04_comorbidity_networks",
+      "05_medication_exposure",
+      "06_confounding_missingness"
+    ]
+  }
+]

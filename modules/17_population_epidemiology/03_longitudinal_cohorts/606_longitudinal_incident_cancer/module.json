@@ -1,0 +1,85 @@
+{
+  "id": "606",
+  "name": "longitudinal_incident_cancer",
+  "title": "Cancer-free cohort, interval censoring and cause-specific models",
+  "language": "R",
+  "entrypoint": "606_longitudinal_incident_cancer.R",
+  "task": [
+    "baseline_cancer_exclusion",
+    "incident_cancer",
+    "cause_specific_cox",
+    "interval_censored_aft",
+    "discrete_time_cloglog",
+    "participant_cluster_variance"
+  ],
+  "inputs": [
+    "researcher-defined first-event cohort or person-period CSV",
+    "JSON config with time origin/unit and one selected model mode"
+  ],
+  "outputs": [
+    "cohort_flow.csv",
+    "coefficients.csv",
+    "model.rds",
+    "proportional_hazards_test.txt (Cox)",
+    "config_used.R",
+    "sessionInfo.txt",
+    "receipt.txt"
+  ],
+  "dependencies": {
+    "required": [
+      "R",
+      "survival"
+    ],
+    "optional": [
+      "jsonlite for JSON CLI"
+    ]
+  },
+  "sources": [
+    {
+      "repository": "therneau/survival",
+      "url": "https://github.com/therneau/survival",
+      "head_sha": "b76de62301f2ed4efcdbd8c062acc6759a54e511",
+      "license_declared": "LGPL (>=2)",
+      "provenance": "official",
+      "integration": "implemented",
+      "verified_files": [
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/DESCRIPTION",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/Surv.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/coxph.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/survreg.Rd",
+        "https://github.com/therneau/survival/blob/b76de62301f2ed4efcdbd8c062acc6759a54e511/man/cox.zph.Rd"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    },
+    {
+      "repository": "cran/cmprsk",
+      "url": "https://github.com/cran/cmprsk",
+      "head_sha": "f81411e1e3f57822796bae2a6870657e455362e9",
+      "license_declared": "GPL (>= 2)",
+      "provenance": "CRAN mirror",
+      "integration": "reference_only",
+      "verified_files": [],
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "runtime_packages": {
+      "survival": "3.8.6",
+      "jsonlite": "2.0.0"
+    },
+    "checks": [
+      "baseline and unknown-cancer exclusions",
+      "cause-specific Cox retaining competing death",
+      "interval AFT",
+      "discrete-time cluster sandwich",
+      "unequal period-boundary refusal",
+      "missing-schema refusal"
+    ],
+    "limitations": "No survey/attrition weighting, time-varying exposure, Fine-Gray or cumulative-incidence adapter. Interval AFT refuses competing deaths. Discrete periods require identical boundaries across participants."
+  },
+  "source_policy": "Original adapter; upstream code is not vendored. Source metadata pinned independently of installed runtime versions.",
+  "summary": "纵向新发癌症：基线排癌、原因别Cox、区间删失AFT与规则人期离散模型"
+}

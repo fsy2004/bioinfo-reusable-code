@@ -1,0 +1,62 @@
+{
+  "id": "608",
+  "name": "gwas_summary_qc",
+  "title": "Dense regional GWAS summary and signed LD input audit",
+  "entrypoint": "gwas_summary_qc.py",
+  "language": "Python",
+  "task": [
+    "gwas_summary_qc",
+    "ld_input_validation",
+    "finemapping_preparation"
+  ],
+  "inputs": [
+    "summary.tsv",
+    "metadata.json",
+    "optional ld.txt + ld_variants.tsv"
+  ],
+  "outputs": [
+    "audit.json"
+  ],
+  "dependencies": {
+    "required": [
+      "Python >=3.9 standard library"
+    ],
+    "optional": [
+      "numpy for LD PSD check"
+    ]
+  },
+  "source_policy": "Original wrapper; upstream code is not vendored",
+  "sources": [
+    {
+      "url": "https://github.com/Cloufield/gwaslab",
+      "head_sha": "8657d6880508023ad7906cbd0888daa0ea76f234",
+      "license_api": "GPL-3.0",
+      "role": "Full external summary-statistics tooling",
+      "license_evidence_urls": [
+        "https://github.com/Cloufield/gwaslab/blob/8657d6880508023ad7906cbd0888daa0ea76f234/LICENSE"
+      ]
+    },
+    {
+      "url": "https://chr1swallace.github.io/coloc/articles/a02_data.html",
+      "role": "Dense regional input contract"
+    },
+    {
+      "url": "https://stephenslab.github.io/susieR/reference/susie_rss.html",
+      "role": "Signed LD/RSS requirements"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "limitations": "Metadata declarations cannot establish actual ancestry/build; no harmonization, clumping or GWAS is performed",
+    "checks": [
+      "matching regional inputs",
+      "LD order/allele and invalid-SE rejection",
+      "empty/duplicate-header/ragged input rejection",
+      "existing-output protection",
+      "declared chromosome/interval containment"
+    ]
+  },
+  "summary": "GWAS全区域汇总统计与signed LD审计：build、祖源、效应、频率、顺序与方向守卫"
+}

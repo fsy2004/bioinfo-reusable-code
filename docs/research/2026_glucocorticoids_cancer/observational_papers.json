@@ -1,0 +1,533 @@
+{
+  "schema_version": "1.0",
+  "retrieved_on": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "scope": "前期方法准备；非系统综述；未下载NHANES/CHARLS个体数据；2026窗口截至2026-10-19",
+  "counts": {
+    "eligible_2026": 8,
+    "historical_direct_precedent": 1
+  },
+  "terminology": {
+    "umbrella_cn": "基于公共数据库的观察性流行病学研究/二次数据分析",
+    "nhanes_cn": "复杂抽样横断面研究；链接死亡后可为队列生存分析",
+    "charls_cn": "纵向队列二次分析；单波次则为横断面研究",
+    "drug_exposure_cn": "药物流行病学研究",
+    "combined_cn": "观察性研究与遗传流行病学的证据三角互证；不能把不同估计目标直接合并"
+  },
+  "papers": [
+    {
+      "id": "OBS2026_01",
+      "title": "Cardiovascular-kidney-metabolic syndrome and cancer risk: Evidence from multi-omics analysis results",
+      "date": "2026-08-24",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1515/jtim-2026-0072",
+      "pmid": "42657337",
+      "pmcid": "PMC13508829",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13508829/",
+      "design": "多队列观察性分析 + MR + 组学 + 中介；致编辑短文",
+      "population": "UKBB n=182140；NHANES n=18079；CHARLS n=7944",
+      "methods": [
+        "multivariable_cox",
+        "multivariable_logistic",
+        "subgroup_interaction",
+        "multi_cohort_replication",
+        "two_sample_mr_unspecified",
+        "proteomic_metabolomic_risk_scores",
+        "pathway_enrichment",
+        "mediation_analysis"
+      ],
+      "method_details": "UKBB/CHARLS HR、NHANES OR；分层；蛋白与代谢风险分数；通路富集；炎性指标与MetRS中介。短文未披露完整MR估计器与所有建模参数，需补充材料。",
+      "limitations": [
+        "CHARLS 133例癌症事件，检验效能有限",
+        "NHANES/CHARLS结局为自报，UKBB为登记",
+        "MR未发现显著一致的遗传因果",
+        "本文属于Letter，不宜按完整方法学文章直接复刻"
+      ],
+      "reading_level": "full_text_main_short_letter; supplement_not_read",
+      "relevance": "唯一已核实2026同篇包含NHANES+CHARLS+MR+癌症的高贴题方法候选。"
+    },
+    {
+      "id": "OBS2026_02",
+      "title": "Hypocholesterolemia is a consequence, not a cause, of kidney cancer: A bidirectional Mendelian randomization study with NHANES 2001–2018",
+      "date": "2026-04-24",
+      "date_precision": "day",
+      "date_type": "first_electronic; issue=2026-06",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1016/j.canep.2026.103084",
+      "pmid": "42033882",
+      "pmcid": null,
+      "url": "https://www.sciencedirect.com/science/article/pii/S1877782126000998",
+      "metadata_url": "https://pubmed.ncbi.nlm.nih.gov/42033882/",
+      "design": "NHANES横断面 + 双向两样本MR的证据三角互证",
+      "population": "NHANES 102例自报肾癌、45366无癌对照；ccRCC GWAS总样本752817",
+      "methods": [
+        "complex_survey_design",
+        "weighted_linear_regression",
+        "bidirectional_two_sample_mr",
+        "ivw",
+        "weighted_median",
+        "mr_egger",
+        "mr_presso",
+        "mr_raps",
+        "bonferroni"
+      ],
+      "method_details": "按权重、分层、PSU建模；加权线性回归调整年龄、性别、BMI、他汀、吸烟、高血压和糖尿病；双向IVW及稳健MR方法。",
+      "limitations": [
+        "NHANES肾癌未分组织学，MR结局是ccRCC，估计对象并不完全一致",
+        "病例仅102例",
+        "摘要/片段可读，完整参数与补充材料未核读"
+      ],
+      "reading_level": "publisher_abstract_and_section_snippets; pubmed_metadata",
+      "relevance": "示范反向因果检验；不能预设观察关联与MR必须同向。"
+    },
+    {
+      "id": "OBS2026_03",
+      "title": "Association of neutrophil count with lung cancer risk and prognosis: A Mendelian randomization and NHANES analysis",
+      "date": "2026-01-30",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1097/MD.0000000000047510",
+      "pmid": "41630295",
+      "pmcid": "PMC12863823",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12863823/",
+      "design": "两样本MR评估肺癌风险 + NHANES肺癌患者生存分析",
+      "population": "MR暴露GWAS n=170702；肺癌GWAS n=27209；NHANES肺癌生存分析正文称104人",
+      "methods": [
+        "snp_instrument_selection",
+        "ld_clumping",
+        "allele_harmonization",
+        "f_statistic",
+        "ivw",
+        "weighted_median",
+        "mr_egger",
+        "cochran_q",
+        "egger_intercept",
+        "leave_one_out",
+        "kaplan_meier",
+        "multivariable_cox",
+        "subgroup_interaction"
+      ],
+      "method_details": "P<5e-8，10Mb窗口、LD阈值按文献原文需校核方向，排除中等频率回文SNP，F>100；KM、Cox、年龄分层；TwoSampleMR。",
+      "limitations": [
+        "肺癌发生MR与确诊者生存的估计目标不同",
+        "原文134例减29例却称104例，存在算术不一致，需核对原始流程",
+        "文中将无显著多效性当作假设被证明，不能沿用该解释",
+        "未在方法段明确完整复杂抽样处理"
+      ],
+      "reading_level": "full_text_main_methods_and_results; supplement_not_read",
+      "relevance": "炎症指标与肿瘤风险/预后分开定义的例子；作为方法提取而非质量背书。"
+    },
+    {
+      "id": "OBS2026_04",
+      "title": "Sleep Duration and Depression as Predictors of Cancer Incidence in Middle-aged and Older Adults: A Longitudinal Analysis from the China Health and Retirement Longitudinal Study (CHARLS)",
+      "date": "2026-02-27",
+      "date_precision": "day",
+      "date_type": "publication; issue=2026-03/04",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.21873/invivo.14258",
+      "pmid": "41760316",
+      "pmcid": "PMC12949910",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12949910/",
+      "full_text_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12949910/",
+      "design": "CHARLS纵向队列二次分析",
+      "population": "CHARLS 2011–2020，9400人，271例新发自报癌症，随访中位9年",
+      "methods": [
+        "shapiro_wilk",
+        "mann_whitney_u",
+        "chi_square",
+        "multivariable_cox",
+        "progressive_covariate_models",
+        "kaplan_meier",
+        "log_rank",
+        "restricted_cubic_spline",
+        "two_piecewise_regression",
+        "likelihood_ratio_test",
+        "variance_inflation_factor",
+        "subgroup_interaction"
+      ],
+      "method_details": "Shapiro-Wilk、Mann-Whitney U/χ²；三级Cox；KM/log-rank；RCS；两段线性与似然比比较；VIF；抑郁及其他协变量分层。R 4.5.1与Zstats。",
+      "limitations": [
+        "PMC检索渲染可读方法与结果；最初直接打开遭验证码，后已取得正文方法",
+        "原文KM累计发生率叙述与保护方向存在文字不一致，复刻前需核图表",
+        "自报癌症/睡眠；大量完全病例排除；数据驱动阈值应探索性解释"
+      ],
+      "reading_level": "PMC_search_rendered_full_text_methods_results_and_metadata; supplement_not_read",
+      "relevance": "癌症新发定义、非线性及效应修饰的学习候选。"
+    },
+    {
+      "id": "OBS2026_05",
+      "title": "Interacting and joint effects of frailty and depressive symptoms in relation to risk of cardio-oncology comorbidity in older adults from three prospective cohorts",
+      "date": "2026-06-16",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1186/s12877-026-07834-8",
+      "pmid": "42304293",
+      "pmcid": "PMC13425996",
+      "url": "https://link.springer.com/article/10.1186/s12877-026-07834-8",
+      "design": "CHARLS+ELSA+HRS多队列纵向研究",
+      "population": "三队列合计10937名≥65岁者；CHARLS 2993人",
+      "methods": [
+        "multi_cohort_harmonization",
+        "multiple_imputation_mice",
+        "multivariable_cox",
+        "schoenfeld_test",
+        "multiplicative_interaction",
+        "additive_interaction_reri_ap_si",
+        "joint_exposure_four_groups",
+        "subgroup_interaction",
+        "early_event_exclusion",
+        "complete_case_sensitivity"
+      ],
+      "method_details": "MICE；Cox+Schoenfeld；乘积项；RERI/AP/SI；四组联合暴露；排除首轮事件、完全病例及追加药物调整。",
+      "limitations": [
+        "结局是CVD与癌症共病，不等于单独肿瘤发生",
+        "队列间CES-D版本/阈值与测量存在异质性",
+        "自报疾病、基线单次暴露、残余混杂"
+      ],
+      "reading_level": "full_text_main_methods_and_limitations; supplement_not_read",
+      "relevance": "多队列协调、联合效应与正式交互检验模块。"
+    },
+    {
+      "id": "OBS2026_06",
+      "title": "Association between self-purchased medication use and gastric disease among Chinese adults: a cross-sectional analysis based on CHARLS 2018 data",
+      "date": "2026-05-01",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1186/s12889-026-27616-6",
+      "pmid": "42067841",
+      "pmcid": "PMC13281294",
+      "url": "https://link.springer.com/article/10.1186/s12889-026-27616-6",
+      "design": "CHARLS 2018横断面二次分析；药物流行病学邻近方法案例",
+      "population": "合并后19752人，最终6087人，659例胃病",
+      "methods": [
+        "weighted_descriptive_statistics",
+        "weighted_chi_square",
+        "weighted_logistic_regression",
+        "progressive_covariate_models",
+        "roc_auc",
+        "nri_idi",
+        "subgroup_interaction",
+        "complete_case_analysis"
+      ],
+      "method_details": "EF001_W4自购药二值；DA007_10自报胃病；tableone、survey、pROC、nricens、PredictABEL；三级调整模型。",
+      "limitations": [
+        "自购药未区分药类、剂量、疗程，不能表示糖皮质激素滥用",
+        "结局为胃病，不能当胃癌研究",
+        "大量完全病例排除；原文二值暴露却出现first quartile用语，存在描述不一致",
+        "ROC/NRI/IDI为样本内区分度，不是外部预测验证"
+      ],
+      "reading_level": "full_text_main_methods_and_limitations; supplement_not_read",
+      "relevance": "直接示范CHARLS用药行为指标的颗粒度限制。"
+    },
+    {
+      "id": "OBS2026_07",
+      "title": "The Relationship between Sarcopenia and All-Cause and Cardiovascular Mortality Risk among Middle-Aged and Older Adults across Stages 0–3 of Cardiovascular-Kidney-Metabolic Syndrome: Evidence from NHANES and CHARLS",
+      "date": "2026-03-19",
+      "date_precision": "day",
+      "date_type": "published_online",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.1159/000550891",
+      "pmid": null,
+      "pmcid": "PMC13134842",
+      "url": "https://karger.com/crm/article-pdf/16/1/138/4519649/000550891.pdf",
+      "full_text_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13134842/",
+      "design": "NHANES死亡随访 + CHARLS外部队列复核",
+      "population": "NHANES最终3724人，85例全因死亡/12例CVD死亡；CHARLS 2011–2020复核",
+      "methods": [
+        "weighted_descriptive_statistics",
+        "weighted_t_test",
+        "weighted_chi_square",
+        "weighted_cox",
+        "progressive_covariate_models",
+        "restricted_cubic_spline",
+        "kaplan_meier",
+        "log_rank",
+        "train_validation_split",
+        "abess_feature_selection",
+        "boruta_feature_selection",
+        "variance_inflation_factor",
+        "ten_fold_cv",
+        "grid_search",
+        "decision_tree_random_forest_xgboost_svm_neural_network_logistic_qda_lda_naive_bayes_knn",
+        "roc_auc",
+        "multi_cohort_replication",
+        "subgroup_analysis"
+      ],
+      "method_details": "70/30训练测试；ABESS与Boruta选变量、VIF；10种ML、10折CV+网格调参；ROC/AUC；三级Cox、RCS、KM/log-rank，CHARLS复核全因死亡。",
+      "limitations": [
+        "DXA与体测方程跨队列肌肉量测量异质",
+        "CVD仅12事件，复杂模型稳定性需审查",
+        "基线单次暴露、活动/心肺适能残余混杂",
+        "结局为死亡而非癌症发生"
+      ],
+      "reading_level": "publisher_pdf_full_main_methods_and_limitations_read; supplement_not_read",
+      "relevance": "双数据库可重复分析与死亡结局方法候选。"
+    },
+    {
+      "id": "OBS2026_08",
+      "title": "Machine learning-based association analysis of triglyceride-glucose index with melanoma prevalence and all-cause mortality: insights from cross-sectional NHANES 1999–2018 data and an external hospital-based dataset",
+      "date": "2026-03-18",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2026,
+      "eligible_2026": true,
+      "doi": "10.3389/fnut.2026.1726865",
+      "pmid": null,
+      "pmcid": null,
+      "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1726865/full",
+      "design": "NHANES横断面患病率 + 链接死亡随访 + 内部ML预测；医院队列描述",
+      "population": "NHANES 21360人、127例黑色素瘤；医院475例肢端黑色素瘤用于描述",
+      "methods": [
+        "complex_survey_design",
+        "weighted_logistic_regression",
+        "weighted_cox",
+        "schoenfeld_test",
+        "restricted_cubic_spline",
+        "multiple_imputation_mice",
+        "rubin_pooling",
+        "winsorization_sensitivity",
+        "subgroup_analysis",
+        "train_validation_split",
+        "ten_fold_cv",
+        "logistic_ridge_lasso_elasticnet_tree_xgboost_lightgbm",
+        "shap",
+        "roc_auc",
+        "pr_auc",
+        "brier_calibration",
+        "decision_curve_analysis"
+      ],
+      "method_details": "MICE m=5并m=20敏感性；70/30划分、10折CV；7种算法；SHAP；AUROC/PR-AUC/Brier/校准/DCA；ML只纳入样本权重，未直接纳入分层PSU。",
+      "limitations": [
+        "医院队列仅描述，不能称模型外部验证",
+        "横断面癌症史为患病率",
+        "空腹TyG分析的权重选择需依NHANES官方原则重新审查，不能照抄WTMEC2YR",
+        "罕见结局和缺失处理需防信息泄漏"
+      ],
+      "reading_level": "full_text_main_methods_and_abstract; supplement_not_read",
+      "relevance": "收集缺失数据、预测验证与解释方法；不代表此课题必须加入ML。"
+    },
+    {
+      "id": "DIRECT2024_01",
+      "title": "Association between 19 medication use and risk of common cancers: A cross-sectional and Mendelian randomisation study",
+      "date": "2024-03-15",
+      "date_precision": "day",
+      "date_type": "publication",
+      "year": 2024,
+      "eligible_2026": false,
+      "doi": "10.7189/jogh.14.04057",
+      "pmid": "38487860",
+      "pmcid": "PMC10940964",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10940964/",
+      "publisher_url": "https://jogh.org/2024/jogh-14-04057/",
+      "design": "NHANES药物-癌症横断面 + 两样本MR",
+      "population": "NHANES 1999–2022，30899人；19类药物包括glucocorticoids，4类癌症",
+      "methods": [
+        "atc_drug_classification",
+        "exposure_outcome_timing_reconstruction",
+        "propensity_score_matching",
+        "weighted_logistic_regression",
+        "restricted_cubic_spline",
+        "bonferroni",
+        "two_sample_mr",
+        "replication_meta_analysis",
+        "genetic_correlation_ldsc",
+        "reverse_mr",
+        "steiger"
+      ],
+      "method_details": "ATC分类、PSM、复杂抽样Logistic、用药时长RCS；用药开始≥癌症前6月且调查前月仍用；FinnGen复核/meta、遗传相关及反向MR。",
+      "limitations": [
+        "早已有糖皮质激素这一药类的直接先例，不能将笼统NHANES+MR当创新",
+        "用药倾向GWAS可能反映适应证/健康行为，不能等同药理效应或滥用",
+        "现用药和癌症回忆的时间重构仍受选择与回忆偏倚",
+        "公开RX无每日剂量，不能解释剂量滥用"
+      ],
+      "reading_level": "PMC_search_rendered_full_text_methods_and_limitations; supplement_not_read",
+      "relevance": "必须优先精读的既有直接先例；单列历史文献，不计2026数量。"
+    }
+  ],
+  "github_method_leads": [
+    {
+      "method": "complex_survey_design / weighted descriptive / logistic / Cox",
+      "paper_ids": [
+        "OBS2026_02",
+        "OBS2026_06",
+        "OBS2026_08",
+        "DIRECT2024_01"
+      ],
+      "url": "https://github.com/cran/survey",
+      "status": "verified_GitHub_CRAN_read_only_mirror",
+      "note": "官方主页在R-Forge；GitHub镜像不是开发上游。"
+    },
+    {
+      "method": "multiple_imputation_mice / Rubin pooling",
+      "paper_ids": [
+        "OBS2026_05",
+        "OBS2026_08"
+      ],
+      "url": "https://github.com/amices/mice",
+      "status": "verified_upstream"
+    },
+    {
+      "method": "Cox / KM / Schoenfeld / survival workflows",
+      "paper_ids": [
+        "OBS2026_03",
+        "OBS2026_04",
+        "OBS2026_05",
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "url": "https://github.com/therneau/survival",
+      "status": "verified_upstream"
+    },
+    {
+      "method": "restricted cubic spline / regression modeling",
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_07",
+        "OBS2026_08",
+        "DIRECT2024_01"
+      ],
+      "url": "https://github.com/harrelfe/rms",
+      "status": "verified_upstream",
+      "note": "复杂抽样下使用样条基函数与survey模型配合，不能直接丢弃抽样设计。"
+    },
+    {
+      "method": "propensity_score_matching",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "url": "https://github.com/kosukeimai/MatchIt",
+      "status": "verified_repository_redirect_or_current_maintainer_to_check",
+      "note": "README安装开发版指向ngreifer/MatchIt；代码代理应以当前Git/API确认canonical。"
+    },
+    {
+      "method": "additive interaction RERI AP SI",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "url": "https://github.com/tunsmart/interactionR",
+      "status": "verified_upstream",
+      "note": "适配coxph/glm；复杂抽样对象适配须另核。"
+    },
+    {
+      "method": "ROC/AUC",
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_08"
+      ],
+      "url": "https://github.com/xrobin/pROC",
+      "status": "verified_upstream"
+    },
+    {
+      "method": "ML resampling framework",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "url": "https://github.com/tidymodels/tidymodels",
+      "status": "verified_framework_option_not_claimed_paper_package"
+    },
+    {
+      "method": "SHAP/model explanation",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "url": "https://github.com/ModelOriented/DALEX",
+      "status": "verified_framework_option_not_claimed_paper_package"
+    },
+    {
+      "method": "Firth rare-event logistic",
+      "paper_ids": [],
+      "url": "https://github.com/cran/logistf",
+      "status": "verified_GitHub_CRAN_mirror_adjacent_extension",
+      "note": "上游georgheinze/logistf由镜像声明；本8篇未确认使用，不能标记为已提取方法。"
+    }
+  ],
+  "official_variable_boundary": [
+    {
+      "database": "NHANES",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/RXQ_RX_J.htm",
+      "verified": "RXDUSE过去30天处方药；RXDDRUG/RXDDRGID药名/码；RXDDAYS自述使用时长；公开字段无每日剂量、频次、累计泼尼松当量；药物层需先汇总到人再按SEQN合并。",
+      "inference": "因此现有字段可研究使用/时长关联，不能直接构造临床意义的滥用。",
+      "scope_note": "仅以2017–2018官方codebook作方法边界示例，未完成跨周期字段审计。"
+    },
+    {
+      "database": "NHANES",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/MCQ_J.htm",
+      "verified": "MCQ220曾被医生/卫生专业人员告知癌症；MCQ230a-c癌种；MCD240a-c诊断年龄。",
+      "inference": "主要支持癌症史/患病分析；常规死亡链接不是癌症新发登记。"
+    },
+    {
+      "database": "CHARLS",
+      "url": "https://charls.pku.edu.cn/wenjian/jiahuwenjuan.pdf",
+      "verified": "官方问卷可读癌症部位、治疗大类；没有在本轮确证糖皮质激素具体药名/剂量字段。",
+      "inference": "不将自购药或西药治疗大类等同糖皮质激素；完整选型暂缓。",
+      "scope_note": "该官方PDF历史波次；不能据未检出断言所有波次均无具体用药。"
+    }
+  ],
+  "query_log": [
+    {
+      "date": "2026-10-19",
+      "query": "site:pmc.ncbi.nlm.nih.gov 2026 NHANES cancer risk"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "site:pmc.ncbi.nlm.nih.gov 2026 CHARLS cancer risk"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "2026 NHANES cancer \"Mendelian\" study"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "2026 CHARLS cancer \"cohort\" study"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "\"Cardiovascular-kidney-metabolic syndrome and cancer risk\""
+    },
+    {
+      "date": "2026-10-19",
+      "query": "\"Sleep Duration and Depression as Predictors of Cancer Incidence\" 2026 DOI"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "\"Association between self-purchased medication use and gastric disease\" DOI 2026"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "site:wwwn.cdc.gov \"RXQ_RX_J\" \"RXDDAYS\""
+    },
+    {
+      "date": "2026-10-19",
+      "query": "site:charls.pku.edu.cn questionnaire cancer medication"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "GitHub primary package repositories: survey, survival, mice, rms, MatchIt, interactionR, pROC, tidymodels, DALEX"
+    },
+    {
+      "date": "2026-10-19",
+      "query": "\"Sleep Duration and Depression\" \"14258\" \"Statistical\" → PMC full-text search-rendered"
+    }
+  ],
+  "exclusions_and_caveats": [
+    "搜索引擎的Published/Crawled相对时间不用于正式日期；以正文/期刊/PubMed日期为准。",
+    "2025 cholecystectomy+CRC+NHANES+MR (10.21037/tcr-2025-1493) 排除2026清单。",
+    "2025 metformin+pan-cancer+NHANES+MR (10.1007/s12672-025-02021-4) 排除2026清单。",
+    "Pre-diagnostic low muscle mass...10.1038/s41598-026-74449-9 搜到候选但本轮主站读取失败、确切日期未核，不计正式8篇。",
+    "未对论文做撤稿/勘误数据库专项核验；方法摘录不代表质量背书。",
+    "GitHub仓库可读取不等于已安装、已执行或适配本题；许可、版本、计算验证由主任务统一处理。"
+  ]
+}

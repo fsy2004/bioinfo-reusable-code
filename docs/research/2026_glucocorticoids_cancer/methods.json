@@ -1,0 +1,3183 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-10-19",
+  "scope": "Every method key extracted in included papers plus explicitly labeled design extensions; not all methods must be used in one study.",
+  "status_policy": "related_module_ids are routing links, not proof that the exact method is fully implemented or currently executable. Only seven explicitly labeled new adapters were behavior checked on artificial inputs.",
+  "methods": [
+    {
+      "id": "abess_feature_selection",
+      "family": "特征选择",
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "abess-team/abess",
+          "url": "https://github.com/abess-team/abess",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "additive_interaction_reri_ap_si",
+      "family": "加性交互",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "tunsmart/interactionR",
+          "url": "https://github.com/tunsmart/interactionR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "allele_harmonization",
+      "family": "工具变量",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/ieugwasr",
+          "url": "https://github.com/MRCIEU/ieugwasr",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chrchang/plink-ng",
+          "url": "https://github.com/chrchang/plink-ng",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "028",
+        "029",
+        "030",
+        "031",
+        "608",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "ancestry_stratified_analysis",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "mr2026_gastric_proteome"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "assumption_assessment",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "perspective2026_mr_future"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "atc_drug_classification",
+      "family": "药物暴露",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "python/cpython",
+          "url": "https://github.com/python/cpython",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "604"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "604只审计用户提供药物词典，不内置完整ATC数据库或临床滥用阈值。"
+      ]
+    },
+    {
+      "id": "bayesian_fdr",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "bidirectional_two_sample_mr",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_02"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "bonferroni",
+      "family": "多重检验",
+      "paper_ids": [
+        "OBS2026_02",
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "boruta_feature_selection",
+      "family": "特征选择",
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/Boruta",
+          "url": "https://github.com/cran/Boruta",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "brier_calibration",
+      "family": "预测评估",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "xrobin/pROC",
+          "url": "https://github.com/xrobin/pROC",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tagteam/riskRegression",
+          "url": "https://github.com/tagteam/riskRegression",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "016",
+        "553"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "cell_type_context",
+      "family": "细胞语境证据",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [],
+      "related_module_ids": [
+        "046"
+      ],
+      "implementation_status": "existing_entry_or_design_reference",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "chi_square",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "cis_eqtl_mr",
+      "family": "分子与药靶 MR",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "075",
+        "535",
+        "536",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "cis_pqtl_mr",
+      "family": "分子与药靶 MR",
+      "paper_ids": [
+        "mr2026_gastric_proteome",
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "075",
+        "535",
+        "536",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "cochran_q",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "coloc",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_maca"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "colocalization",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc",
+        "mr2026_bcell_proteome",
+        "mr2026_gastric_proteome",
+        "method2026_coloc_design",
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "complete_case_analysis",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_06"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "complete_case_sensitivity",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "complex_survey_design",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_02",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "coregulation_audit",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "credible_sets",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_mvsusie"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "cross_ancestry_meta_analysis",
+      "family": "复核与证据合成",
+      "paper_ids": [
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "wviechtb/metafor",
+          "url": "https://github.com/wviechtb/metafor",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "guido-s/meta",
+          "url": "https://github.com/guido-s/meta",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "decision_curve_analysis",
+      "family": "决策曲线",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "ddsjoberg/dcurves",
+          "url": "https://github.com/ddsjoberg/dcurves",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "016",
+        "553"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "decision_tree_random_forest_xgboost_svm_neural_network_logistic_qda_lda_naive_bayes_knn",
+      "family": "机器学习算法",
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "034",
+        "045"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "框架入口不能代替各engine配置和跨验证泄漏检查；未新增全部算法实现。"
+      ]
+    },
+    {
+      "id": "early_event_exclusion",
+      "family": "生存与纵向",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "529",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "ecaviar",
+      "family": "多祖源共定位",
+      "paper_ids": [
+        "method2026_maca"
+      ],
+      "github_sources": [
+        {
+          "repository": "fhormoz/caviar",
+          "url": "https://github.com/fhormoz/caviar",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "已登记独立方法的作者源码，未运行；跨祖源LD与模型条件须逐方法核对。"
+      ]
+    },
+    {
+      "id": "egger_intercept",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "estimand_definition",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "perspective2026_mr_future"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "exposure_outcome_timing_reconstruction",
+      "family": "药物暴露",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "python/cpython",
+          "url": "https://github.com/python/cpython",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "604"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "external_replication",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc",
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "f_statistic",
+      "family": "工具变量",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/ieugwasr",
+          "url": "https://github.com/MRCIEU/ieugwasr",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chrchang/plink-ng",
+          "url": "https://github.com/chrchang/plink-ng",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "028",
+        "029",
+        "030",
+        "031",
+        "608",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "functional_annotation",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "genetic_correlation_ldsc",
+      "family": "遗传相关",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "CBIIT/ldsc",
+          "url": "https://github.com/CBIIT/ldsc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "bulik/ldsc",
+          "url": "https://github.com/bulik/ldsc",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "genome_wide_finemapping",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "grid_search",
+      "family": "机器学习验证",
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "034",
+        "503"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "heterogeneity",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "ivw",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_02",
+        "OBS2026_03",
+        "mr2026_glucocorticoid_nsclc",
+        "background2021_cortisol_cancer"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "joint_exposure_four_groups",
+      "family": "交互与联合暴露",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "kaplan_meier",
+      "family": "生存与纵向",
+      "paper_ids": [
+        "OBS2026_03",
+        "OBS2026_04",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "529",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "ld_clumping",
+      "family": "工具变量",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/ieugwasr",
+          "url": "https://github.com/MRCIEU/ieugwasr",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chrchang/plink-ng",
+          "url": "https://github.com/chrchang/plink-ng",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "028",
+        "029",
+        "030",
+        "031",
+        "608",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "leave_one_out",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_03",
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "likelihood_ratio_test",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "local_global_credible_sets",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "log_rank",
+      "family": "生存与纵向",
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "529",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "logistic_ridge_lasso_elasticnet_tree_xgboost_lightgbm",
+      "family": "机器学习算法",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "034",
+        "045"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "框架入口不能代替各engine配置和跨验证泄漏检查；未新增全部算法实现。"
+      ]
+    },
+    {
+      "id": "mann_whitney_u",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mediation_analysis",
+      "family": "风险评分与中介",
+      "paper_ids": [
+        "OBS2026_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/lavaan",
+          "url": "https://github.com/cran/lavaan",
+          "source_freeze": "moving_reference_not_pinned"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "499",
+        "057"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mr_egger",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_02",
+        "OBS2026_03",
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mr_presso",
+      "family": "稳健 MR",
+      "paper_ids": [
+        "OBS2026_02"
+      ],
+      "github_sources": [
+        {
+          "repository": "rondolab/MR-PRESSO",
+          "url": "https://github.com/rondolab/MR-PRESSO",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mr_raps",
+      "family": "稳健 MR",
+      "paper_ids": [
+        "OBS2026_02",
+        "method2026_mrsimss"
+      ],
+      "github_sources": [
+        {
+          "repository": "qingyuanzhao/mr.raps",
+          "url": "https://github.com/qingyuanzhao/mr.raps",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mr_simss",
+      "family": "重叠与选择偏倚修正",
+      "paper_ids": [
+        "method2026_mrsimss"
+      ],
+      "github_sources": [
+        {
+          "repository": "amandaforde/mr.simss",
+          "url": "https://github.com/amandaforde/mr.simss",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "533"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mrz",
+      "family": "MRZ",
+      "paper_ids": [
+        "method2026_mrz"
+      ],
+      "github_sources": [],
+      "related_module_ids": [],
+      "implementation_status": "code_not_identified",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "仅摘要/早期accepted版本支持；没有核实到作者代码，不实现估计器。"
+      ]
+    },
+    {
+      "id": "mscaviar",
+      "family": "多祖源共定位",
+      "paper_ids": [
+        "method2026_maca"
+      ],
+      "github_sources": [
+        {
+          "repository": "nlapier2/MsCAVIAR",
+          "url": "https://github.com/nlapier2/MsCAVIAR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "已登记独立方法的作者源码，未运行；跨祖源LD与模型条件须逐方法核对。"
+      ]
+    },
+    {
+      "id": "multi_ancestry_colocalization",
+      "family": "多祖源共定位",
+      "paper_ids": [
+        "method2026_maca"
+      ],
+      "github_sources": [
+        {
+          "repository": "cthyshn/MACA",
+          "url": "https://github.com/cthyshn/MACA",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multi_cohort_harmonization",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multi_cohort_replication",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "OBS2026_01",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multi_trait_finemapping",
+      "family": "多性状定位",
+      "paper_ids": [
+        "method2026_mvsusie"
+      ],
+      "github_sources": [
+        {
+          "repository": "stephenslab/mvsusieR",
+          "url": "https://github.com/stephenslab/mvsusieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multiple_imputation_mice",
+      "family": "缺失数据",
+      "paper_ids": [
+        "OBS2026_05",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "amices/mice",
+          "url": "https://github.com/amices/mice",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multiplicative_interaction",
+      "family": "交互与联合暴露",
+      "paper_ids": [
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multivariable_cox",
+      "family": "生存与纵向",
+      "paper_ids": [
+        "OBS2026_01",
+        "OBS2026_03",
+        "OBS2026_04",
+        "OBS2026_05"
+      ],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "529",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "multivariable_logistic",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "mvsusie",
+      "family": "多性状定位",
+      "paper_ids": [
+        "method2026_mvsusie"
+      ],
+      "github_sources": [
+        {
+          "repository": "stephenslab/mvsusieR",
+          "url": "https://github.com/stephenslab/mvsusieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "nri_idi",
+      "family": "预测增益",
+      "paper_ids": [
+        "OBS2026_06"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/nricens",
+          "url": "https://github.com/cran/nricens",
+          "source_freeze": "moving_reference_not_pinned"
+        },
+        {
+          "repository": "cran/PredictABEL",
+          "url": "https://github.com/cran/PredictABEL",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "pathway_enrichment",
+      "family": "通路富集",
+      "paper_ids": [
+        "OBS2026_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "YuLab-SMU/clusterProfiler",
+          "url": "https://github.com/YuLab-SMU/clusterProfiler",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "051"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "pip",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_mvsusie",
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "pleiotropy_mixture",
+      "family": "稳健 MR 扩展",
+      "paper_ids": [
+        "method2026_mrz"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "595"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "polygenic_score",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "power_planning",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "pr_auc",
+      "family": "预测评估",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "xrobin/pROC",
+          "url": "https://github.com/xrobin/pROC",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tagteam/riskRegression",
+          "url": "https://github.com/tagteam/riskRegression",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "016",
+        "553"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "prior_sensitivity",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "progressive_covariate_models",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_06",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "propensity_score_matching",
+      "family": "倾向评分",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "ngreifer/MatchIt",
+          "url": "https://github.com/ngreifer/MatchIt",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "607实现PS权重诊断；匹配需另适配MatchIt，二者不等同。"
+      ]
+    },
+    {
+      "id": "proteome_wide_mr",
+      "family": "分子与药靶 MR",
+      "paper_ids": [
+        "mr2026_bcell_proteome"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "075",
+        "535",
+        "536",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "proteomic_metabolomic_risk_scores",
+      "family": "风险评分与中介",
+      "paper_ids": [
+        "OBS2026_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/lavaan",
+          "url": "https://github.com/cran/lavaan",
+          "source_freeze": "moving_reference_not_pinned"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "499",
+        "057"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "replication_meta_analysis",
+      "family": "复核与证据合成",
+      "paper_ids": [
+        "DIRECT2024_01",
+        "background2021_cortisol_cancer"
+      ],
+      "github_sources": [
+        {
+          "repository": "wviechtb/metafor",
+          "url": "https://github.com/wviechtb/metafor",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "guido-s/meta",
+          "url": "https://github.com/guido-s/meta",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "restricted_cubic_spline",
+      "family": "非线性与阈值",
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_07",
+        "OBS2026_08",
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "harrelfe/rms",
+          "url": "https://github.com/harrelfe/rms",
+          "source_freeze": "moving_reference_not_pinned"
+        },
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "605实现natural cubic spline基函数；未声称逐字复现论文RCS结点参数。"
+      ]
+    },
+    {
+      "id": "reverse_mr",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "robust_mr",
+      "family": "稳健 MR 扩展",
+      "paper_ids": [
+        "method2026_mrz"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "595"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "roc_auc",
+      "family": "预测评估",
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "xrobin/pROC",
+          "url": "https://github.com/xrobin/pROC",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tagteam/riskRegression",
+          "url": "https://github.com/tagteam/riskRegression",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "016",
+        "553"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "rubin_pooling",
+      "family": "缺失数据",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "amices/mice",
+          "url": "https://github.com/amices/mice",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "sample_overlap_correction",
+      "family": "重叠与选择偏倚修正",
+      "paper_ids": [
+        "method2026_mrsimss"
+      ],
+      "github_sources": [
+        {
+          "repository": "amandaforde/mr.simss",
+          "url": "https://github.com/amandaforde/mr.simss",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "533"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "sbayesrc",
+      "family": "全基因组定位",
+      "paper_ids": [
+        "method2026_gwfm"
+      ],
+      "github_sources": [
+        {
+          "repository": "jianzeng/GCTB",
+          "url": "https://github.com/jianzeng/GCTB",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "zhilizheng/SBayesRC",
+          "url": "https://github.com/zhilizheng/SBayesRC",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "schoenfeld_test",
+      "family": "生存与纵向",
+      "paper_ids": [
+        "OBS2026_05",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "529",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "shap",
+      "family": "模型解释",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "ModelOriented/DALEX",
+          "url": "https://github.com/ModelOriented/DALEX",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "052"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "shapiro_wilk",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "simulation_benchmark",
+      "family": "重叠与选择偏倚修正",
+      "paper_ids": [
+        "method2026_mrsimss",
+        "method2026_mrz"
+      ],
+      "github_sources": [
+        {
+          "repository": "amandaforde/mr.simss",
+          "url": "https://github.com/amandaforde/mr.simss",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "533"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "single_cell_context",
+      "family": "细胞语境证据",
+      "paper_ids": [
+        "mr2026_bcell_proteome",
+        "mr2026_gastric_proteome"
+      ],
+      "github_sources": [],
+      "related_module_ids": [
+        "046"
+      ],
+      "implementation_status": "existing_entry_or_design_reference",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "smr_heidi",
+      "family": "SMR/HEIDI",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc",
+        "mr2026_gastric_proteome"
+      ],
+      "github_sources": [
+        {
+          "repository": "JianYang-Lab/SMR",
+          "url": "https://github.com/JianYang-Lab/SMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "075"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "SMR源码GPLv2与二进制MIT许可分别记录；SMR/HEIDI不等同Bayesian coloc。"
+      ]
+    },
+    {
+      "id": "snp_instrument_selection",
+      "family": "工具变量",
+      "paper_ids": [
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/ieugwasr",
+          "url": "https://github.com/MRCIEU/ieugwasr",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chrchang/plink-ng",
+          "url": "https://github.com/chrchang/plink-ng",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "028",
+        "029",
+        "030",
+        "031",
+        "608",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "steiger",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "DIRECT2024_01",
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "subgroup_analysis",
+      "family": "交互与联合暴露",
+      "paper_ids": [
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "subgroup_interaction",
+      "family": "交互与联合暴露",
+      "paper_ids": [
+        "OBS2026_01",
+        "OBS2026_03",
+        "OBS2026_04",
+        "OBS2026_05",
+        "OBS2026_06"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "subtype_analysis",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "preprint2026_breast_cross_ancestry"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "summary_harmonization",
+      "family": "工具变量",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/ieugwasr",
+          "url": "https://github.com/MRCIEU/ieugwasr",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chrchang/plink-ng",
+          "url": "https://github.com/chrchang/plink-ng",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "028",
+        "029",
+        "030",
+        "031",
+        "608",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "susiex",
+      "family": "多祖源共定位",
+      "paper_ids": [
+        "method2026_maca"
+      ],
+      "github_sources": [
+        {
+          "repository": "getian107/SuSiEx",
+          "url": "https://github.com/getian107/SuSiEx",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "已登记独立方法的作者源码，未运行；跨祖源LD与模型条件须逐方法核对。"
+      ]
+    },
+    {
+      "id": "target_prioritization",
+      "family": "分子与药靶 MR",
+      "paper_ids": [
+        "mr2026_bcell_proteome",
+        "mr2026_gastric_proteome"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "075",
+        "535",
+        "536",
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "ten_fold_cv",
+      "family": "机器学习验证",
+      "paper_ids": [
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "034",
+        "503"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "train_validation_split",
+      "family": "机器学习验证",
+      "paper_ids": [
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "tidymodels/tidymodels",
+          "url": "https://github.com/tidymodels/tidymodels",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "034",
+        "503"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "triangulation",
+      "family": "跨队列设计",
+      "paper_ids": [
+        "perspective2026_mr_future"
+      ],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "two_piecewise_regression",
+      "family": "非线性与阈值",
+      "paper_ids": [
+        "OBS2026_04"
+      ],
+      "github_sources": [
+        {
+          "repository": "harrelfe/rms",
+          "url": "https://github.com/harrelfe/rms",
+          "source_freeze": "moving_reference_not_pinned"
+        },
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "two_sample_mr",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "DIRECT2024_01",
+        "mr2026_glucocorticoid_nsclc",
+        "background2021_cortisol_cancer"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "two_sample_mr_unspecified",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。",
+        "来源短文没有报告完整估计器/参数；不能填补为已核实IVW。"
+      ]
+    },
+    {
+      "id": "variance_inflation_factor",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_04",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "variant_coverage_qc",
+      "family": "精细定位与共定位",
+      "paper_ids": [
+        "method2026_coloc_design"
+      ],
+      "github_sources": [
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608",
+        "609",
+        "537",
+        "594"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "wald_ratio",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "mr2026_glucocorticoid_nsclc"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_chi_square",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_cox",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_07",
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_descriptive_statistics",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_linear_regression",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_02"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_logistic_regression",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_06",
+        "OBS2026_08",
+        "DIRECT2024_01"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_median",
+      "family": "MR 主估计与诊断",
+      "paper_ids": [
+        "OBS2026_02",
+        "OBS2026_03"
+      ],
+      "github_sources": [
+        {
+          "repository": "MRCIEU/TwoSampleMR",
+          "url": "https://github.com/MRCIEU/TwoSampleMR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "cran/MendelianRandomization",
+          "url": "https://github.com/cran/MendelianRandomization",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "032",
+        "519",
+        "055"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "weighted_t_test",
+      "family": "复杂抽样",
+      "paper_ids": [
+        "OBS2026_07"
+      ],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "528",
+        "605"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "winner_curse_correction",
+      "family": "重叠与选择偏倚修正",
+      "paper_ids": [
+        "method2026_mrsimss"
+      ],
+      "github_sources": [
+        {
+          "repository": "amandaforde/mr.simss",
+          "url": "https://github.com/amandaforde/mr.simss",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "533"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "winsorization_sensitivity",
+      "family": "常规统计与模型设计",
+      "paper_ids": [
+        "OBS2026_08"
+      ],
+      "github_sources": [
+        {
+          "repository": "wch/r-source",
+          "url": "https://github.com/wch/r-source",
+          "source_freeze": "moving_reference_not_pinned"
+        }
+      ],
+      "related_module_ids": [
+        "605",
+        "606",
+        "607"
+      ],
+      "implementation_status": "reference_only_with_related_entries",
+      "notes": [
+        "GitHub实现是可选复用来源；未声称为每篇论文实际使用的包。相关旧模块需要具体项目适配，未在本次重跑。"
+      ]
+    },
+    {
+      "id": "exposure_record_audit",
+      "family": "药物暴露",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "python/cpython",
+          "url": "https://github.com/python/cpython",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "604"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "药名/途径/时长/重复与缺失审计，使用不等于滥用。"
+      ]
+    },
+    {
+      "id": "survey_prevalence_and_mortality",
+      "family": "复杂抽样",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "cran/survey",
+          "url": "https://github.com/cran/survey",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "605"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "主分析保留完整抽样设计；癌症史、死亡与新发结局分开。"
+      ]
+    },
+    {
+      "id": "interval_censoring_and_first_cancer",
+      "family": "生存与纵向",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "therneau/survival",
+          "url": "https://github.com/therneau/survival",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "606"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "原因别Cox、区间删失AFT或规则person-period离散模型；不是自动选择模型。"
+      ]
+    },
+    {
+      "id": "missingness_and_ps_diagnostics",
+      "family": "缺失与混杂",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "amices/mice",
+          "url": "https://github.com/amices/mice",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "ngreifer/WeightIt",
+          "url": "https://github.com/ngreifer/WeightIt",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "ngreifer/cobalt",
+          "url": "https://github.com/ngreifer/cobalt",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "607"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "607实际运行MICE与base-R PS诊断；WeightIt/cobalt是已核参考，未安装。"
+      ]
+    },
+    {
+      "id": "gwas_regional_ld_audit",
+      "family": "GWAS质控",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "Cloufield/gwaslab",
+          "url": "https://github.com/Cloufield/gwaslab",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "608"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "区域覆盖/build/祖源/效应与signed LD顺序审计；不运行GWAS或clumping。"
+      ]
+    },
+    {
+      "id": "susie_rss_multisignal_coloc",
+      "family": "精细定位与共定位",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "stephenslab/susieR",
+          "url": "https://github.com/stephenslab/susieR",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "chr1swallace/coloc",
+          "url": "https://github.com/chr1swallace/coloc",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "609"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "真实包接口的共享/独立信号与方向守卫检查，prior敏感性与H0-H4。"
+      ]
+    },
+    {
+      "id": "mr_exposure_construct_audit",
+      "family": "遗传研究设计",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610"
+      ],
+      "implementation_status": "new_adapter_synthetic_checked",
+      "notes": [
+        "区分用药倾向、内源皮质醇和分子工具；边际F不能替代条件F。"
+      ]
+    },
+    {
+      "id": "dag_adjustment_sets",
+      "family": "因果研究设计",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "jtextor/dagitty",
+          "url": "https://github.com/jtextor/dagitty",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "r-causal/ggdag",
+          "url": "https://github.com/r-causal/ggdag",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only",
+      "notes": [
+        "先定义适应证、共同原因、碰撞点与中介，调整集来自假设。"
+      ]
+    },
+    {
+      "id": "target_trial_msm",
+      "family": "药物流行病设计",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "Causal-LDA/TrialEmulation",
+          "url": "https://github.com/Causal-LDA/TrialEmulation",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only",
+      "notes": [
+        "新使用者、活动对照、时间零点与时变混杂，需要满足数据条件后适配。"
+      ]
+    },
+    {
+      "id": "unmeasured_confounding_sensitivity",
+      "family": "偏倚敏感性",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "mayamathur/evalue_package",
+          "url": "https://github.com/mayamathur/evalue_package",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only",
+      "notes": [
+        "E-value不能校正混杂；OR/HR到RR的解释需要适用条件。"
+      ]
+    },
+    {
+      "id": "competing_risk_cif_fine_gray",
+      "family": "竞争风险",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "cran/cmprsk",
+          "url": "https://github.com/cran/cmprsk",
+          "source_freeze": "pinned_commit"
+        },
+        {
+          "repository": "tagteam/riskRegression",
+          "url": "https://github.com/tagteam/riskRegression",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "606"
+      ],
+      "implementation_status": "reference_only",
+      "notes": [
+        "606原因别HR不能替代CIF/Fine-Gray亚分布HR。"
+      ]
+    },
+    {
+      "id": "mvmr_conditional_strength",
+      "family": "多变量MR",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "WSpiller/MVMR",
+          "url": "https://github.com/WSpiller/MVMR",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [
+        "610",
+        "534"
+      ],
+      "implementation_status": "reference_only",
+      "notes": [
+        "需要联合工具和暴露关联协方差；610只审计已算条件F及来源。"
+      ]
+    },
+    {
+      "id": "rare_event_firth",
+      "family": "稀疏结局",
+      "paper_ids": [],
+      "github_sources": [
+        {
+          "repository": "georgheinze/logistf",
+          "url": "https://github.com/georgheinze/logistf",
+          "source_freeze": "pinned_commit"
+        }
+      ],
+      "related_module_ids": [],
+      "implementation_status": "reference_only",
+      "notes": [
+        "仅邻近方法补充；不声称已纳入论文使用，复杂抽样适配另核。"
+      ]
+    }
+  ]
+}

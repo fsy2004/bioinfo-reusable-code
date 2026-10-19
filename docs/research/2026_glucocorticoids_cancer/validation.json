@@ -1,0 +1,223 @@
+{
+  "verified_on": "2026-10-19",
+  "scope": "Method preparation and code/index verification only",
+  "scientific_analysis": "not_run",
+  "participant_data_collected": false,
+  "packages_installed": false,
+  "counts": {
+    "numbered_entries": 199,
+    "domains": 16,
+    "subcategories": 65,
+    "public_catalog_entries": 203,
+    "methods": 129,
+    "paper_records": 21,
+    "papers_2026": 19,
+    "github_sources": 54,
+    "source_heads_obtained": 41,
+    "unfrozen_source_references": 13
+  },
+  "checks": [
+    {
+      "name": "AI index/readme unit tests",
+      "result": "8 passed",
+      "command": "python -m unittest tests.test_ai_index tests.test_readme_update -v"
+    },
+    {
+      "name": "Retained 598-603 local development regression checks",
+      "result": "16 passed; unchanged by this task",
+      "command": "python -m unittest tests.test_2026_method_modules -v"
+    },
+    {
+      "name": "608 input/LD/overwrite guards",
+      "result": "5 passed, including declared chromosome and interval containment",
+      "command": "python -m unittest discover -s modules/04_causal_inference_genetics/08_gwas_finemapping/608_gwas_summary_qc -p test_behavior.py -v"
+    },
+    {
+      "name": "610 construct/F/outcome-n/overwrite guards",
+      "result": "5 passed",
+      "command": "python -m unittest discover -s modules/04_causal_inference_genetics/01_instrument_prep/610_mr_exposure_contract -p test_behavior.py -v"
+    },
+    {
+      "name": "604 artificial records",
+      "result": "7 behavioral assertions passed",
+      "command": "python tests/check_prescription_audit.py"
+    },
+    {
+      "name": "605-607 actual R package interfaces",
+      "result": "11 checks passed",
+      "command": "Rscript tests/check_observational_interfaces.R"
+    },
+    {
+      "name": "609 actual susieR/coloc interfaces",
+      "result": "shared-signal H4, distinct-signal H3, allele rejection and existing-output preservation passed",
+      "command": "Rscript modules/04_causal_inference_genetics/08_gwas_finemapping/609_susie_coloc/test_synthetic.R"
+    },
+    {
+      "name": "Generated files and method/source routing",
+      "result": "current; extracted method keys all mapped",
+      "commands": [
+        "python scripts/build_ai_index.py --check",
+        "python scripts/update_readme.py --check",
+        "python scripts/render_research_methods.py --check"
+      ]
+    },
+    {
+      "name": "Migration protection",
+      "result": "47 original tracked files preserved byte-for-byte; including example_data; four stable IDs unchanged"
+    },
+    {
+      "name": "Markdown links and Git whitespace",
+      "result": "no missing local links in changed/new Markdown; git diff --check passed"
+    },
+    {
+      "name": "Changed analysis QC",
+      "result": "0 high-risk findings; historical/standard-library environment-snapshot suggestions remain"
+    }
+  ],
+  "limitations": [
+    "Artificial data exercises software behavior, not the glucocorticoid-cancer scientific hypothesis.",
+    "No full audit of all historical modules or fresh verification of their installed dependencies was performed.",
+    "Thirteen source references are not revision-frozen; some author code licenses or code availability remain unresolved and are not vendored.",
+    "R startup reported Windows C.UTF-8 locale warnings; package tests completed successfully.",
+    "Database selection and collection remain deferred per user instruction."
+  ],
+  "new_modules": [
+    {
+      "id": "610",
+      "entrypoint": "modules/04_causal_inference_genetics/01_instrument_prep/610_mr_exposure_contract/mr_exposure_contract.py",
+      "sha256": "72079e96de3aeb510c3c8641cdf5ae3d2d7b783bf524f0850f9d6a21bd80ec72",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "limitations": "User declarations are not independent validation; no MR estimate or conditional F is computed"
+      }
+    },
+    {
+      "id": "608",
+      "entrypoint": "modules/04_causal_inference_genetics/08_gwas_finemapping/608_gwas_summary_qc/gwas_summary_qc.py",
+      "sha256": "e90f4bea3c693f07f84cdf03318ffed016e07cd3effbd790c521d7d1dda8f6d7",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "limitations": "Metadata declarations cannot establish actual ancestry/build; no harmonization, clumping or GWAS is performed",
+        "checks": [
+          "matching regional inputs",
+          "LD order/allele and invalid-SE rejection",
+          "empty/duplicate-header/ragged input rejection",
+          "existing-output protection",
+          "declared chromosome/interval containment"
+        ]
+      }
+    },
+    {
+      "id": "609",
+      "entrypoint": "modules/04_causal_inference_genetics/08_gwas_finemapping/609_susie_coloc/run_susie_coloc.R",
+      "sha256": "38f824c55a24a0fa00e4cf5ec7a3ddfebfab83176c4f509b185eedc2e6573529",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_package_behavior_verified",
+        "runtime": {
+          "susieR": "0.14.2",
+          "coloc": "5.2.3"
+        },
+        "scientific_analysis": "not_run",
+        "limitations": "Dense matched region only; constant N; binary RSS approximation requires explicit acknowledgment; no cross-ancestry coloc or drug effect interpretation"
+      }
+    },
+    {
+      "id": "605",
+      "entrypoint": "modules/17_population_epidemiology/02_complex_surveys/605_survey_cancer_models/605_survey_cancer_models.R",
+      "sha256": "0214daf8e246991e1ff3fa82758df1b3a7b282f0cff1ca99f967a11de6407b51",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "runtime_packages": {
+          "survey": "4.5",
+          "survival": "3.8.6",
+          "jsonlite": "2.0.0"
+        },
+        "checks": [
+          "full-design then domain subset",
+          "weighted descriptives",
+          "logistic/interaction/spline/mortality Cox",
+          "missing weight provenance refusal"
+        ],
+        "limitations": "No cycle-weight calculation, no causal effect identification. Cancer prevalence and mortality cannot be reported as incident cancer. Source pins describe inspected upstream code, not an environment lock."
+      }
+    },
+    {
+      "id": "606",
+      "entrypoint": "modules/17_population_epidemiology/03_longitudinal_cohorts/606_longitudinal_incident_cancer/606_longitudinal_incident_cancer.R",
+      "sha256": "5e94e84f83a639549f09878ecd0341a38f699e4cf4b9357854e3d884ed2f88ad",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "runtime_packages": {
+          "survival": "3.8.6",
+          "jsonlite": "2.0.0"
+        },
+        "checks": [
+          "baseline and unknown-cancer exclusions",
+          "cause-specific Cox retaining competing death",
+          "interval AFT",
+          "discrete-time cluster sandwich",
+          "unequal period-boundary refusal",
+          "missing-schema refusal"
+        ],
+        "limitations": "No survey/attrition weighting, time-varying exposure, Fine-Gray or cumulative-incidence adapter. Interval AFT refuses competing deaths. Discrete periods require identical boundaries across participants."
+      }
+    },
+    {
+      "id": "604",
+      "entrypoint": "modules/17_population_epidemiology/05_medication_exposure/604_prescription_exposure_audit/604_prescription_exposure_audit.py",
+      "sha256": "4883b0d8fa59bfd4f6c89b8f7cc67679f8febb28fbd2403a1acd955d90629888",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "checks": [
+          "raw preservation",
+          "exact alias mapping",
+          "unknown drug/route flags",
+          "invalid duration",
+          "duplicate retention",
+          "overwrite refusal",
+          "dictionary conflict rejection"
+        ],
+        "limitations": "No abuse definition, unexposed classification, cumulative dose or continuous exposure inference; drug dictionaries require researcher validation."
+      }
+    },
+    {
+      "id": "607",
+      "entrypoint": "modules/17_population_epidemiology/06_confounding_missingness/607_missingness_confounding/607_missingness_confounding.R",
+      "sha256": "343008f565b4cfa67fc5b73b2ae0e05d5bbaedebc400b8339729a4c7390d244a",
+      "verification": {
+        "verified_on": "2026-10-19",
+        "level": "synthetic_behavior_verified",
+        "scientific_analysis": "not_run",
+        "runtime_packages": {
+          "mice": "3.19.0",
+          "broom": "1.0.12",
+          "jsonlite": "2.0.0"
+        },
+        "uninstalled_reference_packages": [
+          "WeightIt",
+          "cobalt"
+        ],
+        "checks": [
+          "missingness",
+          "stabilized ATE weights",
+          "fixed-denominator SMD/overlap/ESS",
+          "MICE per-imputation GLM and pooling",
+          "survey-weight mixing refusal"
+        ],
+        "limitations": "No automatic DAG adjustment-set selection, MAR/MNAR determination, weighted outcome effect or survey/PS/MI combination. ATT/ATO formula paths implemented; synthetic end-to-end fixture exercised ATE."
+      }
+    }
+  ],
+  "independent_review": "Ignored-resource filters and migration preservation verified; discovered regional containment omission in 608 was repaired and regression-tested."
+}

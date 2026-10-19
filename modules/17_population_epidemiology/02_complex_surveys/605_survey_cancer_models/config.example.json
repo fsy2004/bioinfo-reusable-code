@@ -1,0 +1,17 @@
+{
+  "input": "path/to/researcher_prepared_participant_table.csv",
+  "output_dir": "results_new",
+  "id": "person_id",
+  "psu": "psu",
+  "strata": "strata",
+  "weight": "analysis_weight",
+  "weight_provenance": "REPLACE: source/version, included cycles, selected weight, pooling rule and official documentation",
+  "lonely_psu": "fail",
+  "domain": "eligible_domain",
+  "outcome": "prevalent_cancer",
+  "exposure": "exposure",
+  "covariates": ["age", "sex", "smoking"],
+  "modifier": "sex",
+  "descriptives": ["age"],
+  "group": "sex"
+}

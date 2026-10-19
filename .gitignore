@@ -75,6 +75,11 @@ modules/07_clinical_translational/05_epidemiology_burden/sources_index.csv
 modules/07_clinical_translational/05_epidemiology_burden/comorbidity_paper_template_refs.ris
 # 527-530 regenerate their (GBD-shape, larger) synthetic example_data on run → don't commit
 modules/07_clinical_translational/05_epidemiology_burden/**/example_data/
+# Migrated 527-530 preserve their original generated-data policy.
+modules/17_population_epidemiology/**/527_gbd_burden_trend/example_data/
+modules/17_population_epidemiology/**/528_nhanes_survey_weighted/example_data/
+modules/17_population_epidemiology/**/529_charls_longitudinal_cohort/example_data/
+modules/17_population_epidemiology/**/530_comorbidity_network/example_data/
 
 # generated synthetic example data (regenerated on run)
 *.npz

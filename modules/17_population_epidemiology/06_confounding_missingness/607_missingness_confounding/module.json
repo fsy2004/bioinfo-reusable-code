@@ -1,0 +1,122 @@
+{
+  "id": "607",
+  "name": "missingness_confounding",
+  "title": "Missingness, explicit multiple imputation and propensity diagnostics",
+  "language": "R",
+  "entrypoint": "607_missingness_confounding.R",
+  "task": [
+    "missingness_audit",
+    "multiple_imputation",
+    "Rubin_pooling",
+    "propensity_score",
+    "IPW",
+    "ATE_ATT_ATO",
+    "covariate_balance",
+    "overlap",
+    "effective_sample_size"
+  ],
+  "inputs": [
+    "one-row-per-person CSV",
+    "JSON config selecting audit/mi_glm/ps_diagnostics",
+    "optional explicit MICE predictor matrix CSV"
+  ],
+  "outputs": [
+    "missingness.csv",
+    "mi_pooled_coefficients.csv (MI)",
+    "covariate_balance.csv (PS)",
+    "positivity_ess.csv (PS)",
+    "record_weights.csv (PS)",
+    "results.rds",
+    "config_used.R",
+    "sessionInfo.txt"
+  ],
+  "dependencies": {
+    "required": [
+      "R"
+    ],
+    "optional": [
+      "mice and broom for mi_glm",
+      "jsonlite for JSON CLI"
+    ]
+  },
+  "sources": [
+    {
+      "repository": "amices/mice",
+      "url": "https://github.com/amices/mice",
+      "head_sha": "02d83eaa65bff2c3d1003bc53b5fb764fbd80c23",
+      "license_declared": "GPL (>= 2)",
+      "provenance": "official",
+      "integration": "implemented",
+      "verified_files": [
+        "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/DESCRIPTION",
+        "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/mice.R",
+        "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/pool.R",
+        "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/as.R",
+        "https://github.com/amices/mice/blob/02d83eaa65bff2c3d1003bc53b5fb764fbd80c23/R/complete.R"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    },
+    {
+      "repository": "ngreifer/WeightIt",
+      "url": "https://github.com/ngreifer/WeightIt",
+      "head_sha": "41e06c62b3880d6a119764b37cbc39e582a0e547",
+      "license_declared": "GPL (>=2)",
+      "provenance": "official",
+      "integration": "reference_only",
+      "verified_files": [
+        "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/DESCRIPTION",
+        "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/R/weightit.R",
+        "https://github.com/ngreifer/WeightIt/blob/41e06c62b3880d6a119764b37cbc39e582a0e547/R/glm_weightit.R"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    },
+    {
+      "repository": "ngreifer/cobalt",
+      "url": "https://github.com/ngreifer/cobalt",
+      "head_sha": "78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a",
+      "license_declared": "GPL (>=2)",
+      "provenance": "official",
+      "integration": "reference_only",
+      "verified_files": [
+        "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/DESCRIPTION",
+        "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/R/bal.tab.R",
+        "https://github.com/ngreifer/cobalt/blob/78b8336c19dfead7cd5ef7a8334d3d5ac89fd22a/R/bal.tab.weightit.R"
+      ],
+      "read_level": "Pinned metadata/API source inspected; implementation runtime tested only for implemented dependencies"
+    },
+    {
+      "repository": "jtextor/dagitty",
+      "url": "https://github.com/jtextor/dagitty",
+      "head_sha": "92dcf5f348f82934196457a151b4a88f8110b257",
+      "license_declared": "GPL-2",
+      "provenance": "author_repository",
+      "integration": "reference_only",
+      "verified_files": [],
+      "read_level": "DESCRIPTION metadata inspected; runtime not tested"
+    }
+  ],
+  "evidence": {
+    "verified_on": "2026-10-19",
+    "level": "synthetic_behavior_verified",
+    "scientific_analysis": "not_run",
+    "runtime_packages": {
+      "mice": "3.19.0",
+      "broom": "1.0.12",
+      "jsonlite": "2.0.0"
+    },
+    "uninstalled_reference_packages": [
+      "WeightIt",
+      "cobalt"
+    ],
+    "checks": [
+      "missingness",
+      "stabilized ATE weights",
+      "fixed-denominator SMD/overlap/ESS",
+      "MICE per-imputation GLM and pooling",
+      "survey-weight mixing refusal"
+    ],
+    "limitations": "No automatic DAG adjustment-set selection, MAR/MNAR determination, weighted outcome effect or survey/PS/MI combination. ATT/ATO formula paths implemented; synthetic end-to-end fixture exercised ATE."
+  },
+  "source_policy": "Original adapter; upstream code is not vendored. Source metadata pinned independently of installed runtime versions.",
+  "summary": "缺失与混杂：缺失审计、MICE与Rubin合并、PS权重和平衡/重叠/ESS诊断"
+}
