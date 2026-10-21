@@ -1,0 +1,41 @@
+{
+  "records_including_overviews": 153,
+  "detailed_records_including_designs_and_platforms": 110,
+  "family_overviews": 43,
+  "record_kinds": {
+    "algorithm": 91,
+    "correlated_instrument_variant": 3,
+    "design": 1,
+    "family_overview": 43,
+    "implementation_platform": 1,
+    "parameter_or_estimator_variant": 13,
+    "workflow": 1
+  },
+  "by_category": {
+    "colocalization": 20,
+    "correction_framework": 2,
+    "diagnostic": 9,
+    "fine_mapping": 7,
+    "mr_design": 16,
+    "mr_estimator": 89,
+    "preparation": 3,
+    "related_inference": 7
+  },
+  "detailed_by_category": {
+    "colocalization": 19,
+    "correction_framework": 1,
+    "diagnostic": 5,
+    "fine_mapping": 6,
+    "mr_design": 4,
+    "mr_estimator": 70,
+    "preparation": 1,
+    "related_inference": 4
+  },
+  "official_sources": 65,
+  "sources_with_code_acquired": 65,
+  "source_archives_acquired": 27,
+  "source_subsets_acquired": 38,
+  "detailed_records_with_source_repository_code": 108,
+  "count_policy": "Records include variants, designs, diagnostics and software platforms; this is not a count of distinct MR estimators.",
+  "runtime_or_scientific_validation_not_inferred_from_source_count": true
+}

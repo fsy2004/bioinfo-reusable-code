@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-10-21",
+  "base_commit": "73590a65989194bac7ae62747dcd54d62289ea63",
+  "checks": [
+    {
+      "name": "index",
+      "exit_code": 0,
+      "test_count": 0
+    },
+    {
+      "name": "readme",
+      "exit_code": 0,
+      "test_count": 0
+    },
+    {
+      "name": "method_index",
+      "exit_code": 0,
+      "test_count": 0
+    },
+    {
+      "name": "prior_research_methods",
+      "exit_code": 0,
+      "test_count": 0
+    },
+    {
+      "name": "unit",
+      "exit_code": 0,
+      "test_count": 22
+    },
+    {
+      "name": "608",
+      "exit_code": 0,
+      "test_count": 5
+    },
+    {
+      "name": "610",
+      "exit_code": 0,
+      "test_count": 5
+    }
+  ],
+  "required_python_tests": 32,
+  "additional_CLI_probes": {
+    "utf8_query_and_limit": "passed",
+    "single_IV_only_Wald": "passed",
+    "dense_multisignal_only_SuSiE": "passed"
+  },
+  "native_R_receipt": "docs/methods/mr_coloc/native_validation_20261021.json",
+  "native_R_checks": 34,
+  "native_R_scope": "actual installed APIs with synthetic data; RAPS expected missing-dependency failure explicitly preserved",
+  "source_receipt": "docs/methods/mr_coloc/source_integrity_20261021.json",
+  "source_repositories": 65,
+  "verified_regular_files": 7293,
+  "coverage_summary": "catalog/mr_coloc_summary.json",
+  "independent_review": "docs/methods/mr_coloc/review_20261021.md",
+  "four_review_findings": "resolved and independently retested; additional native parameter combinations remain not_tested",
+  "scientific_analysis_performed": false,
+  "limitations": [
+    "Not an exhaustive-all-MR guarantee",
+    "Source repository acquisition does not establish algorithm implementation or statistical validity",
+    "Many advanced methods remain source-reference only",
+    "No installation or scientific benchmark performed"
+  ]
+}

@@ -21,6 +21,10 @@ python scripts/query_modules.py colocalization
 
 仅索引 Git 可见的编号模块。不扫描被忽略的上游源码、研究数据或本地草稿；本地保留材料的内容不写入公共索引。编号配套资源可以没有主入口，标记 `reference_or_companion_resource`。
 
+MR与共定位有第二层方法索引：`catalog/mr_coloc_methods.jsonl` / `mr_coloc_sources.jsonl`，由模块611的 `methods.json` 生成。先 `python scripts/mr_coloc.py query <关键词>`，也可 `--category mr_estimator` 或 `colocalization`。`record_kind=family_overview` 是方法族导引，不能算独立估计器；实现与参数变体也不等于独立算法。源码位于忽略的 `_upstream_sources/mr_coloc`，按来源ID和commit读取相关文件，勿整库扫描。具体条件、许可和复核流程见 [方法库说明](methods/mr_coloc/README.md)。
+
+方法元数据变更后先运行 `python scripts/mr_coloc.py build` / `build --check`，再更新下面的全库模块索引。历史获取快照是有日期的证据；换机需重新获取并核验本地文件。
+
 更新后执行：
 
 ```powershell

@@ -1,0 +1,9 @@
+{
+  "n_snps": 1,
+  "category": "mr_estimator",
+  "data_level": "summary",
+  "independent_instruments": true,
+  "ld": "none",
+  "n_traits": 2,
+  "multiple_signals": false
+}

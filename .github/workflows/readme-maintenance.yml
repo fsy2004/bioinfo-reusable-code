@@ -17,7 +17,9 @@ jobs:
           python-version: "3.12"
       - run: python scripts/update_readme.py --check
       - run: python scripts/build_ai_index.py --check
+      - run: python scripts/mr_coloc.py build --check
       - run: python scripts/render_research_methods.py --check
       - run: python -m unittest tests.test_readme_update tests.test_ai_index -v
+      - run: python -m unittest tests.test_mr_coloc_library -v
       - run: python -m unittest discover -s modules/04_causal_inference_genetics/08_gwas_finemapping/608_gwas_summary_qc -p test_behavior.py -v
       - run: python -m unittest discover -s modules/04_causal_inference_genetics/01_instrument_prep/610_mr_exposure_contract -p test_behavior.py -v

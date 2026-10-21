@@ -1,0 +1,399 @@
+{
+  "as_of": "2026-10-21T14:42:47.280844+00:00",
+  "sources": 65,
+  "verified_sources": 65,
+  "checked_files": 7293,
+  "scientific_analysis": false,
+  "reports": [
+    {
+      "source_id": "SRC-adriaan-vd-graaf-mrlink2",
+      "status": "verified",
+      "checked_files": 15,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-amandaforde-mr-simss",
+      "status": "verified",
+      "checked_files": 57,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-amymariemason-sumnlmr",
+      "status": "verified",
+      "checked_files": 59,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-bulik-ldsc",
+      "status": "verified",
+      "checked_files": 1093,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cbiit-ldsc",
+      "status": "verified",
+      "checked_files": 1101,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-chongwulab-mrcare",
+      "status": "verified",
+      "checked_files": 290,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-chr1swallace-coloc",
+      "status": "verified",
+      "checked_files": 398,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-chrchang-plink-ng",
+      "status": "verified",
+      "checked_files": 1240,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-clagiamba-moloc",
+      "status": "verified",
+      "checked_files": 81,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cloufield-gwaslab",
+      "status": "verified",
+      "checked_files": 388,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cnfoley-hyprcoloc",
+      "status": "verified",
+      "checked_files": 45,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cnfoley-mrclust",
+      "status": "verified",
+      "checked_files": 27,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cotsapaslab-jlim",
+      "status": "verified",
+      "checked_files": 13,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cran-mendelianrandomization",
+      "status": "verified",
+      "checked_files": 139,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-cthyshn-maca",
+      "status": "verified",
+      "checked_files": 15,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-danieliong-mrpath",
+      "status": "verified",
+      "checked_files": 21,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-explodecomputer-tryx",
+      "status": "verified",
+      "checked_files": 15,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-fhormoz-caviar",
+      "status": "verified",
+      "checked_files": 460,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-getian107-susiex",
+      "status": "verified",
+      "checked_files": 11,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-gqi-mrmix",
+      "status": "verified",
+      "checked_files": 26,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-hdtian-drmr",
+      "status": "verified",
+      "checked_files": 22,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-hhoulei-mreills",
+      "status": "verified",
+      "checked_files": 10,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-hyunseungkang-sisvive",
+      "status": "verified",
+      "checked_files": 5,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-ichcha-m-cophescan",
+      "status": "verified",
+      "checked_files": 19,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jean997-cause",
+      "status": "verified",
+      "checked_files": 52,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jianyang-lab-gsmr",
+      "status": "verified",
+      "checked_files": 6,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jianyang-lab-gsmr2",
+      "status": "verified",
+      "checked_files": 6,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jianyang-lab-smr",
+      "status": "verified",
+      "checked_files": 56,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jiazhao97-bwmr",
+      "status": "verified",
+      "checked_files": 12,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jingshuw-grapple",
+      "status": "verified",
+      "checked_files": 25,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-jwr-git-pwcoco",
+      "status": "verified",
+      "checked_files": 460,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-karltayeb-cafeh",
+      "status": "verified",
+      "checked_files": 35,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-lb664-mr2",
+      "status": "verified",
+      "checked_files": 24,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-lb664-mrdag",
+      "status": "verified",
+      "checked_files": 24,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-lizadarrous-lhcmr",
+      "status": "verified",
+      "checked_files": 41,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-lukejoconnor-lcv",
+      "status": "verified",
+      "checked_files": 12,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-mrcieu-twosamplemr",
+      "status": "verified",
+      "checked_files": 240,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-n-mounier-mrlap",
+      "status": "verified",
+      "checked_files": 13,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-noahlorinczcomi-mrbee",
+      "status": "verified",
+      "checked_files": 51,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-qingcheng0218-mr-corr2",
+      "status": "verified",
+      "checked_files": 78,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-qingcheng0218-mr-cue",
+      "status": "verified",
+      "checked_files": 54,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-qingcheng0218-mr-ldp",
+      "status": "verified",
+      "checked_files": 33,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-qingyuanzhao-mr-raps",
+      "status": "verified",
+      "checked_files": 12,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-remlapmot-mrrobust",
+      "status": "verified",
+      "checked_files": 47,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-rondolab-mr-presso",
+      "status": "verified",
+      "checked_files": 6,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-statfungen-colocboost",
+      "status": "verified",
+      "checked_files": 41,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-stephenslab-mvsusier",
+      "status": "verified",
+      "checked_files": 54,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-stephenslab-susier",
+      "status": "verified",
+      "checked_files": 119,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-tye27-mr-divw",
+      "status": "verified",
+      "checked_files": 9,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-wspiller-gxe-simulation",
+      "status": "verified",
+      "checked_files": 7,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-wspiller-mvmr",
+      "status": "verified",
+      "checked_files": 14,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-wspiller-radialmr",
+      "status": "verified",
+      "checked_files": 13,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-xiaofengzhucase-imrp",
+      "status": "verified",
+      "checked_files": 8,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-xqwen-dap",
+      "status": "verified",
+      "checked_files": 40,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-xqwen-fastenloc",
+      "status": "verified",
+      "checked_files": 7,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-xue-hr-mrcml",
+      "status": "verified",
+      "checked_files": 17,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-yanglabhkust-mr-apss",
+      "status": "verified",
+      "checked_files": 19,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-yuanzhongshang-maple",
+      "status": "verified",
+      "checked_files": 14,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-yuanzhongshang-meteor",
+      "status": "verified",
+      "checked_files": 15,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-yuanzhongshang-mraid",
+      "status": "verified",
+      "checked_files": 7,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-yuanzhongshang-pmr",
+      "status": "verified",
+      "checked_files": 18,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-zeileis-ivreg",
+      "status": "verified",
+      "checked_files": 29,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-zhaotongl-cismrcml",
+      "status": "verified",
+      "checked_files": 7,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-zhwm-sharepro-coloc",
+      "status": "verified",
+      "checked_files": 5,
+      "failures": []
+    },
+    {
+      "source_id": "SRC-zijguo-robustiv",
+      "status": "verified",
+      "checked_files": 13,
+      "failures": []
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "as_of": "2026-10-21",
+  "R": "R version 4.4.3 (2025-02-28 ucrt)",
+  "packages": {
+    "TwoSampleMR": {
+      "available": true,
+      "version": "0.7.5",
+      "method_exports": ["mr_density_plot", "mr_egger_regression", "mr_egger_regression_bootstrap", "mr_forest_plot", "mr_funnel_plot", "mr_grip", "mr_heterogeneity", "mr_ivw", "mr_ivw_fe", "mr_ivw_mre", "mr_ivw_radial", "mr_leaveoneout", "mr_leaveoneout_plot", "mr_median", "mr_meta_fixed", "mr_meta_fixed_simple", "mr_meta_random", "mr_method_list", "mr_mode", "mr_moe", "mr_penalised_weighted_median", "mr_pleiotropy_test", "mr_raps", "mr_report", "mr_rucker", "mr_rucker_bootstrap", "mr_rucker_cooksdistance", "mr_rucker_jackknife", "mr_scatter_plot", "mr_sign", "mr_simple_median", "mr_simple_mode", "mr_simple_mode_nome", "mr_singlesnp", "mr_steiger", "mr_steiger2", "mr_two_sample_ml", "mr_uwr", "mr_wald_ratio", "mr_weighted_median", "mr_weighted_mode", "mr_weighted_mode_nome", "mr_wrapper", "steiger_sensitivity"],
+      "formals": {
+        "mr_funnel_plot": "as.pairlist(alist(singlesnp_results = ))",
+        "mr_steiger": "as.pairlist(alist(p_exp = , p_out = , n_exp = , n_out = , r_exp = , r_out = , r_xxo = 1, r_yyo = 1, ... = ))",
+        "mr_density_plot": "as.pairlist(alist(singlesnp_results = , mr_results = , exponentiate = FALSE, bandwidth = \"nrd0\"))",
+        "mr_report": ["as.pairlist(alist(dat = , output_path = \".\", output_type = \"html\", author = \"Analyst\", study = \"Two Sample MR\", path = system.file(\"reports\", ", "    package = \"TwoSampleMR\"), ... = ))"],
+        "mr_sign": "as.pairlist(alist(b_exp = , b_out = , se_exp = NULL, se_out = NULL, parameters = NULL))",
+        "mr_forest_plot": "as.pairlist(alist(singlesnp_results = , exponentiate = FALSE, category_colours = NULL))",
+        "steiger_sensitivity": "as.pairlist(alist(rgx_o = , rgy_o = , ... = ))",
+        "mr_meta_fixed": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_penalised_weighted_median": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_simple_median": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_simple_mode_nome": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_weighted_mode_nome": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_leaveoneout_plot": "as.pairlist(alist(leaveoneout_results = ))",
+        "mr_median": "as.pairlist(alist(dat = , parameters = default_parameters()))",
+        "mr_two_sample_ml": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_weighted_median": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_rucker": "as.pairlist(alist(dat = , parameters = default_parameters()))",
+        "mr_rucker_bootstrap": "as.pairlist(alist(dat = , parameters = default_parameters()))",
+        "mr_scatter_plot": "as.pairlist(alist(mr_results = , dat = ))",
+        "mr_simple_mode": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_pleiotropy_test": "as.pairlist(alist(dat = ))",
+        "mr_rucker_jackknife": "as.pairlist(alist(dat = , parameters = default_parameters()))",
+        "mr_raps": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_wald_ratio": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_uwr": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_heterogeneity": ["as.pairlist(alist(dat = , parameters = default_parameters(), method_list = subset(mr_method_list(), ", "    heterogeneity_test & use_by_default)$obj))"],
+        "mr_leaveoneout": "as.pairlist(alist(dat = , parameters = default_parameters(), method = mr_ivw))",
+        "mr_ivw_fe": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_weighted_mode": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_singlesnp": ["as.pairlist(alist(dat = , parameters = default_parameters(), single_method = \"mr_wald_ratio\", all_method = c(\"mr_ivw\", ", "    \"mr_egger_regression\")))"],
+        "mr_meta_fixed_simple": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_ivw_mre": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_egger_regression": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_steiger2": "as.pairlist(alist(r_exp = , r_out = , n_exp = , n_out = , r_xxo = 1, r_yyo = 1, ... = ))",
+        "mr_meta_random": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_ivw": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_egger_regression_bootstrap": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_method_list": "NULL",
+        "mr_grip": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = ))",
+        "mr_moe": "as.pairlist(alist(res = , rf = ))",
+        "mr_ivw_radial": "as.pairlist(alist(b_exp = , b_out = , se_exp = , se_out = , parameters = default_parameters()))",
+        "mr_rucker_cooksdistance": "as.pairlist(alist(dat = , parameters = default_parameters()))",
+        "mr_mode": "as.pairlist(alist(dat = , parameters = default_parameters(), mode_method = \"all\"))",
+        "mr_wrapper": "as.pairlist(alist(dat = , parameters = default_parameters()))"
+      }
+    },
+    "MendelianRandomization": {
+      "available": true,
+      "version": "0.10.0",
+      "method_exports": ["mr_allmethods", "mr_cML", "mr_clr", "mr_conmix", "mr_divw", "mr_egger", "mr_forest", "mr_funnel", "mr_hetpen", "mr_input", "mr_ivw", "mr_lasso", "mr_loo", "mr_maxlik", "mr_mbe", "mr_median", "mr_mvcML", "mr_mvegger", "mr_mvgmm", "mr_mvinput", "mr_mvivw", "mr_mvivwme", "mr_mvlasso", "mr_mvmedian", "mr_mvpcgmm", "mr_pcgmm", "mr_pivw", "mr_plot"],
+      "formals": {
+        "mr_mvegger": "as.pairlist(alist(object = , orientate = 1, correl = FALSE, distribution = \"normal\", alpha = 0.05))",
+        "mr_mvmedian": "as.pairlist(alist(object = , distribution = \"normal\", alpha = 0.05, iterations = 10000, seed = 314159265))",
+        "mr_mvcML": ["as.pairlist(alist(object = , n = , DP = TRUE, rho_mat = diag(ncol(object@betaX) + ", "    1), K_vec = 0:(ceiling(nrow(object@betaX)/2)), random_start = 0, num_pert = 100, min_theta_range = -0.5, max_theta_range = 0.5, maxit = 100, alpha = 0.05, seed = 314159265))"],
+        "mr_mvivwme": "as.pairlist(alist(object = , model = \"default\", correl = FALSE, correl.x = NULL, distribution = \"normal\", alpha = 0.05, max_iter = 100, no_ini = 1, seed = 20201201, ... = ))",
+        "mr_input": "pairlist(bx = 0, bxse = 0, by = 0, byse = 0, correlation = matrix(), exposure = \"exposure\", outcome = \"outcome\", snps = \"snp\", effect_allele = NA, other_allele = NA, eaf = NA)",
+        "mr_hetpen": "as.pairlist(alist(object = , prior = 0.5, CIMin = -1, CIMax = 1, CIStep = 0.001, alpha = 0.05))",
+        "mr_plot": "as.pairlist(alist(object = , error = TRUE, line = \"ivw\", orientate = FALSE, interactive = TRUE, labels = FALSE))",
+        "mr_mvlasso": "as.pairlist(alist(object = , orientate = 1, distribution = \"normal\", alpha = 0.05, lambda = numeric(0)))",
+        "mr_median": "as.pairlist(alist(object = , weighting = \"weighted\", distribution = \"normal\", alpha = 0.05, iterations = 10000, seed = 314159265))",
+        "mr_mvpcgmm": "as.pairlist(alist(object = , nx = , ny = , cor.x = NULL, r = NULL, thres = 0.99, robust = TRUE, alpha = 0.05, ... = ))",
+        "mr_mvivw": "as.pairlist(alist(object = , model = \"default\", robust = FALSE, correl = FALSE, correl.x = NULL, nx = NA, distribution = \"normal\", alpha = 0.05, ... = ))",
+        "mr_egger": "as.pairlist(alist(object = , robust = FALSE, penalized = FALSE, correl = FALSE, distribution = \"normal\", alpha = 0.05, ... = ))",
+        "mr_allmethods": "as.pairlist(alist(object = , method = \"all\", ... = ))",
+        "mr_forest": "as.pairlist(alist(object = , alpha = 0.05, snp_estimates = TRUE, methods = \"ivw\", ordered = FALSE))",
+        "mr_mvgmm": "as.pairlist(alist(object = , nx = , ny = , cor.x = NULL, robust = TRUE, alpha = 0.05, ... = ))",
+        "mr_clr": "as.pairlist(alist(object = , nx = , ny = , alpha = 0.05, CIMin = -10, CIMax = 10, CIStep = 0.01))",
+        "mr_conmix": "as.pairlist(alist(object = , psi = 0, CIMin = NA, CIMax = NA, CIStep = 0.01, alpha = 0.05))",
+        "mr_lasso": "as.pairlist(alist(object = , distribution = \"normal\", alpha = 0.05, lambda = numeric(0)))",
+        "mr_pcgmm": "as.pairlist(alist(object = , nx = , ny = , r = NULL, thres = 0.99, robust = TRUE, alpha = 0.05, ... = ))",
+        "mr_mvinput": "pairlist(bx = matrix(), bxse = matrix(), by = 0, byse = 0, correlation = matrix(), exposure = \"exposure\", outcome = \"outcome\", snps = \"snp\", effect_allele = NA, other_allele = NA, eaf = NA)",
+        "mr_loo": "as.pairlist(alist(object = , alpha = 0.05))",
+        "mr_cML": ["as.pairlist(alist(object = , MA = TRUE, DP = TRUE, K_vec = 0:(length(object@betaX) - ", "    2), random_start = 0, num_pert = 200, random_start_pert = 0, maxit = 100, random_seed = 314, n = , Alpha = 0.05))"],
+        "mr_maxlik": "as.pairlist(alist(object = , model = \"default\", correl = FALSE, psi = 0, distribution = \"normal\", alpha = 0.05, ... = ))",
+        "mr_pivw": "as.pairlist(alist(object = , lambda = 1, over.dispersion = TRUE, delta = 0, sel.pval = NULL, Boot.Fieller = TRUE, alpha = 0.05))",
+        "mr_funnel": "as.pairlist(alist(object = , CI = TRUE))",
+        "mr_ivw": "as.pairlist(alist(object = , model = \"default\", robust = FALSE, penalized = FALSE, weights = \"simple\", psi = 0, correl = FALSE, distribution = \"normal\", alpha = 0.05, ... = ))",
+        "mr_divw": "as.pairlist(alist(object = , over.dispersion = TRUE, alpha = 0.05, diagnostics = FALSE))",
+        "mr_mbe": "as.pairlist(alist(object = , weighting = \"weighted\", stderror = \"simple\", phi = 1, seed = 314159265, iterations = 10000, distribution = \"normal\", alpha = 0.05))"
+      }
+    },
+    "coloc": {
+      "available": true,
+      "version": "5.2.3",
+      "method_exports": ["annotate_susie", "coloc.abf", "coloc.bf_bf", "coloc.signals", "coloc.susie", "coloc.susie_bf", "runsusie", "sensitivity"],
+      "formals": {
+        "sensitivity": "as.pairlist(alist(obj = , rule = \"\", dataset1 = NULL, dataset2 = NULL, npoints = 100, doplot = TRUE, plot.manhattans = TRUE, preserve.par = FALSE, row = 1))",
+        "coloc.signals": ["as.pairlist(alist(dataset1 = , dataset2 = , MAF = NULL, LD = NULL, method = c(\"single\", ", "    \"cond\", \"mask\"), mode = c(\"iterative\", \"allbutone\"), p1 = 1e-04, p2 = 1e-04, p12 = NULL, maxhits = 3, r2thr = 0.01, pthr = 1e-06))"],
+        "coloc.susie_bf": "as.pairlist(alist(dataset1 = , bf2 = , p1 = 1e-04, p2 = 1e-04, p12 = 5e-06, susie.args = list(), ... = ))",
+        "coloc.bf_bf": "as.pairlist(alist(bf1 = , bf2 = , p1 = 1e-04, p2 = 1e-04, p12 = 5e-06, overlap.min = 0.5, trim_by_posterior = TRUE))",
+        "coloc.abf": "as.pairlist(alist(dataset1 = , dataset2 = , MAF = NULL, p1 = 1e-04, p2 = 1e-04, p12 = 1e-05))",
+        "annotate_susie": "as.pairlist(alist(res = , snp = , LD = ))",
+        "runsusie": "as.pairlist(alist(d = , suffix = 1, maxit = 100, repeat_until_convergence = TRUE, s_init = NULL, ... = ))",
+        "coloc.susie": "as.pairlist(alist(dataset1 = , dataset2 = , back_calculate_lbf = FALSE, susie.args = list(), ... = ))"
+      }
+    },
+    "susieR": {
+      "available": true,
+      "version": "0.14.2",
+      "method_exports": ["coef.susie", "predict.susie", "print.summary.susie", "summary.susie", "susie", "susie_auto", "susie_get_cs", "susie_get_lfsr", "susie_get_niter", "susie_get_objective", "susie_get_pip", "susie_get_posterior_mean", "susie_get_posterior_samples", "susie_get_posterior_sd", "susie_get_prior_variance", "susie_get_residual_variance", "susie_init_coef", "susie_plot", "susie_plot_changepoint", "susie_plot_iteration", "susie_rss", "susie_suff_stat", "susie_trendfilter"],
+      "formals": {
+        "susie_get_residual_variance": "as.pairlist(alist(res = ))",
+        "susie_get_posterior_mean": "as.pairlist(alist(res = , prior_tol = 1e-09))",
+        "susie_suff_stat": ["as.pairlist(alist(XtX = , Xty = , yty = , n = , X_colmeans = NA, y_mean = NA, maf = NULL, maf_thresh = 0, L = 10, scaled_prior_variance = 0.2, residual_variance = NULL, estimate_residual_variance = TRUE, estimate_prior_variance = TRUE, estimate_prior_method = c(\"optim\", ", "    \"EM\", \"simple\"), check_null_threshold = 0, prior_tol = 1e-09, r_tol = 1e-08, prior_weights = NULL, null_weight = 0, standardize = TRUE, max_iter = 100, s_init = NULL, coverage = 0.95, min_abs_corr = 0.5, tol = 0.001, verbose = FALSE, track_fit = FALSE, check_input = FALSE, refine = FALSE, check_prior = FALSE, n_purity = 100, ... = ))"],
+        "susie_get_posterior_samples": "as.pairlist(alist(susie_fit = , num_samples = ))",
+        "susie_get_pip": "as.pairlist(alist(res = , prune_by_cs = FALSE, prior_tol = 1e-09))",
+        "susie_init_coef": "as.pairlist(alist(coef_index = , coef_value = , p = ))",
+        "susie_get_prior_variance": "as.pairlist(alist(res = ))",
+        "coef.susie": "as.pairlist(alist(object = , ... = ))",
+        "susie_trendfilter": "as.pairlist(alist(y = , order = 0, standardize = FALSE, use_mad = TRUE, ... = ))",
+        "susie_plot_iteration": "as.pairlist(alist(model = , L = , file_prefix = , pos = NULL))",
+        "susie_get_lfsr": "as.pairlist(alist(res = ))",
+        "susie_plot": "as.pairlist(alist(model = , y = , add_bar = FALSE, pos = NULL, b = NULL, max_cs = 400, add_legend = NULL, ... = ))",
+        "susie_get_niter": "as.pairlist(alist(res = ))",
+        "susie_get_objective": "as.pairlist(alist(res = , last_only = TRUE, warning_tol = 1e-06))",
+        "susie_get_posterior_sd": "as.pairlist(alist(res = , prior_tol = 1e-09))",
+        "summary.susie": "as.pairlist(alist(object = , ... = ))",
+        "print.summary.susie": "as.pairlist(alist(x = , ... = ))",
+        "susie_plot_changepoint": "as.pairlist(alist(s = , y = , line_col = \"blue\", line_size = 1.5, cs_col = \"red\"))",
+        "susie_auto": "as.pairlist(alist(X = , y = , L_init = 1, L_max = 512, verbose = FALSE, init_tol = 1, standardize = TRUE, intercept = TRUE, max_iter = 100, tol = 0.01, ... = ))",
+        "predict.susie": ["as.pairlist(alist(object = , newx = NULL, type = c(\"response\", ", "    \"coefficients\"), ... = ))"],
+        "susie_rss": "as.pairlist(alist(z = , R = , n = , bhat = , shat = , var_y = , z_ld_weight = 0, estimate_residual_variance = FALSE, prior_variance = 50, check_prior = TRUE, ... = ))",
+        "susie": ["as.pairlist(alist(X = , y = , L = min(10, ncol(X)), scaled_prior_variance = 0.2, residual_variance = NULL, prior_weights = NULL, null_weight = 0, standardize = TRUE, intercept = TRUE, estimate_residual_variance = TRUE, estimate_prior_variance = TRUE, estimate_prior_method = c(\"optim\", ", "    \"EM\", \"simple\"), check_null_threshold = 0, prior_tol = 1e-09, residual_variance_upperbound = Inf, s_init = NULL, coverage = 0.95, min_abs_corr = 0.5, compute_univariate_zscore = FALSE, na.rm = FALSE, max_iter = 100, tol = 0.001, verbose = FALSE, track_fit = FALSE, residual_variance_lowerbound = var(drop(y))/10000, refine = FALSE, n_purity = 100))"],
+        "susie_get_cs": "as.pairlist(alist(res = , X = NULL, Xcorr = NULL, coverage = 0.95, min_abs_corr = 0.5, dedup = TRUE, squared = FALSE, check_symmetric = TRUE, n_purity = 100, use_rfast = ))"
+      }
+    },
+    "MVMR": {
+      "available": false,
+      "version": {}
+    },
+    "MRPRESSO": {
+      "available": true,
+      "version": "1.0",
+      "method_exports": "mr_presso",
+      "formals": {
+        "mr_presso": "as.pairlist(alist(BetaOutcome = , BetaExposure = , SdOutcome = , SdExposure = , data = , OUTLIERtest = FALSE, DISTORTIONtest = FALSE, SignifThreshold = 0.05, NbDistribution = 1000, seed = NULL))"
+      }
+    },
+    "mr.raps": {
+      "available": false,
+      "version": {}
+    },
+    "jsonlite": {
+      "available": true,
+      "version": "2.0.0",
+      "method_exports": [],
+      "formals": {}
+    }
+  },
+  "TwoSampleMR_methods": [
+    {
+      "obj": "mr_wald_ratio",
+      "name": "Wald ratio",
+      "PubmedID": "",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_two_sample_ml",
+      "name": "Maximum likelihood",
+      "PubmedID": "",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": true
+    },
+    {
+      "obj": "mr_egger_regression",
+      "name": "MR Egger",
+      "PubmedID": "26050253",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": true
+    },
+    {
+      "obj": "mr_egger_regression_bootstrap",
+      "name": "MR Egger (bootstrap)",
+      "PubmedID": "26050253",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_simple_median",
+      "name": "Simple median",
+      "PubmedID": "27061298",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_weighted_median",
+      "name": "Weighted median",
+      "PubmedID": "27061298",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_penalised_weighted_median",
+      "name": "Penalised weighted median",
+      "PubmedID": "27061298",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_ivw",
+      "name": "Inverse variance weighted",
+      "PubmedID": "24114802",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": true
+    },
+    {
+      "obj": "mr_ivw_radial",
+      "name": "IVW radial",
+      "PubmedID": "29961852",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": true
+    },
+    {
+      "obj": "mr_ivw_mre",
+      "name": "Inverse variance weighted (multiplicative random effects)",
+      "PubmedID": "",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_ivw_fe",
+      "name": "Inverse variance weighted (fixed effects)",
+      "PubmedID": "",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_simple_mode",
+      "name": "Simple mode",
+      "PubmedID": "29040600",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_weighted_mode",
+      "name": "Weighted mode",
+      "PubmedID": "29040600",
+      "Description": "",
+      "use_by_default": true,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_weighted_mode_nome",
+      "name": "Weighted mode (NOME)",
+      "PubmedID": "29040600",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_simple_mode_nome",
+      "name": "Simple mode (NOME)",
+      "PubmedID": "29040600",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_raps",
+      "name": "Robust adjusted profile score (RAPS)",
+      "PubmedID": "",
+      "Description": "",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_sign",
+      "name": "Sign concordance test",
+      "PubmedID": "",
+      "Description": "Tests for concordance of signs between exposure and outcome",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    },
+    {
+      "obj": "mr_uwr",
+      "name": "Unweighted regression",
+      "PubmedID": "",
+      "Description": "Doesn't use any weights",
+      "use_by_default": false,
+      "heterogeneity_test": true
+    },
+    {
+      "obj": "mr_grip",
+      "name": "MR GRIP",
+      "PubmedID": "",
+      "Description": "Allele coding invariant MR-Egger regression",
+      "use_by_default": false,
+      "heterogeneity_test": false
+    }
+  ],
+  "scope": "Actual local package loads/exports/signatures only; no causal model or biological validation"
+}

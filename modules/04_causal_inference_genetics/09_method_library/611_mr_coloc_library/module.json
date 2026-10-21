@@ -1,0 +1,15 @@
+{
+  "id": "611",
+  "name": "mr_coloc_library",
+  "title": "Curated MR and colocalization method library with native R adapters and pinned source acquisition",
+  "summary": "MR/共定位方法检索、输入兼容性筛选、固定版本官方源码获取及原生R接口；区分算法、变体、概览、诊断与纯fine-mapping",
+  "entrypoint": ["method_library.py", "run_native_mr.R", "run_coloc_abf.R"],
+  "language": "Python/R",
+  "task": ["mr", "gwas", "colocalization", "method_selection", "official_source_acquisition", "native_package_adapter"],
+  "inputs": ["methods.json", "declared input compatibility context JSON", "explicit native analysis config and harmonized CSV or dense regional inputs"],
+  "outputs": ["query results", "candidate and blocked reasons", "ignored pinned official source cache and SHA receipts", "native R results and provenance"],
+  "dependencies": {"required": ["Python standard library"], "optional": ["gh for GitHub API", "R", "jsonlite", "TwoSampleMR", "MendelianRandomization", "coloc"]},
+  "source_policy": "Original orchestration/adapters; no third-party source vendored in Git. Immutable official snapshots remain in ignored _upstream_sources/mr_coloc. Conflicting or absent licenses remain unresolved.",
+  "sources": [{"url": "https://mrcieu.github.io/TwoSampleMR/"}, {"url": "https://cran.r-project.org/package=MendelianRandomization"}, {"url": "https://chr1swallace.github.io/coloc/"}, {"path": "methods.json", "role": "method-level primary sources and pinned commits"}],
+  "verification": {"verified_on": "2026-10-21", "level": "see_actual_validation_receipts", "python": "tests/test_mr_coloc_library.py", "R": "docs/methods/mr_coloc/native_validation_20261021.json", "scientific_analysis": "not_run", "limitations": "Source acquisition and synthetic native behavior do not establish IV validity or scientific suitability. Advanced source-only algorithms have no unified runtime guarantee."}
+}

@@ -7242,6 +7242,93 @@
       "aliases": [],
       "metadata_source": "modules/04_causal_inference_genetics/01_instrument_prep/610_mr_exposure_contract/module.json",
       "file_count": 4
+    },
+    {
+      "id": "611",
+      "name": "611_mr_coloc_library",
+      "path": "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library",
+      "domain": "04_causal_inference_genetics",
+      "domain_labels": [
+        "因果推断与遗传流行病",
+        "Causal inference & genetics"
+      ],
+      "subcategory": "09_method_library",
+      "subcategory_labels": [
+        "MR与共定位方法库",
+        "MR & colocalization method library"
+      ],
+      "summary": "MR/共定位方法检索、输入兼容性筛选、固定版本官方源码获取及原生R接口；区分算法、变体、概览、诊断与纯fine-mapping",
+      "readme": "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library/README.md",
+      "entrypoints": [
+        "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library/method_library.py",
+        "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library/run_native_mr.R",
+        "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library/run_coloc_abf.R"
+      ],
+      "language": "Python/R",
+      "input_output": {
+        "inputs": [
+          "methods.json",
+          "declared input compatibility context JSON",
+          "explicit native analysis config and harmonized CSV or dense regional inputs"
+        ],
+        "outputs": [
+          "query results",
+          "candidate and blocked reasons",
+          "ignored pinned official source cache and SHA receipts",
+          "native R results and provenance"
+        ]
+      },
+      "dependencies": {
+        "required": [
+          "Python standard library"
+        ],
+        "optional": [
+          "gh for GitHub API",
+          "R",
+          "jsonlite",
+          "TwoSampleMR",
+          "MendelianRandomization",
+          "coloc"
+        ]
+      },
+      "tags": [
+        "04_causal_inference_genetics",
+        "09_method_library",
+        "colocalization",
+        "gwas",
+        "method_selection",
+        "mr",
+        "native_package_adapter",
+        "official_source_acquisition"
+      ],
+      "legacy_status": null,
+      "verification": {
+        "verified_on": "2026-10-21",
+        "level": "see_actual_validation_receipts",
+        "python": "tests/test_mr_coloc_library.py",
+        "R": "docs/methods/mr_coloc/native_validation_20261021.json",
+        "scientific_analysis": "not_run",
+        "limitations": "Source acquisition and synthetic native behavior do not establish IV validity or scientific suitability. Advanced source-only algorithms have no unified runtime guarantee."
+      },
+      "sources": [
+        {
+          "url": "https://mrcieu.github.io/TwoSampleMR/"
+        },
+        {
+          "url": "https://cran.r-project.org/package=MendelianRandomization"
+        },
+        {
+          "url": "https://chr1swallace.github.io/coloc/"
+        },
+        {
+          "path": "methods.json",
+          "role": "method-level primary sources and pinned commits"
+        }
+      ],
+      "citation": null,
+      "aliases": [],
+      "metadata_source": "modules/04_causal_inference_genetics/09_method_library/611_mr_coloc_library/module.json",
+      "file_count": 9
     }
   ]
 }

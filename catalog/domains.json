@@ -57,7 +57,7 @@
       "因果推断与遗传流行病",
       "Causal inference & genetics"
     ],
-    "modules": 32,
+    "modules": 33,
     "subcategories": [
       "01_instrument_prep",
       "02_two_sample_mr",
@@ -66,7 +66,8 @@
       "05_colocalization",
       "06_twas_sceqtl",
       "07_robust_mr_methods",
-      "08_gwas_finemapping"
+      "08_gwas_finemapping",
+      "09_method_library"
     ]
   },
   {

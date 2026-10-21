@@ -221,7 +221,7 @@
 | 🟡 | 590 | [590_scperturbench_generalization](03_virtual_perturbation/05_benchmark/590_scperturbench_generalization) | 把自己的单细胞扰动预测按 scPerturBench (Nat Methods 2026) 的同一套指标打分，并强制与上游口径的朴素基线 (controlBaseline / trainMean) 对照，判断深度模型是否真的赢过"什么都不预测"。 | 输入 example_data/observed.csv (cell_id, group∈{control,stimulated}, 基因列) + predicted.csv (cell_id, method, 基因列，可含多方法)；输出 results/performance.tsv (长表) + performance_wide.csv + rank_matrix.csv + summary.json (含 mean_rank / verdict_vs_naive_floor / caveats / 依赖版本快照) + 3 张 PNG+PDF 图 | numpy, pandas, scipy, matplotlib（全部本机已装，零额外安装）；可选 pertpy + anndata 走 --use-pertpy 守卫路径拿上游同名 Sinkhorn wasserstein | Python 3.12 | 3 张，均非条形图：fig1_rank_heatmap（方法×指标排名热图）、fig2_vs_baseline_dotplot（相对 controlBaseline 比值的点图，log 轴 + 基线虚线）、fig3_delta_scatter（每基因 delta 预测 vs 真实散点，每方法一 panel，标注 PCC-delta） |
 | 🟡 | 591 | [591_scarchon_perturbation_benchmark](03_virtual_perturbation/05_benchmark/591_scarchon_perturbation_benchmark) | 留一批次(leave-one-batch-out)的单细胞扰动响应预测基准骨架:按 scArchon 口径评估预测的扰动后表达,强制与 control/mean 朴素基线同台对比 | In: .h5ad (AnnData) with obs columns `condition` (control/stimulated) and `batch`; defaults to bundled example_data/synthetic_perturb.h5ad (1800 cells x 300 genes, 4 donors). Out: results/591_scores_per_batch.csv, 591_scores_mean.csv, 591_per_gene_delta.csv, 591_summary.json, 4 PDF+PNG figures; display copies in assets/. | anndata, numpy, scipy, pandas, scikit-learn, matplotlib (all locally installed); no scArchon import — upstream is Snakemake-only. Optional server path: snakemake + singularity/apptainer. | Python | 4 figures, no bar charts: dumbbell (delta-R2 per held-out batch vs control floor), heatmap (method x metric, raw value in cell + direction-normalised colour), scatter (per-gene true vs predicted delta, 3 panels), raincloud (violin + jitter + box of per-gene absolute error). |
 
-## 04 · 因果推断与遗传流行病 — Causal inference & genetics  (32)
+## 04 · 因果推断与遗传流行病 — Causal inference & genetics  (33)
 
 ### 04.01 · 工具变量准备 — Instrument preparation
 
@@ -294,6 +294,12 @@
 |----|---|------|------|------------|------|------|------|
 | 📄 | 608 | [608_gwas_summary_qc](04_causal_inference_genetics/08_gwas_finemapping/608_gwas_summary_qc) | GWAS全区域汇总统计与signed LD审计：build、祖源、效应、频率、顺序与方向守卫 | summary.tsv; metadata.json; optional ld.txt + ld_variants.tsv → audit.json | required: Python >=3.9 standard library; optional: numpy for LD PSD check | Python | 结构化结果与审计输出；无默认展示图 |
 | 📄 | 609 | [609_susie_coloc](04_causal_inference_genetics/08_gwas_finemapping/609_susie_coloc) | 单祖源SuSiE RSS精细定位与多信号共定位：PIP、H0-H4、prior敏感性及ABF基线 | trusted config.R; two dense regional summary TSVs; two signed LD matrices and ordered allele manifests → SuSiE fits and PIP; signal-pair H0-H4 prior sensitivity; single-causal ABF baseline; provenance | required: R, susieR, coloc | R | 结构化结果与审计输出；无默认展示图 |
+
+### 04.09 · MR与共定位方法库 — MR & colocalization method library
+
+| St | # | 模块 | 用途 | 输入 → 输出 | 依赖 | 语言 | 图型 |
+|----|---|------|------|------------|------|------|------|
+| 📄 | 611 | [611_mr_coloc_library](04_causal_inference_genetics/09_method_library/611_mr_coloc_library) | MR/共定位方法检索、输入兼容性筛选、固定版本官方源码获取及原生R接口；区分算法、变体、概览、诊断与纯fine-mapping | methods.json; declared input compatibility context JSON; explicit native analysis config and harmonized CSV or dense regional inputs → query results; candidate and blocked reasons; ignored pinned official source cache and SHA receipts; native R results and provenance | required: Python standard library; optional: gh for GitHub API, R, jsonlite, TwoSampleMR, MendelianRandomization, coloc | Python/R | 结构化结果与审计输出；无默认展示图 |
 
 ## 05 · 机器学习 — Machine learning  (18)
 

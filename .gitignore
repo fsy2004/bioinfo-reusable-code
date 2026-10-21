@@ -96,3 +96,7 @@ out.txt
 # The tracked manifest is modules/_upstream_sources/README.md.
 modules/_upstream_sources/*/
 modules/_upstream_sources/_tarballs/
+
+# Unmerged research-agent evidence remains local; curated generic records live in module611.
+docs/methods/mr_coloc/agent_*
+docs/methods/mr_coloc/extra_mr_sources.*

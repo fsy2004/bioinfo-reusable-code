@@ -1,0 +1,8 @@
+# Keep new adapter/source-audit bytes stable across Windows and Linux checkouts.
+modules/04_causal_inference_genetics/09_method_library/** text eol=lf
+docs/methods/mr_coloc/** text eol=lf
+catalog/mr_coloc_* text eol=lf
+scripts/mr_coloc.py text eol=lf
+scripts/snapshot_mr_sources.py text eol=lf
+tests/check_mr_coloc_native.R text eol=lf
+tests/test_mr_coloc_library.py text eol=lf

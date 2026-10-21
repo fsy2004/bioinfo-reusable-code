@@ -1,0 +1,631 @@
+{
+  "date": "2026-10-21",
+  "validation_scope": "SYNTHETIC native-interface/guard behavior only; no glucocorticoid or human scientific validation",
+  "R_version": "R version 4.4.3 (2025-02-28 ucrt)",
+  "packages": {
+    "TwoSampleMR": "0.7.5",
+    "MendelianRandomization": "0.10.0",
+    "coloc": "5.2.3",
+    "jsonlite": "2.0.0"
+  },
+  "mr_raps_installed": false,
+  "checks": [
+    {
+      "name": "TwoSampleMR installed method registry contains19 native APIs",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "TwoSampleMR all18 multiSNP dispatches preserve missingRAPS as failed",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "SingleSNP Wald native roundtrip matches installedAPI",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MendelianRandomization11 exported native functions return reloadableS4",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "SignedLD accepted only for three native correlated summary methods",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject zeroSE",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject duplicate",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject mismatchedAlleles",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject zeroExposure",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject singleEgger",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject multipleWald",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject unknownMethod",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject notHarmonized",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject notIndependent",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject badBuild",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject missingUnit",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject ORinsteadOfBeta",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MRreject palindromeAmbiguous",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "Existing results are not overwritten",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "RscriptJSON CLI propagates missingRAPS failure with persisted provenance",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocABF densequant+cc nativeRDS and H0-H4 priorgrid",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocABF explicitly allowed native sdY estimation",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "Coloc intersection requires explicit acceptance and records exclusions",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject leadOnly",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject filteredTable",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject zeroSE",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject duplicate",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject unaligned",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject differentPosition",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject wrongChromosome",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject missingSdY",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject missingCaseFraction",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject invalidPrior",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "colocReject smallOverlap",
+      "passed": true,
+      "error": null
+    }
+  ],
+  "tests_passed": 34,
+  "tests_total": 34,
+  "TwoSampleMR_multi_method_status": [
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_two_sample_ml",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32577662127704077,
+      "se": 0.036352488016307104,
+      "pvalue": 3.1998766608697713e-19,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_egger_regression",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32359115534717431,
+      "se": 0.112598566887923,
+      "pvalue": 0.02070620166317598,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_egger_regression_bootstrap",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32335340602801788,
+      "se": 0.12316068026141355,
+      "pvalue": 0,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_simple_median",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33548253478081635,
+      "se": 0.043465109317466687,
+      "pvalue": 1.1776852392067344e-14,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_weighted_median",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33306680079111362,
+      "se": 0.040811666327979328,
+      "pvalue": 3.3207401818580984e-16,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_penalised_weighted_median",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33306680079111362,
+      "se": 0.049394264111033301,
+      "pvalue": 1.5512157428388569e-11,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_ivw",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584709,
+      "se": 0.035703492638876268,
+      "pvalue": 7.5639085030209682e-20,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_ivw_radial",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584703,
+      "se": 0.012716410043324307,
+      "pvalue": 1.3810977628176817e-144,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_ivw_mre",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584709,
+      "se": 0.012716410043324302,
+      "pvalue": 1.3810977628171787e-144,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_ivw_fe",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584709,
+      "se": 0.035703492638876268,
+      "pvalue": 7.5639085030209682e-20,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_simple_mode",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33570747315692723,
+      "se": 0.076696525787585804,
+      "pvalue": 0.0017786403214048721,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_weighted_mode",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33213575164985343,
+      "se": 0.1063940031732717,
+      "pvalue": 0.01228387687963947,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_weighted_mode_nome",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33213575164985343,
+      "se": 0.10006918797064664,
+      "pvalue": 0.008953697878778177,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_simple_mode_nome",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33570747315692723,
+      "se": 0.080750777287179637,
+      "pvalue": 0.0024574543268784297,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_raps",
+      "status": "failed",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": null,
+      "se": null,
+      "pvalue": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": null,
+      "error": "Missing installed package: mr.raps; no automatic installation",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_sign",
+      "status": "returned",
+      "estimate_role": "sign_concordance_score_not_causal_beta",
+      "estimate": 1,
+      "se": null,
+      "pvalue": 0.0019531250000000004,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_uwr",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584714,
+      "se": 1.4281397055550504,
+      "pvalue": 0.81966062448426924,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "TwoSampleMR",
+      "method": "mr_grip",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32298286871117837,
+      "se": 0.021287880532464137,
+      "pvalue": 3.5270670959910043e-07,
+      "ci_lower": null,
+      "ci_upper": null,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    }
+  ],
+  "MendelianRandomization_method_status": [
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_ivw",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584709,
+      "se": 0.035703492638876268,
+      "pvalue": 7.5639085030209682e-20,
+      "ci_lower": 0.25561186930135871,
+      "ci_upper": 0.39556698869033546,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_egger",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32359115534717431,
+      "se": 0.112598566887923,
+      "pvalue": 0.0040550419279175021,
+      "ci_lower": 0.10290201953602102,
+      "ci_upper": 0.54428029115832754,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_median",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33342153079342901,
+      "se": 0.045729587771767145,
+      "pvalue": 3.0730805052067482e-13,
+      "ci_lower": 0.24379318573290215,
+      "ci_upper": 0.42304987585395587,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_maxlik",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32577662127704077,
+      "se": 0.036352488016307104,
+      "pvalue": 3.1998766608697713e-19,
+      "ci_lower": 0.25452705401665493,
+      "ci_upper": 0.39702618853742661,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_mbe",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.33213575164985343,
+      "se": 0.058559205772579441,
+      "pvalue": 1.413098407938999e-08,
+      "ci_lower": 0.21736181737232774,
+      "ci_upper": 0.44690968592737912,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_conmix",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.31999999999999984,
+      "se": null,
+      "pvalue": 1.3676838289079048e-15,
+      "ci_lower": 0.26000000000000023,
+      "ci_upper": 0.37999999999999989,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_lasso",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32558942899584709,
+      "se": 0.035703492638876268,
+      "pvalue": 7.5639085030209682e-20,
+      "ci_lower": 0.25561186930135871,
+      "ci_upper": 0.39556698869033546,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_divw",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32709046736208419,
+      "se": 0.036555421022394036,
+      "pvalue": 3.6264891058996098e-19,
+      "ci_lower": 0.25544315871849355,
+      "ci_upper": 0.39873777600567484,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_pivw",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.3267886001402559,
+      "se": 0.036486849015213152,
+      "pvalue": 3.3563602113129778e-19,
+      "ci_lower": 0.25527569016108742,
+      "ci_upper": 0.39830151011942438,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_hetpen",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.31999999999999984,
+      "se": null,
+      "pvalue": null,
+      "ci_lower": 0.26000000000000023,
+      "ci_upper": 0.39999999999999991,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    },
+    {
+      "engine": "MendelianRandomization",
+      "method": "mr_cML",
+      "status": "returned",
+      "estimate_role": "effect_on_declared_native_scale",
+      "estimate": 0.32571555176882755,
+      "se": 0.036407051164214693,
+      "pvalue": 3.6694395418187624e-19,
+      "ci_lower": 0.25435904270365972,
+      "ci_upper": 0.39707206083399538,
+      "input_snps": 10,
+      "nsnp": 10,
+      "error": "",
+      "warnings": ""
+    }
+  ],
+  "code_md5": {
+    "MR": "77d019737e85a371c55c2548dacfaabe",
+    "coloc": "2b854253609ce58acf82597adeb0d916",
+    "behavior_test": "3f6da9d441814de9b3c9a64813862c75"
+  },
+  "status": "passed"
+}

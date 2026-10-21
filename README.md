@@ -3,10 +3,10 @@
 按研究问题组织的 R/Python 生物信息学代码库：先选领域，再进入可独立运行的模块，用自己的数据替换合成示例。
 
 <!-- readme-metrics:start -->
-![modules](https://img.shields.io/badge/modules-199-2563EB)
-![catalog entries](https://img.shields.io/badge/catalog_entries-203-334155)
+![modules](https://img.shields.io/badge/modules-200-2563EB)
+![catalog entries](https://img.shields.io/badge/catalog_entries-204-334155)
 ![domains](https://img.shields.io/badge/domains-16-0F766E)
-![subcategories](https://img.shields.io/badge/subcategories-64-7C3AED)
+![subcategories](https://img.shields.io/badge/subcategories-65-7C3AED)
 ![outputs](https://img.shields.io/badge/figures-PDF%20%2B%20300dpi%20PNG-15803D)
 <!-- readme-metrics:end -->
 
@@ -21,6 +21,8 @@
 先在 [`modules/CATALOG.md`](modules/CATALOG.md) 按领域、用途或图型定位模块，再阅读该模块的 README。
 
 AI 检索从 [`catalog/modules.jsonl`](catalog/modules.jsonl) 或 `python scripts/query_modules.py NHANES` 开始；字段与维护规则见 [`docs/AI_INDEX.md`](docs/AI_INDEX.md)。本次课题的方法、2026 文献及 GitHub 来源见 [`研究准备入口`](docs/research/2026_glucocorticoids_cancer/README.md)。
+
+MR与GWAS共定位从 [`方法库611`](docs/methods/mr_coloc/README.md) 进入：`python scripts/mr_coloc.py query <关键词>` 检索具体算法/变体及原始来源，`select <context.json>` 按声明输入列候选与阻断原因。固定官方源码、本机原生接口验证与科学分析分别记录。
 
 ```powershell
 git clone https://github.com/fsy2004/bioinfo-reusable-code.git
@@ -49,7 +51,7 @@ python modules\12_genome_annotation_variants\01_somatic_variants\598_clairs_long
 | 01 · 单细胞分析 — Single-cell analysis | 33 | [`modules/01_single_cell`](modules/01_single_cell) |
 | 02 · 空间转录组 — Spatial transcriptomics | 24 | [`modules/02_spatial_transcriptomics`](modules/02_spatial_transcriptomics) |
 | 03 · 虚拟扰动技术 — Virtual perturbation | 26 | [`modules/03_virtual_perturbation`](modules/03_virtual_perturbation) |
-| 04 · 因果推断与遗传流行病 — Causal inference & genetics | 32 | [`modules/04_causal_inference_genetics`](modules/04_causal_inference_genetics) |
+| 04 · 因果推断与遗传流行病 — Causal inference & genetics | 33 | [`modules/04_causal_inference_genetics`](modules/04_causal_inference_genetics) |
 | 05 · 机器学习 — Machine learning | 18 | [`modules/05_machine_learning`](modules/05_machine_learning) |
 | 06 · Bulk 组学 — Bulk omics | 19 | [`modules/06_bulk_omics`](modules/06_bulk_omics) |
 | 07 · 临床与转化 — Clinical & translational | 11 | [`modules/07_clinical_translational`](modules/07_clinical_translational) |

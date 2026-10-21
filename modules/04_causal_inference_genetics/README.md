@@ -1,6 +1,6 @@
 # 04 · 因果推断与遗传流行病 — Causal inference & genetics
 
-本域共 32 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
+本域共 33 个条目。完整字段见 [`../CATALOG.md`](../CATALOG.md)。
 
 
 ## 工具变量准备 — Instrument preparation
@@ -58,3 +58,7 @@
 
 - [608_gwas_summary_qc](08_gwas_finemapping/608_gwas_summary_qc) — GWAS全区域汇总统计与signed LD审计：build、祖源、效应、频率、顺序与方向守卫
 - [609_susie_coloc](08_gwas_finemapping/609_susie_coloc) — 单祖源SuSiE RSS精细定位与多信号共定位：PIP、H0-H4、prior敏感性及ABF基线
+
+## MR与共定位方法库 — MR & colocalization method library
+
+- [611_mr_coloc_library](09_method_library/611_mr_coloc_library) — MR/共定位方法检索、输入兼容性筛选、固定版本官方源码获取及原生R接口；区分算法、变体、概览、诊断与纯fine-mapping

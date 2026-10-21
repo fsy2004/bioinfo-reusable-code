@@ -56,6 +56,7 @@ DOMAINS = {
         "06_twas_sceqtl": ("TWAS 与单细胞 eQTL", "TWAS & sc-eQTL"),
         "07_robust_mr_methods": ("稳健 MR 估计量", "Robust MR estimators"),
         "08_gwas_finemapping": ("GWAS 质控与精细定位", "GWAS QC & fine-mapping"),
+        "09_method_library": ("MR与共定位方法库", "MR & colocalization method library"),
     }),
     "05_machine_learning": ("机器学习", "Machine learning", {
         "01_feature_selection": ("特征筛选", "Feature selection"),
